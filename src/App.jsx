@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, RotateCcw, Sun, Sparkles, Bookmark } from 'lucide-react'
+import { ChevronLeft, RotateCcw, Sun, Sparkles, Bookmark, Share2, Copy, Check, X } from 'lucide-react'
 import { findArcanaContent, findPositionReading, spreadPositions } from './content/majorArcana.js'
 import { composeReading } from './engine/composeReading.js'
 
@@ -1598,11 +1598,174 @@ function ComposedReading({ tirada, onCarta }) {
   )
 }
 
+
+/* =====================================================================
+ * SHARE — modal contemplativo para compartir lectura
+ * ===================================================================*/
+
+const APP_URL = 'https://tarot-zeta-eosin.vercel.app/'
+
+function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
+  const [copied, setCopied] = useState(false)
+  useEffect(() => { if (!open) setCopied(false) }, [open])
+
+  if (!card) return null
+
+  const content = findArcanaContent(card.nombre)
+  const cardName = card.nombre
+
+  // Texto compuesto para compartir
+  const composeShareText = () => {
+    const lines = []
+    if (intention) lines.push(`«${intention}»\n`)
+    lines.push(`${cardName}`)
+    if (content?.essence) lines.push(content.essence)
+    if (content?.prompt) lines.push(`\n${content.prompt}`)
+    lines.push(`\n— Tarot Ade · ${APP_URL}`)
+    return lines.join('\n')
+  }
+
+  const shareText = composeShareText()
+  const shareUrl  = APP_URL
+
+  const tryNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Tarot Ade · ${cardName}`,
+          text:  shareText,
+          url:   shareUrl
+        })
+      } catch (err) { /* usuaria canceló, ignorar */ }
+    } else {
+      copyToClipboard()
+    }
+  }
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(shareText + '\n' + shareUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2200)
+    } catch { /* fallback */ }
+  }
+
+  const encoded = encodeURIComponent(shareText + '\n' + shareUrl)
+  const xUrl       = `https://twitter.com/intent/tweet?text=${encoded}`
+  const waUrl      = `https://wa.me/?text=${encoded}`
+  const tgUrl      = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          key="share-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="fixed inset-0 z-[80] flex items-end sm:items-center justify-center px-4 pb-4 sm:pb-0"
+          onClick={onClose}
+        >
+          {/* backdrop */}
+          <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
+
+          {/* modal */}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0,  opacity: 1 }}
+            exit={{ y: 40, opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.32, 0.72, 0.24, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-[420px] bg-noche border border-dorado/35 rounded-[8px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+            style={{
+              background: 'radial-gradient(ellipse at 50% 0%, #16263c 0%, #0d1b2a 50%, #0a131e 100%)'
+            }}
+          >
+            {/* close */}
+            <button
+              onClick={onClose}
+              aria-label="Cerrar"
+              className="absolute top-3 right-3 z-10 text-pergamino/60 hover:text-pergamino active:scale-[0.95] transition"
+            >
+              <X className="w-5 h-5" strokeWidth={1.4} />
+            </button>
+
+            <div className="px-7 pt-10 pb-8 text-center">
+              <p className="text-[0.6rem] tracking-[0.28em] uppercase text-dorado/75 font-medium mb-3">
+                Compartir esta lectura
+              </p>
+
+              {/* Mini preview de la carta */}
+              <div className="my-5 mx-auto w-[110px]">
+                <div className="aspect-[2/3] bg-marfil rounded-[5px] overflow-hidden ring-1 ring-dorado/40 shadow-[0_8px_22px_rgba(0,0,0,0.45)]">
+                  <div className="w-full h-full bg-gradient-to-br from-[#e8dcc4] to-[#d4c5a8] flex items-center justify-center">
+                    <img src={card.src} alt={cardName} className="w-full h-full object-contain" />
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="font-serif text-pergamino text-[1.2rem] mb-2 tracking-[0.04em]">
+                {cardName}
+              </h3>
+              {content?.essence && (
+                <p className="font-serif italic text-dorado/85 text-[0.92rem] leading-snug max-w-[20rem] mx-auto mb-7">
+                  {content.essence}
+                </p>
+              )}
+
+              <div className="h-px w-12 bg-dorado/35 mx-auto mb-7" />
+
+              {/* Botón principal — share nativo */}
+              <button
+                onClick={tryNativeShare}
+                className="w-full py-3.5 mb-3 bg-vino text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3"
+              >
+                <Share2 className="w-3.5 h-3.5" strokeWidth={1.5} />
+                <span>Compartir</span>
+              </button>
+
+              {/* Copy link */}
+              <button
+                onClick={copyToClipboard}
+                className="w-full py-3 mb-5 bg-transparent text-pergamino/85 border border-dorado/40 text-[0.68rem] tracking-[0.26em] uppercase font-light rounded-[4px] hover:border-dorado/75 hover:text-pergamino active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-dorado" strokeWidth={1.6} /> : <Copy className="w-3.5 h-3.5" strokeWidth={1.4} />}
+                <span>{copied ? 'Copiado' : 'Copiar texto'}</span>
+              </button>
+
+              {/* Redes específicas */}
+              <p className="text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/40 font-light mb-3">
+                O directamente en
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                <a href={xUrl} target="_blank" rel="noopener noreferrer"
+                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.18em] uppercase font-light rounded-[3px] transition-colors">
+                  X / Twitter
+                </a>
+                <a href={waUrl} target="_blank" rel="noopener noreferrer"
+                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.18em] uppercase font-light rounded-[3px] transition-colors">
+                  WhatsApp
+                </a>
+                <a href={tgUrl} target="_blank" rel="noopener noreferrer"
+                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.18em] uppercase font-light rounded-[3px] transition-colors">
+                  Telegram
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
 function Detalle({ card, reversed, onBack }) {
   const content = findArcanaContent(card.nombre)
   const hasNewVoice = !!content
   const titulo = (content?.name ?? card.nombre).toUpperCase()
   const [expanded, setExpanded] = useState(false)
+  const [shareOpen, setShareOpen] = useState(false)
 
   // Reset expansión cuando cambia la carta
   useEffect(() => { setExpanded(false) }, [card?.id])
@@ -1753,7 +1916,24 @@ function Detalle({ card, reversed, onBack }) {
         <p className="mt-12 text-center text-[0.56rem] tracking-[0.28em] uppercase text-carbon/30 font-light">
           {card.paloLabel}
         </p>
+
+        {/* Compartir */}
+        <div className="mt-10 flex justify-center">
+          <button
+            onClick={() => setShareOpen(true)}
+            className="inline-flex items-center justify-center gap-3 px-7 py-3 bg-transparent text-vino border border-dorado/40 hover:border-vino/65 text-[0.66rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vino/5 active:scale-[0.98] transition-all duration-300"
+          >
+            <Share2 className="w-3.5 h-3.5" strokeWidth={1.5} />
+            <span>Compartir</span>
+          </button>
+        </div>
       </div>
+      <ShareModal
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        card={card}
+        kind="card"
+      />
     </motion.section>
   )
 }
