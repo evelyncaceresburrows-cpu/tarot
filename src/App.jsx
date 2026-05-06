@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, RotateCcw, Sun, Sparkles, Bookmark, Share2, Copy, Check, X } from 'lucide-react'
-import { findArcanaContent, findPositionReading, spreadPositions } from './content/majorArcana.js'
-import { composeReading } from './engine/composeReading.js'
+import {
+  findContentByCard,
+  findPositionByCard,
+  toEngineCard,
+  spreadPositions
+} from './content/contentBridge.js'
+import { composeRelationalReading } from './engine/relationalEngine.js'
 
 const ARCANOS_MAYORES = [
   { num: 0,  romano: '0',     nombre: 'El Loco',                 file: '00-el-loco.png',
@@ -1469,7 +1474,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
               ) : (
                 <div className="space-y-7 px-2 max-w-[40rem] mx-auto">
                   {tirada.map((slot, idx) => {
-                    const content = findArcanaContent(slot.card.nombre)
+                    const content = findContentByCard(slot.card)
                     return (
                       <button
                         key={`int-${slot.card.id}-${idx}`}
@@ -1523,34 +1528,53 @@ function Tirada({ count, intention, onCarta, onHome }) {
 }
 
 /**
- * ComposedReading — usa /engine/composeReading.js para sintetizar
- * la tirada de tres en intro + posiciones + síntesis + pregunta.
+ * ComposedReading — sintetiza una tirada de 3 cartas usando:
+ *   · contentBridge       → contenido por carta (Mayor o Menor)
+ *   · relationalEngine    → atmósfera + movimiento + síntesis relacional
+ *
+ * La síntesis NO es una suma de cartas individuales: surge de la
+ * INTERACCIÓN entre las tres (temperatura, dirección, contradicciones,
+ * concentración de palos, presencia de Mayores, ritmo).
  */
 function ComposedReading({ tirada, onCarta }) {
-  const cardsForEngine = tirada.map(slot => {
-    const content = findArcanaContent(slot.card.nombre)
-    return {
-      name: slot.card.nombre,
-      positions: content?.positions,
-      reading: content?.reading,
-      inverted: slot.reversed
-    }
-  })
+  // 1. Contenido por carta — viene de los datasets simbólicos.
+  const slots = tirada.map(slot => ({
+    slot,
+    content: findContentByCard(slot.card)
+  }))
 
-  const reading = composeReading(cardsForEngine)
-  if (!reading) return null
+  // 2. Cards mínimas para el motor relacional (name / suit+number).
+  const engineCards = tirada.map(s => toEngineCard(s.card))
+
+  // 3. Composición relacional — atmósfera, movimiento, síntesis.
+  const relational = composeRelationalReading(engineCards)
+
+  // 4. Pregunta de cierre — viene de la 3ra carta (whatOpens) si tiene
+  //    prompt; si no, fallback honesto.
+  const closingPrompt =
+    slots[2]?.content?.prompt ||
+    'Si dejaras que esta tirada respire un poco más, ¿qué cambiaría?'
 
   return (
     <div className="px-2 max-w-[40rem] mx-auto">
-      {/* Intro: tono general */}
-      <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[32rem] mx-auto mb-10">
-        {reading.intro}
+      {/* Atmósfera de apertura — peso de Mayores + temperatura + ritmo */}
+      <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[34rem] mx-auto mb-8">
+        {relational.atmosphere}
       </p>
 
-      {/* 3 posiciones — bullets de estrella */}
+      {/* Movimiento narrativo + contradicciones (si las hay) */}
+      {relational.movement && (
+        <p className="font-light text-pergamino/65 text-[0.9rem] leading-[1.85] text-center max-w-[32rem] mx-auto mb-10 italic">
+          {relational.movement}
+        </p>
+      )}
+
+      {/* 3 posiciones — contenido específico por carta */}
       <div className="space-y-7 mb-10">
-        {reading.byPosition.map((pos, idx) => {
-          const slot = tirada[idx]
+        {slots.map(({ slot, content }, idx) => {
+          const positionKey   = ['whatIs', 'whatCrosses', 'whatOpens'][idx]
+          const positionLabel = ['Lo que está', 'Lo que cruza', 'Lo que se abre'][idx]
+          const positionText  = content?.positions?.[positionKey] || content?.reading || ''
           return (
             <button
               key={`pos-${idx}`}
@@ -1561,14 +1585,19 @@ function ComposedReading({ tirada, onCarta }) {
                 <span className="text-dorado/80 mt-1 shrink-0"><StarTiny size={10} /></span>
                 <div className="flex-1">
                   <p className="text-[0.62rem] tracking-[0.26em] uppercase text-dorado/85 font-medium mb-2">
-                    {pos.label}
+                    {positionLabel}
                     {slot.reversed && (
                       <span className="ml-3 text-vino/85">· invertida</span>
                     )}
                   </p>
-                  <p className="font-serif text-pergamino text-[1rem] mb-2">{slot.card.nombre}</p>
+                  <p className="font-serif text-pergamino text-[1rem] mb-1.5">{slot.card.nombre}</p>
+                  {content?.essence && (
+                    <p className="font-serif italic text-dorado/75 text-[0.85rem] mb-2">
+                      {content.essence}
+                    </p>
+                  )}
                   <p className="font-light text-pergamino/80 text-[0.92rem] leading-[1.85]">
-                    {pos.text}
+                    {positionText}
                   </p>
                 </div>
               </div>
@@ -1577,13 +1606,17 @@ function ComposedReading({ tirada, onCarta }) {
         })}
       </div>
 
-      {/* Síntesis */}
-      <StarDivider className="my-8" />
-      <p className="font-serif italic text-dorado/85 text-[1rem] md:text-[1.05rem] leading-[1.8] text-center max-w-[32rem] mx-auto mb-10">
-        {reading.synthesis}
-      </p>
+      {/* Voz del palo (si hay concentración) — eco simbólico de la lectura */}
+      {relational.suitVoice && (
+        <>
+          <StarDivider className="my-7" />
+          <p className="font-light text-pergamino/65 text-[0.88rem] leading-[1.85] text-center max-w-[30rem] mx-auto mb-8 italic">
+            {relational.suitVoice}
+          </p>
+        </>
+      )}
 
-      {/* Pregunta final */}
+      {/* Pregunta final — viene de la carta de cierre (lo que se abre) */}
       <StarDivider className="my-8" />
       <div className="text-center max-w-[28rem] mx-auto">
         <p className="text-[0.6rem] tracking-[0.28em] uppercase text-dorado/70 font-medium mb-5">
@@ -1591,7 +1624,7 @@ function ComposedReading({ tirada, onCarta }) {
         </p>
         <p className="font-serif italic text-pergamino text-[1.08rem] md:text-[1.15rem] leading-[1.7]">
           <span className="text-dorado font-sans not-italic mr-2">→</span>
-          {reading.question}
+          {closingPrompt}
         </p>
       </div>
     </div>
@@ -1611,7 +1644,7 @@ function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
 
   if (!card) return null
 
-  const content = findArcanaContent(card.nombre)
+  const content = findContentByCard(card)
   const cardName = card.nombre
 
   // Texto compuesto para compartir
@@ -1761,7 +1794,7 @@ function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
 }
 
 function Detalle({ card, reversed, onBack }) {
-  const content = findArcanaContent(card.nombre)
+  const content = findContentByCard(card)
   const hasNewVoice = !!content
   const titulo = (content?.name ?? card.nombre).toUpperCase()
   const [expanded, setExpanded] = useState(false)

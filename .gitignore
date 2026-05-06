@@ -5,5 +5,8 @@ dist-preview
 .DS_Store
 *.log
 *.zip
+*.bak
 .test.txt
 .test-write.txt
+test_engine.mjs
+test_integration.mjs
