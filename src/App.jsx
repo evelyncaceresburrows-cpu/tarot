@@ -237,82 +237,118 @@ function CompassStar({ size = 64, className = '' }) {
   )
 }
 
-/** Ade — gato sentado en line-art, mismo registro editorial que CompassStar.
- *  Postura del PNG original: oriental sphinx — orejas largas (~30% del alto),
- *  cuello angosto y elongado, hombros marcados, cola en S a la derecha,
- *  mirada serena. Estrella + luna acompañando. */
-function AdeGlyph({ size = 80, className = '' }) {
+/** Ade — figura simbólica de tarot.
+ *  Lógica espacial:
+ *    · Cabeza FRONTAL hierática (mask-like, simétrica).
+ *    · Torso en 3/4 — gira ~35° hacia la izquierda del espectador.
+ *    · Hombro izquierdo del visor adelante; derecho recede.
+ *    · Espalda con curva lateral revelando profundidad.
+ *    · Cadera y patas traseras en perspectiva — la cadera derecha
+ *      del cat sobresale por detrás del cuerpo.
+ *    · Cola nace DETRÁS del cuerpo, refuerza la diagonal.
+ *    · Ojos almendras extremadamente estilizadas — ilustración simbólica,
+ *      no anatómica.
+ *  Estrella + luna acompañan al modo Pamela Colman Smith. */
+function AdeGlyph({ size = 92, className = '' }) {
   return (
-    <svg width={size} height={size * 1.55} viewBox="0 0 60 92" fill="none"
-         stroke="currentColor" strokeWidth="0.9"
+    <svg width={size} height={size * 1.32} viewBox="0 0 70 92" fill="none"
+         stroke="currentColor" strokeWidth="0.95"
          strokeLinecap="round" strokeLinejoin="round" className={className}>
       <g>
-        {/* Estrella sutil arriba izquierda */}
-        <path d="M 8 12 L 8.7 13.6 L 10.4 13.6 L 9 14.8 L 9.5 16.6 L 8 15.5 L 6.5 16.6 L 7 14.8 L 5.6 13.6 L 7.3 13.6 Z"
+        {/* === Acompañantes celestiales === */}
+        <path d="M 9 12 L 9.8 13.7 L 11.6 13.7 L 10.1 14.9 L 10.7 16.7 L 9 15.6 L 7.3 16.7 L 7.9 14.9 L 6.4 13.7 L 8.2 13.7 Z"
               strokeWidth="0.55" strokeOpacity="0.85" />
-
-        {/* Luna creciente arriba derecha */}
-        <path d="M 50 9 a 2.6 2.6 0 1 0 1.8 0 a 1.85 1.85 0 1 1 -1.8 0 z"
+        <path d="M 59 9 a 2.6 2.6 0 1 0 1.8 0 a 1.85 1.85 0 1 1 -1.8 0 z"
               strokeWidth="0.7" />
 
-        {/* OREJAS — largas, casi 30% del alto, signature del oriental */}
-        <path d="M 19 30 L 23 3 L 28 28" />
-        <path d="M 41 30 L 37 3 L 32 28" />
-        <path d="M 23 6 L 25 27" strokeWidth="0.5" strokeOpacity="0.55" />
-        <path d="M 37 6 L 35 27" strokeWidth="0.5" strokeOpacity="0.55" />
+        {/* ============================================================ *
+         *  CABEZA · frontal, simétrica, hierática (rompe lógica espacial)
+         * ============================================================ */}
 
-        {/* Cabeza — angosta entre las orejas, mejillas leves */}
-        <path d="M 19 30 Q 17 37 22 41 Q 30 45 38 41 Q 43 37 41 30" />
-        <path d="M 28 28 Q 30 27 32 28" strokeWidth="0.6" />
+        {/* Orejas largas, simétricas — eje vertical centrado en x=37 */}
+        <path d="M 26 30 L 30 3 L 37 28" />
+        <path d="M 48 30 L 44 3 L 37 28" />
+        <path d="M 30 6 L 32 27" strokeWidth="0.5" strokeOpacity="0.55" />
+        <path d="M 44 6 L 42 27" strokeWidth="0.5" strokeOpacity="0.55" />
 
-        {/* Ojos almendrados, ligera mirada hacia abajo (sphinx) */}
-        <path d="M 22 35 Q 25 33.5 27.5 35 Q 25 36.5 22 35 Z" strokeWidth="0.75" />
-        <path d="M 32.5 35 Q 35 33.5 38 35 Q 35 36.5 32.5 35 Z" strokeWidth="0.75" />
-        <path d="M 24.7 34.5 L 24.7 35.7" strokeWidth="0.85" />
-        <path d="M 35.3 34.5 L 35.3 35.7" strokeWidth="0.85" />
+        {/* Cráneo + mejillas — pera angosta */}
+        <path d="M 26 30 Q 24 38 30 43 Q 37 47 44 43 Q 50 38 48 30" />
 
-        {/* Nariz */}
-        <path d="M 28.7 39 L 31.3 39 L 30 40.5 Z" fill="currentColor" stroke="none" />
-        {/* Boca chica */}
-        <path d="M 30 40.5 L 30 41.7" strokeWidth="0.55" />
-        <path d="M 30 41.7 Q 28.5 42.4 27.5 41.7" strokeWidth="0.55" />
-        <path d="M 30 41.7 Q 31.5 42.4 32.5 41.7" strokeWidth="0.55" />
+        {/* Ojos · almendras simbólicas extremas (4 vértices, casi rómbicos) */}
+        <path d="M 25.5 36 L 30 33.8 L 33.5 36 L 30 37.6 Z" strokeWidth="0.95" />
+        <path d="M 40.5 36 L 44 33.8 L 48.5 36 L 44 37.6 Z" strokeWidth="0.95" />
+        {/* Pupilas verticales — finas, simbólicas */}
+        <path d="M 30 35.1 L 30 36.7" strokeWidth="1.05" />
+        <path d="M 44 35.1 L 44 36.7" strokeWidth="1.05" />
 
-        {/* Bigotes apenas insinuados */}
-        <path d="M 21 39 L 13 38" strokeWidth="0.4" strokeOpacity="0.5" />
-        <path d="M 21 41 L 13 41.5" strokeWidth="0.4" strokeOpacity="0.5" />
-        <path d="M 39 39 L 47 38" strokeWidth="0.4" strokeOpacity="0.5" />
-        <path d="M 39 41 L 47 41.5" strokeWidth="0.4" strokeOpacity="0.5" />
+        {/* Pequeño triángulo nasal */}
+        <path d="M 35.5 41 L 38.5 41 L 37 42.6 Z" fill="currentColor" stroke="none" />
+        {/* Boca apenas */}
+        <path d="M 37 42.6 L 37 43.7" strokeWidth="0.5" />
+        <path d="M 37 43.7 Q 35.7 44.3 34.8 43.7" strokeWidth="0.5" />
+        <path d="M 37 43.7 Q 38.3 44.3 39.2 43.7" strokeWidth="0.5" />
 
-        {/* CUELLO LARGO Y ANGOSTO — signature oriental */}
-        <path d="M 23 44 Q 21 50 22 56" />
-        <path d="M 37 44 Q 39 50 38 56" />
+        {/* Bigotes simétricos, sutiles */}
+        <path d="M 27 41 L 19 40" strokeWidth="0.4" strokeOpacity="0.5" />
+        <path d="M 27 43 L 19 43.5" strokeWidth="0.4" strokeOpacity="0.5" />
+        <path d="M 47 41 L 55 40" strokeWidth="0.4" strokeOpacity="0.5" />
+        <path d="M 47 43 L 55 43.5" strokeWidth="0.4" strokeOpacity="0.5" />
 
-        {/* Hombros que se abren */}
-        <path d="M 22 56 Q 19 61 19 67" />
-        <path d="M 38 56 Q 41 61 41 67" />
+        {/* ============================================================ *
+         *  CUERPO · 3/4 — torso girado a la izquierda del espectador.
+         *  El lado izq del visor (cat's right) sale al frente.
+         *  El lado der del visor (cat's left) recede.
+         * ============================================================ */}
 
-        {/* Tronco — se estrecha hacia caderas */}
-        <path d="M 19 67 Q 19 75 21 82" />
-        <path d="M 41 67 Q 41 75 39 82" />
+        {/* Cuello — entra recto desde la cabeza pero ya empieza a desviar
+            el peso al lado izquierdo del visor */}
+        <path d="M 31 46 Q 27 52 25 60" />          {/* lado izq visor — adelante, más curvo */}
+        <path d="M 43 46 Q 45 51 45 58" />          {/* lado der visor — recesivo */}
 
-        {/* Patas delanteras rectas y paralelas */}
-        <path d="M 23 82 L 23 88" />
-        <path d="M 27 82 L 27 88" />
-        <path d="M 23 88 Q 25 89 27 88" />
+        {/* Hombros · izq adelantado / der retraído */}
+        <path d="M 25 60 Q 21 65 21 72" />          {/* hombro adelante */}
+        <path d="M 45 58 Q 46 64 47 71" />          {/* hombro detrás */}
 
-        <path d="M 33 82 L 33 88" />
-        <path d="M 37 82 L 37 88" />
-        <path d="M 33 88 Q 35 89 37 88" />
+        {/* Pecho · curvo, no plano — sugiere volumen 3/4 */}
+        <path d="M 37 47 Q 33 56 32 72" strokeWidth="0.55" strokeOpacity="0.5" />
 
-        {/* COLA — curva en S elegante hacia la derecha */}
-        <path d="M 41 74 Q 53 69 54 79 Q 55 88 48 89 Q 45 89 45 86" />
+        {/* Espalda visible · curva lateral en S sutil
+            (de hombro recesivo bajando hacia la cadera que asoma) */}
+        <path d="M 47 71 Q 50 76 52 81" />
 
-        {/* Línea sutil del pecho */}
-        <path d="M 30 44 Q 30 65 30 82" strokeWidth="0.4" strokeOpacity="0.28" />
+        {/* Tronco — costado izq baja recto-curvo, costado der ya cortó
+            arriba porque se metió atrás */}
+        <path d="M 21 72 Q 21 80 23 86" />          {/* costado izq visor */}
+
+        {/* ============================================================ *
+         *  CADERA en 3/4 — la cadera derecha del cat (lado recesivo)
+         *  sobresale por detrás como un arco corto.
+         * ============================================================ */}
+        <path d="M 52 81 Q 55 84 53 88" />
+
+        {/* ============================================================ *
+         *  PATAS DELANTERAS — paralelas pero asimétricas.
+         *  La cercana (izq visor) más vertical y prominente; la lejana
+         *  (der visor) un poco más fina, ligeramente atrás.
+         * ============================================================ */}
+        {/* Pata cercana */}
+        <path d="M 24 86 L 24 91" />
+        <path d="M 28 86 L 28 91" />
+        <path d="M 24 91 Q 26 92 28 91" />
+
+        {/* Pata lejana — un poco más arriba en y porque está recesiva */}
+        <path d="M 40 84.5 L 40 91" />
+        <path d="M 43.5 84.5 L 43.5 91" />
+        <path d="M 40 91 Q 41.7 91.7 43.5 91" />
+
+        {/* ============================================================ *
+         *  COLA · nace DETRÁS del cuerpo (refuerza orientación diagonal)
+         *  Sale de detrás de la cadera lejana y se curva hacia la derecha.
+         * ============================================================ */}
+        <path d="M 53 84 Q 62 79 64 87 Q 65 92 60 92" />
 
         {/* Suelo apenas insinuado */}
-        <path d="M 18 88 Q 30 90 42 88" strokeWidth="0.4" strokeOpacity="0.25" />
+        <path d="M 20 91 Q 38 93 50 91" strokeWidth="0.4" strokeOpacity="0.22" />
       </g>
     </svg>
   )
