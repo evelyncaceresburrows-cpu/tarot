@@ -501,7 +501,11 @@ function BookOpening({ onExit }) {
             src="/ade.png"
             alt="Ade"
             draggable="false"
-            className="w-[200px] md:w-[230px] h-auto select-none drop-shadow-[0_8px_28px_rgba(0,0,0,0.55)]"
+            className="w-[120px] md:w-[140px] h-auto select-none"
+            style={{
+              WebkitMaskImage: 'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)',
+              maskImage:       'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)'
+            }}
           />
         </div>
         <h1 className="font-serif text-[1.8rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.36em] md:tracking-[0.42em]">
@@ -733,7 +737,11 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
               src="/ade.png"
               alt="Ade"
               draggable="false"
-              className="w-[210px] md:w-[240px] h-auto select-none drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
+              className="w-[130px] md:w-[150px] h-auto select-none"
+              style={{
+                WebkitMaskImage: 'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)',
+                maskImage:       'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)'
+              }}
             />
           </div>
           <h1 className="font-serif text-[2rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.38em] mb-3">
