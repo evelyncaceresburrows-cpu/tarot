@@ -239,16 +239,15 @@ function CompassStar({ size = 64, className = '' }) {
 
 /** Ade — mascota de la app.
  *  PNG transparente (gato tabby naranja con flora dorada y luna creciente).
- *  Asset en /public/ade.png. Tamaño base ~150px ancho, escalable. */
-function AdeGlyph({ size = 150, className = '' }) {
+ *  Asset en /public/ade.png. El tamaño se controla por className para
+ *  responsive (ej. "w-[130px] md:w-[160px]"). */
+function AdeGlyph({ className = '' }) {
   return (
     <img
       src="/ade.png"
       alt="Ade"
       draggable="false"
-      width={size}
       className={`select-none h-auto ${className}`}
-      style={{ width: `${size}px` }}
     />
   )
 }
@@ -512,8 +511,8 @@ function BookOpening({ onExit }) {
           ease: 'easeOut'
         }}
       >
-        <div className="text-dorado/85 mb-5">
-          <AdeGlyph size={170} />
+        <div className="text-dorado/85 mb-4 md:mb-5">
+          <AdeGlyph className="w-[140px] md:w-[170px]" />
         </div>
         <h1 className="font-serif text-[1.8rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.36em] md:tracking-[0.42em]">
           Tarot Ade
@@ -737,28 +736,28 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
       className="relative min-h-[100svh] noise-dark bg-noche text-pergamino"
     >
       <AtmosphereLayer scene="home" />
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-32 flex flex-col items-center min-h-[100svh] justify-between">
-        <header className="text-center mt-2">
-          <div className="text-dorado mb-4 flex justify-center">
-            <AdeGlyph size={160} />
+      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-6 pb-28 md:pt-10 md:pb-32 flex flex-col items-center min-h-[100svh] justify-center gap-5 md:gap-8">
+        <header className="text-center">
+          <div className="text-dorado mb-2 md:mb-4 flex justify-center">
+            <AdeGlyph className="w-[120px] md:w-[160px]" />
           </div>
-          <h1 className="font-serif text-[2rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.38em] mb-3">
+          <h1 className="font-serif text-[1.7rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.3em] md:tracking-[0.38em] mb-2 md:mb-3">
             Tarot Ade
           </h1>
-          <p className="font-serif italic text-[0.95rem] text-dorado/75 tracking-[0.02em]">
+          <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/75 tracking-[0.02em]">
             conócete, elige, transforma
           </p>
         </header>
 
         <button
           onClick={() => onCarta(destacada)}
-          className="my-10 w-[210px] md:w-[240px] active:scale-[0.99] transition-transform"
+          className="w-[180px] md:w-[240px] active:scale-[0.99] transition-transform"
           aria-label={`Carta destacada: ${destacada.nombre}`}
         >
           <CartaMarco card={destacada} />
         </button>
 
-        <div className="w-full max-w-[300px] flex flex-col gap-3.5 mt-2">
+        <div className="w-full max-w-[300px] flex flex-col gap-3 md:gap-3.5">
           <button
             onClick={onTirada}
             className="w-full py-4 bg-vino text-pergamino text-[0.72rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
