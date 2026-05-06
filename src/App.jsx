@@ -496,17 +496,8 @@ function BookOpening({ onExit }) {
           ease: 'easeOut'
         }}
       >
-        <div className="mb-3 flex justify-center">
-          <img
-            src="/ade.png"
-            alt="Ade"
-            draggable="false"
-            className="w-[120px] md:w-[140px] h-auto select-none"
-            style={{
-              WebkitMaskImage: 'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)',
-              maskImage:       'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)'
-            }}
-          />
+        <div className="text-dorado/70 mb-6">
+          <CompassStar size={64} />
         </div>
         <h1 className="font-serif text-[1.8rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.36em] md:tracking-[0.42em]">
           Tarot Ade
@@ -732,17 +723,8 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
       <AtmosphereLayer scene="home" />
       <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-32 flex flex-col items-center min-h-[100svh] justify-between">
         <header className="text-center mt-2">
-          <div className="mb-3 flex justify-center">
-            <img
-              src="/ade.png"
-              alt="Ade"
-              draggable="false"
-              className="w-[130px] md:w-[150px] h-auto select-none"
-              style={{
-                WebkitMaskImage: 'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)',
-                maskImage:       'radial-gradient(ellipse 78% 72% at 50% 50%, #000 55%, transparent 95%)'
-              }}
-            />
+          <div className="text-dorado mb-5 flex justify-center">
+            <CompassStar size={62} />
           </div>
           <h1 className="font-serif text-[2rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.38em] mb-3">
             Tarot Ade
