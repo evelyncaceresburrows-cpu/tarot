@@ -237,6 +237,82 @@ function CompassStar({ size = 64, className = '' }) {
   )
 }
 
+/** Ade — gato sentado en line-art, mismo registro editorial que CompassStar.
+ *  Mismo carácter del PNG original (orejas largas, cuerpo oriental, mirada
+ *  serena) traducido a línea fina dorada con luna y estrella acompañando. */
+function AdeGlyph({ size = 80, className = '' }) {
+  return (
+    <svg width={size} height={size * 1.25} viewBox="0 0 60 75" fill="none"
+         stroke="currentColor" strokeWidth="0.9"
+         strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <g>
+        {/* Estrella sutil arriba izquierda */}
+        <path d="M 7.5 8 L 8.2 10 L 10.2 10 L 8.6 11.3 L 9.2 13.4 L 7.5 12.1 L 5.8 13.4 L 6.4 11.3 L 4.8 10 L 6.8 10 Z"
+              strokeWidth="0.55" strokeOpacity="0.85" />
+
+        {/* Luna creciente arriba derecha */}
+        <path d="M 52 8 a 2.6 2.6 0 1 0 1.8 0 a 1.85 1.85 0 1 1 -1.8 0 z"
+              strokeWidth="0.7" />
+
+        {/* Oreja izquierda — triángulo alto */}
+        <path d="M 17 24 L 20 3 L 27 22" />
+        <path d="M 21 6 L 24 20" strokeWidth="0.5" strokeOpacity="0.55" />
+
+        {/* Oreja derecha */}
+        <path d="M 43 24 L 40 3 L 33 22" />
+        <path d="M 39 6 L 36 20" strokeWidth="0.5" strokeOpacity="0.55" />
+
+        {/* Cabeza — pera angosta entre las orejas */}
+        <path d="M 17 24 Q 14 33 21 38 Q 30 42 39 38 Q 46 33 43 24" />
+
+        {/* Tope de cabeza entre orejas */}
+        <path d="M 27 22 Q 30 21 33 22" strokeWidth="0.6" />
+
+        {/* Ojos almendrados */}
+        <path d="M 21 30 Q 24 28.5 27 30 Q 24 31.5 21 30 Z" strokeWidth="0.7" />
+        <path d="M 33 30 Q 36 28.5 39 30 Q 36 31.5 33 30 Z" strokeWidth="0.7" />
+        {/* Pupilas verticales */}
+        <path d="M 24 29.4 L 24 30.7" strokeWidth="0.8" />
+        <path d="M 36 29.4 L 36 30.7" strokeWidth="0.8" />
+
+        {/* Hocico + nariz */}
+        <path d="M 28.5 33.5 L 31.5 33.5 L 30 35 Z" fill="currentColor" stroke="none" />
+        <path d="M 30 35 L 30 36.3" strokeWidth="0.55" />
+        <path d="M 30 36.3 Q 28.3 37 27.3 36.3" strokeWidth="0.55" />
+        <path d="M 30 36.3 Q 31.7 37 32.7 36.3" strokeWidth="0.55" />
+
+        {/* Bigotes — apenas insinuados */}
+        <path d="M 22 33 L 13 32" strokeWidth="0.4" strokeOpacity="0.5" />
+        <path d="M 22 35 L 13 35" strokeWidth="0.4" strokeOpacity="0.5" />
+        <path d="M 38 33 L 47 32" strokeWidth="0.4" strokeOpacity="0.5" />
+        <path d="M 38 35 L 47 35" strokeWidth="0.4" strokeOpacity="0.5" />
+
+        {/* Cuello + hombros */}
+        <path d="M 23 40 Q 20 47 21 53" />
+        <path d="M 37 40 Q 40 47 39 53" />
+
+        {/* Tronco — cuerpo elongado */}
+        <path d="M 21 53 Q 20 60 21 66" />
+        <path d="M 39 53 Q 40 60 39 66" />
+
+        {/* Patas delanteras */}
+        <path d="M 23 66 L 23 71" />
+        <path d="M 27 66 L 27 71" />
+        <path d="M 23 71 Q 25 72 27 71" />
+        <path d="M 33 66 L 33 71" />
+        <path d="M 37 66 L 37 71" />
+        <path d="M 33 71 Q 35 72 37 71" />
+
+        {/* Cola — curva en S hacia la derecha */}
+        <path d="M 39 60 Q 51 55 52 65 Q 53 72 47 73" />
+
+        {/* Suelo apenas insinuado */}
+        <path d="M 18 71 Q 30 73 42 71" strokeWidth="0.4" strokeOpacity="0.3" />
+      </g>
+    </svg>
+  )
+}
+
 /** Estrella decorativa pequeña (4 puntas) */
 function StarTiny({ size = 10, className = '' }) {
   return (
@@ -496,8 +572,8 @@ function BookOpening({ onExit }) {
           ease: 'easeOut'
         }}
       >
-        <div className="text-dorado/70 mb-6">
-          <CompassStar size={64} />
+        <div className="text-dorado/85 mb-5">
+          <AdeGlyph size={86} />
         </div>
         <h1 className="font-serif text-[1.8rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.36em] md:tracking-[0.42em]">
           Tarot Ade
@@ -723,8 +799,8 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
       <AtmosphereLayer scene="home" />
       <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-32 flex flex-col items-center min-h-[100svh] justify-between">
         <header className="text-center mt-2">
-          <div className="text-dorado mb-5 flex justify-center">
-            <CompassStar size={62} />
+          <div className="text-dorado mb-4 flex justify-center">
+            <AdeGlyph size={84} />
           </div>
           <h1 className="font-serif text-[2rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.38em] mb-3">
             Tarot Ade
