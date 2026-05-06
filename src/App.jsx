@@ -237,139 +237,19 @@ function CompassStar({ size = 64, className = '' }) {
   )
 }
 
-/** Ade — figura simbólica de tarot, gato tabby oriental.
- *
- *  Lógica espacial:
- *    · Cabeza frontal hierática, simétrica, mask-like.
- *    · Torso en 3/4 — gira ~35° hacia la izquierda del visor.
- *    · Espalda con curva lateral en S; cadera lejana sobresale por detrás.
- *    · Cola nace desde atrás del cuerpo en el lado lejano.
- *    · Tres patas visibles (anatomía honesta para sentado en 3/4):
- *        2 delanteras (close + far) + 1 trasera close debajo de la cadera.
- *      La trasera lejana queda oculta detrás del cuerpo.
- *    · Body compacto (no tan alargado).
- *
- *  Detalle tabby:
- *    · "M" sutil en la frente.
- *    · Franjas curvas en costado y pecho (3-4 cada lado).
- *    · Anillos en la cola.
- *
- *  Estrella + luna acompañando, estilo Pamela Colman Smith. */
-function AdeGlyph({ size = 100, className = '' }) {
+/** Ade — mascota de la app.
+ *  PNG transparente (gato tabby naranja con flora dorada y luna creciente).
+ *  Asset en /public/ade.png. Tamaño base ~150px ancho, escalable. */
+function AdeGlyph({ size = 150, className = '' }) {
   return (
-    <svg width={size} height={size * 1.18} viewBox="0 0 75 88" fill="none"
-         stroke="currentColor" strokeWidth="0.95"
-         strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <g>
-        {/* === Acompañantes celestiales === */}
-        <path d="M 9 11 L 9.7 12.6 L 11.4 12.6 L 10 13.8 L 10.5 15.6 L 9 14.5 L 7.5 15.6 L 8 13.8 L 6.6 12.6 L 8.3 12.6 Z"
-              strokeWidth="0.55" strokeOpacity="0.85" />
-        <path d="M 62 8 a 2.6 2.6 0 1 0 1.8 0 a 1.85 1.85 0 1 1 -1.8 0 z"
-              strokeWidth="0.7" />
-
-        {/* ============================================================ *
-         *  CABEZA · frontal hierática · simétrica · eje x=35
-         * ============================================================ */}
-        <path d="M 25 28 L 29 3 L 35 26" />
-        <path d="M 45 28 L 41 3 L 35 26" />
-        <path d="M 29 6 L 31 25" strokeWidth="0.5" strokeOpacity="0.55" />
-        <path d="M 41 6 L 39 25" strokeWidth="0.5" strokeOpacity="0.55" />
-        <path d="M 25 28 Q 23 36 29 41 Q 35 45 41 41 Q 47 36 45 28" />
-
-        {/* Tabby · "M" sutil sobre la frente, entre las orejas */}
-        <path d="M 30 27 L 32 30 L 35 28 L 38 30 L 40 27" strokeWidth="0.5" strokeOpacity="0.45" />
-
-        {/* Ojos · almendras simbólicas (4 vértices, sharp) */}
-        <path d="M 23 34 L 27 32 L 31 34 L 27 36 Z" strokeWidth="0.95" />
-        <path d="M 39 34 L 43 32 L 47 34 L 43 36 Z" strokeWidth="0.95" />
-        <path d="M 27 33.2 L 27 34.8" strokeWidth="1.05" />
-        <path d="M 43 33.2 L 43 34.8" strokeWidth="1.05" />
-
-        {/* Naríz + boca */}
-        <path d="M 33.5 39 L 36.5 39 L 35 40.6 Z" fill="currentColor" stroke="none" />
-        <path d="M 35 40.6 L 35 41.7" strokeWidth="0.5" />
-        <path d="M 35 41.7 Q 33.7 42.3 32.8 41.7" strokeWidth="0.5" />
-        <path d="M 35 41.7 Q 36.3 42.3 37.2 41.7" strokeWidth="0.5" />
-
-        {/* Bigotes */}
-        <path d="M 25 39 L 17 38" strokeWidth="0.4" strokeOpacity="0.5" />
-        <path d="M 25 41 L 17 41.5" strokeWidth="0.4" strokeOpacity="0.5" />
-        <path d="M 45 39 L 53 38" strokeWidth="0.4" strokeOpacity="0.5" />
-        <path d="M 45 41 L 53 41.5" strokeWidth="0.4" strokeOpacity="0.5" />
-
-        {/* ============================================================ *
-         *  CUERPO 3/4 · COMPACTO (no tan elongado)
-         * ============================================================ */}
-
-        {/* Cuello corto */}
-        <path d="M 29 44 Q 24 50 22 56" />              {/* close */}
-        <path d="M 41 44 Q 43 48 43 51" />              {/* far - termina arriba */}
-
-        {/* Hombro close — bulge prominente lateral */}
-        <path d="M 22 56 Q 15 61 14 70" />
-
-        {/* Hombro far — recede, conecta a espalda */}
-        <path d="M 43 51 Q 46 56 48 63" />
-
-        {/* Espalda visible · S marcada de hombro far → cadera far */}
-        <path d="M 48 63 Q 51 70 50 76 Q 52 81 56 82" />
-
-        {/* Costado close baja a la cadera close */}
-        <path d="M 14 70 Q 12 78 16 83" />
-
-        {/* Cadera close — bulge que conecta con patas delanteras */}
-        <path d="M 16 83 Q 23 85 30 83" />
-
-        {/* Pecho 3/4 — línea interior curva sugiere volumen */}
-        <path d="M 35 44 Q 28 53 25 75" strokeWidth="0.55" strokeOpacity="0.4" />
-
-        {/* ============================================================ *
-         *  TABBY · franjas curvas sutiles
-         * ============================================================ */}
-        {/* Costado close (3 franjas) */}
-        <path d="M 14 60 Q 17 60 19 61" strokeWidth="0.5" strokeOpacity="0.45" />
-        <path d="M 12.5 67 Q 15.5 67.5 18 68" strokeWidth="0.5" strokeOpacity="0.45" />
-        <path d="M 12.5 75 Q 15.5 76 18 76" strokeWidth="0.5" strokeOpacity="0.45" />
-        {/* Pecho/centro (3 franjas cortas) */}
-        <path d="M 28 56 Q 31 56.5 33 56" strokeWidth="0.45" strokeOpacity="0.4" />
-        <path d="M 27 64 Q 30 64.5 33 64" strokeWidth="0.45" strokeOpacity="0.4" />
-        <path d="M 26 72 Q 30 72.5 33 72" strokeWidth="0.45" strokeOpacity="0.4" />
-        {/* Costado far / espalda (3 franjas) */}
-        <path d="M 46 58 Q 48 58.5 50 59" strokeWidth="0.45" strokeOpacity="0.4" />
-        <path d="M 48 66 Q 50 66.5 52 67" strokeWidth="0.45" strokeOpacity="0.4" />
-        <path d="M 50 74 Q 52 74.5 54 75" strokeWidth="0.45" strokeOpacity="0.4" />
-
-        {/* ============================================================ *
-         *  PATAS · 3 visibles (anatomía honesta para sentado 3/4)
-         * ============================================================ */}
-
-        {/* Pata delantera close · prominente */}
-        <path d="M 18 83 L 18 87" />
-        <path d="M 23 83 L 23 87" />
-        <path d="M 18 87 Q 20.5 87.7 23 87" />
-
-        {/* Pata delantera far · ligeramente arriba y atrás */}
-        <path d="M 30 83 L 30 86.5" />
-        <path d="M 34 83 L 34 86.5" />
-        <path d="M 30 86.5 Q 32 87.2 34 86.5" />
-
-        {/* Pata trasera close · asoma bajo la cadera close (más al costado) */}
-        <path d="M 13.5 81 Q 12 84 14 86" />
-        <path d="M 14 86 Q 16 86.5 18 86.3" />
-
-        {/* ============================================================ *
-         *  COLA · nace DETRÁS del cuerpo, con anillos tabby
-         * ============================================================ */}
-        <path d="M 56 78 Q 65 73 67 81 Q 68 86 62 86" />
-        {/* Anillos */}
-        <path d="M 60 76 L 61.2 78.5" strokeWidth="0.5" strokeOpacity="0.5" />
-        <path d="M 64 76 L 65.5 79" strokeWidth="0.5" strokeOpacity="0.5" />
-        <path d="M 67 82.5 L 65 83.5" strokeWidth="0.5" strokeOpacity="0.5" />
-
-        {/* Suelo */}
-        <path d="M 16 87 Q 36 88.5 56 87" strokeWidth="0.4" strokeOpacity="0.22" />
-      </g>
-    </svg>
+    <img
+      src="/ade.png"
+      alt="Ade"
+      draggable="false"
+      width={size}
+      className={`select-none h-auto ${className}`}
+      style={{ width: `${size}px` }}
+    />
   )
 }
 
@@ -633,7 +513,7 @@ function BookOpening({ onExit }) {
         }}
       >
         <div className="text-dorado/85 mb-5">
-          <AdeGlyph size={86} />
+          <AdeGlyph size={170} />
         </div>
         <h1 className="font-serif text-[1.8rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.36em] md:tracking-[0.42em]">
           Tarot Ade
@@ -860,7 +740,7 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
       <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-32 flex flex-col items-center min-h-[100svh] justify-between">
         <header className="text-center mt-2">
           <div className="text-dorado mb-4 flex justify-center">
-            <AdeGlyph size={84} />
+            <AdeGlyph size={160} />
           </div>
           <h1 className="font-serif text-[2rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.38em] mb-3">
             Tarot Ade
