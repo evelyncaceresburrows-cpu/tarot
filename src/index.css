@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  background-color: #060c14;
+  color: #EAE6DC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar discreto */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(198, 168, 90, 0.22); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(198, 168, 90, 0.4); }
+
+/* Selección sutil */
+::selection {
+  background: rgba(122, 30, 44, 0.45);
+  color: #F4F1E6;
+}
+
+/* 3D para flip de cartas */
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+
+/* =====================================================================
+ * RITUAL BG — fondo de mesa ceremonial cinematográfica
+ * Centro ligeramente iluminado, bordes oscuros (vignette)
+ * Capas: gradiente principal + halo cálido + vino al pie + vignette + grano
+ * ===================================================================*/
+.ritual-bg {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 35%, rgba(22, 38, 60, 0.95) 0%, rgba(13, 27, 42, 0.95) 45%, transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(122, 30, 44, 0.07) 0%, transparent 60%),
+    linear-gradient(180deg, #0a131e 0%, #060c14 100%);
+}
+.ritual-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at center, transparent 20%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.ritual-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.045'/></svg>");
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+/* Para screens con bg marfil (Detalle) */
+.ritual-bg-light {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 35%, rgba(244, 241, 230, 1) 0%, rgba(234, 230, 214, 1) 100%);
+}
+.ritual-bg-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at center, transparent 30%, rgba(122, 30, 44, 0.06) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.ritual-bg-light::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' /></filter><rect width='200' height='200' filter='url(%23p)' opacity='0.03'/></svg>");
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Constelación sutil — puntos dorados muy tenues */
+.constellation {
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%,  rgba(198, 168, 90, 0.45), transparent),
+    radial-gradient(1px 1px at 28% 8%,       rgba(198, 168, 90, 0.30), transparent),
+    radial-gradient(1.5px 1.5px at 18% 42%,  rgba(198, 168, 90, 0.40), transparent),
+    radial-gradient(1px 1px at 38% 32%,      rgba(198, 168, 90, 0.20), transparent),
+    radial-gradient(1.2px 1.2px at 72% 12%,  rgba(198, 168, 90, 0.35), transparent),
+    radial-gradient(1px 1px at 84% 28%,      rgba(198, 168, 90, 0.25), transparent),
+    radial-gradient(1.5px 1.5px at 92% 48%,  rgba(198, 168, 90, 0.32), transparent),
+    radial-gradient(1px 1px at 8% 78%,       rgba(198, 168, 90, 0.20), transparent),
+    radial-gradient(1.2px 1.2px at 28% 88%,  rgba(198, 168, 90, 0.28), transparent),
+    radial-gradient(1px 1px at 62% 82%,      rgba(198, 168, 90, 0.22), transparent),
+    radial-gradient(1.5px 1.5px at 88% 76%,  rgba(198, 168, 90, 0.32), transparent);
+}
+
+/* Halo de vela detrás de las cartas */
+.candle-glow {
+  position: relative;
+}
+.candle-glow::before {
+  content: '';
+  position: absolute;
+  inset: -28% -30% -8% -30%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(198, 168, 90, 0.18) 0%, rgba(198, 168, 90, 0.06) 35%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(2px);
+}
+
+/* Compatibilidad con clases viejas */
+.noise-dark {
+  position: relative;
+}
+.noise-light {
+  position: relative;
+}

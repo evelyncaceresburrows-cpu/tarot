@@ -1,0 +1,9 @@
+﻿node_modules
+dist
+dist-preview
+.vercel
+.DS_Store
+*.log
+*.zip
+.test.txt
+.test-write.txt
