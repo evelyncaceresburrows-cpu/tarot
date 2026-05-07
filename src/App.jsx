@@ -5,7 +5,8 @@ import {
   findContentByCard,
   findPositionByCard,
   toEngineCard,
-  spreadPositions
+  spreadPositions,
+  composeSituations
 } from './content/contentBridge.js'
 import { composeRelationalReading } from './engine/relationalEngine.js'
 
@@ -1508,6 +1509,10 @@ function Tirada({ count, intention, onCarta, onHome }) {
                                 <p className="font-serif italic text-dorado/85 text-[0.95rem] mb-3">{content.essence}</p>
                                 <p className="font-light text-pergamino/80 text-[0.92rem] leading-[1.85] mb-3">
                                   {content.reading}
+                                  {(() => {
+                                    const sit = composeSituations(content.manifestations)
+                                    return sit ? ' ' + sit : ''
+                                  })()}
                                 </p>
                                 <p className="font-serif italic text-pergamino/75 text-[0.9rem] leading-[1.7] pt-3 border-t border-dorado/15">
                                   <span className="text-dorado font-sans not-italic mr-2">→</span>
@@ -1878,6 +1883,10 @@ function Detalle({ card, reversed, onBack }) {
               </p>
               <p className="font-light text-carbon/85 text-[0.95rem] leading-[1.95]">
                 {content.reading}
+                {(() => {
+                  const sit = composeSituations(content.manifestations)
+                  return sit ? ' ' + sit : ''
+                })()}
               </p>
             </section>
 

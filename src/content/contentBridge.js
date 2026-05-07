@@ -108,6 +108,209 @@ function buildMinorExtension(minor) {
 }
 
 
+/* ---------------------------------------------------------------- *
+ * Situaciones humanas integradas en la lectura                     *
+ *                                                                  *
+ * Toma 3 manifestations (derivadas del manual) y las traduce a una *
+ * frase prosaica con conectores naturales:                         *
+ *   "Puede asomar cuando … O cuando … También cuando …"            *
+ *                                                                  *
+ * Las manifestations ya vienen con el material simbólico extraído  *
+ * del manual de Rimi Jiménez Nallde. Esta función las cose como    *
+ * prosa para que la lectura sea más concreta sin volverse lista.   *
+ * ---------------------------------------------------------------- */
+
+/* Conjuga / adapta una manifestación para que entre como subordinada
+ * después de "cuando ___". Maneja los patrones más frecuentes:
+ *   · Verbo infinitivo  → vos (Soltar → soltás), incluso seguido de coma
+ *   · "Una/Un/El/La X"  → "aparece una/un/el/la X" (preserva relativas)
+ *   · Plurales con det. → "aparecen los/las/algunos X"
+ *   · Sustantivos sueltos (ganas, sueños...) → prefijo "asoman"
+ *   · Sustantivos abstractos (necesidad, deseo...) → "aparece la/el X"
+ *   · Cláusulas ya formadas → as-is con lowercase inicial
+ */
+function adaptManifestation(raw) {
+  if (!raw) return ''
+  let s = raw.trim().replace(/\.$/, '')
+  s = s.charAt(0).toLowerCase() + s.slice(1)
+
+  /* Verbos en infinitivo → vos. Considera coma o espacio inmediatamente
+     después del verbo (ej. "Sentir, después de…"). */
+  const verbMap = {
+    'soltar':       'soltás',
+    'sentir':       'sentís',
+    'sentirte':     'te sentís',
+    'sentirse':     'te sentís',
+    'reconocer':    'reconocés',
+    'reconocerte':  'te reconocés',
+    'aceptar':      'aceptás',
+    'aceptarte':    'te aceptás',
+    'volver':       'volvés',
+    'volverte':     'te volvés',
+    'decir':        'decís',
+    'hacer':        'hacés',
+    'mirar':        'mirás',
+    'mirarte':      'te mirás',
+    'elegir':       'elegís',
+    'cambiar':      'cambiás',
+    'encontrar':    'encontrás',
+    'encontrarte':  'te encontrás',
+    'aprender':     'aprendés',
+    'llorar':       'llorás',
+    'asumir':       'asumís',
+    'comprender':   'comprendés',
+    'compartir':    'compartís',
+    'escuchar':     'escuchás',
+    'sostener':     'sostenés',
+    'sostenerte':   'te sostenés',
+    'pedir':        'pedís',
+    'ofrecer':      'ofrecés',
+    'cuidar':       'cuidás',
+    'cuidarte':     'te cuidás',
+    'cerrar':       'cerrás',
+    'abrir':        'abrís',
+    'perder':       'perdés',
+    'ganar':        'ganás',
+    'buscar':       'buscás',
+    'esperar':      'esperás',
+    'tomar':        'tomás',
+    'tomarte':      'te tomás',
+    'tomarse':      'te tomás',
+    'dar':          'das',
+    'darte':        'te das',
+    'vivir':        'vivís',
+    'seguir':       'seguís',
+    'empezar':      'empezás',
+    'terminar':     'terminás',
+    'aparecer':     'aparece',
+    'salir':        'salís',
+    'entrar':       'entrás',
+    'tener':        'tenés',
+    'recibir':      'recibís',
+    'permitir':     'permitís',
+    'permitirte':   'te permitís',
+    'permitirse':   'te permitís',
+    'recordar':     'recordás',
+    'olvidar':      'olvidás',
+    'pisar':        'pisás',
+    'cocinar':      'cocinás',
+    'cumplir':      'cumplís',
+    'manejar':      'manejás',
+    'sumar':        'sumás',
+    'sumarte':      'te sumás',
+    'lanzar':       'lanzás',
+    'lanzarte':     'te lanzás',
+    'apuntar':      'apuntás',
+    'apuntarte':    'te apuntás',
+    'reorganizar':  'reorganizás',
+    'reorganizarte':'te reorganizás',
+    'anotar':       'anotás',
+    'anotarte':     'te anotás',
+    'anticipar':    'anticipás',
+    'mediar':       'mediás',
+    'reconciliarse':'te reconciliás',
+    'cargar':       'cargás',
+    'cargarte':     'te cargás',
+    'reservarte':   'te reservás',
+    'editar':       'editás',
+    'ahorrarse':    'te ahorrás',
+    'pelear':       'peleás',
+    'pelearte':     'te peleás',
+    'identificarte':'te identificás',
+    'rechazar':     'rechazás',
+    'apagar':       'apagás',
+    'reducir':      'reducís',
+    'planear':      'planeás',
+    'avanzar':      'avanzás',
+    'mantener':     'mantenés',
+    'mantenerte':   'te mantenés',
+    'recuperar':    'recuperás',
+    'recuperarte':  'te recuperás',
+    'defender':     'defendés',
+    'defenderte':   'te defendés',
+    'liderar':      'liderás',
+    'inspirar':     'inspirás',
+    'subirte':      'te subís',
+    'bajar':        'bajás',
+    'enviar':       'enviás',
+    'cabalgar':     'cabalgás',
+    'mostrar':      'mostrás',
+    'mostrarte':    'te mostrás',
+    'celebrar':     'celebrás',
+    'confiar':      'confiás',
+    'darse':        'te das',
+    'darte':        'te das',
+    'apuntarte':    'te apuntás',
+    'pasar':        'pasás',
+    'notar':        'notás',
+    'levantar':     'levantás',
+    'caer':         'caés',
+    'jugar':        'jugás',
+    'despertarte':  'te despertás',
+    'despertarse':  'te despertás',
+    'darse':        'te das',
+    'organizar':    'organizás',
+    'organizarte':  'te organizás',
+    'reservar':     'reservás',
+    'detenerte':    'te detenés',
+    'detenerse':    'te detenés',
+    'animarte':     'te animás',
+    'mover':        'movés',
+    'moverte':      'te movés',
+    'moverse':      'te movés',
+    'crecer':       'crecés',
+    'florecer':     'florecés',
+    'caminar':      'caminás',
+    'subir':        'subís',
+    'cruzar':       'cruzás',
+    'cruzarte':     'te cruzás'
+  }
+
+  for (const [verb, conjugated] of Object.entries(verbMap)) {
+    /* Match con espacio o coma inmediatamente después del verbo */
+    const re = new RegExp(`^${verb}([\\s,])`)
+    if (re.test(s)) {
+      return s.replace(re, conjugated + '$1')
+    }
+  }
+
+  /* Sustantivos plurales sueltos: ganas, sueños, mensajes, etc. */
+  if (/^(ganas|sueños|mensajes|noticias|señales|miedos|pensamientos|opciones|llamados)\b/.test(s)) {
+    return 'asoman ' + s
+  }
+
+  /* Nominal phrases con determinante: el/la/los/las/un/una/algún… */
+  if (/^(una|un|el|la)\s/.test(s)) {
+    return 'aparece ' + s
+  }
+  if (/^(los|las|algunos|algunas)\s/.test(s)) {
+    return 'aparecen ' + s
+  }
+  if (/^(algún|alguna)\s/.test(s)) {
+    return 'aparece ' + s
+  }
+
+  /* Sustantivos abstractos singulares comunes (sin determinante) */
+  if (/^(necesidad|sensación|urgencia|memoria|nostalgia|tregua|llamado|deseo|impulso)\b/.test(s)) {
+    return 'aparece la ' + s
+  }
+
+  /* Default: cláusula ya formada (algo X, dar vueltas, etc.) → as-is */
+  return s
+}
+
+/**
+ * Devuelve una frase corta con 3 situaciones humanas derivadas de las
+ * manifestations. Si no hay 3, devuelve string vacío.
+ */
+export function composeSituations(manifestations) {
+  if (!Array.isArray(manifestations) || manifestations.length < 3) return ''
+  const [a, b, c] = manifestations.slice(0, 3).map(adaptManifestation)
+  if (!a || !b || !c) return ''
+  return `Puede asomar cuando ${a}. O cuando ${b}. También cuando ${c}.`
+}
+
+
 /* =================================================================
  * API
  * ===============================================================*/
