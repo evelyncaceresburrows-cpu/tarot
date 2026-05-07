@@ -9,6 +9,7 @@ import {
   composeSituations
 } from './content/contentBridge.js'
 import { composeRelationalReading } from './engine/relationalEngine.js'
+import { saveAtmosphere, composeEchoLine } from './engine/emotionalMemory.js'
 
 const ARCANOS_MAYORES = [
   { num: 0,  romano: '0',     nombre: 'El Loco',                 file: '00-el-loco.png',
@@ -386,6 +387,16 @@ function SlotMarco({ children }) {
 }
 
 function CartaFlippable({ card, reversed, revealed, onFlip }) {
+  /* Jitter determinístico por carta: cada una flipea en duración ligeramente
+     distinta. Rango ~0.48s..0.58s para que no se sientan idénticas. */
+  const idHash = ((card?.id || card?.nombre || '').split('').reduce(
+    (acc, ch) => acc + ch.charCodeAt(0), 0
+  )) % 100
+  const flipDuration = 0.48 + (idHash / 100) * 0.10
+  /* También una micro-amplitud que pasa el rotateY de 180° a 178°-182°
+     para que la carta no quede perfectamente plana — humanidad sutil. */
+  const overshoot = 178 + (idHash % 5)
+
   return (
     <button
       type="button"
@@ -396,12 +407,21 @@ function CartaFlippable({ card, reversed, revealed, onFlip }) {
     >
       <motion.div
         className="absolute inset-0 preserve-3d"
-        animate={{ rotateY: revealed ? 180 : 0 }}
-        transition={{ duration: 0.5, ease: [0.32, 0.72, 0.24, 1] }}
+        animate={{ rotateY: revealed ? overshoot : 0 }}
+        transition={{ duration: flipDuration, ease: [0.32, 0.72, 0.24, 1] }}
       >
-        <div className="absolute inset-0 backface-hidden rounded-[5px] overflow-hidden">
+        {/* Reverso con respiración sutil cuando todavía no se reveló */}
+        <motion.div
+          className="absolute inset-0 backface-hidden rounded-[5px] overflow-hidden"
+          animate={revealed ? { scale: 1 } : { scale: [1, 1.006, 1] }}
+          transition={revealed ? { duration: 0 } : {
+            duration: 4.6 + (idHash % 7) * 0.12,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+        >
           <Reverso />
-        </div>
+        </motion.div>
         <div className="absolute inset-0 backface-hidden" style={{ transform: 'rotateY(180deg)' }}>
           <CartaMarco card={card} reversed={reversed} />
         </div>
@@ -1383,7 +1403,20 @@ function Tirada({ count, intention, onCarta, onHome }) {
     setRevealed(prev => prev.map((v, i) => (i === idx ? !v : v)))
   }
 
-  const revealAll = () => setRevealed(Array(count).fill(true))
+  /* Stagger irregular para que no se sienta sincronizado.
+     En tirada de 3, las cartas voltean con microdesfases humanos. */
+  const revealAll = () => {
+    if (count === 1) {
+      setRevealed([true])
+      return
+    }
+    const staggers = [0, 280, 520]   // ms — irregular, no uniforme
+    staggers.forEach((delay, i) => {
+      setTimeout(() => {
+        setRevealed(prev => prev.map((v, idx) => idx === i ? true : v))
+      }, delay)
+    })
+  }
 
   const allRevealed = revealed.every(Boolean)
   const isThree = count === 3
@@ -1569,7 +1602,18 @@ function ComposedReading({ tirada, onCarta }) {
   // 3. Composición relacional — atmósfera, movimiento, síntesis.
   const relational = composeRelationalReading(engineCards)
 
-  // 4. Pregunta de cierre — viene de la 3ra carta (whatOpens) si tiene
+  // 4. Memoria emocional — eco con tiradas anteriores, si aplica.
+  //    Se calcula ANTES de guardar la atmósfera actual, así no se
+  //    compara consigo misma. Después se persiste para la próxima.
+  const echoLine = useMemo(() => {
+    const line = composeEchoLine(relational.diagnosis)
+    saveAtmosphere(relational.diagnosis)
+    return line
+  // Sólo se calcula al montar la lectura; eslint queda contento.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // 5. Pregunta de cierre — viene de la 3ra carta (whatOpens) si tiene
   //    prompt; si no, fallback honesto.
   const closingPrompt =
     slots[2]?.content?.prompt ||
@@ -1634,6 +1678,13 @@ function ComposedReading({ tirada, onCarta }) {
             {relational.suitVoice}
           </p>
         </>
+      )}
+
+      {/* Memoria emocional — eco con tiradas anteriores. Solo si existe. */}
+      {echoLine && (
+        <p className="font-serif italic text-dorado/55 text-[0.8rem] md:text-[0.85rem] leading-[1.7] text-center max-w-[30rem] mx-auto mt-6 mb-2">
+          {echoLine}
+        </p>
       )}
 
       {/* Pregunta final — viene de la carta de cierre (lo que se abre) */}

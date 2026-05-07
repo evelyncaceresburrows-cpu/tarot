@@ -161,107 +161,172 @@ function detectRhythmPattern(es) {
 const TEMP_VARIANTS = {
   'warm': [
     'la temperatura general es cálida, casi cobijo',
-    'predomina una calidez que abre, no que ahoga'
+    'predomina una calidez que abre, no que ahoga',
+    'el aire es tibio, sostenido',
+    'algo cálido atraviesa la escena entera',
+    'el clima abriga sin pedir permiso'
   ],
   'cold': [
     'el aire viene frío, pero no hostil',
-    'predomina una claridad fría, lúcida'
+    'predomina una claridad fría, lúcida',
+    'la lectura está bajo una luz limpia y fresca',
+    'todo respira en una temperatura más baja, más nítida',
+    'hay una distancia honesta en el clima'
   ],
   'cold-with-warmth': [
     'predomina lo frío, con un punto de calor que no se apaga',
-    'lo frío manda, pero algo cálido sobrevive en una esquina'
+    'lo frío manda, pero algo cálido sobrevive en una esquina',
+    'el aire es fresco, salvo por un rincón tibio',
+    'la lectura está bajo niebla fría con un foquito cálido adentro'
   ],
   'warm-with-cold': [
     'predomina la calidez, con una zona fría que pide atención',
-    'el clima es tibio, salvo por un punto que conviene mirar'
+    'el clima es tibio, salvo por un punto que conviene mirar',
+    'casi todo abriga, pero hay una grieta más fresca',
+    'lo cálido lleva la voz, lo frío hace una pausa breve'
   ],
   'tense': [
     'hay una tensión sostenida atravesando todo',
-    'el aire está firme, casi en filo'
+    'el aire está firme, casi en filo',
+    'todo está cargado, como antes de que algo se nombre',
+    'la lectura tiene cuerda corta'
   ],
   'tense-undertone': [
     'algo agudo tensa el aire por debajo, sin gritar',
-    'se siente un nervio fino debajo de la calma'
+    'se siente un nervio fino debajo de la calma',
+    'la calma tiene un hilo tirante adentro',
+    'hay un filo bajo la superficie, sin ruido'
   ],
   'neutral': [
     'el aire es parejo, sin extremos',
-    'el clima no empuja en ninguna dirección'
+    'el clima no empuja en ninguna dirección',
+    'la temperatura es de habitación, sin drama',
+    'todo respira en un punto medio'
   ],
   'mixed': [
     'el clima cambia de una posición a otra',
-    'la temperatura no es uniforme, va por escenas'
+    'la temperatura no es uniforme, va por escenas',
+    'cada carta trae su propio aire',
+    'el clima se mueve, no es un solo paisaje'
   ]
 }
 
 const RHYTHM_VARIANTS = {
   'slow': [
     'el ritmo va despacio',
-    'el tiempo de la lectura es lento, casi de invierno'
+    'el tiempo de la lectura es lento, casi de invierno',
+    'todo se demora en un compás bajo',
+    'la cadencia es lenta, sin apuro',
+    'el aire avanza en silencio largo'
   ],
   'fast': [
     'el ritmo viene rápido',
-    'todo se mueve a un paso enérgico'
+    'todo se mueve a un paso enérgico',
+    'la lectura tiene velocidad propia',
+    'el tiempo está acelerado, no caótico'
   ],
   'fragmented': [
     'el ritmo está quebrado, en pulsos',
-    'el ritmo se interrumpe a sí mismo'
+    'el ritmo se interrumpe a sí mismo',
+    'todo viene a saltos, no en línea',
+    'el tiempo se astilla en partes'
   ],
   'stable': [
     'el ritmo está sostenido',
-    'el pulso es parejo, sin saltos'
+    'el pulso es parejo, sin saltos',
+    'la cadencia se mantiene, ni rápida ni lenta',
+    'todo respira en un mismo tiempo'
   ],
   'pulsed': [
     'el ritmo se mueve a saltos, lo lento alternado con lo rápido',
-    'algo apura, algo frena, y conviven'
+    'algo apura, algo frena, y conviven',
+    'la cadencia tiene dos tiempos',
+    'el ritmo se acelera y se calma sin pelear'
   ],
   'partly-fragmented': [
     'el ritmo es regular salvo por un pulso suelto',
-    'el aire se mantiene parejo con un quiebre adentro'
+    'el aire se mantiene parejo con un quiebre adentro',
+    'casi todo respira igual, salvo por un quiebre breve'
   ],
   'mixed': [
     'el ritmo no es uniforme',
-    'cada posición late con un tempo distinto'
+    'cada posición late con un tempo distinto',
+    'el tiempo cambia de carta a carta'
   ]
 }
 
 const MOVEMENT_VARIANTS = {
   'opening': [
     'Hay un proceso que estaba adentro empezando a buscar afuera.',
-    'Lo que se gestaba en privado pide ahora salir a tomar aire.'
+    'Lo que se gestaba en privado pide ahora salir a tomar aire.',
+    'Algo que había crecido en silencio empieza a mostrarse.',
+    'La lectura se abre: lo íntimo asoma a lo visible.'
   ],
   'gathering': [
     'Algo que se desplegaba afuera está volviendo a recogerse.',
-    'Después de moverte, esta lectura te pide volver al centro.'
+    'Después de moverte, esta lectura te pide volver al centro.',
+    'El movimiento se repliega: lo de afuera busca lo de adentro.',
+    'Una etapa expansiva se cierra hacia dentro.'
   ],
   'pause-in-the-middle': [
     'En el medio del proceso aparece una pausa que pide ser respetada.',
-    'Hay un movimiento, una quietud breve, y otro movimiento.'
+    'Hay un movimiento, una quietud breve, y otro movimiento.',
+    'La lectura tiene un respiro en el centro.',
+    'Algo se detiene a la mitad antes de seguir.'
   ],
   'starting-to-move': [
     'Lo que estaba en suspenso empieza, lentamente, a moverse.',
-    'Hay un punto en suspenso que está empezando a aflojar.'
+    'Hay un punto en suspenso que está empezando a aflojar.',
+    'La pausa anterior empieza a soltar aire.',
+    'Algo que estaba quieto da el primer paso.'
   ],
   'pause-then-resume': [
     'Hay un movimiento, una pausa, y otro movimiento — el aire respira.',
-    'La lectura late: avanza, frena, vuelve a avanzar.'
+    'La lectura late: avanza, frena, vuelve a avanzar.',
+    'El ritmo respira: dos impulsos con un silencio en medio.',
+    'Hay avance, pausa, y otra vez avance, sin urgencia.'
   ],
   'deeply-inward': [
     'Toda la lectura mira hacia adentro: este momento pide intimidad, no escenario.',
-    'Las tres posiciones convergen en lo íntimo: nada de esto pasa afuera todavía.'
+    'Las tres posiciones convergen en lo íntimo: nada de esto pasa afuera todavía.',
+    'El centro de la lectura está hacia dentro, en silencio.',
+    'Toda la escena se está pensando, no actuando.'
   ],
   'fully-outward': [
     'Toda la lectura empuja hacia afuera: hay algo queriendo manifestarse en lo concreto.',
-    'Las tres posiciones tiran hacia el mundo: este capítulo se vive en lo visible.'
+    'Las tres posiciones tiran hacia el mundo: este capítulo se vive en lo visible.',
+    'Todo el aire empuja a salir, a actuar, a aterrizar.',
+    'La lectura está toda hacia afuera, sin interior reservado.'
   ],
   'fully-suspended': [
     'Las tres posiciones están en pausa: la lectura te pide no decidir todavía.',
-    'Toda la tirada queda suspendida, como en un umbral que aún no se cruza.'
+    'Toda la tirada queda suspendida, como en un umbral que aún no se cruza.',
+    'Todo está esperando algo que aún no llegó.',
+    'La lectura entera está en compás de espera.'
   ],
   'mixed': [
     'El movimiento no es lineal: el aire va, vuelve, y a veces se queda quieto.',
-    'No hay un solo arco: la lectura combina avance, pausa y giro.'
+    'No hay un solo arco: la lectura combina avance, pausa y giro.',
+    'El movimiento es zigzagueante, no recto.',
+    'Cada posición tira para un lado distinto, y eso también es información.'
   ]
 }
+
+/* ---------------------------------------------------------------- *
+ * APERTURAS minimalistas — para modos cortos / silenciosos
+ * ---------------------------------------------------------------- */
+const MINIMAL_OPENINGS = [
+  'Algo ya cambió.',
+  'Todo respira distinto.',
+  'Hay un eco que no termina.',
+  'El aire pide silencio.',
+  'Algo se mueve sin nombrarse.',
+  'La escena ya cambió de luz.',
+  'Algo está empezando a contestar solo.',
+  'No es una respuesta cerrada todavía.',
+  'Algo se acomoda sin ruido.',
+  'El aire trae otra densidad.'
+]
 
 const CONTRADICTION_VARIANTS = {
   'temperature': [
@@ -363,15 +428,38 @@ function composeSuitVoice(suitConcentration, seed) {
  * ===================================================================*/
 
 /**
+ * Decide el "modo" de salida para evitar la sensación de template.
+ *
+ *  · 'minimal' — solo una frase corta, casi un suspiro.    (~25%)
+ *  · 'short'   — solo atmósfera, sin movimiento ni voz.    (~25%)
+ *  · 'medium'  — atmósfera + movimiento.                   (~25%)
+ *  · 'full'    — atmósfera + movimiento + voz de palo.     (~25%)
+ *
+ *  Algunos casos fuerzan modo full (3 Mayores, 3 mismo palo) porque
+ *  ahí la lectura merece desplegarse. Otros casos fuerzan minimal
+ *  cuando todo está en suspenso (la app debe respetar el silencio).
+ */
+function decideMode(seed, diagnosis) {
+  const { majorPresence, suitConcentration, narrativeMovement } = diagnosis
+
+  // Fuerzas: cuando la tirada es claramente densa o claramente quieta
+  if (majorPresence.count === 3) return 'full'
+  if (suitConcentration?.count === 3) return 'full'
+  if (narrativeMovement === 'fully-suspended') return 'minimal'
+
+  // Resto: distribución por seed
+  const m = seed % 4
+  return ['minimal', 'short', 'medium', 'full'][m]
+}
+
+/**
  * Compone una lectura relacional a partir de 3 cartas.
  *
  * @param {Array} cards  Tres cartas. Cada una puede ser un Mayor
  *                       (con .name) o un Menor (con .suit y .number).
- *                       El contenido emocional individual (essence,
- *                       reading, prompt) viene de los datasets, no de
- *                       acá.
  *
  * @returns {{
+ *   mode:       'minimal'|'short'|'medium'|'full',
  *   atmosphere: string,
  *   movement:   string,
  *   suitVoice:  string,
@@ -383,34 +471,60 @@ function composeSuitVoice(suitConcentration, seed) {
 export function composeRelationalReading(cards) {
   const enriched = (cards || []).map(c => enrichCard(c))
 
-  const dominantTemp     = detectDominantTemperature(enriched)
-  const contradictions   = detectContradictions(enriched)
-  const narrativeMovement= detectNarrativeMovement(enriched)
-  const suitConcentration= detectSuitConcentration(enriched)
-  const majorPresence    = detectMajorPresence(enriched)
-  const rhythmPattern    = detectRhythmPattern(enriched)
+  const dominantTemp      = detectDominantTemperature(enriched)
+  const contradictions    = detectContradictions(enriched)
+  const narrativeMovement = detectNarrativeMovement(enriched)
+  const suitConcentration = detectSuitConcentration(enriched)
+  const majorPresence     = detectMajorPresence(enriched)
+  const rhythmPattern     = detectRhythmPattern(enriched)
+
+  const diagnosis = {
+    dominantTemperature: dominantTemp,
+    rhythmPattern,
+    narrativeMovement,
+    contradictions,
+    suitConcentration,
+    majorPresence
+  }
 
   const seed = hashSeed(cards)
+  const mode = decideMode(seed, diagnosis)
 
-  const atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
-  const movement   = composeMovement({ narrativeMovement, contradictions, seed })
-  const suitVoice  = composeSuitVoice(suitConcentration, seed)
+  /* Composición por modo. Cada uno respeta una atmósfera distinta. */
+  let atmosphere = ''
+  let movement   = ''
+  let suitVoice  = ''
 
-  const synthesis  = [atmosphere, movement, suitVoice].filter(Boolean).join(' ')
+  if (mode === 'minimal') {
+    /* Solo una frase corta — el silencio importa más que la explicación */
+    atmosphere = pickVariant(MINIMAL_OPENINGS, seed)
+    /* Si hay contradicción fuerte, agregar UNA línea de tensión */
+    if (contradictions.length > 0 && contradictions[0].type === 'temperature') {
+      atmosphere += ' ' + pickVariant(CONTRADICTION_VARIANTS.temperature, seed + 11)
+    }
+  } else if (mode === 'short') {
+    /* Solo la atmósfera, sin movimiento ni voz de palo */
+    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
+  } else if (mode === 'medium') {
+    /* Atmósfera + movimiento, sin voz de palo */
+    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
+    movement   = composeMovement({ narrativeMovement, contradictions, seed })
+  } else {
+    /* full: atmósfera + movimiento + voz de palo */
+    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
+    movement   = composeMovement({ narrativeMovement, contradictions, seed })
+    suitVoice  = composeSuitVoice(suitConcentration, seed)
+  }
+
+  const synthesis = [atmosphere, movement, suitVoice].filter(Boolean).join(' ')
 
   return {
+    mode,
     atmosphere,
     movement,
     suitVoice,
     synthesis,
-    diagnosis: {
-      dominantTemperature: dominantTemp,
-      rhythmPattern,
-      narrativeMovement,
-      contradictions,
-      suitConcentration,
-      majorPresence
-    },
+    diagnosis,
     enriched
   }
 }

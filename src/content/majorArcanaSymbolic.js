@@ -182,10 +182,10 @@ export const majorArcanaSymbolic = [
       'La cruz sobre el pecho — el cruce entre cuerpo y misterio'
     ],
 
-    reading: 'Algo en vos ya sabe. No hace falta forzar la respuesta; conviene escuchar lo que aparece cuando dejás de pedirla. Esta carta te invita al silencio: no como ausencia, sino como espacio donde la verdad propia tiene lugar para aparecer.',
-    synthesis: 'A veces saber es esperar a que la respuesta llegue sola.',
-    extension: 'La Sacerdotisa está sentada entre dos columnas porque su sabiduría no elige bandos: sostiene los opuestos sin querer reducirlos. El velo detrás suyo está bordado con granadas, no cerrado: el misterio acá no es prohibición, es paciencia. Si esta carta aparece, lo más útil quizás no sea hablar, sino escuchar lo que ya está adentro tuyo y todavía no te animaste a nombrar. La trampa es confundir el silencio con esconderse; la sabiduría es entender que algunas verdades necesitan recogimiento para emerger sin distorsionarse.',
-    prompt: '¿Qué estás sabiendo en silencio que todavía no te animás a decir en voz alta?',
+    reading: 'Algo en vos ya sabe. No hace falta forzarlo. Si te quedás un rato sin pedirle la respuesta, llega.',
+    synthesis: 'A veces saber es esperar.',
+    extension: 'Está sentada entre dos columnas porque su sabiduría no elige. Sostiene los opuestos sin reducirlos a uno. El velo a su espalda está bordado, no cerrado: lo que guarda no está prohibido, está esperando. Si esta carta aparece, hay algo que ya percibís y todavía no encontró cómo nombrarse. No conviene apurarlo. Lo que se obliga a decir antes de tiempo se distorsiona. Lo que se sostiene en silencio madura. La trampa de esta carta es confundir el silencio con esconderse; su sabiduría, entender que ciertas verdades sólo emergen cuando se las deja respirar.',
+    prompt: '¿Qué sabés que todavía no dijiste en voz alta?',
 
     positions: {
       whatIs:      'Hay una intuición o saber interior pidiendo espacio para escucharse.',
@@ -728,10 +728,10 @@ export const majorArcanaSymbolic = [
       'El sol entre dos torres — el horizonte después del paso, ya visible'
     ],
 
-    reading: 'Algo se está terminando, y por más incómodo que sea, no se va a poder sostener artificialmente. Esta carta no anuncia un final literal: anuncia una transformación que ya empezó por dentro. Lo que pide ahora es no hacer fuerza para que vuelva a ser como antes.',
+    reading: 'Algo está terminando. No con violencia, con lucidez. La transformación ya empezó por dentro, mucho antes de esta carta.',
     synthesis: 'Lo que termina no se llevó la vida. Hizo lugar.',
-    extension: 'La Muerte en el Tarot rara vez es muerte literal; casi siempre es el cierre de una identidad, una etapa, un vínculo, una manera de estar. Su caballo es blanco —no oscuro— porque la transición no viene a hacer daño, viene a ordenar lo que ya estaba aflojándose. La rosa blanca en la bandera dice todo: incluso este final tiene su forma de florecer. Si esta carta aparece, probablemente algo en vos ya sabe que no se puede seguir como antes, y la dificultad no es lo que termina, sino la resistencia a aceptarlo. El duelo es parte del proceso y conviene no apurarlo; pero tampoco se puede pretender que la rueda gire hacia atrás. El sol entre las dos torres, lejos, recuerda que después del umbral el día sigue: distinto, pero sigue.',
-    prompt: '¿Qué estás sosteniendo que ya terminó, y qué pediría poder cerrarse en paz?',
+    extension: 'Casi nunca es muerte literal. Es una identidad, una etapa, un vínculo, una manera de estar que ya no encaja. Su caballo es blanco —no oscuro—, porque la transición no viene a romper, viene a ordenar lo que ya estaba aflojándose. La rosa blanca en la bandera negra lo dice sin discurso: incluso este final tiene su forma de florecer. Si esta carta aparece, probablemente algo en vos lo sepa antes de poder admitirlo. No es la pérdida lo que duele; es la fuerza que estás haciendo para que la rueda gire hacia atrás. El duelo lleva su tiempo. Conviene dejarlo que dure. Y al fondo, casi pintado, se ve el sol entre dos torres: el horizonte ya está. Distinto, pero está.',
+    prompt: '¿Qué estás sosteniendo que ya terminó?',
 
     positions: {
       whatIs:      'Hay un cierre, una transformación o un desprendimiento ya en curso.',
@@ -880,10 +880,10 @@ export const majorArcanaSymbolic = [
       'Las llamas — energía liberada, no destrucción gratuita'
     ],
 
-    reading: 'Algo que ya no se sostenía se está cayendo, y vas a estar bien aunque al principio no lo parezca. Lo que aparenta ruptura suele ser, en el fondo, alivio: una verdad que ya no podés desconocer. La estructura que se viene abajo era frágil; lo nuevo todavía no se ve, pero ya empezó.',
+    reading: 'Algo se cayó. Y vas a estar bien, aunque ahora no lo parezca. Lo que parece ruptura, casi siempre, es alivio.',
     synthesis: 'No se cayó lo verdadero. Se cayó lo que ya no era cierto.',
-    extension: 'La Torre no destruye al azar. Destruye lo que estaba apoyado en algo que no era real —una expectativa, una idea sobre vos, una identidad prestada, un acuerdo silencioso que ya no servía—. El rayo que parece venir de afuera casi siempre es algo que vos ya sabías y que finalmente encontró cómo salir. No te pide que estés bien con la caída; te pide que no le pongas obstáculos al alivio que viene después. Lo que se cae acá no se cae para siempre; se cae para que puedas construir lo siguiente sobre algo que sí te aguante.',
-    prompt: '¿Qué se está desarmando que, en el fondo, ya sabías que no iba a aguantar mucho más?',
+    extension: 'La Torre no destruye al azar. Destruye lo que estaba apoyado en algo que no era real: una expectativa, una idea sobre vos, una identidad prestada, un acuerdo silencioso que ya no servía. El rayo que parece venir del cielo casi siempre es algo que vos ya sabías y que finalmente encontró cómo salir. No te pide estar bien con la caída. Te pide no ponerle obstáculos al alivio que viene después. Lo nuevo todavía no se ve. Pero ya empezó. Y lo que se cae acá no se cae para siempre: se cae para que puedas construir lo siguiente sobre algo que sí te aguante.',
+    prompt: '¿Qué se desarmó que, en el fondo, ya sabías que no iba a aguantar más?',
 
     positions: {
       whatIs:      'Hay un cambio brusco o una ruptura redefiniendo el escenario actual.',
@@ -988,10 +988,10 @@ export const majorArcanaSymbolic = [
       'La cara melancólica de la luna — la verdad observada sin juicio'
     ],
 
-    reading: 'No todo está claro y eso, ahora, también es una respuesta. Hay algo que estás percibiendo y todavía no sabés cómo nombrarlo: no apures la palabra. La intuición trabaja despacio, sobre todo cuando lo que está en juego es importante.',
-    synthesis: 'La niebla no engaña: te pide caminar más despacio.',
-    extension: 'La Luna no es enemiga de la verdad; es la forma en que la verdad llega cuando todavía no estamos listas para verla a pleno sol. El sendero que ilumina serpentea —no porque esté mal trazado, sino porque algunos procesos se piensan caminando, no antes de caminar—. El cangrejo que asoma del agua es eso que sabías y guardabas, y ahora pide aparecer un rato. No tenés que entenderlo todo enseguida. Si esta carta aparece, conviene tratarte con paciencia: lo que está confuso no es porque vos no entendás, es porque todavía no terminó de mostrarse. Avanzar despacio en la niebla es más sabio que correr para salir de ella.',
-    prompt: '¿Qué estás percibiendo que todavía no querés —o no podés— terminar de nombrar?',
+    reading: 'No está todo claro. Y eso, ahora, también es una respuesta. La intuición trabaja despacio cuando lo que está en juego importa.',
+    synthesis: 'La niebla no engaña. Pide caminar más despacio.',
+    extension: 'La Luna no es enemiga de la verdad. Es la forma que tiene la verdad de llegar cuando todavía no estamos listas para verla a pleno sol. El sendero serpentea no porque esté mal trazado: algunos procesos se piensan caminando, no antes de caminar. El cangrejo que asoma del agua es eso que sabías y habías guardado, y que ahora pide aparecer un rato. No tenés que entenderlo todo enseguida. Lo que está confuso no es porque vos no entiendas; es porque todavía no terminó de mostrarse. Avanzar despacio en la niebla es más sabio que correr para salir de ella. Y a veces lo que parece miedo es solo el cuerpo nombrando algo antes que la cabeza.',
+    prompt: '¿Qué estás percibiendo que todavía no querés nombrar?',
 
     positions: {
       whatIs:      'Hay confusión, sensibilidad o información no visible del todo.',
@@ -1045,9 +1045,9 @@ export const majorArcanaSymbolic = [
       'El sol con cara humana — la claridad que también te mira'
     ],
 
-    reading: 'Algo se está volviendo simple. Después de un tramo donde nada parecía claro, aparece una certeza tranquila: no es euforia, es alivio. Lo que tenés enfrente probablemente sea más obvio de lo que estabas dispuesta a ver.',
-    synthesis: 'La claridad no es premio: es lo que queda cuando soltás lo que la tapaba.',
-    extension: 'El Sol no llega como recompensa por haber sufrido suficiente. Llega cuando algo en vos termina de ordenarse sin que te dieras cuenta del último gesto. El niño en el caballo blanco no está actuando: está exactamente donde está, y eso es suficiente. Los girasoles no compiten con él; lo acompañan creciendo al ritmo de su luz, no al revés. Si esta carta aparece, quizás haya menos para hacer y más para reconocer: que llegaste, que se simplificó algo, que estás en un momento donde no necesitás tanto ruido como antes. La parte difícil no es disfrutarlo; es permitirte que sea esto, sin esperar que se complique para confirmar que es real.',
+    reading: 'Algo se está volviendo simple. No es euforia, es alivio. Lo que tenés enfrente, probablemente, es más obvio de lo que estabas dispuesta a ver.',
+    synthesis: 'La claridad no es premio. Es lo que queda cuando soltás lo que la tapaba.',
+    extension: 'El Sol no llega como recompensa por haber sufrido suficiente. Llega cuando algo en vos termina de ordenarse sin que te dieras cuenta del último gesto. El niño en el caballo blanco no está actuando: está exactamente donde está, y eso es suficiente. Los girasoles, detrás del muro, no compiten; crecen al ritmo de su luz. Si esta carta aparece, quizás haya menos para hacer y más para reconocer. Que llegaste. Que se simplificó algo. Que estás en un momento donde no necesitás tanto ruido como antes. La parte difícil ahora no es disfrutarlo: es permitirte que sea esto, sin esperar que se complique para confirmar que es real.',
     prompt: '¿Qué se vuelve evidente cuando dejás de complicarlo?',
 
     positions: {
