@@ -160,54 +160,54 @@ function detectRhythmPattern(es) {
 
 const TEMP_VARIANTS = {
   'warm': [
-    'la temperatura general es cálida, casi cobijo',
-    'predomina una calidez que abre, no que ahoga',
-    'el aire es tibio, sostenido',
-    'algo cálido atraviesa la escena entera',
-    'el clima abriga sin pedir permiso'
+    'hay calidez sostenida, como cuando alguien te escucha sin interrumpirte',
+    'predomina algo que abriga, no que ahoga',
+    'es esa temperatura de cuarto donde se puede llorar sin urgencia',
+    'la lectura tiene tono de mesa con luz baja, no de oficina',
+    'hay un calor que no pide demostraciones'
   ],
   'cold': [
-    'el aire viene frío, pero no hostil',
-    'predomina una claridad fría, lúcida',
-    'la lectura está bajo una luz limpia y fresca',
-    'todo respira en una temperatura más baja, más nítida',
-    'hay una distancia honesta en el clima'
+    'hay una claridad fría, esa que llega cuando ya no hay para dónde correr',
+    'no es dureza — es la lucidez de quien dejó de explicarse',
+    'el clima es como caminar al amanecer en mayo: limpio, sin abrigo, despierto',
+    'todo se ve más nítido porque ya no hay nada que ocultar',
+    'hay distancia honesta — la que se gana, no la que se impone'
   ],
   'cold-with-warmth': [
-    'predomina lo frío, con un punto de calor que no se apaga',
-    'lo frío manda, pero algo cálido sobrevive en una esquina',
-    'el aire es fresco, salvo por un rincón tibio',
-    'la lectura está bajo niebla fría con un foquito cálido adentro'
+    'predomina lo frío, con un punto cálido que no se apaga ni con el peor pronóstico',
+    'casi todo está bajo claridad fría, salvo un rincón que sigue abrigando',
+    'es esa noche larga donde una luz al fondo de un pasillo cambia todo',
+    'la lectura es lúcida y un poco dura, pero alguien o algo está cuidando desde la sombra'
   ],
   'warm-with-cold': [
-    'predomina la calidez, con una zona fría que pide atención',
-    'el clima es tibio, salvo por un punto que conviene mirar',
-    'casi todo abriga, pero hay una grieta más fresca',
-    'lo cálido lleva la voz, lo frío hace una pausa breve'
+    'predomina lo cálido, con una grieta fresca que conviene mirar de cerca',
+    'casi todo abriga, salvo un detalle frío que está pidiendo ser nombrado',
+    'es esa charla buena donde, sin embargo, alguien dijo algo que no se va',
+    'lo cálido lleva la voz, pero hay un asunto pendiente que no se resuelve por sí solo'
   ],
   'tense': [
-    'hay una tensión sostenida atravesando todo',
-    'el aire está firme, casi en filo',
-    'todo está cargado, como antes de que algo se nombre',
-    'la lectura tiene cuerda corta'
+    'hay un nervio sostenido en toda la lectura — algo concreto que aún no se dijo',
+    'es esa tirantez de las conversaciones que se postergaron demasiado',
+    'todo está cargado, en ese silencio antes de que alguien decida hablar',
+    'la cuerda está corta — cualquier cosa que toques va a vibrar más de lo esperado'
   ],
   'tense-undertone': [
-    'algo agudo tensa el aire por debajo, sin gritar',
-    'se siente un nervio fino debajo de la calma',
-    'la calma tiene un hilo tirante adentro',
-    'hay un filo bajo la superficie, sin ruido'
+    'la calma de la superficie esconde un hilo tirante por debajo',
+    'aparenta tranquilidad, pero algo agudo se mueve debajo sin nombrarse',
+    'es la pausa antes del crujido: nada está pasando, todo está por pasar',
+    'hay un nervio fino en el cuerpo que la mente todavía no escuchó'
   ],
   'neutral': [
-    'el aire es parejo, sin extremos',
-    'el clima no empuja en ninguna dirección',
-    'la temperatura es de habitación, sin drama',
-    'todo respira en un punto medio'
+    'el aire es parejo, sin urgencia ni drama',
+    'la lectura es de día normal, sin densidad especial — y a veces eso ya dice algo',
+    'no hay extremos: hay observación, registro, paciencia',
+    'todo respira en un punto medio, ni feliz ni difícil'
   ],
   'mixed': [
-    'el clima cambia de una posición a otra',
-    'la temperatura no es uniforme, va por escenas',
-    'cada carta trae su propio aire',
-    'el clima se mueve, no es un solo paisaje'
+    'cada carta trae su propio clima — la lectura no es de un solo color',
+    'el tono cambia de posición a posición, hay que leerlo escena por escena',
+    'no hay una sola temperatura: hay varias capas conviviendo',
+    'la lectura es un mosaico, no un paisaje'
   ]
 }
 
@@ -257,58 +257,58 @@ const RHYTHM_VARIANTS = {
 
 const MOVEMENT_VARIANTS = {
   'opening': [
-    'Hay un proceso que estaba adentro empezando a buscar afuera.',
-    'Lo que se gestaba en privado pide ahora salir a tomar aire.',
-    'Algo que había crecido en silencio empieza a mostrarse.',
-    'La lectura se abre: lo íntimo asoma a lo visible.'
+    'Algo que estaba sólo en tu cabeza empieza a buscar palabras o gestos. Lo íntimo pide salir.',
+    'Lo que pensaste en silencio durante meses está pidiendo aterrizar en una conversación o un acto.',
+    'Algo que cuidaste sin mostrar está empezando a notarse afuera, te guste o no.',
+    'La lectura se abre: lo que era pensamiento pide volverse hecho.'
   ],
   'gathering': [
-    'Algo que se desplegaba afuera está volviendo a recogerse.',
-    'Después de moverte, esta lectura te pide volver al centro.',
-    'El movimiento se repliega: lo de afuera busca lo de adentro.',
-    'Una etapa expansiva se cierra hacia dentro.'
+    'Después de mucho movimiento afuera, algo te está pidiendo volver al centro.',
+    'Estuviste mucho tiempo respondiendo a lo de afuera; ahora lo que pide atención está adentro.',
+    'Lo que se desplegaba en lo visible se está plegando hacia lo íntimo — no es retroceso, es recogerse.',
+    'Una etapa expansiva se cierra. Lo que sigue se piensa más despacio y en silencio.'
   ],
   'pause-in-the-middle': [
-    'En el medio del proceso aparece una pausa que pide ser respetada.',
-    'Hay un movimiento, una quietud breve, y otro movimiento.',
-    'La lectura tiene un respiro en el centro.',
-    'Algo se detiene a la mitad antes de seguir.'
+    'Hay una pausa en el medio que conviene respetar — apurarla la rompe.',
+    'Empezás algo, te frenás, y antes de seguir hay un silencio que es parte del trabajo.',
+    'La lectura tiene un respiro adentro. Quien apura ese respiro pierde lo que el respiro estaba haciendo.',
+    'Algo se detiene a la mitad. No es bloqueo: es decantación.'
   ],
   'starting-to-move': [
-    'Lo que estaba en suspenso empieza, lentamente, a moverse.',
-    'Hay un punto en suspenso que está empezando a aflojar.',
-    'La pausa anterior empieza a soltar aire.',
-    'Algo que estaba quieto da el primer paso.'
+    'Lo que estaba quieto empieza a aflojar. No es resolución todavía: es la primera grieta.',
+    'Después de mucho tiempo de pausa, algo da el primer paso. Pequeño, pero real.',
+    'La pausa larga empieza a ceder. Algo concreto se va a mover en los próximos días.',
+    'Lo que estaba en compás de espera comienza a destrabarse.'
   ],
   'pause-then-resume': [
-    'Hay un movimiento, una pausa, y otro movimiento — el aire respira.',
-    'La lectura late: avanza, frena, vuelve a avanzar.',
-    'El ritmo respira: dos impulsos con un silencio en medio.',
-    'Hay avance, pausa, y otra vez avance, sin urgencia.'
+    'Hay un movimiento, una pausa que parece bloqueo y no lo es, y otro movimiento. La lectura respira.',
+    'Avanzaste, frenaste, y ese frenar no fue derrota — era parte. Ahora vuelve a moverse.',
+    'Dos impulsos con un silencio en medio. Ese silencio es donde se decide cómo va a ser el segundo movimiento.',
+    'Avance, pausa, avance otra vez — sin urgencia ni dramatismo.'
   ],
   'deeply-inward': [
-    'Toda la lectura mira hacia adentro: este momento pide intimidad, no escenario.',
-    'Las tres posiciones convergen en lo íntimo: nada de esto pasa afuera todavía.',
-    'El centro de la lectura está hacia dentro, en silencio.',
-    'Toda la escena se está pensando, no actuando.'
+    'Las tres posiciones miran hacia adentro. Este momento se piensa, no se actúa: cualquier movimiento exterior va a ser ruido.',
+    'Todo está pasando en privado. Lo que se decide acá no necesita público.',
+    'El centro de la lectura está en silencio, en una conversación tuya con vos misma.',
+    'Toda la escena ocurre antes de que pase afuera — todavía es deliberación.'
   ],
   'fully-outward': [
-    'Toda la lectura empuja hacia afuera: hay algo queriendo manifestarse en lo concreto.',
-    'Las tres posiciones tiran hacia el mundo: este capítulo se vive en lo visible.',
-    'Todo el aire empuja a salir, a actuar, a aterrizar.',
-    'La lectura está toda hacia afuera, sin interior reservado.'
+    'Las tres posiciones empujan hacia el mundo. Esto se está jugando en lo visible: una conversación, una decisión, un gesto.',
+    'No hay tiempo de seguir pensando. La lectura pide acción concreta.',
+    'Todo apunta a salir, hacer, decir. Nada de esto se resuelve en silencio.',
+    'Esta tirada se vive en lo concreto: en lo que decís, lo que firmás, lo que mostrás.'
   ],
   'fully-suspended': [
-    'Las tres posiciones están en pausa: la lectura te pide no decidir todavía.',
-    'Toda la tirada queda suspendida, como en un umbral que aún no se cruza.',
-    'Todo está esperando algo que aún no llegó.',
-    'La lectura entera está en compás de espera.'
+    'Las tres posiciones están en pausa. La lectura te pide no decidir todavía — algo afuera tiene que moverse primero.',
+    'Toda la tirada está en un umbral. No es bloqueo: es esperar a que aparezca la información que falta.',
+    'Todo está esperando. Forzar una respuesta hoy es elegir desde lo que no sabés.',
+    'La lectura entera está en compás de espera. La paciencia hoy vale más que la decisión.'
   ],
   'mixed': [
-    'El movimiento no es lineal: el aire va, vuelve, y a veces se queda quieto.',
-    'No hay un solo arco: la lectura combina avance, pausa y giro.',
-    'El movimiento es zigzagueante, no recto.',
-    'Cada posición tira para un lado distinto, y eso también es información.'
+    'El movimiento no es lineal. Va, vuelve, se queda quieto. La lectura es así, no estás leyéndola mal.',
+    'No hay un solo arco: hay avance, pausa y giro conviviendo en la misma escena.',
+    'El movimiento es zigzagueante. No es indecisión — son varias cosas pasando a la vez.',
+    'Cada posición tira para un lado distinto. Esa fricción ya es información.'
   ]
 }
 
@@ -368,20 +368,20 @@ const SUIT_VOICE = {
 
 const MAJOR_PRESENCE_VARIANTS = {
   3: [
-    'Las tres posiciones traen Mayores: estás claramente en un capítulo grande del viaje, no en una escena del día.',
-    'Tres Arcanos Mayores juntos es señal de un momento bisagra, no de un comentario al pasar.'
+    'Tres Arcanos Mayores juntos. No es una escena: es un capítulo entero. Vas a recordar este momento.',
+    'Las tres posiciones traen figuras grandes. Lo que pasa hoy va a tener consecuencias después de esta semana.'
   ],
   2: [
-    'Hay dos Mayores en juego: este momento late en una escala más amplia que lo cotidiano.',
-    'Con dos Mayores, la lectura está pidiendo ser escuchada como un capítulo, no como un detalle.'
+    'Dos Mayores en escena. Esto no es del día — es de los meses. Conviene leer despacio.',
+    'Con dos Mayores, la pregunta pesa más de lo que parece desde afuera.'
   ],
   1: [
-    'Un solo Mayor enmarca dos escenas más cotidianas que lo rodean.',
-    'Hay una pieza grande sostenida por dos gestos del día.'
+    'Un solo Mayor entre dos Menores. Esa Mayor es probablemente el ancla emocional — alrededor de ella se ordena el resto.',
+    'Una pieza grande sostenida por dos gestos del día. Mirar bien cuál es la grande.'
   ],
   0: [
-    'No hay Mayores: la lectura se lee a ras del piso, en lo cotidiano y lo concreto.',
-    'Sin Mayores, esto es escena del día: gestos chicos, dinámicas inmediatas.'
+    'Ningún Mayor. La lectura es de gestos chicos: lo que decís hoy, una conversación, un detalle. No menos profunda — más íntima.',
+    'Sin Mayores, esto se vive a escala humana. No hay drama estructural: hay vida cotidiana pidiendo atención.'
   ]
 }
 

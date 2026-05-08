@@ -92,7 +92,7 @@ export const CELTIC_POSITIONS = [
     classical: 'El consultante',
     label:     'Cómo estás tú en este momento',
     role:      'Identidad',
-    whisper:   'Aquí te ves a tú, tal como llegás a esta lectura — no como te ves siempre.',
+    whisper:   'Aquí te ves a ti, tal como llegás a esta lectura — no como te ves siempre.',
     prompt:    '¿Desde qué versión tuya estás mirando esto?'
   },
   {
@@ -108,7 +108,7 @@ export const CELTIC_POSITIONS = [
     index: 8,
     key:       'inner',
     classical: 'Esperanzas y miedos',
-    label:     'Lo que una parte de tú intenta proteger',
+    label:     'Lo que una parte de ti intenta proteger',
     role:      'Sombra interna',
     whisper:   'Aquí vive la mezcla rara entre lo que quieres y lo que temés que pase.',
     prompt:    '¿Qué parte tuya está tratando de cuidar algo, aunque no lo nombres así?'
@@ -256,58 +256,58 @@ function detectSymbolicTensions(enriched) {
 
 const CLIMATE_LINES = {
   overwhelming: [
-    'Esta lectura late en una escala muy grande: estás claramente en un capítulo central de tu vida, no en una escena al pasar.',
-    'La presencia abrumadora de Arcanos Mayores nombra un momento bisagra. Lo que pase ahora va a importar después.'
+    'Seis o más Arcanos Mayores cayeron en esta tirada. No es una pregunta del día — es un pasaje, y vas a recordar este momento.',
+    'Casi todo lo que ves son figuras grandes. Es de esos momentos donde lo que pasa ahora se nombra después como un antes y un después.'
   ],
   strong: [
-    'Esta lectura tiene varios capítulos abiertos a la vez. No es una pregunta cualquiera: es una ventana a algo grande.',
-    'La fuerza de los Mayores aquí te pide leer esto despacio. No es ruido del día.'
+    'Cuatro Mayores en escena. La pregunta que trajiste es más grande de lo que parece: no se resuelve esta semana.',
+    'Hay varios capítulos abiertos al mismo tiempo. Conviene leer despacio: no son escenas del día, son hilos de tu vida.'
   ],
   present: [
-    'Hay un par de Arcanos Mayores que enmarcan la lectura: algo importante te atraviesa, sin ser todo.',
-    'La lectura se mueve entre lo cotidiano y un capítulo más amplio.'
+    'Dos Mayores enmarcan la tirada. Algo importante te atraviesa, sin ocupar toda la escena.',
+    'La lectura tiene cotidiano y tiene capítulo. Las dos cosas conviven y conviene no aplastar una con la otra.'
   ],
   single: [
-    'Una sola figura grande se asoma sobre escenas más cotidianas: probablemente sea el centro emocional de la lectura.',
-    'Hay una pieza grande sostenida por gestos del día.'
+    'Un solo Mayor se asoma entre Menores. Probablemente esa carta sea el ancla emocional — alrededor de ella se ordena el resto.',
+    'Una pieza grande sostenida por gestos chicos. La pregunta no es enorme, pero esa Mayor le da peso a algo en particular.'
   ],
   absent: [
-    'Esta lectura se mueve a ras del piso, en lo concreto y lo cotidiano. No es menos profunda — es más íntima.',
-    'No hay Mayores: el ritual está hecho de gestos chicos. Conviene leer sin buscar el drama.'
+    'Sin Mayores. La lectura está hecha de detalles, no de bisagras. No menos profunda: más íntima, más cotidiana.',
+    'No hay capítulos grandes, hay escenas. Es la clase de tirada que pide leerse sin buscar el drama.'
   ]
 }
 
 const TEMP_LINES = {
-  tense:        'Atraviesa una tensión sostenida — algo todavía no se nombró.',
-  warm:         'El clima es mayormente cálido, sostenido.',
-  cold:         'Predomina una claridad fría, lúcida, sin dureza.',
-  split:        'Frío y calor conviven a partes casi iguales: dos verdades distintas en la misma escena.',
-  'warm-leaning': 'Predomina lo cálido, con una zona fresca que pide atención.',
-  'cold-leaning': 'Predomina lo lúcido, con un punto cálido que sobrevive.',
-  mixed:        'El clima cambia de carta a carta — no hay una sola temperatura.'
+  tense:        'Hay un nervio sostenido atravesando varias cartas — algo concreto que todavía no se dijo en voz alta.',
+  warm:         'Predomina la calidez. No es alegría: es contención, algo que ya está abrigando aunque no lo notes.',
+  cold:         'Casi todo se lee en clave fría. No es dureza: es lucidez, ese tipo de claridad que llega cuando ya no hay para dónde correr.',
+  split:        'Frío y calor a partes iguales. Hay dos verdades en la misma escena que conviene no apurar a reconciliar.',
+  'warm-leaning': 'Lo cálido lleva la voz, pero hay un rincón frío que pide ser mirado antes de seguir.',
+  'cold-leaning': 'La lectura es más fría que cálida, salvo por un punto tibio que merece sostenerse.',
+  mixed:        'El clima cambia carta a carta. No hay una sola temperatura — la lectura es un mosaico.'
 }
 
 const DIRECTION_LINES = {
-  'deeply-inward':   'La mayoría de la lectura mira hacia adentro: este momento se está pensando, no actuando.',
-  'fully-outward':   'La mayoría de la lectura empuja hacia afuera: lo importante se está jugando en lo concreto.',
-  'mostly-suspended':'Mucho de esto está en pausa, esperando que algo se mueva primero.',
-  'split-direction': 'Una parte de la lectura quiere salir, otra pide quedarse adentro.',
-  mixed:             'El movimiento no tiene una dirección única.'
+  'deeply-inward':   'La mayoría apunta hacia adentro. Este momento se piensa, no se actúa: cualquier movimiento exterior va a ser ruido sobre algo que todavía está madurando.',
+  'fully-outward':   'Casi todo empuja hacia afuera. Lo importante se está jugando en lo concreto: en una conversación, en una decisión, en un gesto que se ve.',
+  'mostly-suspended':'Mucho de esto sigue en pausa. La lectura no pide moverte: pide esperar a que algo afuera se acomode primero.',
+  'split-direction': 'Una parte quiere salir, otra pide quedarse. Esa fricción no es indecisión — son dos necesidades reales conviviendo.',
+  mixed:             'No hay una dirección dominante. El movimiento va y vuelve.'
 }
 
 const SUIT_LINES = {
-  Copas:   'El centro emocional de la lectura está en los vínculos, los afectos y la intuición.',
-  Espadas: 'El centro emocional de la lectura está en pensamientos, decisiones y verdades a nombrar.',
-  Bastos:  'El centro emocional de la lectura está en impulsos, deseos y proyectos en marcha.',
-  Oros:    'El centro emocional de la lectura está en el cuerpo, el oficio y lo que se construye con tiempo.'
+  Copas:   'El centro emocional está en los vínculos: alguien específico, una conversación pendiente, un afecto que cambia de forma.',
+  Espadas: 'El centro está en lo mental: una decisión que se posterga, una verdad que pesa por no decirse, un pensamiento que da vueltas.',
+  Bastos:  'El centro está en lo que querés mover: un proyecto, un deseo, un impulso que pide salir y todavía no encontró por dónde.',
+  Oros:    'El centro está en lo concreto: el cuerpo, el trabajo, el dinero, una rutina, algo material que pide atención sostenida.'
 }
 
 const TENSION_LINES = {
-  'continuity-of-suit':       'Algo del territorio del pasado vuelve en el horizonte cercano: hay una historia que todavía está terminando de cerrarse.',
-  'aspiration-vs-result':     'Lo que aspirás y hacia donde se inclina la lectura no tienen el mismo aire. Conviene mirar si lo que quieres es realmente lo que estás pidiendo, o si lo que pides dice algo distinto de lo que quieres.',
-  'self-vs-environment':      'La dirección interna que traés y la del entorno no coinciden: parte de la fricción que sientes no es tuya, es el desfase entre tú y lo que rodea.',
-  'major-crossing':           'Lo que cruza la lectura es un Arcano Mayor: la fricción no es del día, es del capítulo.',
-  'inner-fear-vs-warm-horizon':'Lo que te pesa por dentro está más tenso que lo que la lectura inclina hacia afuera. Probablemente estás cargando con un miedo que la realidad no está confirmando.'
+  'continuity-of-suit':       'El palo del pasado vuelve en el horizonte cercano. Hay una historia que parecía cerrada y todavía no terminó de cerrarse — el mismo territorio te sigue pidiendo algo.',
+  'aspiration-vs-result':     'Lo que querés y hacia donde se inclina la lectura no tienen el mismo aire. Vale la pena preguntarte si lo que pedís es realmente lo que querés, o si lo que pedís te está cuidando de lo que sí querrías.',
+  'self-vs-environment':      'La dirección que traés y la del entorno van para lados distintos. Parte del cansancio no es tuyo: es el desgaste de remar contra una corriente.',
+  'major-crossing':           'Lo que tensiona en el centro es un Arcano Mayor. Eso que parece interferencia del día es en realidad un capítulo: pesa más de lo que parece y va a tardar más de lo que esperás.',
+  'inner-fear-vs-warm-horizon':'Por dentro estás cargando más miedo del que la realidad afuera está confirmando. Probablemente estás defendiéndote de un peligro que ya pasó o que nunca llegó.'
 }
 
 function pickSeeded(arr, seed) {
@@ -371,22 +371,20 @@ function buildBlock1(s1, s2, s3) {
   const e3 = essenceOf(s3.slot.card, s3.content)
 
   const c2Major  = s2.content?.isMajor
-  const tempEq12 = s1.content && s2.content
-    && (enrichCard(s1.slot.card).energy.temperature === enrichCard(s2.slot.card).energy.temperature)
   const tempEq13 = s1.content && s3.content
     && (enrichCard(s1.slot.card).energy.temperature === enrichCard(s3.slot.card).energy.temperature)
 
-  /* Frase apertura — varía si la cruz es Mayor (capítulo) o Menor (escena) */
+  /* Frase apertura — varía si la cruz es Mayor (capítulo grande) o Menor (escena del día) */
   const opener = c2Major
-    ? `En el centro de la escena, ${e1}. Cruzándolo aparece algo más grande, una bisagra: ${e2}.`
-    : `En el centro, ${e1}. Lo que tensiona el momento se le superpone, casi como sombra: ${e2}.`
+    ? `Hoy en el centro: ${e1}. Lo cruza otro Arcano Mayor, así que la fricción no es del día — es del capítulo: ${e2}.`
+    : `Hoy en el centro: ${e1}. Lo que se le pega, casi como sombra: ${e2}.`
 
   /* Frase aspiración — varía si corona armoniza o contradice el centro */
   let coronation
   if (tempEq13) {
-    coronation = `Y por encima, lo que se asoma como aspiración respira en el mismo aire: ${e3}.`
+    coronation = `Y arriba, lo que estás esperando o queriendo respira el mismo aire que el centro: ${e3}. Cuando la aspiración y la situación coinciden, el deseo deja de tirarte para otro lado y empieza a ordenarte.`
   } else {
-    coronation = `Por encima, lo que se asoma como aspiración pide otra cosa: ${e3}.`
+    coronation = `Y arriba, lo que estás esperando o queriendo no se parece a lo que está pasando ahora: ${e3}. Esa distancia entre lo que vivís y lo que esperás es parte de la fricción del momento.`
   }
 
   return `${opener} ${coronation}`
@@ -409,23 +407,23 @@ function buildBlock2(s4, s5, s6) {
   const tempPast = enrichCard(s5.slot.card).energy.temperature
   const tempFut  = enrichCard(s6.slot.card).energy.temperature
 
-  /* Frase raíz */
-  const root = `Debajo de todo eso, lo que sostiene esta historia en silencio: ${e4}.`
+  /* Frase raíz — más anclada */
+  const root = `Por debajo, sosteniendo esta historia desde mucho antes que la pregunta: ${e4}. Esa es la base, lo que ya estaba ahí cuando llegaste a esto.`
 
   /* Frase arco entre pasado y futuro — varía por dirección y temperatura */
   let arc
   if (dirPast === 'outward' && dirFut === 'inward') {
-    arc = `Lo que se aleja venía manifestándose afuera —${e5}—; lo que llega pide volver a habitar lo íntimo —${e6}—.`
+    arc = `Lo que se está yendo se vivía afuera, en lo visible: ${e5}. Lo que llega pide lo contrario: recogerse, mirar hacia adentro, dejar de actuar — ${e6}.`
   } else if (dirPast === 'inward' && dirFut === 'outward') {
-    arc = `Lo que se aleja era íntimo —${e5}—; lo que se aproxima pide aterrizar en lo concreto —${e6}—.`
+    arc = `Lo que se está yendo era privado, casi secreto: ${e5}. Lo que llega quiere salir a la luz, volverse acto concreto — ${e6}. Esa es la transición.`
   } else if (tempPast === 'tense' && tempFut === 'warm') {
-    arc = `Lo que se aleja traía tensión —${e5}—; lo que se acerca empieza a dejar respirar —${e6}—.`
+    arc = `Lo que se aleja venía cargado, con un nudo: ${e5}. Lo que se acerca afloja, deja respirar — ${e6}. La tensión cede de a poco.`
   } else if (tempPast === 'warm' && tempFut === 'cold') {
-    arc = `Lo que se aleja era cálido —${e5}—; lo que llega trae una claridad más fría, más lúcida —${e6}—.`
+    arc = `Lo que se aleja era cálido, contenedor: ${e5}. Lo que llega es más frío, no peor — más lúcido — ${e6}. A veces hay que perder un abrigo para ver mejor.`
   } else if (tempPast === tempFut && dirPast === dirFut) {
-    arc = `El pasado próximo y el futuro cercano comparten registro: lo que se va —${e5}— y lo que llega —${e6}— hablan el mismo idioma. La historia sigue su línea.`
+    arc = `Lo que se va y lo que llega hablan el mismo idioma: ${e5} ↔ ${e6}. La historia no cambia de tono, sigue su línea — eso ya te dice algo del momento.`
   } else {
-    arc = `Lo que se va: ${e5}. Lo que se aproxima: ${e6}. Entre ambos, un movimiento que todavía está terminando de decidir su forma.`
+    arc = `Atrás queda: ${e5}. Adelante asoma: ${e6}. Entre las dos, un movimiento que todavía no terminó de decidir su forma — y por eso conviene no apurarlo.`
   }
 
   return `${root} ${arc}`
@@ -448,25 +446,25 @@ function buildBlock3(s7, s8, s9) {
   const tempInner = enrichCard(s9.slot.card).energy.temperature
   const tempSelf  = enrichCard(s7.slot.card).energy.temperature
 
-  /* Frase del self */
-  const selfLine = `Llegas a esta lectura con esta versión tuya: ${e7}.`
+  /* Frase del self — describe cómo llegas hoy, no quién sos siempre */
+  const selfLine = `Vos hoy, mirando esto: ${e7}. Esta es la versión tuya que llegó a la pregunta — no necesariamente la que vas a tener mañana.`
 
   /* Frase del entorno — varía si choca con el self */
   let envLine
   if (dirSelf !== dirEnv) {
-    envLine = `Y alrededor, un aire que no acompaña del todo: ${e8}.`
+    envLine = `El entorno alrededor no acompaña en la misma dirección: ${e8}. Hay personas, lugares o ruidos que tiran para otro lado, y eso te cansa más de lo que reconocés.`
   } else {
-    envLine = `Lo que rodea, sin ser tuyo, se mueve en el mismo registro: ${e8}.`
+    envLine = `Lo que rodea, sin ser tuyo, se mueve en el mismo registro: ${e8}. El afuera no te está pidiendo otra cosa — está confirmando lo que ya sentís.`
   }
 
   /* Frase del inner — varía por contraste con el self */
   let innerLine
   if (tempInner === 'tense' && tempSelf !== 'tense') {
-    innerLine = `Y por dentro, una parte tuya está cuidando algo más tenso de lo que tu propia versión deja ver: ${e9}.`
+    innerLine = `Y en el lugar de los miedos: ${e9}. Por adentro estás cargando algo más tenso de lo que mostrás afuera. Vale preguntarse a quién le sirve esa diferencia.`
   } else if (tempInner === tempSelf) {
-    innerLine = `Y lo que esa parte tuya intenta proteger se mueve en el mismo color: ${e9}.`
+    innerLine = `Y en el lugar de las esperanzas y los miedos: ${e9}. Lo que cuidás por dentro y cómo te ves hoy van en el mismo tono — al menos no estás peleando contigo misma.`
   } else {
-    innerLine = `Y en lo más íntimo, una mezcla rara entre lo que quieres y lo que temes: ${e9}.`
+    innerLine = `Y en el lugar más íntimo, esa mezcla rara entre lo que querés y lo que temés que pase: ${e9}. A veces lo que más miedo da es justo lo que más estás deseando.`
   }
 
   return `${selfLine} ${envLine} ${innerLine}`
@@ -482,8 +480,8 @@ function buildBlock3(s7, s8, s9) {
 function buildClosing(s10, tensions, suitDominance) {
   const e10 = essenceOf(s10.slot.card, s10.content)
 
-  /* Frase del horizonte */
-  let horizon = `Y el horizonte hacia el que todo esto se inclina: ${e10}.`
+  /* Frase del horizonte — más anclada, menos sentencia */
+  let horizon = `Y al fondo, hacia donde todo esto se inclina hoy: ${e10}. No es una predicción cerrada — es la dirección que la suma de cartas está tomando si nada cambia desde acá.`
 
   /* Si el horizonte contiene un prompt propio (carta escrita), lo
      guardamos para la pregunta final. Si no, tendremos un fallback. */

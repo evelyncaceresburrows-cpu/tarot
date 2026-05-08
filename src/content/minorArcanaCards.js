@@ -36,7 +36,7 @@ export const minorArcanaCards = {
       suit:    'Copas',
       number:  'As',
       essence: 'Algo nuevo se está abriendo en el pecho.',
-      reading: 'Una emoción aparece y todavía no necesita explicarse. Lo que se está abriendo en tú es chico, tibio, recién llegado: pide ser recibido sin definirlo enseguida.',
+      reading: 'Una emoción aparece y todavía no necesita explicarse. Lo que se está abriendo en ti es chico, tibio, recién llegado: pide ser recibido sin definirlo enseguida.',
       synthesis: 'Lo que recién empieza no se nombra: se cuida.',
       prompt: '¿Qué emoción nueva está pidiendo lugar sin que tengas que justificarla?',
       themes: ['Apertura emocional', 'Inicio afectivo', 'Don', 'Receptividad'],
@@ -44,7 +44,7 @@ export const minorArcanaCards = {
         'Ganas inesperadas de acercarte a alguien',
         'Una emoción que aparece sin causa clara y te suaviza',
         'El comienzo tibio de un afecto, una intuición o una ternura propia',
-        'Sentir que algo en tú se está abriendo de nuevo'
+        'Sentir que algo en ti se está abriendo de nuevo'
       ],
       shadows: [
         'Apurar la emoción para nombrarla',
@@ -64,7 +64,7 @@ export const minorArcanaCards = {
       themes: ['Vínculo', 'Reciprocidad', 'Reconocimiento mutuo', 'Encuentro afectivo'],
       manifestations: [
         'Una conversación donde no hace falta llenar los silencios',
-        'Reconciliación silenciosa con alguien o con tú misma',
+        'Reconciliación silenciosa con alguien o contigo misma',
         'Sentir que en este vínculo no estás sosteniendo la balanza sola',
         'Un afecto que te calma sin pedirte nada'
       ],
@@ -110,7 +110,7 @@ export const minorArcanaCards = {
         'Tener todo y aún así sentir que algo no encaja',
         'Rechazar oportunidades por agotamiento, no por convicción',
         'Encerrarte en la rutina afectiva y no notar lo nuevo',
-        'Una propuesta que llega y no termina de aterrizar en tú'
+        'Una propuesta que llega y no termina de aterrizar en ti'
       ],
       shadows: [
         'Confundir desinterés con sabiduría',
@@ -148,18 +148,18 @@ export const minorArcanaCards = {
       essence: 'La ternura también vuelve.',
       reading: 'Algo del pasado afectivo está volviendo, no para repetirse sino para suavizar este momento. Esta carta es la memoria que cuida, el gesto chico que devuelve calor.',
       synthesis: 'Recordar también es una forma de cuidarte.',
-      prompt: '¿Qué memoria afectiva está volviendo a tú para hacerte bien?',
+      prompt: '¿Qué memoria afectiva está volviendo a ti para hacerte bien?',
       themes: ['Memoria', 'Inocencia recuperada', 'Gentileza', 'Vínculo del pasado'],
       manifestations: [
         'Acordarte de alguien que te cuidó y sentir gratitud sin nostalgia',
-        'Volver a un lugar querido y notar lo que cambió en tú',
+        'Volver a un lugar querido y notar lo que cambió en ti',
         'Una conversación tierna que repara algo viejo',
         'Hacer un gesto chico y noble por alguien sin esperar nada'
       ],
       shadows: [
         'Confundir nostalgia con presente',
         'Idealizar lo anterior',
-        'Quedar atrapada en una versión vieja de tú misma'
+        'Quedar atrapada en una versión vieja de ti misma'
       ]
     },
 
@@ -505,15 +505,15 @@ export const minorArcanaCards = {
       suit:    'Espadas',
       number:  'Ocho',
       essence: 'Las paredes también pueden estar adentro.',
-      reading: 'Hay una historia que te estás contando como si fuera la única posible. La sensación de encierro es real, pero las cuerdas que la sostienen son narrativas: cosas que pensás sobre tú que ya no necesitan ser ciertas.',
+      reading: 'Hay una historia que te estás contando como si fuera la única posible. La sensación de encierro es real, pero las cuerdas que la sostienen son narrativas: cosas que pensás sobre ti que ya no necesitan ser ciertas.',
       synthesis: 'Lo que parece imposible, a veces, solo no se ha mirado dos veces.',
-      prompt: '¿Qué te estás diciendo sobre tú misma como si fuera ley, y no es?',
+      prompt: '¿Qué te estás diciendo sobre ti misma como si fuera ley, y no es?',
       themes: ['Encierro mental', 'Narrativa interna', 'Imposibilidad percibida', 'Mirada estrecha'],
       manifestations: [
         'Repetirte que no puedes cuando todavía no probaste',
         'Sentir que no hay salida en una situación que tiene varias',
         'Pedir permiso para algo que ya puedes decidir sola',
-        'Quedar inmovilizada por una versión vieja de tú misma'
+        'Quedar inmovilizada por una versión vieja de ti misma'
       ],
       shadows: [
         'Identificarte con la víctima del propio relato',
@@ -571,7 +571,7 @@ export const minorArcanaCards = {
       suit:    'Espadas',
       number:  'Sota',
       essence: 'Querer entender también es una forma de respeto.',
-      reading: 'Hay una curiosidad afilada en tú que está observando más de lo que dice. Esta carta te invita a hacer preguntas con cuidado: la mente nueva todavía no domina su filo y conviene usarlo para abrir, no para herir.',
+      reading: 'Hay una curiosidad afilada en ti que está observando más de lo que dice. Esta carta te invita a hacer preguntas con cuidado: la mente nueva todavía no domina su filo y conviene usarlo para abrir, no para herir.',
       synthesis: 'Preguntar bien es una manera de cuidar.',
       prompt: '¿Qué pregunta tienes rondando que merece ser hecha en voz alta, sin agresión y sin disculpas?',
       themes: ['Curiosidad mental', 'Vigilancia', 'Ganas de entender', 'Pregunta nueva'],
@@ -665,7 +665,7 @@ export const minorArcanaCards = {
     As: {
       suit:    'Bastos',
       number:  'As',
-      essence: 'Algo en tú quiere encenderse.',
+      essence: 'Algo en ti quiere encenderse.',
       reading: 'Hay una idea, un deseo o una vocación nueva latiendo en el cuerpo. Esta carta no te pide certezas: te pide aceptar que algo quiere salir, y darle un primer gesto, aunque sea chico.',
       synthesis: 'El impulso recién llegado no se planea: se enciende.',
       prompt: '¿Qué chispa estás postergando porque todavía no tiene forma terminada?',
@@ -886,7 +886,7 @@ export const minorArcanaCards = {
       suit:    'Bastos',
       number:  'Sota',
       essence: 'Las ganas también te dicen por dónde.',
-      reading: 'Hay un entusiasmo fresco en tú pidiendo movimiento. Esta carta no te apura a comprometerte: te invita a curiosear, probar, dejar que el cuerpo y el deseo te muestren un camino antes de decidir si quieres sostenerlo.',
+      reading: 'Hay un entusiasmo fresco en ti pidiendo movimiento. Esta carta no te apura a comprometerte: te invita a curiosear, probar, dejar que el cuerpo y el deseo te muestren un camino antes de decidir si quieres sostenerlo.',
       synthesis: 'El deseo nuevo merece curiosidad antes que plan.',
       prompt: '¿Qué te está convocando que merece, al menos, una primera vuelta de exploración?',
       themes: ['Curiosidad activa', 'Entusiasmo', 'Deseo de explorar', 'Mensajero del fuego'],
@@ -1273,7 +1273,7 @@ export const minorArcanaCards = {
       themes: ['Estabilidad', 'Construcción sólida', 'Dominio práctico', 'Generosidad estructural'],
       manifestations: [
         'Manejar tu trabajo o tus recursos con criterio claro',
-        'Sostener un proyecto que da fruto a otros, no solo a tú',
+        'Sostener un proyecto que da fruto a otros, no solo a ti',
         'Compartir lo que sabes con quien recién empieza',
         'Tomar decisiones materiales con calma y visión'
       ],

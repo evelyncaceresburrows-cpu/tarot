@@ -221,9 +221,9 @@ export const majorArcanaSymbolic = [
       'El símbolo de Venus apoyado, no exhibido — el deseo sereno de crear'
     ],
 
-    reading: 'Hay algo en tú que quiere crear, sostener o cuidar, y lo que pide no es más esfuerzo: pide presencia. Esta carta te invita a habitar el cuerpo, los sentidos, el tiempo lento. Lo que cultivás con cariño, sin medirlo todo el tiempo, está creciendo más de lo que parece.',
+    reading: 'Hay algo en ti que quiere crear, sostener o cuidar, y lo que pide no es más esfuerzo: pide presencia. Esta carta te invita a habitar el cuerpo, los sentidos, el tiempo lento. Lo que cultivás con cariño, sin medirlo todo el tiempo, está creciendo más de lo que parece.',
     synthesis: 'Crear también es esperar.',
-    extension: 'La Emperatriz no produce: gestiona la vida desde adentro. Su trono no está en un palacio, está en medio del bosque, porque el lugar de la creación es el lugar donde algo crece a su propio ritmo. La corona de estrellas y el manto con granadas dicen lo mismo desde dos lados: lo fértil no se decreta, se acompaña. Si esta carta aparece, lo más útil quizás no sea hacer más, sino estar presente con más cariño en lo que ya está siendo. Cuida lo que cuidas también con tú adentro: la maternidad simbólica no es solo hacia afuera. Y permítete el placer de los sentidos: la Emperatriz sabe que sin gozo, lo que se crea se vuelve obligación.',
+    extension: 'La Emperatriz no produce: gestiona la vida desde adentro. Su trono no está en un palacio, está en medio del bosque, porque el lugar de la creación es el lugar donde algo crece a su propio ritmo. La corona de estrellas y el manto con granadas dicen lo mismo desde dos lados: lo fértil no se decreta, se acompaña. Si esta carta aparece, lo más útil quizás no sea hacer más, sino estar presente con más cariño en lo que ya está siendo. Cuida lo que cuidas también contigo adentro: la maternidad simbólica no es solo hacia afuera. Y permítete el placer de los sentidos: la Emperatriz sabe que sin gozo, lo que se crea se vuelve obligación.',
     prompt: '¿Qué está creciendo en tu vida que solo necesita ser cuidado, no apurado?',
 
     positions: {
@@ -271,7 +271,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'Algo en este momento pide estructura: una decisión clara, un límite que se sostenga, una rutina que ordene. El Emperador no llega a controlar: llega a recordarte que el cuidado también necesita columnas. Poner el peso donde corresponde —y dejar de cargar lo que no es tuyo— es parte de su sabiduría.',
     synthesis: 'Sostener también es una forma de amar.',
-    extension: 'El Emperador parece distante, pero su trabajo es serio: hace que las cosas se mantengan. La piedra debajo suyo no es frío, es base; los carneros tallados no son agresivos, son la voluntad firme que no se mueve cuando todo alrededor pide cambios bruscos. Si esta carta aparece, probablemente algo en tú esté pidiendo estructura: un horario, un límite con alguien, una decisión que ya no merece más vueltas. La trampa del Emperador es endurecerse cuando podría simplemente sostener; su sabiduría es entender que el orden no se opone al afecto, lo posibilita. Sin marco, el cuidado se vuelve caos; con demasiado marco, se vuelve ahogo. Esta carta te invita a encontrar el punto donde la firmeza protege en lugar de aprisionar.',
+    extension: 'El Emperador parece distante, pero su trabajo es serio: hace que las cosas se mantengan. La piedra debajo suyo no es frío, es base; los carneros tallados no son agresivos, son la voluntad firme que no se mueve cuando todo alrededor pide cambios bruscos. Si esta carta aparece, probablemente algo en ti esté pidiendo estructura: un horario, un límite con alguien, una decisión que ya no merece más vueltas. La trampa del Emperador es endurecerse cuando podría simplemente sostener; su sabiduría es entender que el orden no se opone al afecto, lo posibilita. Sin marco, el cuidado se vuelve caos; con demasiado marco, se vuelve ahogo. Esta carta te invita a encontrar el punto donde la firmeza protege en lugar de aprisionar.',
     prompt: '¿Dónde te falta estructura, y dónde te sobra?',
 
     positions: {
@@ -364,7 +364,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'Hay una decisión que ya no es solo sobre lo que quieres, sino sobre quién quieres ser. Esta carta no romantiza el amor ni obliga a elegir rápido: te muestra que toda elección significativa también te define. La pregunta no es solo "qué elijo", sino "desde dónde elijo".',
     synthesis: 'Eliges dos veces: una con lo que dices, otra con lo que dejás de hacer.',
-    extension: 'Los Enamorados no son solo una carta de amor: son una carta de coherencia. El ángel que sostiene la escena no decide por las figuras, las observa: lo que se está poniendo en juego no es solo el vínculo, es la propia honestidad. Si esta carta aparece, hay una decisión —vincular, vital, ética— que ya no se puede postergar sin costo. La trampa es esperar que las cosas se acomoden solas o que alguien decida por tú; la sabiduría es entender que toda elección importante también es una declaración sobre quién sos. La paz que viene después no depende de haber acertado; depende de haber elegido despierta.',
+    extension: 'Los Enamorados no son solo una carta de amor: son una carta de coherencia. El ángel que sostiene la escena no decide por las figuras, las observa: lo que se está poniendo en juego no es solo el vínculo, es la propia honestidad. Si esta carta aparece, hay una decisión —vincular, vital, ética— que ya no se puede postergar sin costo. La trampa es esperar que las cosas se acomoden solas o que alguien decida por ti; la sabiduría es entender que toda elección importante también es una declaración sobre quién sos. La paz que viene después no depende de haber acertado; depende de haber elegido despierta.',
     prompt: '¿Qué te pide elegir esta situación, no solo a nivel de afuera, sino a nivel de quién sos?',
 
     positions: {
@@ -410,7 +410,7 @@ export const majorArcanaSymbolic = [
       'La ciudad detrás — lo conocido, ya pequeño, que se va dejando atrás'
     ],
 
-    reading: 'Hay un avance posible si sostienes el foco. Esta carta no te promete que el camino sea fácil: te muestra que tienes la fuerza necesaria si no te dispersás. El triunfo aquí no es sobre los otros, es sobre lo que en tú quería ir para todos lados.',
+    reading: 'Hay un avance posible si sostienes el foco. Esta carta no te promete que el camino sea fácil: te muestra que tienes la fuerza necesaria si no te dispersás. El triunfo aquí no es sobre los otros, es sobre lo que en ti quería ir para todos lados.',
     synthesis: 'No siempre falta fuerza. A veces falta dirección.',
     extension: 'El Carro avanza con dos esfinges tirando en sentidos casi opuestos, y sin embargo se mueve: porque quien va arriba no las pelea, las sostiene. Esa es la verdadera fuerza de esta carta: no la del músculo, la de la dirección. Si aparece, probablemente lo que la situación pide no sea más empuje, sino más enfoque. La trampa es confundir avanzar con dominar; la sabiduría es saber que el carro no se mueve por gritar a las esfinges, sino por mantener firme la rienda y clara la mirada hacia adelante. Y un detalle importante: este avance también descansa, también pausa. La voluntad sin escucha del cuerpo se rompe.',
     prompt: '¿Qué fuerzas internas estás peleando que, en realidad, podrían tirar del mismo carro?',
@@ -467,7 +467,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'No siempre la fuerza se ve. A veces está en sostener algo difícil sin endurecerte. Esta carta te recuerda que tu coraje no necesita gritar para ser real: tu manera de cuidar lo intenso ya es una forma de poder.',
     synthesis: 'La fuerza también se llama paciencia con uno mismo.',
-    extension: 'La Fuerza no domina al león con violencia: lo acompaña hasta calmarlo. Esa imagen es la clave de toda la carta. Lo más fuerte que tienes disponible casi nunca es el grito: es la presencia firme que no se desorganiza con lo intenso. Si esta carta aparece, probablemente haya algo de tú —una emoción, una situación, un vínculo— que te asusta por su intensidad y que no necesita ser reprimido sino acompañado. La trampa es confundir suavidad con debilidad; la sabiduría es entender que dominar lo propio sin lastimarlo es, quizás, la forma más madura de la fuerza humana.',
+    extension: 'La Fuerza no domina al león con violencia: lo acompaña hasta calmarlo. Esa imagen es la clave de toda la carta. Lo más fuerte que tienes disponible casi nunca es el grito: es la presencia firme que no se desorganiza con lo intenso. Si esta carta aparece, probablemente haya algo de ti —una emoción, una situación, un vínculo— que te asusta por su intensidad y que no necesita ser reprimido sino acompañado. La trampa es confundir suavidad con debilidad; la sabiduría es entender que dominar lo propio sin lastimarlo es, quizás, la forma más madura de la fuerza humana.',
     prompt: '¿Qué emoción o situación intensa te está pidiendo más paciencia que dureza?',
 
     positions: {
@@ -515,8 +515,8 @@ export const majorArcanaSymbolic = [
 
     reading: 'Hay una pausa que está pidiendo ser tomada. Esta carta no te aleja del mundo: te recuerda que algunas verdades solo aparecen cuando bajás el ruido. Lo que parece estar quieto, en realidad, está depurándose.',
     synthesis: 'A veces lo más sabio es no estar disponible para todos.',
-    extension: 'El Ermitaño no se retira porque no le importe el mundo: se retira para volver a él con algo más claro adentro. Su lámpara no ilumina la montaña entera, ilumina el siguiente paso. Y eso es exactamente lo que sugiere esta carta: que no necesitás resolver todo de una vez, sino encender lo justo para no perder el rumbo. Si aparece, probablemente sea momento de retirarte un poco —de las redes, de las opiniones ajenas, del ruido emocional— y escuchar qué dice tu propia voz cuando deja de competir con todo lo demás. La trampa es confundir el retiro con la huida; la sabiduría es entender que la soledad bien elegida no aleja: te acerca a tú misma.',
-    prompt: '¿Qué necesitás escuchar de tú misma que solo aparece en silencio?',
+    extension: 'El Ermitaño no se retira porque no le importe el mundo: se retira para volver a él con algo más claro adentro. Su lámpara no ilumina la montaña entera, ilumina el siguiente paso. Y eso es exactamente lo que sugiere esta carta: que no necesitás resolver todo de una vez, sino encender lo justo para no perder el rumbo. Si aparece, probablemente sea momento de retirarte un poco —de las redes, de las opiniones ajenas, del ruido emocional— y escuchar qué dice tu propia voz cuando deja de competir con todo lo demás. La trampa es confundir el retiro con la huida; la sabiduría es entender que la soledad bien elegida no aleja: te acerca a ti misma.',
+    prompt: '¿Qué necesitás escuchar de ti misma que solo aparece en silencio?',
 
     positions: {
       whatIs:      'Hay una pausa, un retiro o una introspección pidiendo lugar.',
@@ -726,7 +726,7 @@ export const majorArcanaSymbolic = [
     emotionalThemes: [
       'Serenidad ganada',
       'Equilibrio inestable y real',
-      'Paciencia con tú misma',
+      'Paciencia contigo misma',
       'Dosis justa',
       'Síntesis emocional'
     ],
@@ -748,10 +748,10 @@ export const majorArcanaSymbolic = [
       'Las alas — la trascendencia que no escapa, integra'
     ],
 
-    reading: 'Esta carta no te promete equilibrio total; te muestra que la calma se construye mezclando, no eliminando. Hay algo en tú que necesita combinar dos partes que parecen contradecirse y aprender a sostenerlas juntas. La paz que aparece después no es perfecta: es real.',
+    reading: 'Esta carta no te promete equilibrio total; te muestra que la calma se construye mezclando, no eliminando. Hay algo en ti que necesita combinar dos partes que parecen contradecirse y aprender a sostenerlas juntas. La paz que aparece después no es perfecta: es real.',
     synthesis: 'Equilibrio no es estar quieta. Es saber sostenerte mientras te mueves.',
-    extension: 'La Templanza no llega cuando todo está en orden, llega cuando aprendiste a sostener lo desordenado con cuidado. La figura alada está vertiendo agua entre dos copas y no derrama una gota, no porque sea perfecta, sino porque está atenta. Un pie en la tierra, otro en el agua: ni se desborda en lo emocional ni se rigidiza en lo concreto. Si esta carta aparece, probablemente haya una mezcla que estás aprendiendo a hacer —entre dos deseos, entre dos personas, entre dos partes de tú misma— y la pregunta no es cuál elegir, sino cómo dosificar. La trampa es buscar paz negando el conflicto; la sabiduría es entender que la calma profunda solo se sostiene cuando se incluye lo que parecía contradictorio.',
-    prompt: '¿Qué dos partes de tú estás tratando de elegir cuando, en realidad, podrían convivir?',
+    extension: 'La Templanza no llega cuando todo está en orden, llega cuando aprendiste a sostener lo desordenado con cuidado. La figura alada está vertiendo agua entre dos copas y no derrama una gota, no porque sea perfecta, sino porque está atenta. Un pie en la tierra, otro en el agua: ni se desborda en lo emocional ni se rigidiza en lo concreto. Si esta carta aparece, probablemente haya una mezcla que estás aprendiendo a hacer —entre dos deseos, entre dos personas, entre dos partes de ti misma— y la pregunta no es cuál elegir, sino cómo dosificar. La trampa es buscar paz negando el conflicto; la sabiduría es entender que la calma profunda solo se sostiene cuando se incluye lo que parecía contradictorio.',
+    prompt: '¿Qué dos partes de ti estás tratando de elegir cuando, en realidad, podrían convivir?',
 
     positions: {
       whatIs:      'Hay un proceso de integración o de regulación emocional en curso.',
@@ -861,7 +861,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'La Estrella',
     number:  'XVII',
-    essence: 'Después de la tormenta, también hay agua para tú.',
+    essence: 'Después de la tormenta, también hay agua para ti.',
 
     traditionalMeanings: ['Esperanza', 'Reparación', 'Calma', 'Inspiración', 'Confianza renovada', 'Curación lenta'],
     archetypes: [
@@ -896,7 +896,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'Después de un tramo difícil, algo se está acomodando con suavidad. Esta carta no te empuja hacia adelante: te recuerda que ya estás recuperando, aunque no se note todavía. La esperanza que aparece es vulnerable, pero verdadera.',
     synthesis: 'Reparar no es volver a ser igual. Es volver a confiar.',
-    extension: 'La Estrella aparece después de los grandes quiebres porque su trabajo es reparar lo que la urgencia ya no necesita romper. La figura está desnuda, no por exposición, sino porque ya no tiene que defenderse: lo difícil pasó, y lo que queda es la posibilidad de empezar a confiar de nuevo, sin garantías. Las dos jarras vierten al mismo tiempo: lo que recibe lo devuelve, lo emocional vuelve a circular. Si esta carta aparece, probablemente haya algo en tú pidiendo cuidado lento —no plan, no productividad, cuidado—. La esperanza aquí no promete que todo será fácil; promete que estás más entera de lo que sientes, y que la luz que te guía no necesita ser brillante: alcanza con ser constante.',
+    extension: 'La Estrella aparece después de los grandes quiebres porque su trabajo es reparar lo que la urgencia ya no necesita romper. La figura está desnuda, no por exposición, sino porque ya no tiene que defenderse: lo difícil pasó, y lo que queda es la posibilidad de empezar a confiar de nuevo, sin garantías. Las dos jarras vierten al mismo tiempo: lo que recibe lo devuelve, lo emocional vuelve a circular. Si esta carta aparece, probablemente haya algo en ti pidiendo cuidado lento —no plan, no productividad, cuidado—. La esperanza aquí no promete que todo será fácil; promete que estás más entera de lo que sientes, y que la luz que te guía no necesita ser brillante: alcanza con ser constante.',
     prompt: '¿Dónde está empezando a volver tu confianza, aunque sea apenas?',
 
     positions: {
@@ -1020,7 +1020,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'El Juicio',
     number:  'XX',
-    essence: 'Algo en tú te está llamando.',
+    essence: 'Algo en ti te está llamando.',
 
     traditionalMeanings: [
       'Despertar',
@@ -1060,7 +1060,7 @@ export const majorArcanaSymbolic = [
       'Las montañas nevadas al fondo — la altura interior, fría y clara'
     ],
 
-    reading: 'Algo en tú está pidiendo ser reconocido. Esta carta no es premio ni castigo: es despertar. Hay una verdad propia, callada hace tiempo, que está empezando a hacer ruido, y lo que pide es ser escuchada sin negociarla más.',
+    reading: 'Algo en ti está pidiendo ser reconocido. Esta carta no es premio ni castigo: es despertar. Hay una verdad propia, callada hace tiempo, que está empezando a hacer ruido, y lo que pide es ser escuchada sin negociarla más.',
     synthesis: 'El llamado no se inventa. Se reconoce.',
     extension: 'El Juicio no juzga en sentido moral: juzga en sentido de discernir, de ver con claridad. La trompeta del ángel no anuncia un veredicto; anuncia que algo dentro tuyo —una vocación, un valor, una verdad— está pidiendo salir a la superficie. Las figuras que se levantan de las tumbas no llegan rotas: llegan con los brazos abiertos, porque reconocer lo propio, aunque cueste, también libera. Si esta carta aparece, hay un llamado que ya no se puede silenciar sin costo. No tiene que ser grande ni dramático; muchas veces es íntimo, casi privado: una decisión que viene de más adentro que las anteriores, una claridad sobre quién sos cuando dejás de actuar para los demás. Y lo importante: este despertar no exige que cambies todo de golpe. Exige que dejes de fingir que no escuchaste.',
     prompt: '¿Qué llamado interno estás postergando reconocer?',
@@ -1068,7 +1068,7 @@ export const majorArcanaSymbolic = [
     positions: {
       whatIs:      'Hay un despertar interno o un reconocimiento que pide ser escuchado.',
       whatCrosses: 'Negar lo que ya sabes o esperar permiso externo puede frenar el proceso.',
-      whatOpens:   'Se abre una etapa de coherencia profunda con tú misma.'
+      whatOpens:   'Se abre una etapa de coherencia profunda contigo misma.'
     }
   },
 
@@ -1106,7 +1106,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'Algo se está cerrando, y este cierre tiene la calma de lo que llegó a término. Esta carta no es final: es totalidad. Reconocer lo recorrido también es parte del próximo paso, y lo que se completa no se pierde, se integra.',
     synthesis: 'Lo que cierras bien, te acompaña distinto.',
-    extension: 'El Mundo es la última carta del recorrido y, sin embargo, no se siente como llegada definitiva: se siente como cierre con dignidad. La figura adentro de la mandorla no levanta los brazos en triunfo: baila, suavemente, en un espacio que reconoce lo recorrido y, al mismo tiempo, deja la puerta abierta. Las cuatro figuras en las esquinas son las mismas que aparecieron en la Rueda: testigos del ciclo, ahora completos. Si esta carta aparece, probablemente algo en tú esté reconociendo que terminó un capítulo —un proyecto, una identidad, una forma de relacionarte, una etapa— y que el próximo no necesita inventarse desde cero: nace de lo que tú ya sos. La trampa es creer que llegar es quedarse; la sabiduría es entender que toda totalidad humana es siempre, también, el inicio del siguiente Loco.',
+    extension: 'El Mundo es la última carta del recorrido y, sin embargo, no se siente como llegada definitiva: se siente como cierre con dignidad. La figura adentro de la mandorla no levanta los brazos en triunfo: baila, suavemente, en un espacio que reconoce lo recorrido y, al mismo tiempo, deja la puerta abierta. Las cuatro figuras en las esquinas son las mismas que aparecieron en la Rueda: testigos del ciclo, ahora completos. Si esta carta aparece, probablemente algo en ti esté reconociendo que terminó un capítulo —un proyecto, una identidad, una forma de relacionarte, una etapa— y que el próximo no necesita inventarse desde cero: nace de lo que tú ya sos. La trampa es creer que llegar es quedarse; la sabiduría es entender que toda totalidad humana es siempre, también, el inicio del siguiente Loco.',
     prompt: '¿Qué estás llegando a cerrar y qué reconoces haber aprendido en el camino?',
 
     positions: {
