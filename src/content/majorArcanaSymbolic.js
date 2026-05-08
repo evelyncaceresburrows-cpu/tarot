@@ -56,16 +56,14 @@ export const majorArcanaSymbolic = [
     ],
     emotionalThemes: ['Apertura', 'Vértigo dulce', 'Confianza sin garantías', 'Liviandad', 'Desapego del antes'],
     manifestations: [
-      'Ganas de empezar algo sin tener todas las respuestas',
-      'Un gesto que parece imprudente y sin embargo es honesto',
-      'Soltar una etapa antes de saber bien qué viene',
-      'Una decisión que viene del cuerpo, no del cálculo'
+      'Renunciar a un trabajo sin tener plan B',
+      'Ignorar alarmas evidentes en una relación nueva',
+      'Sentir una ligereza eufórica tras perderlo todo'
     ],
     shadows: [
-      'Confundir impulso con destino',
-      'Saltar para no quedarte sintiendo lo anterior',
-      'Idealizar lo nuevo como huida de lo viejo',
-      'Negar el miedo en lugar de moverte con él'
+      'Negligencia pura, estupidez disfrazada de fe ciega.',
+      'El riesgo es leerla como reducirlo a "nuevos y felices comienzos".',
+      'Conviene no caer en "Viene un viaje divertido" o "eres un espíritu libre".'
     ],
     visualSymbols: [
       'El precipicio a sus pies — el riesgo asumido con liviandad',
@@ -113,16 +111,14 @@ export const majorArcanaSymbolic = [
       'Claridad de propósito'
     ],
     manifestations: [
-      'Algo que venías pensando empieza a tomar forma cuando dejás de esperar las condiciones perfectas',
-      'Una conversación, un proyecto, una decisión: tienes todo lo necesario para iniciarlo',
-      'Una habilidad tuya vuelve a ser útil después de un tiempo guardada',
-      'Te das cuenta de que el siguiente paso depende menos de afuera y más de tú'
+      'Manipular una situación usando exclusivamente el lenguaje',
+      'Organizar minuciosamente el escritorio antes de un proyecto complejo',
+      'Hablar con fluidez para convencer a escépticos'
     ],
     shadows: [
-      'Manipular en lugar de manifestar: usar el saber para forzar y no para construir',
-      'Dispersar la energía en muchos frentes y no concretar ninguno',
-      'Confundir poder con mostrarse',
-      'Esperar el "permiso" antes de mover lo que ya está listo'
+      'Usar la habilidad mental y verbal para estafar o engañar.',
+      'El riesgo es leerla como limitarlo a "tienes mucho talento".',
+      'Conviene no caer en "Vas a encontrar un trabajo mágico y fácil".'
     ],
     visualSymbols: [
       'La lemniscata sobre la cabeza — energía infinita disponible si se canaliza',
@@ -163,14 +159,14 @@ export const majorArcanaSymbolic = [
       'Confianza en lo intuitivo'
     ],
     manifestations: [
-      'Tienes una respuesta clara y todavía no la dijiste porque algo te dice que no es el momento',
-      'Te despiertas con un sueño que viene a confirmar algo que el día tapaba',
-      'Alguien te pregunta y le contestas con menos palabras de las que pensabas, y aún así dijiste todo'
+      'Guardar un secreto que cambiaría una dinámica familiar',
+      'Observar en silencio cómo alguien miente',
+      'Elegir no actuar para ver cómo se desarrolla una crisis'
     ],
     shadows: [
-      'Llevas demasiado tiempo callando algo concreto y empezás a confundir prudencia con miedo',
-      'Usas el "todavía no es el momento" para evitar una conversación que sabes que toca tener',
-      'Te aislás cuando lo que en realidad te haría bien es dejar entrar a alguien'
+      'Manipulación pasivo-agresiva, aislamiento tóxico.',
+      'El riesgo es leerla como "Hazle caso a tu intuición".',
+      'Conviene no caer en "Una mujer misteriosa te va a ayudar".'
     ],
     visualSymbols: [
       'Dos columnas, una blanca (J) y una negra (B) — los opuestos que sostiene sin elegir uno',
@@ -208,16 +204,14 @@ export const majorArcanaSymbolic = [
     archetypes: ['La que crea sin apuro', 'La energía creadora que también descansa', 'La sabiduría del cuerpo'],
     emotionalThemes: ['Ternura', 'Gozo tranquilo', 'Sensorialidad', 'Plenitud sin urgencia', 'Cuidado activo'],
     manifestations: [
-      'Una etapa donde algo —un vínculo, un proyecto, una idea— pide cuidado más que decisiones',
-      'Volver a habitar el cuerpo después de un tiempo de cabeza',
-      'Crear algo sin medirlo todavía con ojos de productividad',
-      'Encontrar placer en lo cotidiano: la comida, el tacto, una textura, una luz'
+      'Proveer cuidado excesivo hasta anular al otro',
+      'Disfrutar del confort físico ignorando los problemas prácticos',
+      'Crear un refugio cálido en medio del caos'
     ],
     shadows: [
-      'Cuidar a otros y olvidar el propio cuerpo',
-      'Confundir abundancia con saturación',
-      'Dar de más para sentirse necesaria',
-      'Negarse el placer porque "todavía no te lo merecés"'
+      'Dependencia emocional, sobreprotección tóxica y absorbente.',
+      'El riesgo es leerla como "Vas a quedar embarazada".',
+      'Conviene no caer en "Viene abundancia de dinero y lujo".'
     ],
     visualSymbols: [
       'El trono entre la vegetación — el poder que reposa en lo vivo',
@@ -258,16 +252,14 @@ export const majorArcanaSymbolic = [
       'Responsabilidad asumida'
     ],
     manifestations: [
-      'Un momento donde poner reglas claras alivia más que aflojar todo',
-      'Asumir el rol de quien organiza y sostener sin disculparse',
-      'Tomar una decisión que no se discute más, simplemente se sostiene',
-      'Necesitar estructura externa cuando lo interno está desordenado'
+      'Imponer una regla estricta para ocultar el miedo al desorden',
+      'Asumir el mando de una crisis sin pedir permiso a nadie',
+      'Sentir el cuerpo tenso por la incapacidad de ceder en una discusión'
     ],
     shadows: [
-      'Confundir control con cuidado',
-      'Volver rígido lo que pedía firmeza, pero también flexibilidad',
-      'Sostener todo solo porque no se confía en nadie más',
-      'Pedir orden afuera para no mirar el desorden adentro'
+      'Despotismo, frialdad emocional, incapacidad de mostrar vulnerabilidad.',
+      'El riesgo es leerla como "Un hombre mayor te controlará".',
+      'Conviene no caer en "Te van a dar un puesto de jefe".'
     ],
     visualSymbols: [
       'El trono de piedra — la base que ya no se mueve',
@@ -308,16 +300,14 @@ export const majorArcanaSymbolic = [
       'Fidelidad a las propias creencias'
     ],
     manifestations: [
-      'Una decisión donde tienes que elegir entre lo aprendido en casa y lo que tú pensás',
-      'Buscar un consejo, un mentor, un marco —y notar cuánto de eso ya tienes',
-      'Sentir el peso de "lo que se hace" frente a lo que querrías hacer',
-      'Reconectar con un valor heredado que sí te representa'
+      'Cumplir un rito familiar o social por pura obligación moral',
+      'Acatar la norma de una institución aunque parezca obsoleta',
+      'Buscar desesperadamente la aprobación de un maestro'
     ],
     shadows: [
-      'Repetir mandatos sin revisarlos',
-      'Rebelarse por inercia contra todo lo recibido sin discernir qué sí servía',
-      'Pedir permiso a una autoridad que ya no es tu autoridad',
-      'Confundir tradición con verdad incuestionable'
+      'Conformismo ciego, intolerancia al pensamiento divergente.',
+      'El riesgo es leerla como "Te vas a casar por la iglesia".',
+      'Conviene no caer en "Ve a la universidad o busca a un cura".'
     ],
     visualSymbols: [
       'Las dos llaves cruzadas a sus pies — lo que abre y lo que cierra del saber recibido',
@@ -355,16 +345,14 @@ export const majorArcanaSymbolic = [
     archetypes: ['La elección que te define', 'El vínculo como espejo', 'La encrucijada honesta'],
     emotionalThemes: ['Deseo', 'Duda lúcida', 'Sensación de cruce', 'Atracción y responsabilidad', 'Vértigo de elegir'],
     manifestations: [
-      'Una decisión vincular que pide honestidad, no estrategia',
-      'Sentir que dos caminos te tironean y que ninguno es del todo cómodo',
-      'Una conversación donde lo que decidís cambia lo que sigue',
-      'Reconocer en alguien algo que te invita a definirte'
+      'Elegir entre la lealtad a los principios y el deseo instintivo por otro',
+      'Mostrarse emocionalmente desnudo y sentir terror al rechazo',
+      'La claridad repentina de una afinidad inevitable'
     ],
     shadows: [
-      'Esperar que afuera elijan por tú para no asumir el costo',
-      'Confundir intensidad con destino',
-      'Idealizar al otro hasta perder de vista lo propio',
-      'Postergar la decisión hasta que las opciones se cierren solas'
+      'Quedarse paralizado por el miedo a elegir mal.',
+      'El riesgo es leerla como "Es la carta del amor y tu alma gemela".',
+      'Conviene no caer en "Vas a tener que elegir entre dos amantes".'
     ],
     visualSymbols: [
       'El ángel sobre las dos figuras — la mirada que sostiene la decisión sin imponerla',
@@ -405,16 +393,14 @@ export const majorArcanaSymbolic = [
       'Confianza en el rumbo'
     ],
     manifestations: [
-      'Un proyecto o decisión que requiere foco sostenido',
-      'Sostener un rumbo aunque alrededor todo invite a dispersarte',
-      'Manejar dos fuerzas internas que tiraban para lados distintos y empezar a alinearlas',
-      'Avanzar sin esperar que las condiciones sean ideales'
+      'Mantener una sonrisa profesional mientras se atraviesa un colapso personal',
+      'Obligar a dos equipos rivales a trabajar juntos a la fuerza',
+      'Avanzar en un proyecto por pura terquedad, sin disfrutarlo'
     ],
     shadows: [
-      'Confundir avanzar con escapar',
-      'Imponer la voluntad por encima de los demás',
-      'Llevar las riendas tan tensas que el cuerpo se cansa',
-      'Llegar primero y olvidarse de por qué se quería llegar'
+      'Autocracia emocional, crueldad hacia uno mismo para no mostrar flaqueza.',
+      'El riesgo es leerla como "Te vas a comprar un auto nuevo".',
+      'Conviene no caer en "Vas a viajar con éxito".'
     ],
     visualSymbols: [
       'Las dos esfinges, blanca y negra — los impulsos opuestos que tira el mismo carro',
@@ -462,16 +448,14 @@ export const majorArcanaSymbolic = [
       'Compasión hacia lo propio'
     ],
     manifestations: [
-      'Sostener un momento difícil sin endurecerte',
-      'Hablar firme sin levantar la voz',
-      'Acompañar una emoción tuya intensa sin pelearla',
-      'Tomar una decisión necesaria con calma, no con dureza'
+      'Morderse la lengua para no destruir a alguien con palabras hirientes',
+      'Domesticar un ataque de pánico respirando profundamente',
+      'Sostener la mirada ante una agresión sin retroceder ni atacar'
     ],
     shadows: [
-      'Confundir suavidad con sumisión',
-      'Reprimir lo que sientes en nombre de "ser buena"',
-      'Apretar los dientes y llamarlo "fuerza"',
-      'Subestimar el coraje que ya estás teniendo en silencio'
+      'Represión emocional que termina en resentimiento interno.',
+      'El riesgo es leerla como "Eres una persona muy fuerte físicamente".',
+      'Conviene no caer en "Vas a vencer a tus enemigos".'
     ],
     visualSymbols: [
       'La mujer y el león — instinto y conciencia, no enemigos',
@@ -512,16 +496,14 @@ export const majorArcanaSymbolic = [
       'Reconciliación con uno mismo'
     ],
     manifestations: [
-      'Una etapa donde necesitás estar más con tú misma que con nadie',
-      'Una decisión que solo se entiende cuando bajás el ritmo',
-      'Volver a leer, escribir, caminar —algo a solas— y notar que ahí pasa lo importante',
-      'Decidir no responder enseguida y darte tiempo'
+      'Aislarse voluntariamente un fin de semana para no lidiar con expectativas ajenas',
+      'Reconocer con frustración que nadie más tiene la respuesta a tu problema',
+      'Ahorrar energía negándose a entrar en una discusión estéril'
     ],
     shadows: [
-      'Confundir soledad con aislamiento',
-      'Quedarse en la pausa para no enfrentar lo siguiente',
-      'Iluminar a otros y olvidarte de mirar tu propia oscuridad',
-      'Convertir el retiro en evitación crónica'
+      'Misanropía, aislamiento depresivo, paranoia.',
+      'El riesgo es leerla como "Te vas a quedar solo para siempre".',
+      'Conviene no caer en "Necesitas meditar".'
     ],
     visualSymbols: [
       'La lámpara con la estrella adentro — la luz propia, no prestada',
@@ -562,16 +544,14 @@ export const majorArcanaSymbolic = [
       'Confianza en el momento'
     ],
     manifestations: [
-      'Algo que parecía estable empieza a moverse —para bien o para mal— sin tu intervención',
-      'Una situación que ya viviste vuelve, pero con un matiz distinto',
-      'Una oportunidad llega justo cuando parecía cerrada otra puerta',
-      'Un cambio externo que te obliga a soltar la planificación'
+      'Sentir que todo el esfuerzo personal es inútil tras un evento fortuito',
+      'Aprovechar una racha de suerte inmerecida pero oportuna',
+      'Caer abruptamente de un estatus de privilegio sin culpa propia'
     ],
     shadows: [
-      'Querer parar la rueda para que no cambie lo que estaba bien',
-      'Confundir mala suerte con merecimiento',
-      'No ver el patrón que se repite porque cada vez parece distinto',
-      'Esperar pasivamente que "el momento" haga lo que tú podrías mover'
+      'Fatalismo, victimismo crónico, apostar sin medir riesgos.',
+      'El riesgo es leerla como "Vas a ganar la lotería".',
+      'Conviene no caer en "El karma te va a recompensar".'
     ],
     visualSymbols: [
       'La rueda con letras TARO / TORA — un mismo eje leído desde varias direcciones',
@@ -612,16 +592,14 @@ export const majorArcanaSymbolic = [
       'Cierre limpio'
     ],
     manifestations: [
-      'Una decisión que pide pensar en frío, no en caliente',
-      'Asumir tu parte en algo que querías leer solo desde afuera',
-      'Una conversación pendiente que ya no se puede postergar',
-      'Sentir el peso real de algo que dijiste o hiciste, sin victimizarte ni castigarte'
+      'Asumir una consecuencia dura y merecida por un error pasado',
+      'Separarse de alguien por incompatibilidad ética, a pesar del amor',
+      'Buscar una objetividad hiriente en medio de una pelea pasional'
     ],
     shadows: [
-      'Confundir justicia con venganza',
-      'Esperar que afuera te devuelvan lo que tú no estás dando adentro',
-      'Sostener una mentira chiquita por miedo a la verdad grande',
-      'Castigarse en lugar de corregirse'
+      'Rigidez implacable, falta total de piedad o contexto humano.',
+      'El riesgo es leerla como "Vas a firmar un contrato legal".',
+      'Conviene no caer en "Se hará justicia divina y tus enemigos caerán".'
     ],
     visualSymbols: [
       'La balanza — el peso real, no el que querrías que tuviera',
@@ -656,16 +634,14 @@ export const majorArcanaSymbolic = [
     ],
     emotionalThemes: ['Aceptación', 'Tregua interna', 'Resignación lúcida', 'Quietud activa', 'Entrega sin derrota'],
     manifestations: [
-      'Una etapa donde no puedes avanzar y, si insistís, empeora',
-      'Sentir que estás "en pausa" mientras alrededor todos se mueven',
-      'Mirar una situación familiar y verla, de pronto, completamente distinta',
-      'Soltar una manera tuya de hacer las cosas, sin saber todavía cuál la reemplaza'
+      'Quedarse atrapado en una situación burocrática sin poder hacer nada más que esperar',
+      'Ceder el control tras una pelea porque resistirse duele más',
+      'Entender de golpe a la otra persona al verse forzado a parar'
     ],
     shadows: [
-      'Pasividad disfrazada de espiritualidad',
-      'Aceptar lo inaceptable y llamarlo "entrega"',
-      'Dramatizar el sacrificio',
-      'Quedarse colgada sin sacar lecturas, esperando que algo afuera se mueva'
+      'Estancamiento crónico, martirio voluntario para manipular desde la pena.',
+      'El riesgo es leerla como "Te han hecho un amarre o hechizo".',
+      'Conviene no caer en "Las cosas se van a retrasar un poco".'
     ],
     visualSymbols: [
       'El árbol vivo — la pausa enraizada, no muerta',
@@ -707,14 +683,14 @@ export const majorArcanaSymbolic = [
     ],
     emotionalThemes: ['Duelo', 'Aceptación lenta', 'Alivio escondido', 'Cansancio del cambio', 'Apertura al después'],
     manifestations: [
-      'Sigues nombrando a alguien por costumbre cuando ya hace meses que dejó de estar de la misma manera',
-      'Defiendes un trabajo, un barrio o una rutina que en privado sabes que ya no encaja con quien eres hoy',
-      'Lloras algo que terminó hace tiempo y recién ahora encontró cuándo doler'
+      'Cerrar con llave la casa de la infancia a la que no se volverá jamás',
+      'Aceptar que una relación de años lleva meses muerta',
+      'Sentir la amputación brusca tras un despido inesperado'
     ],
     shadows: [
-      'Sostienes lo que ya terminó porque admitirlo te enfrenta con un vacío que todavía no sabes habitar',
-      'Llamas "transformación" a algo que en realidad estás esquivando para no hacer el duelo',
-      'Te apuras al renacimiento sin haber pasado por la pérdida y el cuerpo te lo cobra después'
+      'Resistencia patológica al cambio, vivir en el pasado convertido en fantasma.',
+      'El riesgo es leerla como "Alguien cercano a ti va a fallecer pronto".',
+      'Conviene no caer en "Solo es un cambio de etapa positivo".'
     ],
     visualSymbols: [
       'Esqueleto blindado sobre caballo blanco — la transición avanza con armadura, no con saña',
@@ -755,16 +731,14 @@ export const majorArcanaSymbolic = [
       'Síntesis emocional'
     ],
     manifestations: [
-      'Dejar de elegir entre dos extremos y empezar a mezclarlos en su justa medida',
-      'Volver a un estado interno tranquilo después de un tiempo agitado',
-      'Una decisión que pide combinar deseo y prudencia, sin sacrificar ninguno',
-      'Recuperar tu propio ritmo después de adaptarte demasiado al de otros'
+      'Tragar el orgullo para encontrar un punto medio con un compañero insufrible',
+      'Rebajar el enojo extremo con empatía para no destruir una relación',
+      'Combinar dos áreas de vida incompatibles hasta que funcionen temporalmente'
     ],
     shadows: [
-      'Buscar paz reprimiendo el conflicto en lugar de integrarlo',
-      'Templanza como anestesia: aplanar todo para no sentir nada',
-      'Diluir tu posición para evitar la fricción',
-      'Confundir equilibrio con quedarse en el medio sin elegir'
+      'Tibieza, falta de pasión, conformismo por miedo a los extremos.',
+      'El riesgo es leerla como "Tienes que tener paciencia".',
+      'Conviene no caer en "Es la carta de los ángeles que te cuidan".'
     ],
     visualSymbols: [
       'Las dos copas — los opuestos que pueden compartir el mismo flujo',
@@ -806,16 +780,14 @@ export const majorArcanaSymbolic = [
       'Hipnosis emocional'
     ],
     manifestations: [
-      'Volver a una persona, una conversación o una costumbre que ya sabes cómo termina',
-      'Confundir intensidad con verdad',
-      'Sostener un vínculo o una rutina por miedo al vacío que dejaría su ausencia',
-      'Una atracción que te incomoda porque te conoce más de lo que te gustaría'
+      'Quedarse en un trabajo humillante solo por el estatus y el sueldo',
+      'Ceder repetidamente a una adicción conociendo el daño exacto que causa',
+      'Celar y asfixiar a una pareja por pura inseguridad enfermiza'
     ],
     shadows: [
-      'Llamar destino a lo que es repetición',
-      'Convertir el deseo en juez moral en lugar de información',
-      'Pelear con la sombra en lugar de mirarla',
-      'Quedarte porque irte implica admitir que sabías'
+      'Esclavitud voluntaria, degradación moral, ceguera por materialismo.',
+      'El riesgo es leerla como "Te han hecho brujería o magia negra".',
+      'Conviene no caer en "Alguien te tiene envidia".'
     ],
     visualSymbols: [
       'Las dos figuras encadenadas — cadenas anchas, podrían sacarse sin esfuerzo',
@@ -857,14 +829,14 @@ export const majorArcanaSymbolic = [
     ],
     emotionalThemes: ['Quiebre', 'Alivio detrás del shock', 'Verdad incómoda', 'Caída del personaje', 'Liberación no buscada'],
     manifestations: [
-      'Una conversación que no tendrías que haber tenido pero que ya no podías postergar',
-      'Te enteras de algo y entiendes de pronto por qué hace meses no te cerraban tantas otras cosas',
-      'Algo que defendiste durante años se cae solo, sin que tengas que empujarlo'
+      'Descubrir una infidelidad de años que destruye la identidad de la familia',
+      'Recibir una crítica pública que aniquila la imagen profesional construida',
+      'El colapso mental tras sostener una mentira por demasiado tiempo'
     ],
     shadows: [
-      'Sigues defendiendo en público lo que en privado ya viste que no se sostiene, y eso te cuesta cada día más',
-      'Vives la caída como castigo personal cuando, mirada honestamente, era ajuste necesario',
-      'Te apuras a reconstruir igual sin haberte preguntado qué se cayó realmente'
+      'Pánico destructivo, victimismo ante la ruina, pérdida de la cordura.',
+      'El riesgo es leerla como "Vas a tener un accidente o mudanza física".',
+      'Conviene no caer en "Cuidado con las caídas o los edificios altos".'
     ],
     visualSymbols: [
       'El rayo dorado partiendo la torre — la verdad atraviesa la estructura sin pedir permiso',
@@ -905,16 +877,14 @@ export const majorArcanaSymbolic = [
       'Inspiración silenciosa'
     ],
     manifestations: [
-      'Sentir, después de un tramo difícil, que algo adentro vuelve a respirar',
-      'Una creatividad o un proyecto que vuelve sin estridencia',
-      'Confiar de nuevo en tú misma o en alguien, lentamente',
-      'Una conversación, una caminata o un silencio que repara más de lo esperado'
+      'Sentir paz física en el cuerpo tras haber llorado todo el resentimiento',
+      'Mostrar los defectos y heridas en una primera cita sin sentir pudor',
+      'Volver a tener una fe ciega y tranquila después de un trauma grave'
     ],
     shadows: [
-      'Confundir esperanza con ilusión vacía',
-      'Negar el cansancio de lo que pasó para "seguir adelante"',
-      'Esperar reparación afuera sin abrirte a recibirla',
-      'Idealizar la calma y exigirse no volver a estar mal'
+      'Desconexión soñadora, falsa esperanza que inmoviliza la acción práctica.',
+      'El riesgo es leerla como "Se van a cumplir todos tus deseos mágicamente".',
+      'Conviene no caer en "Vas a ser muy famoso o la estrella del momento".'
     ],
     visualSymbols: [
       'El cuerpo desnudo — la verdad sin protección, ya sin armadura',
@@ -963,14 +933,14 @@ export const majorArcanaSymbolic = [
       'Información que llega por debajo de las palabras'
     ],
     manifestations: [
-      'Tienes un mal pálpito sobre alguien y todavía no podés señalar exactamente por qué',
-      'Te despertaste con la sensación de que algo está fuera de lugar y la mañana lo confirmó al final del día',
-      'Te descubres dudando de algo que ayer dabas por cierto, sin saber qué cambió'
+      'Caminar por una calle solitaria de noche sintiendo que las sombras observan',
+      'Distorsionar completamente las intenciones de una pareja por miedos propios pasados',
+      'Dudar de la propia cordura ante un recuerdo que no se sabe si es real o soñado'
     ],
     shadows: [
-      'Confundes una intuición real con un miedo viejo que se disfrazó de aviso',
-      'Te quedas en la niebla porque salir implica decidir, y prefieres la duda al riesgo',
-      'Niegas lo que el cuerpo viene nombrando en silencio porque la cabeza todavía no encuentra cómo decirlo'
+      'Paranoia, delirio, mentiras, autodesengaño patológico.',
+      'El riesgo es leerla como "Te están mintiendo o engañando".',
+      'Conviene no caer en "Tienes grandes poderes psíquicos y mágicos".'
     ],
     visualSymbols: [
       'Las dos torres a los costados del sendero — el umbral entre el mundo conocido y lo no consciente',
@@ -1018,14 +988,14 @@ export const majorArcanaSymbolic = [
       'Alegría sin justificación'
     ],
     manifestations: [
-      'Algo se te volvió simple después de meses de complicarlo',
-      'Te ríes sin razón en el medio del día y notas que hace tiempo no pasaba',
-      'Alguien dice algo cierto sobre ti y por una vez no necesitas corregirlo ni achicarlo'
+      'Sentir la vitalidad física de un día de primavera tras semanas de enfermedad',
+      'Exponer una obra en público con orgullo genuino y sin miedo a la crítica',
+      'La claridad mental repentina que anula semanas de paranoia infundada'
     ],
     shadows: [
-      'Confundes brillar con tener que rendir y vuelves al cansancio antes de haber descansado',
-      'Performas la alegría cuando en verdad todavía estás cansada y eso te aísla más',
-      'Asumes que estar bien tiene que verse perfecto y por eso achicas momentos que eran buenos sin necesidad de adorno'
+      'Exceso de confianza, quemarse por exposición constante, egocentrismo infantil.',
+      'El riesgo es leerla como "Te vas a ir de vacaciones a la playa".',
+      'Conviene no caer en "Todo en tu vida va a ser perfecto siempre".'
     ],
     visualSymbols: [
       'El niño desnudo sobre el caballo blanco — el yo sin disfraces, lo que queda cuando se cae el adorno',
@@ -1073,16 +1043,14 @@ export const majorArcanaSymbolic = [
       'Despertar gradual'
     ],
     manifestations: [
-      'Sentir un llamado interno que no puedes seguir ignorando',
-      'Reconocer algo de tú que venías evitando ver',
-      'Una decisión que ya no es de la cabeza: viene de un lugar más adentro',
-      'Volver a una vocación, un valor o una verdad que habías dejado de lado'
+      'Darse cuenta súbitamente de una vocación reprimida que exige ser vivida',
+      'Soltar la culpa por un error de juventud y sentir que el peso físico desaparece',
+      'Aceptar de golpe una verdad incómoda que obliga a cambiar toda la vida'
     ],
     shadows: [
-      'Convertir el despertar en performance espiritual',
-      'Esperar señales externas para confirmar lo que ya sabes',
-      'Confundir llamado con presión social',
-      'Castigarse por no haber escuchado antes'
+      'Fanatismo implacable, negarse a perdonar a los demás o a uno mismo.',
+      'El riesgo es leerla como "Alguien te va a juzgar injustamente en tu entorno".',
+      'Conviene no caer en "Vas a ganar un juicio en los tribunales".'
     ],
     visualSymbols: [
       'La trompeta del ángel — el llamado que viene de adentro y suena igual de claro afuera',
@@ -1119,16 +1087,14 @@ export const majorArcanaSymbolic = [
       'Cierre limpio'
     ],
     manifestations: [
-      'Una etapa, un proyecto o un proceso que se está cerrando con sentido',
-      'Sentir que algo encajó después de un tramo largo de no entender',
-      'Un agradecimiento sereno hacia tu propio recorrido',
-      'La sensación de estar lista para algo nuevo, sin urgencia de empezarlo ya'
+      'Terminar un proyecto de años y sentir que el círculo se cerró exactamente como tenía que cerrarse',
+      'La sensación física de pertenecer y encajar en el lugar donde estás, sin tener que demostrar nada',
+      'Bailar, moverte o caminar sintiendo la sincronía del cuerpo con lo que está pasando, sin la cabeza opinando'
     ],
     shadows: [
-      'Pensar que "ya está" y dejar de moverte',
-      'Romantizar el cierre sin asumir lo que falta soltar',
-      'Confundir plenitud con perfección',
-      'Resistirse al próximo ciclo por nostalgia del que termina'
+      'Quedarte atascada en un ciclo completado por miedo a iniciar la nada del siguiente Loco.',
+      'El riesgo es leerla como "vas a viajar por todo el mundo".',
+      'Conviene no caer en "eres el centro del universo de alguien".'
     ],
     visualSymbols: [
       'La mandorla de hojas — el espacio sagrado del cierre, sin ser fortaleza',
