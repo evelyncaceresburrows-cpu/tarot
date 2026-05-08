@@ -315,21 +315,27 @@ export function composeSituations(manifestations) {
 /**
  * Devuelve el contenido simbólico unificado para una carta del deck.
  * Devuelve null si la carta no tiene contenido escrito todavía.
+ *
+ * @param {Object} card     — carta del deck
+ * @param {boolean} reversed — si true, sobrescribe essence/reading/prompt/
+ *                            manifestations con la versión invertida
+ *                            cuando existe en el dataset.
  */
-export function findContentByCard(card) {
+export function findContentByCard(card, reversed = false) {
   if (!card) return null
 
   // ---------- Mayor ----------
   if (card.arcano === 'mayor' || card.paloKey === 'arcanos') {
     const sym = findSymbolicCard(card.nombre)
     if (!sym) return null
-    return {
+    const base = {
       ...sym,
       isMajor: true
-      // sym ya trae: name, number, essence, reading, synthesis, prompt,
-      // extension, positions, traditionalMeanings, archetypes,
-      // emotionalThemes, manifestations, shadows, visualSymbols.
     }
+    if (reversed && sym.reversed) {
+      return applyReversed(base, sym.reversed)
+    }
+    return base
   }
 
   // ---------- Menor ----------
@@ -338,14 +344,35 @@ export function findContentByCard(card) {
   const minor = findMinorCard(ids)
   if (!minor) return null
 
-  return {
+  const base = {
     ...minor,
     isMajor:   false,
-    // Adaptaciones para que la UI consuma el mismo shape que un Mayor:
-    name:      card.nombre,            // "As de Copas"
+    name:      card.nombre,
     positions: buildMinorPositions(minor),
     extension: buildMinorExtension(minor)
   }
+  if (reversed && minor.reversed) {
+    return applyReversed(base, minor.reversed)
+  }
+  return base
+}
+
+
+/* Sobrescribe los campos del contenido derecho con la versión invertida.
+ * Solo reemplaza los campos que la versión invertida define explícitamente
+ * (essence, reading, synthesis, prompt, manifestations, shadows). Los
+ * demás campos (visualSymbols, archetypes, traditionalMeanings,
+ * emotionalThemes) quedan como están — no cambian con la orientación. */
+function applyReversed(base, reversed) {
+  const out = { ...base, isReversed: true }
+  if (reversed.essence)        out.essence = reversed.essence
+  if (reversed.reading)        out.reading = reversed.reading
+  if (reversed.synthesis)      out.synthesis = reversed.synthesis
+  if (reversed.prompt)         out.prompt = reversed.prompt
+  if (reversed.extension)      out.extension = reversed.extension
+  if (reversed.manifestations) out.manifestations = reversed.manifestations
+  if (reversed.shadows)        out.shadows = reversed.shadows
+  return out
 }
 
 
@@ -353,8 +380,8 @@ export function findContentByCard(card) {
  * Devuelve el texto de una posición concreta para una carta del deck.
  * Si la carta no tiene contenido, cae a string vacío.
  */
-export function findPositionByCard(card, positionKey) {
-  const c = findContentByCard(card)
+export function findPositionByCard(card, positionKey, reversed = false) {
+  const c = findContentByCard(card, reversed)
   return c?.positions?.[positionKey] || c?.reading || ''
 }
 

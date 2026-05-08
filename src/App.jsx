@@ -1611,7 +1611,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
               ) : (
                 <div className="space-y-7 px-2 max-w-[40rem] mx-auto">
                   {tirada.map((slot, idx) => {
-                    const content = findContentByCard(slot.card)
+                    const content = findContentByCard(slot.card, slot.reversed)
                     return (
                       <button
                         key={`int-${slot.card.id}-${idx}`}
@@ -1724,7 +1724,7 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
   const slots = cards.map((slot, i) => ({
     slot,
     pos:     CELTIC_POSITIONS[i],
-    content: findContentByCard(slot.card)
+    content: findContentByCard(slot.card, slot.reversed)
   }))
 
   /* === RENDER === */
@@ -2100,9 +2100,10 @@ function CelticLayout({ slots, onCarta }) {
  */
 function ComposedReading({ tirada, onCarta }) {
   // 1. Contenido por carta — viene de los datasets simbólicos.
+  //    Si la carta está invertida, traemos la versión invertida (si existe).
   const slots = tirada.map(slot => ({
     slot,
-    content: findContentByCard(slot.card)
+    content: findContentByCard(slot.card, slot.reversed)
   }))
 
   // 2. Cards mínimas para el motor relacional (name / suit+number).
@@ -2218,13 +2219,13 @@ function ComposedReading({ tirada, onCarta }) {
 
 const APP_URL = 'https://tarot-zeta-eosin.vercel.app/'
 
-function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
+function ShareModal({ open, onClose, card, reversed = false, intention, kind = 'card' }) {
   const [copied, setCopied] = useState(false)
   useEffect(() => { if (!open) setCopied(false) }, [open])
 
   if (!card) return null
 
-  const content = findContentByCard(card)
+  const content = findContentByCard(card, reversed)
   const cardName = card.nombre
 
   // Texto compuesto para compartir
@@ -2374,7 +2375,7 @@ function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
 }
 
 function Detalle({ card, reversed, onBack }) {
-  const content = findContentByCard(card)
+  const content = findContentByCard(card, reversed)
   const hasNewVoice = !!content
   const titulo = (content?.name ?? card.nombre).toUpperCase()
   const [expanded, setExpanded] = useState(false)
@@ -2549,6 +2550,7 @@ function Detalle({ card, reversed, onBack }) {
         open={shareOpen}
         onClose={() => setShareOpen(false)}
         card={card}
+        reversed={reversed}
         kind="card"
       />
     </motion.section>

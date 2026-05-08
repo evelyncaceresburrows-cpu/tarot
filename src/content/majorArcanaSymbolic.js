@@ -82,6 +82,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un comienzo, un impulso o una apertura pidiendo lugar.',
       whatCrosses: 'La exigencia de tenerlo todo claro antes de moverse puede paralizar.',
       whatOpens:   'Se abre un terreno nuevo si te permites entrar sin saberlo todo.'
+    },
+
+    reversed: {
+      essence: 'El joven mira el cielo pero ya no se mueve. La rosa blanca se marchitó.',
+      reading: 'El impulso está bloqueado o desbocado, y en cualquiera de los dos casos no escucha. O te paralizaste por miedo y le llamas prudencia, o te lanzaste con tanta euforia que dejaste de oír las señales que el cuerpo ya estaba dándote.',
+      synthesis: 'No es libertad. Es huida o parálisis vestida de impulso.',
+      prompt: '¿Estás llamando libertad a algo que en realidad es miedo a quedarte? ¿O imprudencia a algo que es no querer ver?',
+      manifestations: [
+        'Mantener una rutina segura mientras te repites que es una decisión libre',
+        'Tomar decisiones importantes en piloto automático, ignorando alarmas que ves de reojo',
+        'Saltar de ciudad, trabajo o relación cada vez que algo se vuelve incómodo'
+      ],
+      shadows: [
+        'Se bloquea la confianza honesta — quedó mezclada con miedo o con negación.',
+        'Se exagera la imprudencia (no escuchar señales) o la inacción (no moverte de lo conocido).',
+        'Se evita mirar el costo real del salto, o el costo real de no saltar nunca.'
+      ]
     }
   },
 
@@ -185,6 +202,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay una intuición o saber interior pidiendo espacio para escucharse.',
       whatCrosses: 'La urgencia de respuestas o la necesidad de explicar pueden tapar lo que sabes.',
       whatOpens:   'Se abre una comprensión más serena, nacida del silencio y no de la urgencia.'
+    },
+
+    reversed: {
+      essence: 'El velo se cerró por completo. El pergamino quedó dentro, tan adentro que ya no se lee.',
+      reading: 'El silencio dejó de ser contención y se volvió muro. O guardas tanto que ya nadie sabe lo que sientes —incluida tú—, o lo que callas se filtra de otras formas: indirectas, distancias, pequeñas venganzas que no tienen nombre. La intuición no falla; lo que falla es la honestidad de mirarla.',
+      synthesis: 'Hay silencios que protegen y hay silencios que castigan. No son lo mismo.',
+      prompt: '¿Tu silencio está sosteniendo algo, o ya está usando ese algo en contra de alguien?',
+      manifestations: [
+        'Decir "no pasa nada" cuando hay algo enorme pasando, y esperar que el otro lo adivine',
+        'Aislarte tanto que ya no sabes si es paz o resentimiento lo que estás cuidando',
+        'Confundir tener miedo de decir algo con saber que no debe decirse'
+      ],
+      shadows: [
+        'Se bloquea la palabra honesta — lo que se sabe no llega a ser dicho.',
+        'Se exagera el repliegue (aislamiento) o la indirecta (silencio que igual castiga).',
+        'Se evita mirar el costo del secreto: lo que el otro pierde por no saber, y lo que tú pierdes por sostenerlo.'
+      ]
     }
   },
 
@@ -709,6 +743,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un cierre, una transformación o un desprendimiento ya en curso.',
       whatCrosses: 'La resistencia a aceptar el final puede prolongar el desgaste.',
       whatOpens:   'Se abre un después distinto cuando lo que terminó se deja ir con honestidad.'
+    },
+
+    reversed: {
+      essence: 'El esqueleto avanza, pero alguien tira del estandarte hacia atrás. La rosa blanca sigue ahí, solo que nadie la mira.',
+      reading: 'El cierre ya ocurrió por dentro y aun así sigues sosteniéndolo afuera. Vuelves a llamar, vuelves a justificar, vuelves a arreglar lo que ya no se puede arreglar — no porque creas que vive, sino porque dolería más firmar el final. La transformación no se detuvo: se quedó atascada en tu insistencia.',
+      synthesis: 'Cargar un cadáver no lo trae de vuelta. Solo te cansa más.',
+      prompt: '¿Qué estás manteniendo con vida artificial porque soltarlo se siente peor que sostenerlo?',
+      manifestations: [
+        'Volver a abrir conversaciones que ya tuvieron su última versión, esperando que esta vez salga distinto',
+        'Conservar mensajes, llaves, fotos o rutinas de algo que ya terminó, como prueba de que todavía existe',
+        'Rearmar una y otra vez lo que ya cerró —un trabajo, un vínculo, una etapa— en vez de hacer el duelo'
+      ],
+      shadows: [
+        'Se bloquea el cierre real — todo queda en estado de despedida que nunca termina.',
+        'Se exagera la fidelidad al pasado, hasta convertir el duelo en identidad.',
+        'Se evita mirar el después: si lo que murió ya no manda, hay que decidir quién eres ahora.'
+      ]
     }
   },
 
@@ -855,6 +906,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un cambio brusco o una ruptura redefiniendo el escenario actual.',
       whatCrosses: 'El apego a lo anterior puede intensificar el impacto del cambio.',
       whatOpens:   'Se abre un terreno nuevo, más auténtico aunque aún inestable.'
+    },
+
+    reversed: {
+      essence: 'La torre cruje, llueven trozos de revoque, y alguien adentro pone otra mano de pintura sobre la pared agrietada.',
+      reading: 'La sacudida ya empezó —llegan señales claras, dolores físicos, mensajes que no se pueden seguir ignorando— y la respuesta es tapar, justificar, posponer. La caída no se evitó: se administró. Y eso solo alarga el desgaste, vuelve crónico lo que pudo ser un golpe limpio.',
+      synthesis: 'Frenar la caída no es quedarse en pie. Es vivir adentro de algo que cruje.',
+      prompt: '¿Qué señal de alarma estás silenciando esta semana porque enfrentarla obligaría a cambiar todo?',
+      manifestations: [
+        'Saber que la relación, el trabajo o el cuerpo te están avisando, y responder con más rutina, más control, más explicaciones',
+        'Negociar con la verdad para no tener que reorganizar la vida que armaste alrededor de ella',
+        'Repetir "esto se va a acomodar" mientras todo lo que te rodea muestra que no'
+      ],
+      shadows: [
+        'Se bloquea el quiebre limpio — el derrumbe se vuelve goteo lento.',
+        'Se exagera el control y la negación; cada parche pesa más que la grieta original.',
+        'Se evita mirar la pregunta de fondo: si esto cae, ¿quién soy sin esto?'
+      ]
     }
   },
 
@@ -958,7 +1026,24 @@ export const majorArcanaSymbolic = [
     positions: {
       whatIs:      'Hay confusión, sensibilidad o información no visible del todo.',
       whatCrosses: 'El miedo viejo puede disfrazarse de intuición y desorientar.',
-      whatOpens:   'Se abre una comprensión más intuitiva si no apurás las respuestas.'
+      whatOpens:   'Se abre una comprensión más intuitiva si no apuras las respuestas.'
+    },
+
+    reversed: {
+      essence: 'La luna sigue arriba, pero alguien encendió todas las luces de la casa para no verla. El cangrejo se quedó del otro lado del agua, sin asomar.',
+      reading: 'Lo confuso pide ser sostenido sin nombre y la respuesta es nombrarlo demasiado rápido —explicar, diagnosticar, racionalizar— o esconderlo bajo capas de actividad. Lo que ya estaba bajando del subconsciente se queda atascado en la garganta. Y la sospecha que pedía atención sosegada se vuelve obsesión, paranoia o evitación pura.',
+      synthesis: 'No toda niebla pide ser disipada. Algunas piden ser caminadas.',
+      prompt: '¿Qué emoción confusa estás explicando con teoría para no tener que sentirla?',
+      manifestations: [
+        'Llenar el día de tareas y pantallas para no quedarte sola con eso que ronda hace semanas',
+        'Convencerte de que un mal presentimiento "es solo ansiedad" y descartarlo, o convencerte de que es certeza y dispararte',
+        'Acusar a alguien de algo concreto cuando lo que duele en realidad es algo viejo tuyo asomando'
+      ],
+      shadows: [
+        'Se bloquea la escucha lenta — no hay tolerancia para no entender todavía.',
+        'Se exagera el control mental (sobreinterpretación) o el escape (negación, distracción crónica).',
+        'Se evita mirar la sombra propia: se vuelve más cómodo verla en el otro que reconocerla en una.'
+      ]
     }
   },
 
