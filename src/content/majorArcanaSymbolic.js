@@ -147,7 +147,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'La Sacerdotisa',
     number:  'II',
-    essence: 'Hay verdades que solo se ven en silencio.',
+    essence: 'Sentada entre dos columnas, sostiene un pergamino que casi nadie lee.',
 
     traditionalMeanings: ['Intuición', 'Sabiduría interior', 'Misterio', 'Receptividad', 'Conocimiento no verbal', 'Pausa lúcida'],
     archetypes: [
@@ -163,28 +163,26 @@ export const majorArcanaSymbolic = [
       'Confianza en lo intuitivo'
     ],
     manifestations: [
-      'Una sensación que sabes que es cierta aunque no puedas explicarla',
-      'Necesidad de estar más adentro que afuera por un tiempo',
-      'Una pausa antes de responder que cambia toda la conversación',
-      'Recordar algo importante justo cuando dejás de buscarlo'
+      'Tienes una respuesta clara y todavía no la dijiste porque algo te dice que no es el momento',
+      'Te despiertas con un sueño que viene a confirmar algo que el día tapaba',
+      'Alguien te pregunta y le contestas con menos palabras de las que pensabas, y aún así dijiste todo'
     ],
     shadows: [
-      'Esconderse detrás del silencio para no decir lo que hay que decir',
-      'Confundir cautela con miedo a mostrarse',
-      'Romantizar el misterio como excusa para no actuar',
-      'Negar lo que ya intuís porque pedirlo en voz alta cuesta'
+      'Llevas demasiado tiempo callando algo concreto y empezás a confundir prudencia con miedo',
+      'Usas el "todavía no es el momento" para evitar una conversación que sabes que toca tener',
+      'Te aislás cuando lo que en realidad te haría bien es dejar entrar a alguien'
     ],
     visualSymbols: [
-      'Las dos columnas, blanca y negra — los opuestos que ella sostiene sin elegir uno',
-      'El velo bordado con granadas — lo oculto, no lo prohibido',
-      'La luna creciente a sus pies — lo cíclico, lo intuitivo, lo emocional',
-      'El rollo en su regazo — el saber que no se exhibe',
-      'La cruz sobre el pecho — el cruce entre cuerpo y misterio'
+      'Dos columnas, una blanca (J) y una negra (B) — los opuestos que sostiene sin elegir uno',
+      'El pergamino con la palabra "Tora" parcialmente cubierto por su manto — el saber que se muestra a medias',
+      'La luna creciente a sus pies — el ciclo emocional que regula lo que dice y lo que calla',
+      'La cruz solar sobre el pecho — la lucidez en el centro del cuerpo, no en la cabeza',
+      'El velo bordado con granadas a su espalda — lo que guarda no está prohibido, está esperando'
     ],
 
-    reading: 'Algo en tú ya sabe. No hace falta forzarlo. Si te quedás un rato sin pedirle la respuesta, llega.',
+    reading: 'Tienes una respuesta. No hace falta forzarla. Si te quedas un rato sin pedirle la palabra, llega sola — y llega más entera de lo que la habrías dicho a tiempo.',
     synthesis: 'A veces saber es esperar.',
-    extension: 'Está sentada entre dos columnas porque su sabiduría no elige. Sostiene los opuestos sin reducirlos a uno. El velo a su espalda está bordado, no cerrado: lo que guarda no está prohibido, está esperando. Si esta carta aparece, hay algo que ya percibís y todavía no encontró cómo nombrarse. No conviene apurarlo. Lo que se obliga a decir antes de tiempo se distorsiona. Lo que se sostiene en silencio madura. La trampa de esta carta es confundir el silencio con esconderse; su sabiduría, entender que ciertas verdades sólo emergen cuando se las deja respirar.',
+    extension: 'Está sentada entre dos columnas porque su sabiduría no elige. Sostiene los opuestos sin reducirlos. El pergamino que tiene en la falda dice "Tora" pero su manto lo tapa a la mitad: lo que sabe no se enseña, se transmite. La luna creciente a sus pies es la marea emocional que ella regula sin pelearla. Si esta carta aparece, hay algo concreto que ya percibís y todavía no encontró cómo nombrarse. La urgencia de decirlo lo va a distorsionar. La paciencia para sostenerlo lo va a madurar. Su trampa es confundir el silencio con esconderse — la diferencia es si lo callado pesa más cada día (esconderse) o si va decantando (madurar). Cuando madura, el momento de decirlo aparece solo, y al decirlo te cuesta menos de lo que esperabas.',
     prompt: '¿Qué sabes que todavía no dijiste en voz alta?',
 
     positions: {
@@ -709,29 +707,27 @@ export const majorArcanaSymbolic = [
     ],
     emotionalThemes: ['Duelo', 'Aceptación lenta', 'Alivio escondido', 'Cansancio del cambio', 'Apertura al después'],
     manifestations: [
-      'Algo se está terminando y tú lo sabes antes de poder admitirlo',
-      'Un vínculo, una etapa, una identidad o una rutina que ya no encaja',
-      'Una pérdida que también deja espacio',
-      'Sentir que no puedes volver a ser quien eras antes de esto, aunque lo intentes'
+      'Sigues nombrando a alguien por costumbre cuando ya hace meses que dejó de estar de la misma manera',
+      'Defiendes un trabajo, un barrio o una rutina que en privado sabes que ya no encaja con quien eres hoy',
+      'Lloras algo que terminó hace tiempo y recién ahora encontró cuándo doler'
     ],
     shadows: [
-      'Sostener artificialmente lo que ya terminó por miedo al vacío',
-      'Hacer de la transformación una identidad permanente',
-      'Romantizar el final como castigo o como heroísmo',
-      'Negar el duelo y saltar al "renacimiento" antes de tiempo'
+      'Sostienes lo que ya terminó porque admitirlo te enfrenta con un vacío que todavía no sabes habitar',
+      'Llamas "transformación" a algo que en realidad estás esquivando para no hacer el duelo',
+      'Te apuras al renacimiento sin haber pasado por la pérdida y el cuerpo te lo cobra después'
     ],
     visualSymbols: [
-      'El caballo blanco — la transición lúcida, no oscura',
-      'La bandera negra con rosa blanca — el final que también florece',
-      'La figura caída con corona — la identidad anterior que ya no manda',
-      'El niño que recibe sin miedo — la inocencia que sabe rendirse al cambio',
-      'El sol entre dos torres — el horizonte después del paso, ya visible'
+      'Esqueleto blindado sobre caballo blanco — la transición avanza con armadura, no con saña',
+      'La bandera negra con la Rosa Mística blanca — el final que también florece',
+      'El rey caído al pie del caballo — la identidad anterior que ya no manda',
+      'El obispo de pie y los niños arrodillados — los que aceptan el paso reciben distinto que los que lo niegan',
+      'El sol entre dos torres en el horizonte — el día siguiente ya está, aunque todavía no se viva'
     ],
 
-    reading: 'Algo está terminando. No con violencia, con lucidez. La transformación ya empezó por dentro, mucho antes de esta carta.',
+    reading: 'Algo está terminando. No con violencia, con lucidez. La transformación empezó por dentro mucho antes de esta carta — la carta solo viene a confirmarlo.',
     synthesis: 'Lo que termina no se llevó la vida. Hizo lugar.',
-    extension: 'Casi nunca es muerte literal. Es una identidad, una etapa, un vínculo, una manera de estar que ya no encaja. Su caballo es blanco —no oscuro—, porque la transición no viene a romper, viene a ordenar lo que ya estaba aflojándose. La rosa blanca en la bandera negra lo dice sin discurso: incluso este final tiene su forma de florecer. Si esta carta aparece, probablemente algo en tú lo sepa antes de poder admitirlo. No es la pérdida lo que duele; es la fuerza que estás haciendo para que la rueda gire hacia atrás. El duelo lleva su tiempo. Conviene dejarlo que dure. Y al fondo, casi pintado, se ve el sol entre dos torres: el horizonte ya está. Distinto, pero está.',
-    prompt: '¿Qué estás sosteniendo que ya terminó?',
+    extension: 'Casi nunca es muerte literal. Es una identidad, una etapa, un vínculo, una manera de estar que ya no encaja con quien sos hoy. Su caballo es blanco, no oscuro: la transición no viene a romper, viene a ordenar lo que ya estaba aflojándose. Mira la escena con cuidado: el rey cae a su paso, pero el obispo sigue en pie y los niños se arrodillan tranquilos. La carta no juzga la postura — solo muestra que cada uno recibe el cambio según su propia disposición. Si esta carta aparece, probablemente algo en ti lo sepa antes de poder decirlo en voz alta. No es la pérdida lo que duele; es la fuerza que estás haciendo para que la rueda gire hacia atrás. El duelo lleva su tiempo. Conviene dejarlo durar. Y al fondo, casi pintado, se ve el sol entre dos torres: el horizonte ya está ahí. Distinto, pero está.',
+    prompt: '¿Qué estás defendiendo en voz alta que en privado ya diste por terminado?',
 
     positions: {
       whatIs:      'Hay un cierre, una transformación o un desprendimiento ya en curso.',
@@ -861,29 +857,27 @@ export const majorArcanaSymbolic = [
     ],
     emotionalThemes: ['Quiebre', 'Alivio detrás del shock', 'Verdad incómoda', 'Caída del personaje', 'Liberación no buscada'],
     manifestations: [
-      'Una conversación que cambia algo para siempre',
-      'Un proyecto que se cae solo y al caer muestra que era hueco',
-      'Un quiebre afectivo que estaba anunciándose hace tiempo',
-      'Darte cuenta de algo que no puedes des-saber'
+      'Una conversación que no tendrías que haber tenido pero que ya no podías postergar',
+      'Te enteras de algo y entiendes de pronto por qué hace meses no te cerraban tantas otras cosas',
+      'Algo que defendiste durante años se cae solo, sin que tengas que empujarlo'
     ],
     shadows: [
-      'Sostener lo que ya cayó por miedo a aceptar el cambio',
-      'Vivir la ruptura como castigo personal y no como ajuste',
-      'Buscar reconstruir igual antes de entender qué se cayó',
-      'Quedarte mirando los escombros sin permitirte el alivio'
+      'Sigues defendiendo en público lo que en privado ya viste que no se sostiene, y eso te cuesta cada día más',
+      'Vives la caída como castigo personal cuando, mirada honestamente, era ajuste necesario',
+      'Te apuras a reconstruir igual sin haberte preguntado qué se cayó realmente'
     ],
     visualSymbols: [
-      'El rayo dorado — la verdad atravesando una estructura',
-      'La corona cayendo — la autoridad falsa que se suelta',
-      'Las dos figuras cayendo — el alivio disfrazado de catástrofe',
-      'La torre sobre la roca — lo construido sin base honesta',
-      'Las llamas — energía liberada, no destrucción gratuita'
+      'El rayo dorado partiendo la torre — la verdad atraviesa la estructura sin pedir permiso',
+      'La corona cayendo del techo — la autoridad falsa, la coronación de algo que no estaba bien apoyado',
+      'Las dos figuras cayendo de cabeza — el alivio disfrazado de catástrofe',
+      'La torre construida sobre roca pero golpeada igual — lo que se sostenía solo en apariencia',
+      'Las llamas saliendo por las ventanas — energía liberada, no destrucción gratuita'
     ],
 
-    reading: 'Algo se cayó. Y vas a estar bien, aunque ahora no lo parezca. Lo que parece ruptura, casi siempre, es alivio.',
+    reading: 'Algo se cayó. Vas a estar bien, aunque ahora no lo parezca. Lo que parece ruptura, casi siempre, es alivio que llega disfrazado de catástrofe.',
     synthesis: 'No se cayó lo verdadero. Se cayó lo que ya no era cierto.',
-    extension: 'La Torre no destruye al azar. Destruye lo que estaba apoyado en algo que no era real: una expectativa, una idea sobre tú, una identidad prestada, un acuerdo silencioso que ya no servía. El rayo que parece venir del cielo casi siempre es algo que tú ya sabías y que finalmente encontró cómo salir. No te pide estar bien con la caída. Te pide no ponerle obstáculos al alivio que viene después. Lo nuevo todavía no se ve. Pero ya empezó. Y lo que se cae aquí no se cae para siempre: se cae para que puedas construir lo siguiente sobre algo que sí te aguante.',
-    prompt: '¿Qué se desarmó que, en el fondo, ya sabías que no iba a aguantar más?',
+    extension: 'La Torre no destruye al azar. Destruye lo que estaba apoyado en algo que no era real: una expectativa, una idea sobre vos, una identidad prestada, un acuerdo silencioso que ya no servía. Mira la imagen: la torre está construida sobre una roca firme, no sobre arena — lo que se cae no es la base, son los pisos altos, los que se subieron de más. El rayo que parece venir del cielo casi siempre es algo que ya sabías por dentro y que finalmente encontró cómo salir afuera. La corona cayendo en lo alto es la coronación de algo que no estaba bien sostenido — un cargo, un vínculo, una versión tuya. No te pide estar bien con la caída. Te pide no ponerle obstáculos al alivio que viene después. Lo nuevo todavía no se ve, pero ya empezó: lo que se cae aquí se cae para que lo próximo se apoye sobre algo que sí te aguante.',
+    prompt: '¿Qué se cayó que, en el fondo, ya hacía tiempo no te cerraba?',
 
     positions: {
       whatIs:      'Hay un cambio brusco o una ruptura redefiniendo el escenario actual.',
@@ -969,29 +963,27 @@ export const majorArcanaSymbolic = [
       'Información que llega por debajo de las palabras'
     ],
     manifestations: [
-      'Una sensación incómoda que no termina de ponerse en palabras',
-      'Sueños vívidos que dicen algo que el día borró',
-      'Dudar de lo que ves porque algo en tú sospecha de la versión oficial',
-      'Una etapa donde todo parece ambiguo y eso, en sí, es información'
+      'Tienes un mal pálpito sobre alguien y todavía no podés señalar exactamente por qué',
+      'Te despertaste con la sensación de que algo está fuera de lugar y la mañana lo confirmó al final del día',
+      'Te descubres dudando de algo que ayer dabas por cierto, sin saber qué cambió'
     ],
     shadows: [
-      'Confundir intuición con miedo viejo disfrazado',
-      'Quedarte en la niebla porque salir implica decidir',
-      'Creer que la oscuridad es enemiga cuando es maestra',
-      'Negar lo que el cuerpo ya está nombrando en silencio'
+      'Confundes una intuición real con un miedo viejo que se disfrazó de aviso',
+      'Te quedas en la niebla porque salir implica decidir, y prefieres la duda al riesgo',
+      'Niegas lo que el cuerpo viene nombrando en silencio porque la cabeza todavía no encuentra cómo decirlo'
     ],
     visualSymbols: [
-      'Las dos torres a los costados — los límites entre dos mundos',
-      'El perro y el lobo aullando — lo doméstico y lo salvaje en tú',
-      'El cangrejo saliendo del agua — algo del subconsciente que asoma',
-      'El sendero serpenteante — el camino no es recto y eso es honesto',
-      'La cara melancólica de la luna — la verdad observada sin juicio'
+      'Las dos torres a los costados del sendero — el umbral entre el mundo conocido y lo no consciente',
+      'El perro y el lobo aullándole a la luna — lo doméstico y lo salvaje en ti respondiendo a lo mismo',
+      'El cangrejo que asoma del agua — algo del subconsciente que pide aparecer, despacio',
+      'El sendero serpenteante que se pierde entre montañas — el camino no es recto y eso es honesto',
+      'La luna con cara melancólica goteando rocío — la verdad observada sin juicio'
     ],
 
-    reading: 'No está todo claro. Y eso, ahora, también es una respuesta. La intuición trabaja despacio cuando lo que está en juego importa.',
+    reading: 'No está todo claro. Y eso, ahora, también es una respuesta. La intuición trabaja despacio cuando lo que está en juego importa de verdad.',
     synthesis: 'La niebla no engaña. Pide caminar más despacio.',
-    extension: 'La Luna no es enemiga de la verdad. Es la forma que tiene la verdad de llegar cuando todavía no estamos listas para verla a pleno sol. El sendero serpentea no porque esté mal trazado: algunos procesos se piensan caminando, no antes de caminar. El cangrejo que asoma del agua es eso que sabías y habías guardado, y que ahora pide aparecer un rato. No tienes que entenderlo todo enseguida. Lo que está confuso no es porque tú no entiendas; es porque todavía no terminó de mostrarse. Avanzar despacio en la niebla es más sabio que correr para salir de ella. Y a veces lo que parece miedo es solo el cuerpo nombrando algo antes que la cabeza.',
-    prompt: '¿Qué estás percibiendo que todavía no quieres nombrar?',
+    extension: 'La Luna no es enemiga de la verdad. Es la forma que tiene la verdad de llegar cuando todavía no estás lista para verla a pleno sol. Mira la imagen: el sendero serpentea entre dos torres y se pierde entre las montañas — no porque esté mal trazado, sino porque algunos caminos se piensan caminando, no antes de caminar. El perro y el lobo le aullan a la luna desde el mismo borde: lo doméstico y lo salvaje en ti están reaccionando a lo mismo, aunque cada uno con su voz. El cangrejo que asoma del agua es eso que ya sabías y habías guardado, y que ahora pide aparecer un rato. No tienes que entenderlo todo enseguida. Lo que está confuso no es porque tú no entiendas: es porque todavía no terminó de mostrarse. Avanzar despacio en la niebla es más sabio que correr para salir de ella.',
+    prompt: '¿Qué pálpito estás teniendo que todavía no quieres confirmar?',
 
     positions: {
       whatIs:      'Hay confusión, sensibilidad o información no visible del todo.',
@@ -1026,29 +1018,27 @@ export const majorArcanaSymbolic = [
       'Alegría sin justificación'
     ],
     manifestations: [
-      'Algo se vuelve obvio justo cuando dejás de complicarlo',
-      'Sentirte vista o reconocida sin tener que explicarte',
-      'Recuperar ganas de cosas simples',
-      'Un momento donde lo que sos y lo que haces coinciden sin esfuerzo'
+      'Algo se te volvió simple después de meses de complicarlo',
+      'Te ríes sin razón en el medio del día y notas que hace tiempo no pasaba',
+      'Alguien dice algo cierto sobre ti y por una vez no necesitas corregirlo ni achicarlo'
     ],
     shadows: [
-      'Confundir brillar con tener que rendir',
-      'Performar alegría cuando todavía estás cansada',
-      'Asumir que estar bien tiene que verse perfecto',
-      'La soledad sutil de los momentos buenos no compartidos'
+      'Confundes brillar con tener que rendir y vuelves al cansancio antes de haber descansado',
+      'Performas la alegría cuando en verdad todavía estás cansada y eso te aísla más',
+      'Asumes que estar bien tiene que verse perfecto y por eso achicas momentos que eran buenos sin necesidad de adorno'
     ],
     visualSymbols: [
-      'El niño desnudo sobre el caballo blanco — quien sos sin disfraces',
-      'Los girasoles detrás del muro — testigos que crecen al ritmo de tu luz',
-      'La pared baja — lo que separa lo conocido de lo nuevo, ya superable',
-      'La pluma roja — la vitalidad joven, la sangre del entusiasmo',
-      'El sol con cara humana — la claridad que también te mira'
+      'El niño desnudo sobre el caballo blanco — el yo sin disfraces, lo que queda cuando se cae el adorno',
+      'El estandarte rojo en su mano — la vitalidad y el entusiasmo que se llevan al frente',
+      'Los girasoles detrás del muro — los testigos que crecen al ritmo de su luz, no al revés',
+      'La pared baja a sus pies — el límite entre lo conocido y lo nuevo, ya superable',
+      'El sol con cara humana — la claridad que también te mira de vuelta'
     ],
 
-    reading: 'Algo se está volviendo simple. No es euforia, es alivio. Lo que tienes enfrente, probablemente, es más obvio de lo que estabas dispuesta a ver.',
-    synthesis: 'La claridad no es premio. Es lo que queda cuando soltás lo que la tapaba.',
-    extension: 'El Sol no llega como recompensa por haber sufrido suficiente. Llega cuando algo en tú termina de ordenarse sin que te dieras cuenta del último gesto. El niño en el caballo blanco no está actuando: está exactamente donde está, y eso es suficiente. Los girasoles, detrás del muro, no compiten; crecen al ritmo de su luz. Si esta carta aparece, quizás haya menos para hacer y más para reconocer. Que llegaste. Que se simplificó algo. Que estás en un momento donde no necesitás tanto ruido como antes. La parte difícil ahora no es disfrutarlo: es permitirte que sea esto, sin esperar que se complique para confirmar que es real.',
-    prompt: '¿Qué se vuelve evidente cuando dejás de complicarlo?',
+    reading: 'Algo se está volviendo simple. No es euforia, es alivio. Lo que tienes enfrente probablemente sea más obvio de lo que estabas dispuesta a ver.',
+    synthesis: 'La claridad no es premio. Es lo que queda cuando sueltas lo que la tapaba.',
+    extension: 'El Sol no llega como recompensa por haber sufrido suficiente. Llega cuando algo en ti termina de ordenarse sin que te hubieras dado cuenta del último gesto. Mira la imagen: el niño está desnudo, sin armadura, sobre un caballo blanco — no actúa, no posa, no está demostrando nada. Está exactamente donde está, y eso es suficiente. El estandarte rojo en su mano dice que la alegría no es pasiva: lleva sangre, vitalidad. Los girasoles detrás del muro no compiten con él, crecen al ritmo de su luz. Si esta carta aparece, quizás haya menos para hacer y más para reconocer. Que llegaste. Que se simplificó algo. Que estás en un momento donde no necesitas tanto ruido como antes. La parte difícil no es disfrutarlo: es permitirte que sea esto, sin esperar que se complique para confirmar que es real.',
+    prompt: '¿Qué se te volvió evidente cuando dejaste de complicarlo?',
 
     positions: {
       whatIs:      'Hay claridad, energía vital o comprensión directa apareciendo en escena.',

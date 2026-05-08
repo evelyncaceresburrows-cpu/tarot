@@ -1,0 +1,239 @@
+{
+  "cards": [
+    {
+      "number": "0",
+      "name": "El Loco",
+      "symbolicMeaning": "Representa al neófito o recién iniciado; es el espíritu en busca de experiencia, la inocencia insensata y la confianza ciega en el destino.",
+      "goldenDawn": "Asociado con el número 0 y el elemento Aire; representa al miembro recién iniciado de la Orden y el estado de conciencia pura antes de la manifestación.",
+      "imageSymbolism": "Un joven al borde de un precipicio con los ojos cerrados o mirando al cielo, sostiene una rosa blanca, una alforja y un fardo; un perro salta a su lado sugiriendo el salto al vacío de la fe.",
+      "waite": "Significa la carne, la vida sensitiva y la locura en su etapa más insensata; el \"Loco Místico\" o alma en busca de experiencia que ignora peligros mundanos por lo divino.",
+      "historicalReference": "Denominado históricamente como \"el alquimista\" en sentido satírico; comparado con la figura del \"Santo Loco\" o el iniciado ignorante ante el mundo.",
+      "sourceRefs": "1-4"
+    },
+    {
+      "number": "1",
+      "name": "El Mago",
+      "symbolicMeaning": "Representa la unidad divina, la voluntad consciente y el dominio sobre los elementos; comunica dones espirituales a la tierra e inicia el viaje del iniciado.",
+      "goldenDawn": "Asociado con el planeta Mercurio; el iniciado que domina los cuatro elementos a través de la meditación y la habilidad de manifestar la voluntad divina.",
+      "imageSymbolism": "Signo de infinito ( $\\infty$ ) sobre la cabeza, serpiente comiéndose su cola como cinturón; una mano señala al cielo y otra a la tierra; sobre la mesa están los cuatro símbolos de los palos.",
+      "waite": "El signo de infinito representa la vida eterna; la postura encarna el axioma \"como es arriba, es abajo\" y la unión de lo espiritual con lo material para la creación.",
+      "historicalReference": "Menciona que la figura tiene el semblante de la deidad griega Apolo; a menudo vinculado con Hermes Trismegisto o figuras de la alquimia hermética.",
+      "sourceRefs": "1, 2, 4-7"
+    },
+    {
+      "number": "2",
+      "name": "La Sacerdotisa",
+      "symbolicMeaning": "La tradición secreta, la sabiduría intuitiva y los misterios más elevados; personificación de la Shekinah y la \"Doctrina Secreta\".",
+      "goldenDawn": "Asociada con la Luna; representa la sabiduría oculta, la red de la naturaleza y la conexión entre el consciente y el inconsciente.",
+      "imageSymbolism": "Sentada entre columnas blanca y negra (J y B), con un pergamino que dice \"Tora\", un arco lunar a sus pies y una cruz solar en el pecho.",
+      "waite": "Es la Iglesia Secreta, la ley divina y la gnosis; guardiana de los misterios que no pueden ser expresados en palabras.",
+      "historicalReference": "Históricamente confundida con la leyenda de la Papisa Juana; Waite la vincula directamente con la Sabiduría Divina.",
+      "sourceRefs": "2, 4, 5, 8"
+    },
+    {
+      "number": "3",
+      "name": "La Emperatriz",
+      "symbolicMeaning": "Fecundidad universal, actividad y el paraíso terrenal.",
+      "goldenDawn": "Asociada con la fertilidad, el crecimiento y la energía maternal.",
+      "imageSymbolism": "Diadema de doce estrellas, escudo con el símbolo de Venus, campo de trigo maduro y un cetro con globo.",
+      "waite": "La puerta por la que se entra a esta vida; representa la abundancia y la creatividad.",
+      "historicalReference": "Comparada con la \"mujer vestida de sol\" en el Apocalipsis.",
+      "sourceRefs": "2, 5"
+    },
+    {
+      "number": "4",
+      "name": "El Emperador",
+      "symbolicMeaning": "Autoridad, orden, estructura y el poder ejecutivo del mundo.",
+      "goldenDawn": "Encarna el establecimiento de límites claros y la dirección firme para el éxito.",
+      "imageSymbolism": "Trono adornado con cabezas de carnero, cetro en forma de Crux Ansata (Ankh) y un globo en la mano.",
+      "waite": "El poder viril y la soberanía intelectual; aquel que busca remover el velo de Isis.",
+      "historicalReference": "Representa la monarquía mundana y el señorío del pensamiento.",
+      "sourceRefs": "2"
+    },
+    {
+      "number": "5",
+      "name": "El Hierofante",
+      "symbolicMeaning": "Religión externa, ortodoxia y el puente entre lo divino y lo terrenal; el líder de la salvación.",
+      "goldenDawn": "Oficial de alto orden que lidera rituales de iniciación; representante del dios egipcio Osiris.",
+      "imageSymbolism": "Triple corona, cetro con triple cruz, dos ministros arrodillados y llaves cruzadas a sus pies.",
+      "waite": "Es la \"summa totius theologiae\"; simboliza todo lo que es recto y sagrado en el lado manifiesto.",
+      "historicalReference": "Equivalente esotérico al Papa católico.",
+      "sourceRefs": "1, 2, 5"
+    },
+    {
+      "number": "6",
+      "name": "Los Enamorados",
+      "symbolicMeaning": "Elección entre la tentación terrenal y la ascensión espiritual; amor humano y divino, armonía y unión de opuestos.",
+      "goldenDawn": "Simboliza el camino de los diez grados del Árbol de la Vida cabalístico hacia la iluminación; corresponde al signo zodiacal Géminis.",
+      "imageSymbolism": "Adán y Eva en el Jardín del Edén; detrás de Eva está el Árbol del Conocimiento con la serpiente, detrás de Adán el Árbol de la Vida; arriba el ángel Rafael.",
+      "waite": "Representa la juventud, la inocencia incontaminada y la victoria sobre la tentación; es el misterio del Pacto, el Sabbat y el diseño místico superior.",
+      "historicalReference": "Referencia directa a la historia bíblica del Génesis: Adán, Eva, la serpiente y el Ángel en el Paraíso.",
+      "sourceRefs": "1, 2, 4, 9"
+    },
+    {
+      "number": "7",
+      "name": "El Carro",
+      "symbolicMeaning": "Triunfo en el plano mental, victoria sobre los obstáculos y conquista.",
+      "goldenDawn": "Representa la victoria y la determinación para controlar las fuerzas circundantes.",
+      "imageSymbolism": "Un príncipe guerrero en un carro tirado por dos esfinges (blanca y negra); lleva el Urim y Thummim.",
+      "waite": "La victoria que crea el mando de la realeza; triunfo en la ciencia y el progreso.",
+      "historicalReference": "Mencionado por Court de Gébelin como Osiris Triunfante.",
+      "sourceRefs": "2, 5"
+    },
+    {
+      "number": "8",
+      "name": "La Fuerza",
+      "symbolicMeaning": "Dominio de la naturaleza superior sobre las pasiones; valor moral, coraje suave y fortaleza real.",
+      "goldenDawn": "Dominio sobre uno mismo; Waite cambió su número (del XI al VIII) para que correspondiera con el signo zodiacal Leo.",
+      "imageSymbolism": "Mujer cerrando con calma las fauces de un león, con una cadena de flores y el signo de infinito ( $\\infty$ ) sobre ella.",
+      "waite": "No es autoconfianza ordinaria ni fuerza física, sino la confianza de aquellos cuya fuerza es Dios y la soberanía del espíritu sobre la naturaleza animal.",
+      "historicalReference": "Se dice que la figura representa la fuerza orgánica y moral.",
+      "sourceRefs": "1, 2, 4, 5"
+    },
+    {
+      "number": "9",
+      "name": "El Ermitaño",
+      "symbolicMeaning": "Alcance de la iluminación, adquisición de la verdad y protección de los misterios divinos.",
+      "goldenDawn": "La búsqueda de la verdad interior; fertilización del \"Huevo Órfico\".",
+      "imageSymbolism": "Anciano con túnica (estilo Capuchino) sosteniendo una linterna con una estrella dentro y un báculo.",
+      "waite": "No es una carta de búsqueda, sino de obtención; su báculo es una vara mágica.",
+      "historicalReference": "Relacionado con la Prudencia y el \"Sabio\" de las escuelas filosóficas.",
+      "sourceRefs": "2, 5, 10"
+    },
+    {
+      "number": "10",
+      "name": "La Rueda de la Fortuna",
+      "symbolicMeaning": "Ciclos de karma, destino y el movimiento perpetuo del universo.",
+      "goldenDawn": "Escalera giratoria de luz y oscuridad; representación de las leyes de causa y efecto.",
+      "imageSymbolism": "Rueda con las letras TARO (ROTA), una esfinge en la cima, Hermanubis ascendiendo y Tifón descendiendo.",
+      "waite": "La providencia divina operando a través de los cambios de la vida; equilibrio en medio del movimiento.",
+      "historicalReference": "Contiene los cuatro animales del zodiaco y el Nombre Divino hebreo (YHVH).",
+      "sourceRefs": "1, 2"
+    },
+    {
+      "number": "11",
+      "name": "La Justicia",
+      "symbolicMeaning": "Equidad, rectitud y el triunfo de la ley divina; aplicación de la verdad objetiva.",
+      "goldenDawn": "Representa el equilibrio; Waite la movió al número XI para que coincidiera con el signo de Libra.",
+      "imageSymbolism": "Figura sentada entre columnas con una balanza en la mano izquierda y una espada en la derecha.",
+      "waite": "Justicia trascendental donde las balanzas se inclinan hacia el lado de Dios; justicia interna que evalúa las acciones del alma.",
+      "historicalReference": "Asociada históricamente con la diosa Astraea; adaptada al sistema astrológico.",
+      "sourceRefs": "2, 4, 5"
+    },
+    {
+      "number": "12",
+      "name": "El Ahorcado",
+      "symbolicMeaning": "Sacrificio, sabiduría a través del cambio de perspectiva y vida en suspensión.",
+      "goldenDawn": "Representa la pausa necesaria y el dejar ir lo que ya no sirve.",
+      "imageSymbolism": "Hombre colgado de un pie en una cruz Tau de madera viva, con un halo de luz en la cabeza.",
+      "waite": "Expresa la relación entre lo Divino y el Universo; el despertar de la naturaleza superior.",
+      "historicalReference": "Confundido erróneamente por algunos como una representación de la Prudencia.",
+      "sourceRefs": "2, 5"
+    },
+    {
+      "number": "13",
+      "name": "La Muerte",
+      "symbolicMeaning": "Transformación mística, pasaje de un grado de conciencia a otro y renacimiento.",
+      "goldenDawn": "Transformación del reino inferior al superior (ángeles); concepto de reencarnación.",
+      "imageSymbolism": "Esqueleto blindado sobre un caballo blanco, portando una bandera con una Rosa Mística; un prelado y niños a sus pies.",
+      "waite": "No es la muerte física, sino la transformación del alma; el ascenso del espíritu a esferas divinas.",
+      "historicalReference": "Tradicionalmente asociada con la muerte de los reyes y el cambio de eras.",
+      "sourceRefs": "1, 2, 5"
+    },
+    {
+      "number": "14",
+      "name": "La Templanza",
+      "symbolicMeaning": "Armonización de las naturalezas psíquica y material; el arte de la transmutación.",
+      "goldenDawn": "Acción de mezclar elementos contradictorios en un caldero alquímico; unión de contrarios.",
+      "imageSymbolism": "Ángel con el signo del sol, vertiendo fluido entre dos cálices, con un pie en la tierra y otro en el agua.",
+      "waite": "La regla que atempera y combina el alma; el secreto de la vida eterna en la encarnación.",
+      "historicalReference": "Crowley la renombra \"Arte\" en referencia al arte alquímico.",
+      "sourceRefs": "2, 10"
+    },
+    {
+      "number": "15",
+      "name": "El Diablo",
+      "symbolicMeaning": "Esclavitud al mundo material, falsos ídolos y el morador del umbral.",
+      "goldenDawn": "Representa al \"pecador\" que se enfoca en placeres materiales en lugar de la ascensión.",
+      "imageSymbolism": "Bafomet con cabeza de cabra, antorcha encendida, pentagrama invertido y dos figuras humanas encadenadas.",
+      "waite": "Juxtaposición al Hierofante; representa la fatalidad de la vida material y la falta de libertad.",
+      "historicalReference": "Las figuras encadenadas representan a Adán y Eva tras la caída.",
+      "sourceRefs": "1, 2"
+    },
+    {
+      "number": "16",
+      "name": "La Torre",
+      "symbolicMeaning": "Ruptura del ego, caída del orgullo y la destrucción de falsas doctrinas.",
+      "goldenDawn": "Intento humano fallido de emular el Árbol de la Vida; derrota de la autoridad divina.",
+      "imageSymbolism": "Torre golpeada por un rayo, corona cayendo y dos personas precipitándose al vacío.",
+      "waite": "La ruina de la Casa de la Falsedad; castigo del intelecto que busca penetrar el misterio de Dios sin gracia.",
+      "historicalReference": "Referencia a la Torre de Babel y la destrucción del Templo de Salomón.",
+      "sourceRefs": "1, 2, 5"
+    },
+    {
+      "number": "17",
+      "name": "La Estrella",
+      "symbolicMeaning": "Esperanza, luz interior e inmortalidad; la Verdad desnuda derramando aguas de vida.",
+      "goldenDawn": "La Gran Madre en Binah comunicando sabiduría a los reinos inferiores.",
+      "imageSymbolism": "Mujer desnuda derramando agua de dos vasijas sobre tierra y mar, bajo una estrella de ocho rayos y siete menores.",
+      "waite": "Garantía de inmortalidad; los dones del espíritu otorgados libremente.",
+      "historicalReference": "Identificada por Court de Gébelin como la estrella Sirio de Egipto.",
+      "sourceRefs": "2, 5"
+    },
+    {
+      "number": "18",
+      "name": "La Luna",
+      "symbolicMeaning": "Vida de la imaginación separada del espíritu; el subconsciente y peligros del sendero desconocido.",
+      "goldenDawn": "Asociada con el signo de Piscis; representa los miedos del mundo natural y fuerzas ocultas que guían la conciencia.",
+      "imageSymbolism": "Luna brillando entre dos torres, un perro y un lobo aullando, y un cangrejo emergiendo del agua.",
+      "waite": "Luz intelectual reflejada que ilumina la naturaleza animal; rocío del pensamiento cayendo sobre el mundo.",
+      "historicalReference": "El rocío lunar es comparado históricamente con las lágrimas de Isis; los animales representan instintos primarios.",
+      "sourceRefs": "2-6"
+    },
+    {
+      "number": "19",
+      "name": "El Sol",
+      "symbolicMeaning": "Conciencia espiritual directa, felicidad material y éxito.",
+      "goldenDawn": "Triunfo sobre las dificultades y optimismo renovado; esfera del sol como fuente de poder.",
+      "imageSymbolism": "Niño desnudo sobre un caballo blanco sosteniendo un estandarte rojo, bajo un sol radiante con girasoles detrás.",
+      "waite": "Tránsito de la luz de este mundo a la del mundo venidero; simplicidad e inocencia que guían la naturaleza animal.",
+      "historicalReference": "Representa el destino del \"Este Sobrenatural\".",
+      "sourceRefs": "2, 11"
+    },
+    {
+      "number": "20",
+      "name": "El Juicio",
+      "symbolicMeaning": "Logro de la Gran Obra, renovación, resurrección y respuesta al llamado espiritual.",
+      "goldenDawn": "La culminación del viaje del héroe; relacionada con el elemento Fuego y el espíritu de la transformación.",
+      "imageSymbolism": "Ángel (Gabriel) tocando una trompeta con una bandera de cruz; muertos (hombre, mujer y niño) levantándose de tumbas.",
+      "waite": "La carta de la vida eterna; el despertar de la conciencia que resuena y eleva nuestra naturaleza inferior.",
+      "historicalReference": "Basado en el Juicio Final bíblico; influenciado por obras como \"El Juicio Final\" de Hans Memling.",
+      "sourceRefs": "2, 4, 5, 12"
+    },
+    {
+      "number": "21",
+      "name": "El Mundo",
+      "symbolicMeaning": "Perfección y fin del Cosmos; éxtasis, plenitud y armonía total con el universo.",
+      "goldenDawn": "Realización del Absoluto; correspondencia con Saturno como límite de la existencia humana.",
+      "imageSymbolism": "Figura femenina (o andrógina) danzando dentro de una guirnalda, rodeada por los cuatro seres vivientes del Apocalipsis (Tetramorfos).",
+      "waite": "El estado de la restauración del mundo y perfección del alma; la \"Anima Mundi\" que une todos los opuestos.",
+      "historicalReference": "Identificada con Sofía o Isis; los cuatro seres refieren al Tetragrammaton y las visiones de Ezequiel.",
+      "sourceRefs": "2, 4, 5, 10"
+    }
+  ],
+  "sourceReferences": {
+    "1": "Golden Dawn Symbolism in Tarot's Trumps · HISTORY 2PQ3 EXHIBIT 08",
+    "2": "The Pictorial Key to the Tarot by A.E. Waite (1910) - Ancient Egyptian Connections",
+    "3": "El Tarot Rider-Waite: Historia, Simbolismo y Por Qué Es el Mejor Mazo para Comenzar",
+    "4": "Rider–Waite Tarot - Wikipedia",
+    "5": "Las claves del Tarot - Nirvana Libros",
+    "6": "Diferencias entre el Tarot de Marsella y el Tarot Rider-Waite - Arcano Luna",
+    "7": "TAROT RIDER WAITE (LIBRO)",
+    "8": "The Pictorial Key to the Tarot - Wikipedia",
+    "9": "Tarot Rider-Waite-Smith: Estructura y Simbolismo",
+    "10": "Golden Dawn Tarot | Mary K. Greer's Tarot Blog",
+    "11": "Tarot De AE Waite PDF - Libro1",
+    "12": "How a Tarot Deck Led to a Revolution - Hyperallergic"
+  },
+  "note": "Fuente: Excel \"Simbolismo y Atributos de los Arcanos Mayores Rider-Waite\". Material de consulta interno para reescribir interpretaciones con anclaje visual y simbólico concreto."
+}
