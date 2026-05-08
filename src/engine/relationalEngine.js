@@ -270,7 +270,7 @@ const MOVEMENT_VARIANTS = {
   ],
   'pause-in-the-middle': [
     'Hay una pausa en el medio que conviene respetar — apurarla la rompe.',
-    'Empezás algo, te frenás, y antes de seguir hay un silencio que es parte del trabajo.',
+    'empiezas algo, te frenas, y antes de seguir hay un silencio que es parte del trabajo.',
     'La lectura tiene un respiro adentro. Quien apura ese respiro pierde lo que el respiro estaba haciendo.',
     'Algo se detiene a la mitad. No es bloqueo: es decantación.'
   ],
@@ -289,19 +289,19 @@ const MOVEMENT_VARIANTS = {
   'deeply-inward': [
     'Las tres posiciones miran hacia adentro. Este momento se piensa, no se actúa: cualquier movimiento exterior va a ser ruido.',
     'Todo está pasando en privado. Lo que se decide acá no necesita público.',
-    'El centro de la lectura está en silencio, en una conversación tuya con vos misma.',
+    'El centro de la lectura está en silencio, en una conversación tuya con ti misma.',
     'Toda la escena ocurre antes de que pase afuera — todavía es deliberación.'
   ],
   'fully-outward': [
     'Las tres posiciones empujan hacia el mundo. Esto se está jugando en lo visible: una conversación, una decisión, un gesto.',
     'No hay tiempo de seguir pensando. La lectura pide acción concreta.',
     'Todo apunta a salir, hacer, decir. Nada de esto se resuelve en silencio.',
-    'Esta tirada se vive en lo concreto: en lo que decís, lo que firmás, lo que mostrás.'
+    'Esta tirada se vive en lo concreto: en lo que dices, lo que firmas, lo que muestras.'
   ],
   'fully-suspended': [
     'Las tres posiciones están en pausa. La lectura te pide no decidir todavía — algo afuera tiene que moverse primero.',
     'Toda la tirada está en un umbral. No es bloqueo: es esperar a que aparezca la información que falta.',
-    'Todo está esperando. Forzar una respuesta hoy es elegir desde lo que no sabés.',
+    'Todo está esperando. Forzar una respuesta hoy es elegir desde lo que no sabes.',
     'La lectura entera está en compás de espera. La paciencia hoy vale más que la decisión.'
   ],
   'mixed': [
@@ -380,7 +380,7 @@ const MAJOR_PRESENCE_VARIANTS = {
     'Una pieza grande sostenida por dos gestos del día. Mirar bien cuál es la grande.'
   ],
   0: [
-    'Ningún Mayor. La lectura es de gestos chicos: lo que decís hoy, una conversación, un detalle. No menos profunda — más íntima.',
+    'Ningún Mayor. La lectura es de gestos chicos: lo que dices hoy, una conversación, un detalle. No menos profunda — más íntima.',
     'Sin Mayores, esto se vive a escala humana. No hay drama estructural: hay vida cotidiana pidiendo atención.'
   ]
 }

@@ -92,7 +92,7 @@ export const CELTIC_POSITIONS = [
     classical: 'El consultante',
     label:     'Cómo estás tú en este momento',
     role:      'Identidad',
-    whisper:   'Aquí te ves a ti, tal como llegás a esta lectura — no como te ves siempre.',
+    whisper:   'Aquí te ves a ti, tal como llegas a esta lectura — no como te ves siempre.',
     prompt:    '¿Desde qué versión tuya estás mirando esto?'
   },
   {
@@ -110,7 +110,7 @@ export const CELTIC_POSITIONS = [
     classical: 'Esperanzas y miedos',
     label:     'Lo que una parte de ti intenta proteger',
     role:      'Sombra interna',
-    whisper:   'Aquí vive la mezcla rara entre lo que quieres y lo que temés que pase.',
+    whisper:   'Aquí vive la mezcla rara entre lo que quieres y lo que temes que pase.',
     prompt:    '¿Qué parte tuya está tratando de cuidar algo, aunque no lo nombres así?'
   },
   {
@@ -298,15 +298,15 @@ const DIRECTION_LINES = {
 const SUIT_LINES = {
   Copas:   'El centro emocional está en los vínculos: alguien específico, una conversación pendiente, un afecto que cambia de forma.',
   Espadas: 'El centro está en lo mental: una decisión que se posterga, una verdad que pesa por no decirse, un pensamiento que da vueltas.',
-  Bastos:  'El centro está en lo que querés mover: un proyecto, un deseo, un impulso que pide salir y todavía no encontró por dónde.',
+  Bastos:  'El centro está en lo que quieres mover: un proyecto, un deseo, un impulso que pide salir y todavía no encontró por dónde.',
   Oros:    'El centro está en lo concreto: el cuerpo, el trabajo, el dinero, una rutina, algo material que pide atención sostenida.'
 }
 
 const TENSION_LINES = {
   'continuity-of-suit':       'El palo del pasado vuelve en el horizonte cercano. Hay una historia que parecía cerrada y todavía no terminó de cerrarse — el mismo territorio te sigue pidiendo algo.',
-  'aspiration-vs-result':     'Lo que querés y hacia donde se inclina la lectura no tienen el mismo aire. Vale la pena preguntarte si lo que pedís es realmente lo que querés, o si lo que pedís te está cuidando de lo que sí querrías.',
+  'aspiration-vs-result':     'Lo que quieres y hacia donde se inclina la lectura no tienen el mismo aire. Vale la pena preguntarte si lo que pides es realmente lo que quieres, o si lo que pides te está cuidando de lo que sí querrías.',
   'self-vs-environment':      'La dirección que traés y la del entorno van para lados distintos. Parte del cansancio no es tuyo: es el desgaste de remar contra una corriente.',
-  'major-crossing':           'Lo que tensiona en el centro es un Arcano Mayor. Eso que parece interferencia del día es en realidad un capítulo: pesa más de lo que parece y va a tardar más de lo que esperás.',
+  'major-crossing':           'Lo que tensiona en el centro es un Arcano Mayor. Eso que parece interferencia del día es en realidad un capítulo: pesa más de lo que parece y va a tardar más de lo que esperas.',
   'inner-fear-vs-warm-horizon':'Por dentro estás cargando más miedo del que la realidad afuera está confirmando. Probablemente estás defendiéndote de un peligro que ya pasó o que nunca llegó.'
 }
 
@@ -384,7 +384,7 @@ function buildBlock1(s1, s2, s3) {
   if (tempEq13) {
     coronation = `Y arriba, lo que estás esperando o queriendo respira el mismo aire que el centro: ${e3}. Cuando la aspiración y la situación coinciden, el deseo deja de tirarte para otro lado y empieza a ordenarte.`
   } else {
-    coronation = `Y arriba, lo que estás esperando o queriendo no se parece a lo que está pasando ahora: ${e3}. Esa distancia entre lo que vivís y lo que esperás es parte de la fricción del momento.`
+    coronation = `Y arriba, lo que estás esperando o queriendo no se parece a lo que está pasando ahora: ${e3}. Esa distancia entre lo que vives y lo que esperas es parte de la fricción del momento.`
   }
 
   return `${opener} ${coronation}`
@@ -447,24 +447,24 @@ function buildBlock3(s7, s8, s9) {
   const tempSelf  = enrichCard(s7.slot.card).energy.temperature
 
   /* Frase del self — describe cómo llegas hoy, no quién sos siempre */
-  const selfLine = `Vos hoy, mirando esto: ${e7}. Esta es la versión tuya que llegó a la pregunta — no necesariamente la que vas a tener mañana.`
+  const selfLine = `Tú hoy, mirando esto: ${e7}. Esta es la versión tuya que llegó a la pregunta — no necesariamente la que vas a tener mañana.`
 
   /* Frase del entorno — varía si choca con el self */
   let envLine
   if (dirSelf !== dirEnv) {
-    envLine = `El entorno alrededor no acompaña en la misma dirección: ${e8}. Hay personas, lugares o ruidos que tiran para otro lado, y eso te cansa más de lo que reconocés.`
+    envLine = `El entorno alrededor no acompaña en la misma dirección: ${e8}. Hay personas, lugares o ruidos que tiran para otro lado, y eso te cansa más de lo que reconoces.`
   } else {
-    envLine = `Lo que rodea, sin ser tuyo, se mueve en el mismo registro: ${e8}. El afuera no te está pidiendo otra cosa — está confirmando lo que ya sentís.`
+    envLine = `Lo que rodea, sin ser tuyo, se mueve en el mismo registro: ${e8}. El afuera no te está pidiendo otra cosa — está confirmando lo que ya sientes.`
   }
 
   /* Frase del inner — varía por contraste con el self */
   let innerLine
   if (tempInner === 'tense' && tempSelf !== 'tense') {
-    innerLine = `Y en el lugar de los miedos: ${e9}. Por adentro estás cargando algo más tenso de lo que mostrás afuera. Vale preguntarse a quién le sirve esa diferencia.`
+    innerLine = `Y en el lugar de los miedos: ${e9}. Por adentro estás cargando algo más tenso de lo que muestras afuera. Vale preguntarse a quién le sirve esa diferencia.`
   } else if (tempInner === tempSelf) {
-    innerLine = `Y en el lugar de las esperanzas y los miedos: ${e9}. Lo que cuidás por dentro y cómo te ves hoy van en el mismo tono — al menos no estás peleando contigo misma.`
+    innerLine = `Y en el lugar de las esperanzas y los miedos: ${e9}. Lo que cuidas por dentro y cómo te ves hoy van en el mismo tono — al menos no estás peleando contigo misma.`
   } else {
-    innerLine = `Y en el lugar más íntimo, esa mezcla rara entre lo que querés y lo que temés que pase: ${e9}. A veces lo que más miedo da es justo lo que más estás deseando.`
+    innerLine = `Y en el lugar más íntimo, esa mezcla rara entre lo que quieres y lo que temes que pase: ${e9}. A veces lo que más miedo da es justo lo que más estás deseando.`
   }
 
   return `${selfLine} ${envLine} ${innerLine}`
