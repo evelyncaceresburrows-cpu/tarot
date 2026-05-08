@@ -783,12 +783,12 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
           <button
             onClick={() => onCarta(destacada)}
             className="w-[180px] md:w-[240px] active:scale-[0.99] transition-transform"
-            aria-label={`Carta del día: ${destacada.nombre}. Tocá para leer.`}
+            aria-label={`Carta del día: ${destacada.nombre}. Toca para leer.`}
           >
             <CartaMarco card={destacada} />
           </button>
           <p className="text-[0.6rem] tracking-[0.26em] text-dorado/55 italic font-serif mt-1">
-            tocá para leer
+            toca para leer
           </p>
         </div>
 
@@ -836,7 +836,7 @@ function SelectorTirada({ onPick, onHome }) {
         <StarDivider className="mb-10" />
 
         <p className="font-serif italic text-pergamino/55 text-[0.92rem] leading-relaxed text-center max-w-[26rem] mb-12">
-          Respira. Sentí cuál se acerca a lo que estás necesitando hoy.
+          Respira. Siente cuál se acerca a lo que estás necesitando hoy.
         </p>
 
         <div className="w-full flex flex-col gap-5">
@@ -1262,7 +1262,7 @@ function ShuffleScreen({ onContinue, onBack }) {
     if (phase === 'idle')    return 'Las cartas todavía no saben.'
     if (phase === 'enter')   return 'Algo está empezando a moverse.'
     if (phase === 'split')   return 'El mazo se abre.'
-    if (phase === 'shuffle') return 'Dejá que encuentren su lugar.'
+    if (phase === 'shuffle') return 'Deja que encuentren su lugar.'
     if (phase === 'reunite') return 'Lo que tenía que pasar, pasó.'
     if (phase === 'settle')  return 'El silencio vuelve.'
     return 'El silencio vuelve.'
@@ -1716,6 +1716,9 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
   const revealNext = () => {
     setRevealedCount(c => Math.min(c + 1, CELTIC_POSITION_COUNT))
   }
+  const revealPrev = () => {
+    setRevealedCount(c => Math.max(c - 1, 0))
+  }
 
   /* Contenido por carta — usado tanto en reveal como en reading */
   const slots = cards.map((slot, i) => ({
@@ -1791,6 +1794,7 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
                 slots={slots}
                 revealedCount={revealedCount}
                 onReveal={revealNext}
+                onUnreveal={revealPrev}
                 onCarta={onCarta}
               />
             </motion.div>
@@ -1822,34 +1826,62 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
 
 
 /* ---------- REVEAL STAGE — carta por carta ---------- */
-function CelticRevealStage({ slots, revealedCount, onReveal, onCarta }) {
-  const isComplete = revealedCount >= CELTIC_POSITION_COUNT
-  const currentIdx = Math.min(revealedCount, CELTIC_POSITION_COUNT - 1)
-  const currentSlot = slots[currentIdx]
-  const lastRevealedIdx = revealedCount - 1
+function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta }) {
+  const isComplete       = revealedCount >= CELTIC_POSITION_COUNT
+  const nextIdx          = Math.min(revealedCount, CELTIC_POSITION_COUNT - 1)
+  const nextSlot         = slots[nextIdx]
+  const lastRevealedIdx  = revealedCount - 1
   const lastRevealedSlot = lastRevealedIdx >= 0 ? slots[lastRevealedIdx] : null
+
+  /* La posición que se está mostrando (la última revelada si hay,
+     si no la próxima a revelar). Esto da contexto SIEMPRE. */
+  const focusSlot = lastRevealedSlot || nextSlot
+  const focusIdx  = lastRevealedSlot ? lastRevealedIdx : nextIdx
 
   return (
     <div className="w-full flex flex-col items-center">
-      {/* Indicador discreto de progreso */}
-      <div className="flex items-center gap-1.5 mb-8">
+      {/* === ENCABEZADO DE POSICIÓN — siempre visible === */}
+      <div className="text-center mb-5 px-4 max-w-[30rem]">
+        <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/55 font-medium mb-2">
+          Carta {Math.min(revealedCount + 1, CELTIC_POSITION_COUNT)} de {CELTIC_POSITION_COUNT}
+          {focusSlot && (
+            <span className="text-pergamino/35 mx-2">·</span>
+          )}
+          {focusSlot && (
+            <span className="text-dorado/75">{focusSlot.pos.role}</span>
+          )}
+        </p>
+        <p className="font-serif text-pergamino text-[1.05rem] md:text-[1.15rem] leading-[1.5] mb-1">
+          {focusSlot?.pos.label}
+        </p>
+        <p className="text-[0.6rem] tracking-[0.18em] text-pergamino/40 italic font-serif">
+          ({focusSlot?.pos.classical})
+        </p>
+      </div>
+
+      {/* === Barra de progreso visual === */}
+      <div className="flex items-center gap-1 mb-6">
         {Array.from({ length: CELTIC_POSITION_COUNT }).map((_, i) => (
           <span
             key={i}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              i < revealedCount ? 'bg-dorado/80 w-4' : 'bg-pergamino/20 w-2'
+            className={`h-[3px] rounded-full transition-all duration-500 ${
+              i === focusIdx
+                ? 'bg-dorado w-5'
+                : i < revealedCount
+                  ? 'bg-dorado/65 w-3'
+                  : 'bg-pergamino/15 w-3'
             }`}
           />
         ))}
       </div>
 
-      {/* Carta actual o reverso esperando tap */}
-      <div className="w-[200px] md:w-[230px] mb-6">
+      {/* === Carta actual o reverso esperando tap === */}
+      <div className="w-[210px] md:w-[230px] mb-6">
         {!isComplete && (
           <button
             onClick={onReveal}
             className="block w-full active:scale-[0.985] transition-transform"
-            aria-label={`Revelar carta ${revealedCount + 1} de ${CELTIC_POSITION_COUNT}`}
+            aria-label={`Revelar carta ${revealedCount + 1} de ${CELTIC_POSITION_COUNT}: ${nextSlot.pos.label}`}
           >
             <SlotMarco>
               {revealedCount === 0 || !lastRevealedSlot ? (
@@ -1867,7 +1899,7 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onCarta }) {
         )}
       </div>
 
-      {/* Whisper de la posición ya revelada (si hay) */}
+      {/* === Contenido de la carta revelada === */}
       <AnimatePresence mode="wait">
         {lastRevealedSlot && (
           <motion.div
@@ -1876,14 +1908,16 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onCarta }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="text-center max-w-[28rem] px-4 mb-8"
+            className="text-center max-w-[28rem] px-4 mb-6"
           >
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
-              {lastRevealedSlot.pos.label}
-            </p>
-            <p className="font-serif italic text-pergamino text-[1rem] leading-[1.85] mb-3">
+            <p className="font-serif italic text-pergamino text-[1.05rem] leading-[1.7] mb-3">
               {lastRevealedSlot.slot.card.nombre}
             </p>
+            {lastRevealedSlot.content?.essence && (
+              <p className="font-serif italic text-dorado/80 text-[0.9rem] mb-3">
+                {lastRevealedSlot.content.essence}
+              </p>
+            )}
             <p className="font-light text-pergamino/65 text-[0.88rem] leading-[1.85]">
               {composeCardWhisper(lastRevealedIdx, lastRevealedSlot.content)}
             </p>
@@ -1891,20 +1925,36 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onCarta }) {
         )}
       </AnimatePresence>
 
-      {/* CTA */}
-      {!isComplete && (
-        <p className="text-[0.6rem] tracking-[0.26em] uppercase text-dorado/55 font-medium mt-2">
-          {revealedCount === 0
-            ? 'Tocá la carta para empezar'
-            : revealedCount < CELTIC_POSITION_COUNT - 1
-              ? `Tocá para revelar la siguiente · ${revealedCount + 1} de ${CELTIC_POSITION_COUNT}`
-              : 'Tocá para la última'}
-        </p>
-      )}
+      {/* === Controles: volver / siguiente === */}
+      <div className="flex items-center gap-6 mt-2">
+        {revealedCount > 0 && !isComplete && (
+          <button
+            onClick={onUnreveal}
+            className="text-[0.58rem] tracking-[0.26em] uppercase text-pergamino/45 hover:text-dorado/75 font-medium transition-colors flex items-center gap-1.5"
+            aria-label="Volver a la carta anterior"
+          >
+            <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.4} />
+            <span>Anterior</span>
+          </button>
+        )}
+
+        {!isComplete && (
+          <button
+            onClick={onReveal}
+            className="text-[0.62rem] tracking-[0.28em] uppercase text-dorado/85 hover:text-dorado font-medium border-b border-dorado/40 hover:border-dorado/85 pb-1 transition-colors"
+          >
+            {revealedCount === 0
+              ? 'Revelar primera carta'
+              : revealedCount < CELTIC_POSITION_COUNT - 1
+                ? 'Revelar siguiente'
+                : 'Revelar última'}
+          </button>
+        )}
+      </div>
 
       {isComplete && (
         <p className="font-serif italic text-dorado/65 text-[0.95rem] mt-4 text-center max-w-[24rem]">
-          Todo está sobre la mesa. Esperá un momento.
+          Todo está sobre la mesa. Espera un momento.
         </p>
       )}
     </div>
@@ -1915,7 +1965,7 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onCarta }) {
 /* ---------- LECTURA COMPLETA — layout cross+staff + síntesis larga ---------- */
 function CelticFullReading({ slots, cards, onCarta, onReset }) {
   /* Compose la lectura larga con todas las cartas */
-  const reading = useMemo(() => composeCelticReading(cards.map(s => s.card)), [cards])
+  const reading = useMemo(() => composeCelticReading(slots), [slots])
   if (!reading) return null
 
   return (

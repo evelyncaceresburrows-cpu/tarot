@@ -105,7 +105,7 @@ function buildBridge(c1, c2, c3) {
     return 'Lo que se abre tiene aire de cierre. Algo se integra, aunque todavía estés caminando hacia ahí.'
   }
   if (a === 'La Muerte' || a === 'La Torre') {
-    return 'Partís desde un terreno que ya cambió. Lo que sigue se ordena con más calma si reconocés ese suelo nuevo.'
+    return 'Partís desde un terreno que ya cambió. Lo que sigue se ordena con más calma si reconoces ese suelo nuevo.'
   }
   if (a === 'El Ermitaño' || b === 'El Ermitaño' || c === 'El Ermitaño') {
     return 'En algún punto del recorrido, el silencio es lo que ordena. Mirar adentro acomoda lo que afuera parece urgente.'

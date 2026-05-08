@@ -36,7 +36,7 @@ export const minorArcanaCards = {
       suit:    'Copas',
       number:  'As',
       essence: 'Algo nuevo se está abriendo en el pecho.',
-      reading: 'Una emoción aparece y todavía no necesita explicarse. Lo que se está abriendo en vos es chico, tibio, recién llegado: pide ser recibido sin definirlo enseguida.',
+      reading: 'Una emoción aparece y todavía no necesita explicarse. Lo que se está abriendo en tú es chico, tibio, recién llegado: pide ser recibido sin definirlo enseguida.',
       synthesis: 'Lo que recién empieza no se nombra: se cuida.',
       prompt: '¿Qué emoción nueva está pidiendo lugar sin que tengas que justificarla?',
       themes: ['Apertura emocional', 'Inicio afectivo', 'Don', 'Receptividad'],
@@ -44,7 +44,7 @@ export const minorArcanaCards = {
         'Ganas inesperadas de acercarte a alguien',
         'Una emoción que aparece sin causa clara y te suaviza',
         'El comienzo tibio de un afecto, una intuición o una ternura propia',
-        'Sentir que algo en vos se está abriendo de nuevo'
+        'Sentir que algo en tú se está abriendo de nuevo'
       ],
       shadows: [
         'Apurar la emoción para nombrarla',
@@ -60,17 +60,17 @@ export const minorArcanaCards = {
       essence: 'Dos miradas que se reconocen sin esfuerzo.',
       reading: 'Hay un encuentro —con alguien o con una parte tuya— que no necesita ser explicado para entenderse. Lo que esta carta pide es presencia, no estrategia: estar ahí, mirar y dejarse mirar.',
       synthesis: 'Lo afectivo se encuentra cuando se reconoce, no cuando se conquista.',
-      prompt: '¿Con quién —incluso vos misma— te estás encontrando sin tener que actuar?',
+      prompt: '¿Con quién —incluso tú misma— te estás encontrando sin tener que actuar?',
       themes: ['Vínculo', 'Reciprocidad', 'Reconocimiento mutuo', 'Encuentro afectivo'],
       manifestations: [
         'Una conversación donde no hace falta llenar los silencios',
-        'Reconciliación silenciosa con alguien o con vos misma',
+        'Reconciliación silenciosa con alguien o con tú misma',
         'Sentir que en este vínculo no estás sosteniendo la balanza sola',
         'Un afecto que te calma sin pedirte nada'
       ],
       shadows: [
         'Confundir el encuentro con fusión',
-        'Esperar de afuera lo que solo vos podés darte',
+        'Esperar de afuera lo que solo tú puedes darte',
         'Rendirte demasiado rápido a la química'
       ]
     },
@@ -80,9 +80,9 @@ export const minorArcanaCards = {
       suit:    'Copas',
       number:  'Tres',
       essence: 'El gozo también necesita ser compartido.',
-      reading: 'Algo bueno está creciendo y se nota cuando lo compartís. Esta carta no es fiesta forzada: es ese momento donde el afecto entre varias personas se vuelve también una forma de descanso.',
+      reading: 'Algo bueno está creciendo y se nota cuando lo compartes. Esta carta no es fiesta forzada: es ese momento donde el afecto entre varias personas se vuelve también una forma de descanso.',
       synthesis: 'La alegría sostenida también se cuida en compañía.',
-      prompt: '¿Con quién querés celebrar lo que está saliendo bien, antes de pasar a lo siguiente?',
+      prompt: '¿Con quién quieres celebrar lo que está saliendo bien, antes de pasar a lo siguiente?',
       themes: ['Comunidad', 'Celebración', 'Afecto compartido', 'Gozo común'],
       manifestations: [
         'Un encuentro con amigas que repara más de lo esperado',
@@ -102,7 +102,7 @@ export const minorArcanaCards = {
       suit:    'Copas',
       number:  'Cuatro',
       essence: 'Hay algo enfrente que todavía no estás viendo.',
-      reading: 'Tenés más de lo que estás registrando. La saturación o la desgana están velando una posibilidad que ya está cerca: el problema no es lo que falta, es lo que no estás mirando.',
+      reading: 'Tienes más de lo que estás registrando. La saturación o la desgana están velando una posibilidad que ya está cerca: el problema no es lo que falta, es lo que no estás mirando.',
       synthesis: 'A veces lo que aburre, en realidad, no se está mirando.',
       prompt: '¿Qué te están ofreciendo que estás dejando pasar por costumbre?',
       themes: ['Saturación', 'Desinterés', 'Inercia emocional', 'Ofrenda no vista'],
@@ -110,7 +110,7 @@ export const minorArcanaCards = {
         'Tener todo y aún así sentir que algo no encaja',
         'Rechazar oportunidades por agotamiento, no por convicción',
         'Encerrarte en la rutina afectiva y no notar lo nuevo',
-        'Una propuesta que llega y no termina de aterrizar en vos'
+        'Una propuesta que llega y no termina de aterrizar en tú'
       ],
       shadows: [
         'Confundir desinterés con sabiduría',
@@ -137,7 +137,7 @@ export const minorArcanaCards = {
       shadows: [
         'Quedarte solo con lo que se cayó',
         'Hacer del duelo una identidad',
-        'Negar lo que aún tenés cerca'
+        'Negar lo que aún tienes cerca'
       ]
     },
 
@@ -148,18 +148,18 @@ export const minorArcanaCards = {
       essence: 'La ternura también vuelve.',
       reading: 'Algo del pasado afectivo está volviendo, no para repetirse sino para suavizar este momento. Esta carta es la memoria que cuida, el gesto chico que devuelve calor.',
       synthesis: 'Recordar también es una forma de cuidarte.',
-      prompt: '¿Qué memoria afectiva está volviendo a vos para hacerte bien?',
+      prompt: '¿Qué memoria afectiva está volviendo a tú para hacerte bien?',
       themes: ['Memoria', 'Inocencia recuperada', 'Gentileza', 'Vínculo del pasado'],
       manifestations: [
         'Acordarte de alguien que te cuidó y sentir gratitud sin nostalgia',
-        'Volver a un lugar querido y notar lo que cambió en vos',
+        'Volver a un lugar querido y notar lo que cambió en tú',
         'Una conversación tierna que repara algo viejo',
         'Hacer un gesto chico y noble por alguien sin esperar nada'
       ],
       shadows: [
         'Confundir nostalgia con presente',
         'Idealizar lo anterior',
-        'Quedar atrapada en una versión vieja de vos misma'
+        'Quedar atrapada en una versión vieja de tú misma'
       ]
     },
 
@@ -167,7 +167,7 @@ export const minorArcanaCards = {
     Siete: {
       suit:    'Copas',
       number:  'Siete',
-      essence: 'No todo lo que imaginás es lo que querés.',
+      essence: 'No todo lo que imaginás es lo que quieres.',
       reading: 'Hay muchas opciones flotando y no todas son reales. Esta carta no te apura a elegir: te pide separar lo que de verdad te llama de lo que solo te entretiene.',
       synthesis: 'Imaginar es necesario; quedarse imaginando, no.',
       prompt: '¿Cuál de las opciones que estás sosteniendo es la única que te interesa de verdad?',
@@ -175,7 +175,7 @@ export const minorArcanaCards = {
       manifestations: [
         'Tener varios deseos y postergarlos todos por no elegir',
         'Confundir lo deseable con lo verdaderamente tuyo',
-        'Sentirte saturada por posibilidades que no terminás de aterrizar',
+        'Sentirte saturada por posibilidades que no terminas de aterrizar',
         'Soñar despierta una salida sin moverte hacia ella'
       ],
       shadows: [
@@ -190,7 +190,7 @@ export const minorArcanaCards = {
       suit:    'Copas',
       number:  'Ocho',
       essence: 'Irse también es una forma de cuidarte.',
-      reading: 'Algo afectivo que llevás mucho tiempo sosteniendo ya no te alcanza. Esta carta no te apura a romper nada: te recuerda que quedarte por costumbre tampoco es lealtad.',
+      reading: 'Algo afectivo que llevas mucho tiempo sosteniendo ya no te alcanza. Esta carta no te apura a romper nada: te recuerda que quedarte por costumbre tampoco es lealtad.',
       synthesis: 'Lo que ya no nutre no se sostiene para no fallar.',
       prompt: '¿De qué situación afectiva ya partiste por dentro, aunque tu cuerpo siga ahí?',
       themes: ['Despedida', 'Madurez emocional', 'Soltar', 'Coraje afectivo'],
@@ -214,7 +214,7 @@ export const minorArcanaCards = {
       essence: 'Algo te alcanza, y eso ya es mucho.',
       reading: 'Hay un momento de plenitud emocional propia que pide ser reconocido sin tener que mostrarlo. Esta carta es la satisfacción callada, el contento que no necesita aplausos.',
       synthesis: 'Estar bien también puede no notarse desde afuera.',
-      prompt: '¿Qué tenés ahora que estás minimizando porque no se ve desde afuera?',
+      prompt: '¿Qué tienes ahora que estás minimizando porque no se ve desde afuera?',
       themes: ['Plenitud íntima', 'Reconocimiento propio', 'Gratitud', 'Saciedad emocional'],
       manifestations: [
         'Notar que estás mejor de lo que creías',
@@ -234,13 +234,13 @@ export const minorArcanaCards = {
       suit:    'Copas',
       number:  'Diez',
       essence: 'El amor también se construye despacio.',
-      reading: 'Algo afectivo se está completando: una familia elegida, un vínculo profundo, una etapa con quienes querés. Esta carta no romantiza: te muestra que el amor sostenido es paciencia que floreció.',
+      reading: 'Algo afectivo se está completando: una familia elegida, un vínculo profundo, una etapa con quienes quieres. Esta carta no romantiza: te muestra que el amor sostenido es paciencia que floreció.',
       synthesis: 'Lo afectivo no llega: se construye.',
       prompt: '¿Qué relaciones de tu vida están en su mejor versión gracias a algo que sostuviste con cuidado?',
       themes: ['Amor sostenido', 'Familia elegida', 'Plenitud vincular', 'Cierre afectivo de un ciclo'],
       manifestations: [
         'Sentir que tu red afectiva está cuidada',
-        'Una etapa donde vos y los tuyos están en buen lugar',
+        'Una etapa donde tú y los tuyos están en buen lugar',
         'Reconciliación con una historia familiar',
         'Un sentimiento de hogar interno'
       ],
@@ -261,7 +261,7 @@ export const minorArcanaCards = {
       prompt: '¿Qué emoción tenue estás por minimizar que merecería ser escuchada?',
       themes: ['Curiosidad afectiva', 'Mensaje emocional', 'Sensibilidad fresca', 'Intuición chica'],
       manifestations: [
-        'Una sensación nueva que no sabés bien cómo nombrar',
+        'Una sensación nueva que no sabes bien cómo nombrar',
         'Un gesto creativo o afectivo que aparece desde adentro',
         'Volver a permitirte una ternura que habías guardado',
         'Recibir una noticia chica que te cambia el clima del día'
@@ -284,7 +284,7 @@ export const minorArcanaCards = {
       themes: ['Movimiento afectivo', 'Iniciativa emocional', 'Cortejo', 'Ofrenda'],
       manifestations: [
         'Hacer un primer gesto en un vínculo',
-        'Decir lo que sentís sin garantías',
+        'Decir lo que sientes sin garantías',
         'Ir hacia alguien o hacia un proyecto con el corazón delante',
         'Recibir una invitación afectiva clara'
       ],
@@ -311,7 +311,7 @@ export const minorArcanaCards = {
         'Cuidar sin perder centro propio'
       ],
       shadows: [
-        'Cuidar tanto a otros que te olvidás de tu copa',
+        'Cuidar tanto a otros que te olvidas de tu copa',
         'Confundir empatía con cargar el peso ajeno',
         'Esconderte detrás de la sensibilidad para no decidir'
       ]
@@ -324,7 +324,7 @@ export const minorArcanaCards = {
       essence: 'La calma profunda también dirige.',
       reading: 'Hay una serenidad que no es indiferencia: la del que conoce sus emociones y no se las niega ni se desborda. Esta carta es maestría afectiva: estar claro sin estar frío.',
       synthesis: 'Conducir desde la emoción sin ser conducida por ella.',
-      prompt: '¿Dónde podrías sostener una decisión desde la calma —sin endurecerte, sin perderte en lo que sentís?',
+      prompt: '¿Dónde podrías sostener una decisión desde la calma —sin endurecerte, sin perderte en lo que sientes?',
       themes: ['Madurez afectiva', 'Calma firme', 'Liderazgo emocional', 'Integración'],
       manifestations: [
         'Tomar una decisión difícil sin perder ternura',
@@ -353,7 +353,7 @@ export const minorArcanaCards = {
       essence: 'Una claridad acaba de cortar la niebla.',
       reading: 'Algo que estaba confuso se volvió, de pronto, nítido. Esta carta no celebra ese filo: te invita a usarlo bien, porque la verdad recién aparecida también puede cortar de más si no se toma con cuidado.',
       synthesis: 'Ver claro es un comienzo, no un veredicto.',
-      prompt: '¿Qué viste hace poco que no podés des-saber, y qué vas a hacer con esa claridad?',
+      prompt: '¿Qué viste hace poco que no puedes des-saber, y qué vas a hacer con esa claridad?',
       themes: ['Claridad nueva', 'Verdad que aparece', 'Discernimiento', 'Inicio mental'],
       manifestations: [
         'Una idea que ordena algo que venías masticando hace tiempo',
@@ -379,7 +379,7 @@ export const minorArcanaCards = {
       themes: ['Decisión postergada', 'Tensión entre opciones', 'Negación funcional', 'Tregua frágil'],
       manifestations: [
         'Sostener una situación incómoda con tal de no nombrarla',
-        'Hacer como si dos opciones pesaran igual cuando ya sabés cuál pesa más',
+        'Hacer como si dos opciones pesaran igual cuando ya sabes cuál pesa más',
         'Mantener una calma aparente con tensión adentro',
         'Posponer una conversación que no se va a desarmar sola'
       ],
@@ -419,7 +419,7 @@ export const minorArcanaCards = {
       essence: 'Bajar la espada también es estrategia.',
       reading: 'Hay un momento donde seguir pensando ya no produce. Esta carta te invita a una tregua honesta: silencio, descanso, una pausa que no es derrota sino recuperación de filo.',
       synthesis: 'La mente también se afila descansando.',
-      prompt: '¿Qué pensamiento llevás dándole vueltas que se calmaría si lo dejaras quieto?',
+      prompt: '¿Qué pensamiento llevas dándole vueltas que se calmaría si lo dejaras quieto?',
       themes: ['Tregua', 'Recuperación mental', 'Silencio elegido', 'Convalecencia'],
       manifestations: [
         'Tomarte un día sin tomar decisiones',
@@ -485,7 +485,7 @@ export const minorArcanaCards = {
       essence: 'Moverse sin mostrarse completa también es una elección.',
       reading: 'Hay un movimiento —tuyo o ajeno— sucediendo a media luz: lo que se hace no es exactamente lo que se dice. Esta carta no señala traición; te pide mirar qué se está reservando, qué se está protegiendo, y a qué costo.',
       synthesis: 'Lo que se hace en silencio también deja huella.',
-      prompt: '¿Qué estás haciendo en privado que no termina de coincidir con lo que mostrás?',
+      prompt: '¿Qué estás haciendo en privado que no termina de coincidir con lo que muestras?',
       themes: ['Evasión', 'Estrategia', 'Ocultamiento', 'Movimiento parcial'],
       manifestations: [
         'Hacer un cambio antes de avisarlo',
@@ -505,15 +505,15 @@ export const minorArcanaCards = {
       suit:    'Espadas',
       number:  'Ocho',
       essence: 'Las paredes también pueden estar adentro.',
-      reading: 'Hay una historia que te estás contando como si fuera la única posible. La sensación de encierro es real, pero las cuerdas que la sostienen son narrativas: cosas que pensás sobre vos que ya no necesitan ser ciertas.',
+      reading: 'Hay una historia que te estás contando como si fuera la única posible. La sensación de encierro es real, pero las cuerdas que la sostienen son narrativas: cosas que pensás sobre tú que ya no necesitan ser ciertas.',
       synthesis: 'Lo que parece imposible, a veces, solo no se ha mirado dos veces.',
-      prompt: '¿Qué te estás diciendo sobre vos misma como si fuera ley, y no es?',
+      prompt: '¿Qué te estás diciendo sobre tú misma como si fuera ley, y no es?',
       themes: ['Encierro mental', 'Narrativa interna', 'Imposibilidad percibida', 'Mirada estrecha'],
       manifestations: [
-        'Repetirte que no podés cuando todavía no probaste',
+        'Repetirte que no puedes cuando todavía no probaste',
         'Sentir que no hay salida en una situación que tiene varias',
-        'Pedir permiso para algo que ya podés decidir sola',
-        'Quedar inmovilizada por una versión vieja de vos misma'
+        'Pedir permiso para algo que ya puedes decidir sola',
+        'Quedar inmovilizada por una versión vieja de tú misma'
       ],
       shadows: [
         'Identificarte con la víctima del propio relato',
@@ -571,9 +571,9 @@ export const minorArcanaCards = {
       suit:    'Espadas',
       number:  'Sota',
       essence: 'Querer entender también es una forma de respeto.',
-      reading: 'Hay una curiosidad afilada en vos que está observando más de lo que dice. Esta carta te invita a hacer preguntas con cuidado: la mente nueva todavía no domina su filo y conviene usarlo para abrir, no para herir.',
+      reading: 'Hay una curiosidad afilada en tú que está observando más de lo que dice. Esta carta te invita a hacer preguntas con cuidado: la mente nueva todavía no domina su filo y conviene usarlo para abrir, no para herir.',
       synthesis: 'Preguntar bien es una manera de cuidar.',
-      prompt: '¿Qué pregunta tenés rondando que merece ser hecha en voz alta, sin agresión y sin disculpas?',
+      prompt: '¿Qué pregunta tienes rondando que merece ser hecha en voz alta, sin agresión y sin disculpas?',
       themes: ['Curiosidad mental', 'Vigilancia', 'Ganas de entender', 'Pregunta nueva'],
       manifestations: [
         'Notar un detalle que otros pasaron por alto',
@@ -601,7 +601,7 @@ export const minorArcanaCards = {
         'Apurar una decisión que pedía conversación',
         'Decir una verdad sin medir el momento',
         'Ir de frente a un conflicto que se podría haber rodeado',
-        'Defender algo con tanta convicción que olvidás escuchar'
+        'Defender algo con tanta convicción que olvidas escuchar'
       ],
       shadows: [
         'Confundir velocidad con coraje',
@@ -665,13 +665,13 @@ export const minorArcanaCards = {
     As: {
       suit:    'Bastos',
       number:  'As',
-      essence: 'Algo en vos quiere encenderse.',
+      essence: 'Algo en tú quiere encenderse.',
       reading: 'Hay una idea, un deseo o una vocación nueva latiendo en el cuerpo. Esta carta no te pide certezas: te pide aceptar que algo quiere salir, y darle un primer gesto, aunque sea chico.',
       synthesis: 'El impulso recién llegado no se planea: se enciende.',
       prompt: '¿Qué chispa estás postergando porque todavía no tiene forma terminada?',
       themes: ['Impulso nuevo', 'Chispa creativa', 'Vocación que asoma', 'Vitalidad'],
       manifestations: [
-        'Una idea que volvés a pensar varias veces en el mismo día',
+        'Una idea que vuelves a pensar varias veces en el mismo día',
         'Ganas físicas de empezar algo',
         'Sentir un proyecto, un viaje o un cambio empujando desde adentro',
         'Una creatividad que vuelve después de mucho silencio'
@@ -687,7 +687,7 @@ export const minorArcanaCards = {
     Dos: {
       suit:    'Bastos',
       number:  'Dos',
-      essence: 'Tenés el mundo en la mano y todavía no sabés qué hacer con él.',
+      essence: 'Tienes el mundo en la mano y todavía no sabes qué hacer con él.',
       reading: 'Hay un punto donde ya conseguiste lo conocido y se asoma una etapa más grande. Esta carta no te empuja a saltar: te pide mirar el horizonte y reconocer que ya superaste el territorio anterior.',
       synthesis: 'El próximo paso no se decide rápido: se elige con la mirada larga.',
       prompt: '¿Qué territorio nuevo estás mirando desde lejos sin animarte a pisar todavía?',
@@ -756,7 +756,7 @@ export const minorArcanaCards = {
       essence: 'Demasiada energía en el mismo cuarto se choca.',
       reading: 'Hay una fricción —con otros o adentro tuyo— que no es batalla seria, pero gasta. Esta carta no te pide ganar: te pide ordenar el ruido, ver qué fuego es real y qué fuego es ego peleando con ego.',
       synthesis: 'No todo choque pide pelea; algunos solo piden pausa.',
-      prompt: '¿Qué discusión estás sosteniendo donde nadie está escuchando, ni siquiera vos?',
+      prompt: '¿Qué discusión estás sosteniendo donde nadie está escuchando, ni siquiera tú?',
       themes: ['Fricción', 'Competencia', 'Energía chocando', 'Exceso de impulso'],
       manifestations: [
         'Una conversación grupal donde todos quieren tener razón',
@@ -783,7 +783,7 @@ export const minorArcanaCards = {
       manifestations: [
         'Recibir un elogio que te cuesta aceptar',
         'Que un proyecto tuyo sea valorado públicamente',
-        'Que alguien te diga "lo lograste" antes que vos',
+        'Que alguien te diga "lo lograste" antes que tú',
         'Subir un peldaño y sentir que estaba ahí esperándote'
       ],
       shadows: [
@@ -886,12 +886,12 @@ export const minorArcanaCards = {
       suit:    'Bastos',
       number:  'Sota',
       essence: 'Las ganas también te dicen por dónde.',
-      reading: 'Hay un entusiasmo fresco en vos pidiendo movimiento. Esta carta no te apura a comprometerte: te invita a curiosear, probar, dejar que el cuerpo y el deseo te muestren un camino antes de decidir si querés sostenerlo.',
+      reading: 'Hay un entusiasmo fresco en tú pidiendo movimiento. Esta carta no te apura a comprometerte: te invita a curiosear, probar, dejar que el cuerpo y el deseo te muestren un camino antes de decidir si quieres sostenerlo.',
       synthesis: 'El deseo nuevo merece curiosidad antes que plan.',
       prompt: '¿Qué te está convocando que merece, al menos, una primera vuelta de exploración?',
       themes: ['Curiosidad activa', 'Entusiasmo', 'Deseo de explorar', 'Mensajero del fuego'],
       manifestations: [
-        'Apuntarte a algo que no sabés todavía si te va',
+        'Apuntarte a algo que no sabes todavía si te va',
         'Una invitación inesperada que te tienta',
         'Un proyecto chiquito que te entusiasma desproporcionadamente',
         'Tener ganas de hacer y todavía no saber qué exactamente'
@@ -941,7 +941,7 @@ export const minorArcanaCards = {
         'Inspirar simplemente por estar presente'
       ],
       shadows: [
-        'Sentir que tenés que brillar todo el tiempo',
+        'Sentir que tienes que brillar todo el tiempo',
         'Cuidar el fuego ajeno y olvidar el propio',
         'Confundir magnetismo con tener que agradar'
       ]
@@ -1003,7 +1003,7 @@ export const minorArcanaCards = {
       suit:    'Oros',
       number:  'Dos',
       essence: 'Sostener dos cosas también es un oficio.',
-      reading: 'Hay un equilibrio en juego entre dos demandas concretas y conviene encontrar un ritmo, no una solución definitiva. Esta carta no te pide ordenar todo: te pide jugar con lo que tenés sin perder pie.',
+      reading: 'Hay un equilibrio en juego entre dos demandas concretas y conviene encontrar un ritmo, no una solución definitiva. Esta carta no te pide ordenar todo: te pide jugar con lo que tienes sin perder pie.',
       synthesis: 'El equilibrio no se logra; se sostiene.',
       prompt: '¿En qué dos cosas estás haciendo malabarismo y dónde podrías aliviar el peso de alguna?',
       themes: ['Malabarismo cotidiano', 'Doble demanda', 'Ritmo', 'Adaptación práctica'],
@@ -1025,7 +1025,7 @@ export const minorArcanaCards = {
       suit:    'Oros',
       number:  'Tres',
       essence: 'Lo bien hecho también pide otras manos.',
-      reading: 'Hay un trabajo en curso que está pasando del esfuerzo individual al esfuerzo compartido. Esta carta valora el oficio: lo que sabés hacer encuentra a otros que aportan lo que no sabés todavía, y juntos algo se construye distinto.',
+      reading: 'Hay un trabajo en curso que está pasando del esfuerzo individual al esfuerzo compartido. Esta carta valora el oficio: lo que sabes hacer encuentra a otros que aportan lo que no sabes todavía, y juntos algo se construye distinto.',
       synthesis: 'Construir bien también es saber pedir.',
       prompt: '¿Con quién podrías construir lo que no estás logrando sola?',
       themes: ['Colaboración', 'Oficio compartido', 'Reconocimiento del trabajo', 'Saber pedir'],
@@ -1048,7 +1048,7 @@ export const minorArcanaCards = {
       number:  'Cuatro',
       essence: 'Lo que abrazás muy fuerte deja de respirar.',
       reading: 'Hay algo logrado que estás sosteniendo con demasiado puño. La estabilidad importa, pero apretada en exceso se convierte en miedo: lo que ya es tuyo no se cuida cerrándolo, se cuida usándolo bien.',
-      synthesis: 'Cuidar no es retener; es dejar respirar lo que tenés.',
+      synthesis: 'Cuidar no es retener; es dejar respirar lo que tienes.',
       prompt: '¿Qué estás apretando con miedo cuando, en realidad, ya es tuyo?',
       themes: ['Apego', 'Miedo a perder', 'Conservación rígida', 'Cerrazón'],
       manifestations: [
@@ -1076,7 +1076,7 @@ export const minorArcanaCards = {
       manifestations: [
         'Sentirte afuera de un grupo, una mesa o una conversación',
         'Una etapa de cansancio donde el cuerpo y el ánimo bajan a la vez',
-        'Mirar lo que no tenés y olvidar lo que sí',
+        'Mirar lo que no tienes y olvidar lo que sí',
         'Pasar de largo una ayuda que tenías cerca por orgullo o agotamiento'
       ],
       shadows: [
@@ -1098,12 +1098,12 @@ export const minorArcanaCards = {
       manifestations: [
         'Aceptar una ayuda concreta que necesitabas',
         'Ofrecer algo tuyo —tiempo, oficio, dinero— sin sacrificarte',
-        'Notar que en una relación o trabajo das mucho más de lo que recibís',
+        'Notar que en una relación o trabajo das mucho más de lo que recibes',
         'Pedir lo que te corresponde con palabras claras'
       ],
       shadows: [
         'Dar para sentirte indispensable',
-        'Recibir solo si lo podés devolver enseguida',
+        'Recibir solo si lo puedes devolver enseguida',
         'Confundir generosidad con perderte de vista'
       ]
     },
@@ -1157,13 +1157,13 @@ export const minorArcanaCards = {
       suit:    'Oros',
       number:  'Nueve',
       essence: 'Lo construido en silencio también es tuyo.',
-      reading: 'Hay una autonomía concreta que ya conseguiste: tu espacio, tu ritmo, tu capacidad de sostenerte sola. Esta carta no es soledad triste: es el jardín propio donde finalmente te podés mover sin pedir permiso.',
+      reading: 'Hay una autonomía concreta que ya conseguiste: tu espacio, tu ritmo, tu capacidad de sostenerte sola. Esta carta no es soledad triste: es el jardín propio donde finalmente te puedes mover sin pedir permiso.',
       synthesis: 'La independencia bien construida también es ternura.',
       prompt: '¿Qué estás disfrutando sola que merece reconocer como un logro tuyo?',
       themes: ['Autonomía', 'Jardín propio', 'Disfrute sereno', 'Suficiencia'],
       manifestations: [
         'Disfrutar tu casa, tu rutina o tu cuerpo sin necesitar audiencia',
-        'Sentir que ya podés sostenerte sola y eso te alivia',
+        'Sentir que ya puedes sostenerte sola y eso te alivia',
         'Un momento de placer sensorial sin compañía y sin culpa',
         'Reconocer todo lo que armaste sin que nadie más lo sepa del todo'
       ],
@@ -1273,8 +1273,8 @@ export const minorArcanaCards = {
       themes: ['Estabilidad', 'Construcción sólida', 'Dominio práctico', 'Generosidad estructural'],
       manifestations: [
         'Manejar tu trabajo o tus recursos con criterio claro',
-        'Sostener un proyecto que da fruto a otros, no solo a vos',
-        'Compartir lo que sabés con quien recién empieza',
+        'Sostener un proyecto que da fruto a otros, no solo a tú',
+        'Compartir lo que sabes con quien recién empieza',
         'Tomar decisiones materiales con calma y visión'
       ],
       shadows: [

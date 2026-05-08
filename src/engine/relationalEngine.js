@@ -358,7 +358,7 @@ const SUIT_VOICE = {
   },
   Bastos:  {
     2: ['Lectura centrada en el movimiento: impulsos, deseos, proyectos en marcha.'],
-    3: ['Las tres cartas laten en lo activo: el hilo principal es lo que querés mover.']
+    3: ['Las tres cartas laten en lo activo: el hilo principal es lo que quieres mover.']
   },
   Oros:    {
     2: ['Lectura centrada en lo concreto: cuerpo, oficio, lo que se construye en el tiempo.'],

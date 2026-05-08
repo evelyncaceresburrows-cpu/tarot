@@ -27,7 +27,7 @@ import { enrichCard, isMajor } from './cardEnergetics.js'
  *  · classical → nombre tradicional Rider-Waite (referencia interna)
  *  · label     → cómo lo lee la usuaria (lenguaje ADE)
  *  · role      → función narrativa de la posición en la cruz
- *  · whisper   → línea breve de apertura cuando la carta cae acá
+ *  · whisper   → línea breve de apertura cuando la carta cae aquí
  *  · prompt    → pregunta abierta que la posición despierta
  * ===================================================================*/
 
@@ -38,7 +38,7 @@ export const CELTIC_POSITIONS = [
     classical: 'Situación actual',
     label:     'Lo que está latiendo ahora',
     role:      'Presencia',
-    whisper:   'Acá, en el centro, está lo que se está manifestando ahora mismo.',
+    whisper:   'Aquí, en el centro, está lo que se está manifestando ahora mismo.',
     prompt:    '¿Qué está pidiendo ser visto sin interpretación?'
   },
   {
@@ -90,9 +90,9 @@ export const CELTIC_POSITIONS = [
     index: 6,
     key:       'self',
     classical: 'El consultante',
-    label:     'Cómo estás vos en este momento',
+    label:     'Cómo estás tú en este momento',
     role:      'Identidad',
-    whisper:   'Acá te ves a vos, tal como llegás a esta lectura — no como te ves siempre.',
+    whisper:   'Aquí te ves a tú, tal como llegás a esta lectura — no como te ves siempre.',
     prompt:    '¿Desde qué versión tuya estás mirando esto?'
   },
   {
@@ -108,9 +108,9 @@ export const CELTIC_POSITIONS = [
     index: 8,
     key:       'inner',
     classical: 'Esperanzas y miedos',
-    label:     'Lo que una parte de vos intenta proteger',
+    label:     'Lo que una parte de tú intenta proteger',
     role:      'Sombra interna',
-    whisper:   'Acá vive la mezcla rara entre lo que querés y lo que temés que pase.',
+    whisper:   'Aquí vive la mezcla rara entre lo que quieres y lo que temés que pase.',
     prompt:    '¿Qué parte tuya está tratando de cuidar algo, aunque no lo nombres así?'
   },
   {
@@ -145,7 +145,7 @@ export function composeCardWhisper(positionIndex, cardContent) {
   if (!pos || !cardContent) return ''
   const essence = (cardContent.essence || '').trim().replace(/\.$/, '')
   if (!essence) return pos.whisper
-  return `${pos.whisper} Acá: ${essence.charAt(0).toLowerCase()}${essence.slice(1)}.`
+  return `${pos.whisper} Aquí: ${essence.charAt(0).toLowerCase()}${essence.slice(1)}.`
 }
 
 
@@ -209,7 +209,7 @@ function detectDirectionPull(enriched) {
 /* Detectar tensiones simbólicas concretas: pares de cartas en
    posiciones específicas que dialogan/chocan. Ej: si la carta del
    pasado y la del futuro pertenecen al mismo palo, hay continuidad.
-   Si "lo que querés" (crown) y "lo que rodea" (environment) tienen
+   Si "lo que quieres" (crown) y "lo que rodea" (environment) tienen
    temperatura opuesta, hay contradicción de mundo. */
 function detectSymbolicTensions(enriched) {
   const tensions = []
@@ -261,7 +261,7 @@ const CLIMATE_LINES = {
   ],
   strong: [
     'Esta lectura tiene varios capítulos abiertos a la vez. No es una pregunta cualquiera: es una ventana a algo grande.',
-    'La fuerza de los Mayores acá te pide leer esto despacio. No es ruido del día.'
+    'La fuerza de los Mayores aquí te pide leer esto despacio. No es ruido del día.'
   ],
   present: [
     'Hay un par de Arcanos Mayores que enmarcan la lectura: algo importante te atraviesa, sin ser todo.',
@@ -304,8 +304,8 @@ const SUIT_LINES = {
 
 const TENSION_LINES = {
   'continuity-of-suit':       'Algo del territorio del pasado vuelve en el horizonte cercano: hay una historia que todavía está terminando de cerrarse.',
-  'aspiration-vs-result':     'Lo que aspirás y hacia donde se inclina la lectura no tienen el mismo aire. Conviene mirar si lo que querés es realmente lo que estás pidiendo, o si lo que pedís dice algo distinto de lo que querés.',
-  'self-vs-environment':      'La dirección interna que traés y la del entorno no coinciden: parte de la fricción que sentís no es tuya, es el desfase entre vos y lo que rodea.',
+  'aspiration-vs-result':     'Lo que aspirás y hacia donde se inclina la lectura no tienen el mismo aire. Conviene mirar si lo que quieres es realmente lo que estás pidiendo, o si lo que pides dice algo distinto de lo que quieres.',
+  'self-vs-environment':      'La dirección interna que traés y la del entorno no coinciden: parte de la fricción que sientes no es tuya, es el desfase entre tú y lo que rodea.',
   'major-crossing':           'Lo que cruza la lectura es un Arcano Mayor: la fricción no es del día, es del capítulo.',
   'inner-fear-vs-warm-horizon':'Lo que te pesa por dentro está más tenso que lo que la lectura inclina hacia afuera. Probablemente estás cargando con un miedo que la realidad no está confirmando.'
 }
@@ -323,71 +323,240 @@ function hashFor(cards) {
 }
 
 
-export function composeCelticReading(cards) {
-  if (!cards || cards.length < 10) return null
-  const enriched = cards.slice(0, 10).map(c => enrichCard(c))
-  const seed = hashFor(cards)
+/* =====================================================================
+ * 5. CONSTRUCCIÓN POR BLOQUES NARRATIVOS
+ *
+ *  La lectura se monta en 5 movimientos que crecen en profundidad:
+ *
+ *    OPENING — apertura general (tono emocional dominante)
+ *    BLOQUE 1 — cartas 1-2-3: situación · tensión · aspiración
+ *    BLOQUE 2 — cartas 4-5-6: raíz · pasado próximo · futuro próximo
+ *    BLOQUE 3 — cartas 7-8-9: cómo llegas · entorno · sombra interna
+ *    CLOSING  — carta 10 + síntesis emocional total
+ *
+ *  Cada bloque RELACIONA las 3 cartas, no las concatena. La sintaxis
+ *  cambia con la energía dominante del trío para que no suene a
+ *  template.
+ * ===================================================================*/
 
-  const majorWeight     = detectMajorWeight(enriched)
-  const suitDominance   = detectSuitDominance(enriched)
-  const tempBalance     = detectTempBalance(enriched)
-  const directionPull   = detectDirectionPull(enriched)
-  const tensions        = detectSymbolicTensions(enriched)
+function lowerFirst(s) {
+  if (!s) return ''
+  const t = s.trim().replace(/\.$/, '')
+  return t.charAt(0).toLowerCase() + t.slice(1)
+}
 
-  /* MOVIMIENTO A · CLIMA */
-  const climateLine = pickSeeded(CLIMATE_LINES[majorWeight], seed)
-  const tempLine    = TEMP_LINES[tempBalance] || ''
-  const dirLine     = DIRECTION_LINES[directionPull] || ''
+function essenceOf(card, content) {
+  return lowerFirst(content?.essence) || lowerFirst(card?.nombre) || ''
+}
 
-  const climate = [climateLine, tempLine, dirLine].filter(Boolean).join(' ')
+/* ---------- OPENING — apertura general --------------------------- */
 
-  /* MOVIMIENTO B · ARCO entre pasado y futuro */
-  const past = enriched[4]
-  const future = enriched[5]
-  let arc = ''
-  if (past && future) {
-    if (past.energy.direction === 'outward' && future.energy.direction === 'inward') {
-      arc = 'Lo que se aleja venía manifestándose afuera; lo que se aproxima pide más recogimiento.'
-    } else if (past.energy.direction === 'inward' && future.energy.direction === 'outward') {
-      arc = 'Lo que se aleja era íntimo; lo que se aproxima pide aterrizar en algo concreto.'
-    } else if (past.energy.temperature === 'tense' && future.energy.temperature === 'warm') {
-      arc = 'Lo que queda atrás traía una tensión que el horizonte cercano empieza a dejar respirar.'
-    } else if (past.energy.temperature === 'warm' && future.energy.temperature === 'cold') {
-      arc = 'Lo que se aleja era cálido; lo que se aproxima trae una claridad más fría — no peor, más lúcida.'
-    } else {
-      arc = 'El pasado próximo y el futuro próximo dialogan en un mismo registro: la historia está siguiendo su línea.'
-    }
+function buildOpening(majorWeight, tempBalance, directionPull, seed) {
+  const climate = pickSeeded(CLIMATE_LINES[majorWeight], seed)
+  const tempL   = TEMP_LINES[tempBalance] || ''
+  const dirL    = DIRECTION_LINES[directionPull] || ''
+  return [climate, tempL, dirL].filter(Boolean).join(' ')
+}
+
+
+/* ---------- BLOQUE 1 — situación · tensión · aspiración ----------
+ *  Presente (1) + Cruz (2) + Corona (3)
+ *  La narrativa: "lo que se manifiesta · lo que da fricción · lo que
+ *  se asoma como horizonte mental".
+ * ----------------------------------------------------------------- */
+
+function buildBlock1(s1, s2, s3) {
+  const e1 = essenceOf(s1.slot.card, s1.content)
+  const e2 = essenceOf(s2.slot.card, s2.content)
+  const e3 = essenceOf(s3.slot.card, s3.content)
+
+  const c2Major  = s2.content?.isMajor
+  const tempEq12 = s1.content && s2.content
+    && (enrichCard(s1.slot.card).energy.temperature === enrichCard(s2.slot.card).energy.temperature)
+  const tempEq13 = s1.content && s3.content
+    && (enrichCard(s1.slot.card).energy.temperature === enrichCard(s3.slot.card).energy.temperature)
+
+  /* Frase apertura — varía si la cruz es Mayor (capítulo) o Menor (escena) */
+  const opener = c2Major
+    ? `En el centro de la escena, ${e1}. Cruzándolo aparece algo más grande, una bisagra: ${e2}.`
+    : `En el centro, ${e1}. Lo que tensiona el momento se le superpone, casi como sombra: ${e2}.`
+
+  /* Frase aspiración — varía si corona armoniza o contradice el centro */
+  let coronation
+  if (tempEq13) {
+    coronation = `Y por encima, lo que se asoma como aspiración respira en el mismo aire: ${e3}.`
+  } else {
+    coronation = `Por encima, lo que se asoma como aspiración pide otra cosa: ${e3}.`
   }
 
-  /* MOVIMIENTO C · ECO de tensiones simbólicas + voz de palo */
-  const echoLines = []
+  return `${opener} ${coronation}`
+}
+
+
+/* ---------- BLOQUE 2 — raíz · pasado · futuro -------------------
+ *  Base (4) + Pasado próximo (5) + Futuro próximo (6)
+ *  La narrativa: "lo que sostiene desde abajo · lo que se va · lo
+ *  que llega". Es el ARCO del tiempo y el movimiento interno.
+ * ---------------------------------------------------------------- */
+
+function buildBlock2(s4, s5, s6) {
+  const e4 = essenceOf(s4.slot.card, s4.content)
+  const e5 = essenceOf(s5.slot.card, s5.content)
+  const e6 = essenceOf(s6.slot.card, s6.content)
+
+  const dirPast = enrichCard(s5.slot.card).energy.direction
+  const dirFut  = enrichCard(s6.slot.card).energy.direction
+  const tempPast = enrichCard(s5.slot.card).energy.temperature
+  const tempFut  = enrichCard(s6.slot.card).energy.temperature
+
+  /* Frase raíz */
+  const root = `Debajo de todo eso, lo que sostiene esta historia en silencio: ${e4}.`
+
+  /* Frase arco entre pasado y futuro — varía por dirección y temperatura */
+  let arc
+  if (dirPast === 'outward' && dirFut === 'inward') {
+    arc = `Lo que se aleja venía manifestándose afuera —${e5}—; lo que llega pide volver a habitar lo íntimo —${e6}—.`
+  } else if (dirPast === 'inward' && dirFut === 'outward') {
+    arc = `Lo que se aleja era íntimo —${e5}—; lo que se aproxima pide aterrizar en lo concreto —${e6}—.`
+  } else if (tempPast === 'tense' && tempFut === 'warm') {
+    arc = `Lo que se aleja traía tensión —${e5}—; lo que se acerca empieza a dejar respirar —${e6}—.`
+  } else if (tempPast === 'warm' && tempFut === 'cold') {
+    arc = `Lo que se aleja era cálido —${e5}—; lo que llega trae una claridad más fría, más lúcida —${e6}—.`
+  } else if (tempPast === tempFut && dirPast === dirFut) {
+    arc = `El pasado próximo y el futuro cercano comparten registro: lo que se va —${e5}— y lo que llega —${e6}— hablan el mismo idioma. La historia sigue su línea.`
+  } else {
+    arc = `Lo que se va: ${e5}. Lo que se aproxima: ${e6}. Entre ambos, un movimiento que todavía está terminando de decidir su forma.`
+  }
+
+  return `${root} ${arc}`
+}
+
+
+/* ---------- BLOQUE 3 — identidad · entorno · sombra interna -----
+ *  Self (7) + Entorno (8) + Esperanzas/Miedos (9)
+ *  La narrativa: "cómo llegas · qué hay alrededor · qué cuidas por
+ *  dentro". Es la lectura humana, los vínculos y el deseo.
+ * ---------------------------------------------------------------- */
+
+function buildBlock3(s7, s8, s9) {
+  const e7 = essenceOf(s7.slot.card, s7.content)
+  const e8 = essenceOf(s8.slot.card, s8.content)
+  const e9 = essenceOf(s9.slot.card, s9.content)
+
+  const dirSelf = enrichCard(s7.slot.card).energy.direction
+  const dirEnv  = enrichCard(s8.slot.card).energy.direction
+  const tempInner = enrichCard(s9.slot.card).energy.temperature
+  const tempSelf  = enrichCard(s7.slot.card).energy.temperature
+
+  /* Frase del self */
+  const selfLine = `Llegas a esta lectura con esta versión tuya: ${e7}.`
+
+  /* Frase del entorno — varía si choca con el self */
+  let envLine
+  if (dirSelf !== dirEnv) {
+    envLine = `Y alrededor, un aire que no acompaña del todo: ${e8}.`
+  } else {
+    envLine = `Lo que rodea, sin ser tuyo, se mueve en el mismo registro: ${e8}.`
+  }
+
+  /* Frase del inner — varía por contraste con el self */
+  let innerLine
+  if (tempInner === 'tense' && tempSelf !== 'tense') {
+    innerLine = `Y por dentro, una parte tuya está cuidando algo más tenso de lo que tu propia versión deja ver: ${e9}.`
+  } else if (tempInner === tempSelf) {
+    innerLine = `Y lo que esa parte tuya intenta proteger se mueve en el mismo color: ${e9}.`
+  } else {
+    innerLine = `Y en lo más íntimo, una mezcla rara entre lo que quieres y lo que temes: ${e9}.`
+  }
+
+  return `${selfLine} ${envLine} ${innerLine}`
+}
+
+
+/* ---------- CLOSING — horizonte · síntesis · pregunta -----------
+ *  Carta 10 + síntesis relacional + pregunta de cierre.
+ *  Aquí cosemos las tensiones simbólicas detectadas a lo largo de
+ *  la lectura — cuando aparecen — para que el cierre tenga densidad.
+ * ---------------------------------------------------------------- */
+
+function buildClosing(s10, tensions, suitDominance) {
+  const e10 = essenceOf(s10.slot.card, s10.content)
+
+  /* Frase del horizonte */
+  let horizon = `Y el horizonte hacia el que todo esto se inclina: ${e10}.`
+
+  /* Si el horizonte contiene un prompt propio (carta escrita), lo
+     guardamos para la pregunta final. Si no, tendremos un fallback. */
+
+  /* Coser tensiones simbólicas como capa de profundidad */
+  const tensionParts = []
   if (suitDominance) {
-    const sl = SUIT_LINES[suitDominance.suit]
-    if (sl) echoLines.push(sl)
+    tensionParts.push(SUIT_LINES[suitDominance.suit] || '')
   }
-  /* Tomar máximo 2 tensiones para no saturar */
   for (const t of tensions.slice(0, 2)) {
     const tl = TENSION_LINES[t.type]
-    if (tl) echoLines.push(tl)
+    if (tl) tensionParts.push(tl)
   }
-  const echo = echoLines.join(' ')
-
-  /* Pregunta de cierre — viene de la posición horizonte si la carta tiene prompt,
-     si no, una pregunta abierta. */
-  const horizonContent = cards[9]
-  const closing = horizonContent?.prompt
-    ? horizonContent.prompt
-    : '¿Qué pasaría si dejaras que esta lectura sea cierta por un día?'
+  const tensionLine = tensionParts.filter(Boolean).join(' ')
 
   return {
-    /* Tres movimientos para que la UI pueda mostrarlos como párrafos
-       separados con respiración entre ellos */
-    climate,
-    arc,
-    echo,
-    closing,
+    horizonLine: horizon,
+    synthesis: tensionLine
+  }
+}
 
-    /* Diagnóstico crudo (debug / UI condicional) */
+
+/* =====================================================================
+ * 6. EXPORT — composer principal
+ * ===================================================================*/
+
+/**
+ * Componer una lectura completa de Cruz Celta.
+ *
+ * @param {Array} slots — array de 10 elementos con shape:
+ *                        { slot: { card, reversed }, content }
+ *                        El caller (componente UI) hace la resolución
+ *                        de contenido vía contentBridge.findContentByCard.
+ * @returns lectura en 5 movimientos + diagnosis.
+ */
+export function composeCelticReading(slots) {
+  if (!slots || slots.length < 10) return null
+
+  const cards    = slots.slice(0, 10).map(s => s.slot.card)
+  const enriched = cards.map(c => enrichCard(c))
+  const seed     = hashFor(cards)
+
+  const majorWeight   = detectMajorWeight(enriched)
+  const suitDominance = detectSuitDominance(enriched)
+  const tempBalance   = detectTempBalance(enriched)
+  const directionPull = detectDirectionPull(enriched)
+  const tensions      = detectSymbolicTensions(enriched)
+
+  const opening = buildOpening(majorWeight, tempBalance, directionPull, seed)
+  const block1  = buildBlock1(slots[0], slots[1], slots[2])
+  const block2  = buildBlock2(slots[3], slots[4], slots[5])
+  const block3  = buildBlock3(slots[6], slots[7], slots[8])
+  const { horizonLine, synthesis } = buildClosing(slots[9], tensions, suitDominance)
+
+  /* Pregunta de cierre */
+  const closingPrompt = slots[9].content?.prompt
+    || '¿Qué pasaría si dejaras que esta lectura sea cierta por un día?'
+
+  return {
+    opening,
+    block1,
+    block2,
+    block3,
+    horizonLine,
+    synthesis,
+    closingPrompt,
+
+    /* Compatibilidad con la versión anterior */
+    climate: opening,
+    arc: block2,
+    echo: synthesis,
+    closing: closingPrompt,
+
     diagnosis: {
       majorWeight,
       suitDominance,

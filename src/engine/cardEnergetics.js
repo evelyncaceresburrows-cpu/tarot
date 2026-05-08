@@ -60,7 +60,7 @@ const NUMBER_MOD = {
  * MENORES · overrides puntuales                                     *
  *                                                                  *
  *   Cuando la mezcla palo+número no captura el matiz emocional     *
- *   real de la carta, se ajusta acá. Clave: "Suit/Number".          *
+ *   real de la carta, se ajusta aquí. Clave: "Suit/Number".         *
  * ---------------------------------------------------------------- */
 const MINOR_OVERRIDES = {
   // Copas
