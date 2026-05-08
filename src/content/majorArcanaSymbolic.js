@@ -39,7 +39,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'El Loco',
     number:  '0',
-    essence: 'Movimiento sin certezas.',
+    essence: 'Un joven a un paso del vacío, mirando al cielo, sin ver el borde.',
 
     traditionalMeanings: [
       'Aventura',
@@ -73,10 +73,10 @@ export const majorArcanaSymbolic = [
       'El sol detrás — la energía vital que sostiene el salto'
     ],
 
-    reading: 'Hay un movimiento queriendo empezar y no tiene todavía un nombre claro. Esta carta no te empuja: te recuerda que avanzar también puede ser un acto de confianza, no de plan. Lo nuevo asusta porque es nuevo, no porque esté mal.',
-    synthesis: 'No siempre hay que entender antes de moverse. A veces se entiende moviéndose.',
-    extension: 'El Loco no salta porque sea valiente: salta porque algo dentro suyo ya no cabe en lo anterior. La rosa blanca en su mano y el perro a sus pies dicen lo mismo desde lados distintos: este movimiento es honesto, aunque parezca desordenado. Si esta carta aparece, probablemente lo que pide la situación no sea más certeza, sino más permiso. La trampa de El Loco es confundir el salto con la huida; su sabiduría es saber que algunas decisiones solo se entienden después de haberlas tomado.',
-    prompt: '¿Qué movimiento estás postergando para tener una certeza que probablemente nunca llegue?',
+    reading: 'Hay un salto que viene, y tu cuerpo lo sabe antes que tu cabeza. Es ese nudo bajo el esternón, exactamente antes de algo que ya no va a tener vuelta. Lo que parece ligereza está mirando hacia adelante con los ojos cerrados.',
+    synthesis: 'No es valentía. Es vértigo, y ya empezó.',
+    extension: 'El Loco no es bondad ni libertad: es vértigo. Mira la imagen sin maquillarla — un joven con una rosa blanca en la mano, una alforja al hombro, un perro saltando, y el siguiente paso es aire. Su cara mira al cielo, no al suelo: por eso no ve el borde. Eso es la carta entera. La confianza absoluta puesta en una dirección que nadie midió. A veces eso te lleva a un país nuevo. A veces te deja sin trabajo, sin contención, sin red. La carta no juzga el salto: te recuerda que estás a un paso. La pluma roja en su gorro y el sol al fondo dan el aire luminoso del momento — no es trágico, es vertiginoso. A diferencia de La Muerte, aquí no hay luto todavía: solo el vacío previo a la experiencia pura, el último instante antes de saber qué pasa al pisar lo que sigue.',
+    prompt: '¿A qué precipicio te estás acercando con los ojos cerrados?',
 
     positions: {
       whatIs:      'Hay un comienzo, un impulso o una apertura pidiendo lugar.',
@@ -143,7 +143,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'La Sacerdotisa',
     number:  'II',
-    essence: 'Sentada entre dos columnas, sostiene un pergamino que casi nadie lee.',
+    essence: 'Sentada entre dos pilares, sostiene un pergamino que casi nadie alcanza a leer.',
 
     traditionalMeanings: ['Intuición', 'Sabiduría interior', 'Misterio', 'Receptividad', 'Conocimiento no verbal', 'Pausa lúcida'],
     archetypes: [
@@ -176,10 +176,10 @@ export const majorArcanaSymbolic = [
       'El velo bordado con granadas a su espalda — lo que guarda no está prohibido, está esperando'
     ],
 
-    reading: 'Tienes una respuesta. No hace falta forzarla. Si te quedas un rato sin pedirle la palabra, llega sola — y llega más entera de lo que la habrías dicho a tiempo.',
-    synthesis: 'A veces saber es esperar.',
-    extension: 'Está sentada entre dos columnas porque su sabiduría no elige. Sostiene los opuestos sin reducirlos. El pergamino que tiene en la falda dice "Tora" pero su manto lo tapa a la mitad: lo que sabe no se enseña, se transmite. La luna creciente a sus pies es la marea emocional que ella regula sin pelearla. Si esta carta aparece, hay algo concreto que ya percibís y todavía no encontró cómo nombrarse. La urgencia de decirlo lo va a distorsionar. La paciencia para sostenerlo lo va a madurar. Su trampa es confundir el silencio con esconderse — la diferencia es si lo callado pesa más cada día (esconderse) o si va decantando (madurar). Cuando madura, el momento de decirlo aparece solo, y al decirlo te cuesta menos de lo que esperabas.',
-    prompt: '¿Qué sabes que todavía no dijiste en voz alta?',
+    reading: 'Sabes algo que todavía no dijiste. Lo que callas no es ausencia: es decisión, y la decisión empieza a pesarte en la garganta. Esta carta no te pide hablar — te pregunta cuánto te cuesta no hacerlo.',
+    synthesis: 'A veces el silencio es contención. A veces es manipulación. Solo tú sabes cuál.',
+    extension: 'La Sacerdotisa no es solo sabiduría: es contención. Mira la imagen — sentada entre las dos columnas blanca y negra, con un pergamino parcialmente oculto bajo el manto, sin gestos, sin señas, sin invitación a entrar. La luna creciente a sus pies marca el ciclo emocional bajo el cual ella regula lo que dice y lo que calla. La cruz solar sobre el pecho dice que su lucidez vive en el cuerpo, no en el discurso. La tensión de esta carta es muy específica: no es secreto romántico, es la pesadez de saber algo que cambiaría una dinámica si lo dijeras. La atmósfera es de templo frío, agua oscura estancada — quietud que también puede volverse aislamiento. A diferencia del Hierofante, que enseña hacia afuera con autoridad ortodoxa, ella es la doctrina interna que no se transmite con palabras. Cuando esta carta aparece, vale la pena distinguir: hay silencios que maduran, y hay silencios que se vuelven manipulación pasiva-agresiva. Solo tú sabes cuál estás sosteniendo.',
+    prompt: '¿Qué es eso que ya sabes pero te niegas a decir en voz alta?',
 
     positions: {
       whatIs:      'Hay una intuición o saber interior pidiendo espacio para escucharse.',
@@ -666,7 +666,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'La Muerte',
     number:  'XIII',
-    essence: 'Lo que termina, libera.',
+    essence: 'Un esqueleto con armadura avanza despacio a caballo, sin saña.',
 
     traditionalMeanings: [
       'Transformación profunda',
@@ -700,10 +700,10 @@ export const majorArcanaSymbolic = [
       'El sol entre dos torres en el horizonte — el día siguiente ya está, aunque todavía no se viva'
     ],
 
-    reading: 'Algo está terminando. No con violencia, con lucidez. La transformación empezó por dentro mucho antes de esta carta — la carta solo viene a confirmarlo.',
+    reading: 'Algo en ti ya terminó. Pero le sigues hablando, vistiéndolo, defendiéndolo, como si estuviera vivo. La carta no anuncia un cambio — viene a confirmar uno que ya pasó por dentro y al que solo te falta firmar afuera.',
     synthesis: 'Lo que termina no se llevó la vida. Hizo lugar.',
-    extension: 'Casi nunca es muerte literal. Es una identidad, una etapa, un vínculo, una manera de estar que ya no encaja con quien sos hoy. Su caballo es blanco, no oscuro: la transición no viene a romper, viene a ordenar lo que ya estaba aflojándose. Mira la escena con cuidado: el rey cae a su paso, pero el obispo sigue en pie y los niños se arrodillan tranquilos. La carta no juzga la postura — solo muestra que cada uno recibe el cambio según su propia disposición. Si esta carta aparece, probablemente algo en ti lo sepa antes de poder decirlo en voz alta. No es la pérdida lo que duele; es la fuerza que estás haciendo para que la rueda gire hacia atrás. El duelo lleva su tiempo. Conviene dejarlo durar. Y al fondo, casi pintado, se ve el sol entre dos torres: el horizonte ya está ahí. Distinto, pero está.',
-    prompt: '¿Qué estás defendiendo en voz alta que en privado ya diste por terminado?',
+    extension: 'La Muerte en el Tarot rara vez es muerte literal. Mira la imagen con cuidado: el esqueleto no corre, no ataca, no grita — avanza al paso de un caballo blanco con un estandarte donde florece una rosa mística. A sus pies, las figuras humanas reaccionan distinto: el rey cae, el obispo reza de pie, los niños se arrodillan tranquilos. La carta no juzga la postura — solo muestra que cada uno recibe el cierre según su propia disposición. La sensación que aterriza esta carta es muy concreta: ese vacío en el pecho cuando se firma un papel de divorcio, de despido, de venta de la casa de la infancia. Es el momento exacto en que un final que llevaba meses adentro encuentra su forma afuera. A diferencia del 10 de Espadas, que es dolor traicionero y golpe seco, La Muerte es un proceso orgánico que empezó hace tiempo. La pregunta no es si va a pasar. Es qué seguís cargando como si todavía estuviera vivo. Y al fondo, casi pintado, el sol amaneciendo entre dos torres recuerda que el día siguiente ya está. Distinto, pero está.',
+    prompt: '¿Qué cadáver emocional sigues vistiendo como si estuviera vivo?',
 
     positions: {
       whatIs:      'Hay un cierre, una transformación o un desprendimiento ya en curso.',
@@ -812,7 +812,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'La Torre',
     number:  'XVI',
-    essence: 'Lo que cae, libera.',
+    essence: 'Un rayo parte la torre y dos figuras caen sin tiempo de prepararse.',
 
     traditionalMeanings: [
       'Libertad',
@@ -846,10 +846,10 @@ export const majorArcanaSymbolic = [
       'Las llamas saliendo por las ventanas — energía liberada, no destrucción gratuita'
     ],
 
-    reading: 'Algo se cayó. Vas a estar bien, aunque ahora no lo parezca. Lo que parece ruptura, casi siempre, es alivio que llega disfrazado de catástrofe.',
+    reading: 'Algo se cayó. No con elegancia — con el ruido y la humillación de un golpe seco que no esperabas. Y el alivio empieza después, cuando entiendes que lo que se vino abajo era la versión de ti que no se sostenía hace tiempo.',
     synthesis: 'No se cayó lo verdadero. Se cayó lo que ya no era cierto.',
-    extension: 'La Torre no destruye al azar. Destruye lo que estaba apoyado en algo que no era real: una expectativa, una idea sobre vos, una identidad prestada, un acuerdo silencioso que ya no servía. Mira la imagen: la torre está construida sobre una roca firme, no sobre arena — lo que se cae no es la base, son los pisos altos, los que se subieron de más. El rayo que parece venir del cielo casi siempre es algo que ya sabías por dentro y que finalmente encontró cómo salir afuera. La corona cayendo en lo alto es la coronación de algo que no estaba bien sostenido — un cargo, un vínculo, una versión tuya. No te pide estar bien con la caída. Te pide no ponerle obstáculos al alivio que viene después. Lo nuevo todavía no se ve, pero ya empezó: lo que se cae aquí se cae para que lo próximo se apoye sobre algo que sí te aguante.',
-    prompt: '¿Qué se cayó que, en el fondo, ya hacía tiempo no te cerraba?',
+    extension: 'La Torre es la única carta del Tarot donde el rayo viene del cielo, no del piso. La estructura está en llamas, la corona vuela por el aire, y dos figuras caen de cabeza con los brazos extendidos. No hay tiempo de prepararse. La sensación que aterriza esta carta es muy concreta: ese impacto del suelo cuando te caes hacia atrás de una silla y te falta un instante para procesar qué acaba de pasar. Una conversación que no tendrías que haber tenido. Un mail que no tendrías que haber leído. Algo dicho en voz alta que ya no se puede des-saber. A diferencia de La Muerte, que es un proceso orgánico y va dando tiempo, La Torre es súbita y humillante — rompe el ego de un golpe. Pero acá está la trampa: lo que se cayó no era verdadero. Era una mentira que sostenías sobre ti misma —un trabajo que ya no te representaba, una imagen prestada, un acuerdo silencioso con alguien que ya no te servía. Y abajo, donde aterrizas de cabeza, el aire es más limpio que arriba.',
+    prompt: '¿Qué mentira sobre ti acaba de saltar por los aires?',
 
     positions: {
       whatIs:      'Hay un cambio brusco o una ruptura redefiniendo el escenario actual.',
@@ -909,7 +909,7 @@ export const majorArcanaSymbolic = [
   {
     name:    'La Luna',
     number:  'XVIII',
-    essence: 'No todo es claro, y está bien.',
+    essence: 'Un perro y un lobo aúllan a la luna, y un cangrejo asoma del agua oscura.',
 
     traditionalMeanings: [
       'Intuición',
@@ -950,10 +950,10 @@ export const majorArcanaSymbolic = [
       'La luna con cara melancólica goteando rocío — la verdad observada sin juicio'
     ],
 
-    reading: 'No está todo claro. Y eso, ahora, también es una respuesta. La intuición trabaja despacio cuando lo que está en juego importa de verdad.',
-    synthesis: 'La niebla no engaña. Pide caminar más despacio.',
-    extension: 'La Luna no es enemiga de la verdad. Es la forma que tiene la verdad de llegar cuando todavía no estás lista para verla a pleno sol. Mira la imagen: el sendero serpentea entre dos torres y se pierde entre las montañas — no porque esté mal trazado, sino porque algunos caminos se piensan caminando, no antes de caminar. El perro y el lobo le aullan a la luna desde el mismo borde: lo doméstico y lo salvaje en ti están reaccionando a lo mismo, aunque cada uno con su voz. El cangrejo que asoma del agua es eso que ya sabías y habías guardado, y que ahora pide aparecer un rato. No tienes que entenderlo todo enseguida. Lo que está confuso no es porque tú no entiendas: es porque todavía no terminó de mostrarse. Avanzar despacio en la niebla es más sabio que correr para salir de ella.',
-    prompt: '¿Qué pálpito estás teniendo que todavía no quieres confirmar?',
+    reading: 'Hay algo que estás percibiendo y todavía no podés decidir si es intuición o paranoia. La cabeza dice una cosa y el cuerpo dice otra — y entre las dos, todo está más oscuro de lo que querrías. Avanzar despacio en la niebla es más sabio que correr para salir.',
+    synthesis: 'La niebla no engaña. Te muestra que no podés ver claro.',
+    extension: 'La Luna es la carta más incómoda del Tarot porque no te miente: te muestra que no podés ver claro. Mira la imagen con calma — la luna está de perfil, melancólica, dejando caer gotas que pueden ser rocío o pueden ser lágrimas. El sendero serpentea entre dos torres y se pierde entre montañas que no se distinguen. Un perro doméstico y un lobo salvaje le aúllan a la misma luna desde el mismo borde, y desde el agua sale un cangrejo —algo que ya estaba en lo profundo y pide aparecer un rato. La sensación que aterriza esta carta es ese sudor frío de despertarte a oscuras sin saber dónde estás ni qué hora es: el cuerpo registra peligro antes de que la cabeza lo nombre. A diferencia de La Sacerdotisa, que es el misterio asimilado y sereno, La Luna es el misterio que todavía da miedo, que todavía se confunde con la sombra que proyectamos sobre los demás para no verla en nosotras. Cuando esta carta aparece, lo más útil no es decidir: es no apurar la palabra. Lo que está confuso no es porque tú no entiendas; es porque todavía no terminó de mostrarse.',
+    prompt: '¿Qué sombra tuya estás proyectando en los demás para no verla en ti?',
 
     positions: {
       whatIs:      'Hay confusión, sensibilidad o información no visible del todo.',
