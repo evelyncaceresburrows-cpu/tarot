@@ -757,12 +757,12 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
       className="relative min-h-[100svh] noise-dark bg-noche text-pergamino"
     >
       <AtmosphereLayer scene="home" />
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-6 pb-28 md:pt-10 md:pb-32 flex flex-col items-center min-h-[100svh] justify-center gap-5 md:gap-8">
+      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-6 pb-28 md:pt-10 md:pb-12 flex flex-col items-center min-h-[100svh] justify-center gap-5 md:gap-8">
         <header className="text-center">
           <div className="text-dorado mb-2 md:mb-4 flex justify-center">
             <AdeGlyph className="w-[120px] md:w-[160px]" />
           </div>
-          <h1 className="font-serif text-[1.7rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.3em] md:tracking-[0.38em] mb-2 md:mb-3">
+          <h1 className="font-serif text-[1.7rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.28em] md:tracking-[0.38em] mb-2 md:mb-3">
             Tarot Ade
           </h1>
           <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/75 tracking-[0.02em]">
@@ -770,24 +770,32 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
           </p>
         </header>
 
-        <button
-          onClick={() => onCarta(destacada)}
-          className="w-[180px] md:w-[240px] active:scale-[0.99] transition-transform"
-          aria-label={`Carta destacada: ${destacada.nombre}`}
-        >
-          <CartaMarco card={destacada} />
-        </button>
+        <div className="flex flex-col items-center gap-3">
+          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/55 font-medium">
+            Carta del día
+          </p>
+          <button
+            onClick={() => onCarta(destacada)}
+            className="w-[180px] md:w-[240px] active:scale-[0.99] transition-transform"
+            aria-label={`Carta del día: ${destacada.nombre}. Tocá para leer.`}
+          >
+            <CartaMarco card={destacada} />
+          </button>
+          <p className="text-[0.6rem] tracking-[0.26em] text-dorado/55 italic font-serif mt-1">
+            tocá para leer
+          </p>
+        </div>
 
         <div className="w-full max-w-[300px] flex flex-col gap-3 md:gap-3.5">
           <button
             onClick={onTirada}
-            className="w-full py-4 bg-vino text-pergamino text-[0.72rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
+            className="w-full py-4 bg-vino text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
           >
             Iniciar Tirada
           </button>
           <button
             onClick={onExplorar}
-            className="w-full py-4 bg-vino/55 border border-dorado/65 text-pergamino text-[0.72rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
+            className="w-full py-4 bg-vino/55 border border-dorado/65 text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
           >
             Explorar Mazo
           </button>
@@ -808,7 +816,7 @@ function SelectorTirada({ onPick, onHome }) {
       className="relative min-h-[100svh] noise-dark bg-noche text-pergamino"
     >
       <AtmosphereLayer scene="selector" />
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-32 flex flex-col items-center min-h-[100svh]">
+      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-12 flex flex-col items-center min-h-[100svh]">
         <header className="w-full grid grid-cols-3 items-center mb-12">
           <button onClick={onHome} className="text-pergamino/80 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Volver">
             <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
@@ -870,7 +878,7 @@ function Explorar({ onCarta, onHome }) {
       transition={{ duration: 0.45 }}
       className="relative min-h-[100svh] ritual-bg constellation text-pergamino"
     >
-      <div className="relative z-10 max-w-[640px] mx-auto px-6 pt-10 pb-32">
+      <div className="relative z-10 max-w-[640px] mx-auto px-6 pt-10 pb-12">
         <header className="grid grid-cols-3 items-center mb-8">
           <button onClick={onHome} className="text-pergamino/85 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Volver al inicio">
             <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
@@ -886,7 +894,7 @@ function Explorar({ onCarta, onHome }) {
             <button
               key={f.key}
               onClick={() => setFiltro(f.key)}
-              className={`shrink-0 px-5 py-2 rounded-full text-[0.66rem] tracking-[0.16em] uppercase font-light whitespace-nowrap transition-colors duration-300 border ${
+              className={`shrink-0 px-5 py-2 rounded-full text-[0.66rem] tracking-[0.22em] uppercase font-light whitespace-nowrap transition-colors duration-300 border ${
                 filtro === f.key
                   ? 'border-vino/65 text-pergamino bg-vino/15'
                   : 'border-dorado/30 text-pergamino/65 hover:border-dorado/60 hover:text-pergamino/90'
@@ -1056,7 +1064,7 @@ function IntentionScreen({ initialIntention, onContinue, onBack }) {
       className="relative min-h-[100svh] noise-dark bg-noche text-pergamino"
     >
       <AtmosphereLayer scene="intention" />
-      <div className="relative z-10 max-w-[460px] mx-auto px-7 pt-10 pb-32 flex flex-col min-h-[100svh]">
+      <div className="relative z-10 max-w-[460px] mx-auto px-7 pt-10 pb-12 flex flex-col min-h-[100svh]">
         <header className="w-full grid grid-cols-3 items-center mb-16">
           <button
             onClick={onBack}
@@ -1097,7 +1105,7 @@ function IntentionScreen({ initialIntention, onContinue, onBack }) {
 
           <button
             onClick={handleContinue}
-            className="px-10 py-3.5 bg-vino text-pergamino text-[0.72rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
+            className="px-10 py-3.5 bg-vino text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
           >
             Barajar cartas
           </button>
@@ -1213,6 +1221,7 @@ function ChoreographedHand({ side, phase }) {
 
 function ShuffleScreen({ onContinue, onBack }) {
   const [phase, setPhase] = useState('idle')
+  const [canSkip, setCanSkip] = useState(false)
 
   useEffect(() => {
     // Coreografía cinematográfica — total ~10.3 s
@@ -1220,12 +1229,24 @@ function ShuffleScreen({ onContinue, onBack }) {
     timers.push(setTimeout(() => setPhase('enter'),    1000))   // mazo quieto + manos entran
     timers.push(setTimeout(() => setPhase('split'),    2700))   // manos toman las dos mitades
     timers.push(setTimeout(() => setPhase('shuffle'),  3700))   // mezcla suave (3 s)
+    timers.push(setTimeout(() => setCanSkip(true),     5200))   // permite avanzar
     timers.push(setTimeout(() => setPhase('reunite'),  6700))   // mazo se reúne
     timers.push(setTimeout(() => setPhase('settle'),   7700))   // ajuste final
     timers.push(setTimeout(() => setPhase('exit'),     8500))   // manos salen
     timers.push(setTimeout(() => onContinue(),        10500))   // fade hacia "Cortar el mazo"
     return () => timers.forEach(clearTimeout)
   }, [onContinue])
+
+  /* Mensajes que mudan con el ritual — no explicativos, ambientales */
+  const message = (() => {
+    if (phase === 'idle')    return 'Las cartas todavía no saben.'
+    if (phase === 'enter')   return 'Algo está empezando a moverse.'
+    if (phase === 'split')   return 'El mazo se abre.'
+    if (phase === 'shuffle') return 'Dejá que encuentren su lugar.'
+    if (phase === 'reunite') return 'Lo que tenía que pasar, pasó.'
+    if (phase === 'settle')  return 'El silencio vuelve.'
+    return 'El silencio vuelve.'
+  })()
 
   return (
     <motion.section
@@ -1237,7 +1258,7 @@ function ShuffleScreen({ onContinue, onBack }) {
       className="relative min-h-[100svh] ritual-bg constellation text-pergamino overflow-hidden"
     >
       <AtmosphereLayer scene="shuffle" />
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-32 flex flex-col items-center min-h-[100svh]">
+      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-10 pb-12 flex flex-col items-center min-h-[100svh]">
         <header className="w-full grid grid-cols-3 items-center mb-10">
           <button onClick={onBack} className="text-pergamino/70 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Volver">
             <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
@@ -1252,6 +1273,26 @@ function ShuffleScreen({ onContinue, onBack }) {
 
         {/* Escena: mesa + manos + mazo */}
         <div className="relative w-full mt-4" style={{ height: '360px', perspective: '1400px' }}>
+          {/* Halo lumínico que pulsa durante el shuffle — sugiere ritual */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            animate={
+              phase === 'shuffle'
+                ? { opacity: [0.18, 0.34, 0.18] }
+                : phase === 'reunite' || phase === 'settle'
+                  ? { opacity: 0.42 }
+                  : { opacity: 0.12 }
+            }
+            transition={{
+              duration: phase === 'shuffle' ? 2.2 : 1.0,
+              repeat: phase === 'shuffle' ? Infinity : 0,
+              ease: 'easeInOut'
+            }}
+            style={{
+              background: 'radial-gradient(ellipse 50% 45% at 50% 50%, rgba(198,168,90,0.45) 0%, transparent 70%)'
+            }}
+          />
+
           {/* Lavado cálido (mesa con luz tenue) */}
           <div
             className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
@@ -1268,9 +1309,36 @@ function ShuffleScreen({ onContinue, onBack }) {
           <ChoreographedHand side="right" phase={phase} />
         </div>
 
-        <p className="font-serif italic text-pergamino/55 text-center mt-10 text-[1rem] md:text-[1.05rem] leading-[1.7] max-w-[24rem]">
-          Deja que las cartas encuentren su lugar.
-        </p>
+        {/* Mensaje narrativo que muda con la fase */}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={message}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="font-serif italic text-pergamino/60 text-center mt-10 text-[1rem] md:text-[1.05rem] leading-[1.7] max-w-[24rem]"
+          >
+            {message}
+          </motion.p>
+        </AnimatePresence>
+
+        {/* Skip discreto — aparece sólo después de la mitad del shuffle */}
+        <AnimatePresence>
+          {canSkip && (
+            <motion.button
+              key="skip"
+              onClick={onContinue}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-6 text-[0.6rem] tracking-[0.28em] uppercase text-dorado/55 hover:text-dorado/85 font-medium border-b border-dorado/30 hover:border-dorado/60 pb-1 transition-colors"
+            >
+              Continuar
+            </motion.button>
+          )}
+        </AnimatePresence>
       </div>
     </motion.section>
   )
@@ -1299,7 +1367,7 @@ function CutDeckScreen({ onContinue, onBack }) {
       className="relative min-h-[100svh] ritual-bg constellation text-pergamino"
     >
       <AtmosphereLayer scene="cut" />
-      <div className="relative z-10 max-w-[640px] mx-auto px-6 pt-10 pb-32 flex flex-col items-center min-h-[100svh]">
+      <div className="relative z-10 max-w-[640px] mx-auto px-6 pt-10 pb-12 flex flex-col items-center min-h-[100svh]">
         <header className="w-full grid grid-cols-3 items-center mb-10">
           <button onClick={onBack} className="text-pergamino/70 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Volver">
             <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
@@ -1432,7 +1500,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
       className="relative min-h-[100svh] ritual-bg constellation text-pergamino"
     >
       <AtmosphereLayer scene="reading" />
-      <div className="relative z-10 max-w-[700px] mx-auto px-6 pt-10 pb-32 flex flex-col">
+      <div className="relative z-10 max-w-[700px] mx-auto px-6 pt-10 pb-12 flex flex-col">
         <header className="grid grid-cols-3 items-center mb-6">
           <button onClick={onHome} className="text-pergamino/85 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Volver">
             <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
@@ -1490,7 +1558,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
             <StarDivider className="my-8" />
             <button
               onClick={revealAll}
-              className="mx-auto inline-flex items-center justify-center gap-3 bg-vino text-pergamino px-10 py-3.5 rounded-[4px] text-[0.72rem] tracking-[0.28em] uppercase font-medium hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
+              className="mx-auto inline-flex items-center justify-center gap-3 bg-vino text-pergamino px-10 py-3.5 rounded-[4px] text-[0.7rem] tracking-[0.28em] uppercase font-medium hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
             >
               <span>{isThree ? 'Revelar cartas' : 'Revelar carta'}</span>
             </button>
@@ -1567,7 +1635,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
 
               <button
                 onClick={reset}
-                className="mx-auto mt-12 flex items-center justify-center gap-3 bg-vino/55 border border-dorado/65 text-pergamino px-10 py-3.5 rounded-[4px] text-[0.72rem] tracking-[0.28em] uppercase font-medium hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
+                className="mx-auto mt-12 flex items-center justify-center gap-3 bg-vino/55 border border-dorado/65 text-pergamino px-10 py-3.5 rounded-[4px] text-[0.7rem] tracking-[0.28em] uppercase font-medium hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
               >
                 <RotateCcw className="w-3.5 h-3.5" strokeWidth={1.3} />
                 <span>Nueva tirada</span>
@@ -1832,7 +1900,7 @@ function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
               {/* Copy link */}
               <button
                 onClick={copyToClipboard}
-                className="w-full py-3 mb-5 bg-transparent text-pergamino/85 border border-dorado/40 text-[0.68rem] tracking-[0.26em] uppercase font-light rounded-[4px] hover:border-dorado/75 hover:text-pergamino active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3"
+                className="w-full py-3 mb-5 bg-transparent text-pergamino/85 border border-dorado/40 text-[0.7rem] tracking-[0.26em] uppercase font-light rounded-[4px] hover:border-dorado/75 hover:text-pergamino active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-dorado" strokeWidth={1.6} /> : <Copy className="w-3.5 h-3.5" strokeWidth={1.4} />}
                 <span>{copied ? 'Copiado' : 'Copiar texto'}</span>
@@ -1844,15 +1912,15 @@ function ShareModal({ open, onClose, card, intention, kind = 'card' }) {
               </p>
               <div className="flex items-center justify-center gap-3">
                 <a href={xUrl} target="_blank" rel="noopener noreferrer"
-                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.18em] uppercase font-light rounded-[3px] transition-colors">
+                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.26em] uppercase font-light rounded-[3px] transition-colors">
                   X / Twitter
                 </a>
                 <a href={waUrl} target="_blank" rel="noopener noreferrer"
-                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.18em] uppercase font-light rounded-[3px] transition-colors">
+                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.26em] uppercase font-light rounded-[3px] transition-colors">
                   WhatsApp
                 </a>
                 <a href={tgUrl} target="_blank" rel="noopener noreferrer"
-                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.18em] uppercase font-light rounded-[3px] transition-colors">
+                   className="px-4 py-2 border border-dorado/30 hover:border-dorado/65 text-pergamino/80 hover:text-pergamino text-[0.62rem] tracking-[0.26em] uppercase font-light rounded-[3px] transition-colors">
                   Telegram
                 </a>
               </div>
@@ -1905,11 +1973,11 @@ function Detalle({ card, reversed, onBack }) {
               />
             </div>
           </div>
-          <p className="mt-5 text-center font-serif text-[1.4rem] text-vino tracking-[0.16em]">
+          <p className="mt-5 text-center font-serif text-[1.4rem] text-vino tracking-[0.22em]">
             {content?.number ?? card.romano ?? ''}
           </p>
           {reversed && (
-            <p className="mt-2 text-center text-[0.6rem] tracking-[0.24em] uppercase text-vino font-medium">
+            <p className="mt-2 text-center text-[0.6rem] tracking-[0.26em] uppercase text-vino font-medium">
               Carta invertida
             </p>
           )}
@@ -1994,7 +2062,7 @@ function Detalle({ card, reversed, onBack }) {
                     </div>
 
                     <div className="max-w-[24rem] mx-auto px-2">
-                      <p className="text-[0.6rem] tracking-[0.3em] uppercase text-vino/75 font-medium text-center mb-6">
+                      <p className="text-[0.6rem] tracking-[0.28em] uppercase text-vino/75 font-medium text-center mb-6">
                         Más adentro
                       </p>
                       <p className="font-serif text-carbon/80 text-[0.92rem] md:text-[0.95rem] leading-[2] text-left">
@@ -2006,7 +2074,7 @@ function Detalle({ card, reversed, onBack }) {
               )}
             </AnimatePresence>
 
-            <p className="pt-6 text-[0.56rem] tracking-[0.28em] uppercase text-carbon/35 font-light text-center">
+            <p className="pt-6 text-[0.58rem] tracking-[0.28em] uppercase text-carbon/35 font-light text-center">
               esto sugiere — no determina
             </p>
           </div>
@@ -2015,13 +2083,13 @@ function Detalle({ card, reversed, onBack }) {
             <p className="font-light text-carbon/80 text-[0.95rem] leading-[1.95] text-center mb-8">
               {reversed ? card.invertido : card.derecho}
             </p>
-            <p className="text-center text-[0.58rem] tracking-[0.24em] uppercase text-carbon/40 font-light">
+            <p className="text-center text-[0.58rem] tracking-[0.26em] uppercase text-carbon/40 font-light">
               · lectura provisoria — esta carta aún no fue escrita en la voz definitiva ·
             </p>
           </div>
         )}
 
-        <p className="mt-12 text-center text-[0.56rem] tracking-[0.28em] uppercase text-carbon/30 font-light">
+        <p className="mt-12 text-center text-[0.58rem] tracking-[0.28em] uppercase text-carbon/30 font-light">
           {card.paloLabel}
         </p>
 
@@ -2074,7 +2142,7 @@ function BottomNav({ view, onGo }) {
               aria-label={it.label}
             >
               <Icon className="w-[22px] h-[22px]" strokeWidth={1.3} size={22} />
-              <span className="text-[0.6rem] tracking-[0.18em] uppercase font-light">
+              <span className="text-[0.6rem] tracking-[0.26em] uppercase font-light">
                 {it.label}
               </span>
             </button>
@@ -2194,7 +2262,9 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {view !== 'detalle' && <BottomNav view={view} onGo={goNav} />}
+      {/* BottomNav removido — el flujo único es: Home → tirada → detalle.
+         La nav redundante (Inicio / Mazo / Tirada) ya estaba cubierta por
+         los botones del Home y el back de cada vista. */}
 
       <AnimatePresence>
         {opening && <BookOpening key="book-opening" onExit={() => setOpening(false)} />}
