@@ -288,7 +288,7 @@ const MOVEMENT_VARIANTS = {
   ],
   'deeply-inward': [
     'Las tres posiciones miran hacia adentro. Este momento se piensa, no se actúa: cualquier movimiento exterior va a ser ruido.',
-    'Todo está pasando en privado. Lo que se decide acá no necesita público.',
+    'Todo está pasando en privado. Lo que se decide aquí no necesita público.',
     'El centro de la lectura está en silencio, en una conversación tuya con ti misma.',
     'Toda la escena ocurre antes de que pase afuera — todavía es deliberación.'
   ],

@@ -481,7 +481,7 @@ function buildClosing(s10, tensions, suitDominance) {
   const e10 = essenceOf(s10.slot.card, s10.content)
 
   /* Frase del horizonte — más anclada, menos sentencia */
-  let horizon = `Y al fondo, hacia donde todo esto se inclina hoy: ${e10}. No es una predicción cerrada — es la dirección que la suma de cartas está tomando si nada cambia desde acá.`
+  let horizon = `Y al fondo, hacia donde todo esto se inclina hoy: ${e10}. No es una predicción cerrada — es la dirección que la suma de cartas está tomando si nada cambia desde aquí.`
 
   /* Si el horizonte contiene un prompt propio (carta escrita), lo
      guardamos para la pregunta final. Si no, tendremos un fallback. */

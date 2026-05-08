@@ -844,7 +844,7 @@ export const minorArcanaCards = {
       essence: 'Falta poco, y por eso cuesta más.',
       reading: 'Estás cansada y, aún así, todavía no es momento de soltar la guardia. Esta carta no romantiza el aguante: te recuerda que el último tramo pesa precisamente porque ya casi llegaste.',
       synthesis: 'El último esfuerzo también es resistencia.',
-      prompt: '¿Qué esfuerzo estás por abandonar justo cuando ya casi llegás?',
+      prompt: '¿Qué esfuerzo estás por abandonar justo cuando ya casi llegas?',
       themes: ['Resistencia', 'Última guardia', 'Cansancio del que casi llegó', 'Persistencia'],
       manifestations: [
         'Sostener un proyecto en su tramo final cuando todo te pide soltar',
@@ -993,7 +993,7 @@ export const minorArcanaCards = {
       ],
       shadows: [
         'Esperar lo grande y dejar pasar lo concreto',
-        'Calcular tanto que no llegás a tomarlo',
+        'Calcular tanto que no llegas a tomarlo',
         'Confundir una oferta con un destino'
       ]
     },
