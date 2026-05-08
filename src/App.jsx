@@ -10,6 +10,12 @@ import {
 } from './content/contentBridge.js'
 import { composeRelationalReading } from './engine/relationalEngine.js'
 import { saveAtmosphere, composeEchoLine } from './engine/emotionalMemory.js'
+import {
+  CELTIC_POSITIONS,
+  CELTIC_POSITION_COUNT,
+  composeCardWhisper,
+  composeCelticReading
+} from './engine/celticReading.js'
 
 const ARCANOS_MAYORES = [
   { num: 0,  romano: '0',     nombre: 'El Loco',                 file: '00-el-loco.png',
@@ -855,6 +861,20 @@ function SelectorTirada({ onPick, onHome }) {
               Lo que está · lo que cruza · lo que se abre.
             </p>
           </button>
+
+          <button
+            onClick={() => onPick(10)}
+            className="w-full bg-transparent border border-dorado/55 hover:border-dorado/85 rounded-[4px] px-7 py-7 text-left transition-colors active:scale-[0.99] relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, rgba(122,30,44,0.08) 0%, rgba(13,27,42,0) 60%)'
+            }}
+          >
+            <p className="text-[0.6rem] tracking-[0.26em] uppercase text-dorado/85 mb-3">diez cartas · ritual largo</p>
+            <p className="font-serif text-pergamino text-[1.4rem] leading-tight mb-2">Cruz Celta</p>
+            <p className="font-light text-pergamino/55 text-[0.82rem] leading-[1.75]">
+              Una lectura larga, ceremonial, que se construye carta por carta. No es para todos los días.
+            </p>
+          </button>
         </div>
       </div>
     </motion.section>
@@ -1648,6 +1668,377 @@ function Tirada({ count, intention, onCarta, onHome }) {
   )
 }
 
+/* =====================================================================
+ * CRUZ CELTA — la experiencia profunda
+ *
+ *  Flujo:
+ *    intro    → mensaje de apertura, fade lento
+ *    reveal   → carta por carta, una a la vez, con whisper adaptativo
+ *    reading  → layout cross+staff + síntesis larga
+ *
+ *  Cada carta se revela manualmente con tap (control + ritual).
+ *  La síntesis final viene de composeCelticReading.
+ * ===================================================================*/
+
+/* Wrapper que selecciona 10 cartas una sola vez al montar y se las
+ * entrega a CruzCeltica. Aísla el azar del re-render. */
+function CruzCelticaWrapper({ intention, onCarta, onHome }) {
+  const [cards] = useState(() => pickRandomCards(DECK, CELTIC_POSITION_COUNT))
+  return (
+    <CruzCeltica
+      cards={cards}
+      intention={intention}
+      onCarta={onCarta}
+      onHome={onHome}
+    />
+  )
+}
+
+
+function CruzCeltica({ cards, intention, onCarta, onHome }) {
+  const [phase, setPhase]                 = useState('intro')
+  const [revealedCount, setRevealedCount] = useState(0)
+
+  /* Auto-fade del intro (3.5s) */
+  useEffect(() => {
+    if (phase !== 'intro') return
+    const t = setTimeout(() => setPhase('reveal'), 3500)
+    return () => clearTimeout(t)
+  }, [phase])
+
+  /* Cuando todas las cartas están reveladas, pausa breve y entrar en reading */
+  useEffect(() => {
+    if (revealedCount < CELTIC_POSITION_COUNT) return
+    const t = setTimeout(() => setPhase('reading'), 1400)
+    return () => clearTimeout(t)
+  }, [revealedCount])
+
+  const revealNext = () => {
+    setRevealedCount(c => Math.min(c + 1, CELTIC_POSITION_COUNT))
+  }
+
+  /* Contenido por carta — usado tanto en reveal como en reading */
+  const slots = cards.map((slot, i) => ({
+    slot,
+    pos:     CELTIC_POSITIONS[i],
+    content: findContentByCard(slot.card)
+  }))
+
+  /* === RENDER === */
+  return (
+    <motion.section
+      key="cruzceltica"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.9 }}
+      className="relative min-h-[100svh] bg-noche text-pergamino overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse at 50% 35%, #0c1827 0%, #060c14 70%)'
+      }}
+    >
+      <AtmosphereLayer scene="tirada" />
+
+      <div className="relative z-10 max-w-[700px] mx-auto px-6 pt-8 pb-12 flex flex-col items-center min-h-[100svh]">
+        {/* Header */}
+        <header className="w-full grid grid-cols-3 items-center mb-6">
+          <button onClick={onHome} className="text-pergamino/70 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Salir del ritual">
+            <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
+          </button>
+          <h2 className="font-serif text-[0.85rem] uppercase tracking-[0.28em] text-dorado/85 text-center">
+            Cruz Celta
+          </h2>
+          <span />
+        </header>
+
+        {/* PHASE 1 — INTRO */}
+        <AnimatePresence mode="wait">
+          {phase === 'intro' && (
+            <motion.div
+              key="intro"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              className="flex-1 flex flex-col items-center justify-center text-center px-4 max-w-[28rem]"
+            >
+              <div className="text-dorado/60 mb-8"><CompassStar size={56} /></div>
+              <p className="font-serif italic text-pergamino/75 text-[1.05rem] leading-[1.85] mb-6">
+                Diez cartas se acomodan en silencio sobre la mesa.
+              </p>
+              <p className="font-serif italic text-pergamino/55 text-[0.95rem] leading-[1.85]">
+                Vas a ver una por vez. Cada una pesa.
+              </p>
+              {intention && (
+                <p className="mt-10 font-serif italic text-dorado/55 text-[0.92rem] leading-[1.7] max-w-[24rem]">
+                  «{intention}»
+                </p>
+              )}
+            </motion.div>
+          )}
+
+          {/* PHASE 2 — REVEAL UNO A UNO */}
+          {phase === 'reveal' && (
+            <motion.div
+              key="reveal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.9 }}
+              className="flex-1 w-full flex flex-col items-center"
+            >
+              <CelticRevealStage
+                slots={slots}
+                revealedCount={revealedCount}
+                onReveal={revealNext}
+                onCarta={onCarta}
+              />
+            </motion.div>
+          )}
+
+          {/* PHASE 3 — LECTURA COMPLETA */}
+          {phase === 'reading' && (
+            <motion.div
+              key="reading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.4 }}
+              className="w-full"
+            >
+              <CelticFullReading
+                slots={slots}
+                cards={cards}
+                onCarta={onCarta}
+                onReset={onHome}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.section>
+  )
+}
+
+
+/* ---------- REVEAL STAGE — carta por carta ---------- */
+function CelticRevealStage({ slots, revealedCount, onReveal, onCarta }) {
+  const isComplete = revealedCount >= CELTIC_POSITION_COUNT
+  const currentIdx = Math.min(revealedCount, CELTIC_POSITION_COUNT - 1)
+  const currentSlot = slots[currentIdx]
+  const lastRevealedIdx = revealedCount - 1
+  const lastRevealedSlot = lastRevealedIdx >= 0 ? slots[lastRevealedIdx] : null
+
+  return (
+    <div className="w-full flex flex-col items-center">
+      {/* Indicador discreto de progreso */}
+      <div className="flex items-center gap-1.5 mb-8">
+        {Array.from({ length: CELTIC_POSITION_COUNT }).map((_, i) => (
+          <span
+            key={i}
+            className={`h-1 rounded-full transition-all duration-500 ${
+              i < revealedCount ? 'bg-dorado/80 w-4' : 'bg-pergamino/20 w-2'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Carta actual o reverso esperando tap */}
+      <div className="w-[200px] md:w-[230px] mb-6">
+        {!isComplete && (
+          <button
+            onClick={onReveal}
+            className="block w-full active:scale-[0.985] transition-transform"
+            aria-label={`Revelar carta ${revealedCount + 1} de ${CELTIC_POSITION_COUNT}`}
+          >
+            <SlotMarco>
+              {revealedCount === 0 || !lastRevealedSlot ? (
+                <CardBackTile />
+              ) : (
+                <CartaMarco card={lastRevealedSlot.slot.card} reversed={lastRevealedSlot.slot.reversed} />
+              )}
+            </SlotMarco>
+          </button>
+        )}
+        {isComplete && lastRevealedSlot && (
+          <SlotMarco>
+            <CartaMarco card={lastRevealedSlot.slot.card} reversed={lastRevealedSlot.slot.reversed} />
+          </SlotMarco>
+        )}
+      </div>
+
+      {/* Whisper de la posición ya revelada (si hay) */}
+      <AnimatePresence mode="wait">
+        {lastRevealedSlot && (
+          <motion.div
+            key={`whisper-${lastRevealedIdx}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="text-center max-w-[28rem] px-4 mb-8"
+          >
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              {lastRevealedSlot.pos.label}
+            </p>
+            <p className="font-serif italic text-pergamino text-[1rem] leading-[1.85] mb-3">
+              {lastRevealedSlot.slot.card.nombre}
+            </p>
+            <p className="font-light text-pergamino/65 text-[0.88rem] leading-[1.85]">
+              {composeCardWhisper(lastRevealedIdx, lastRevealedSlot.content)}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* CTA */}
+      {!isComplete && (
+        <p className="text-[0.6rem] tracking-[0.26em] uppercase text-dorado/55 font-medium mt-2">
+          {revealedCount === 0
+            ? 'Tocá la carta para empezar'
+            : revealedCount < CELTIC_POSITION_COUNT - 1
+              ? `Tocá para revelar la siguiente · ${revealedCount + 1} de ${CELTIC_POSITION_COUNT}`
+              : 'Tocá para la última'}
+        </p>
+      )}
+
+      {isComplete && (
+        <p className="font-serif italic text-dorado/65 text-[0.95rem] mt-4 text-center max-w-[24rem]">
+          Todo está sobre la mesa. Esperá un momento.
+        </p>
+      )}
+    </div>
+  )
+}
+
+
+/* ---------- LECTURA COMPLETA — layout cross+staff + síntesis larga ---------- */
+function CelticFullReading({ slots, cards, onCarta, onReset }) {
+  /* Compose la lectura larga con todas las cartas */
+  const reading = useMemo(() => composeCelticReading(cards.map(s => s.card)), [cards])
+  if (!reading) return null
+
+  return (
+    <div className="px-1 max-w-[640px] mx-auto">
+      {/* Atmósfera de apertura */}
+      <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[34rem] mx-auto mb-6">
+        {reading.climate}
+      </p>
+
+      {/* Arco pasado-futuro (si hay) */}
+      {reading.arc && (
+        <p className="font-light text-pergamino/65 text-[0.9rem] leading-[1.85] text-center max-w-[32rem] mx-auto mb-10 italic">
+          {reading.arc}
+        </p>
+      )}
+
+      <StarDivider className="my-8" />
+
+      {/* Layout cross+staff — visual del recorrido */}
+      <CelticLayout slots={slots} onCarta={onCarta} />
+
+      <StarDivider className="my-10" />
+
+      {/* Eco de tensiones simbólicas */}
+      {reading.echo && (
+        <p className="font-light text-pergamino/70 text-[0.94rem] leading-[1.95] text-center max-w-[34rem] mx-auto mb-10 italic">
+          {reading.echo}
+        </p>
+      )}
+
+      {/* Pregunta de cierre */}
+      <div className="text-center max-w-[28rem] mx-auto mb-10">
+        <p className="text-[0.6rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-5">
+          Para mirar después
+        </p>
+        <p className="font-serif italic text-pergamino text-[1.08rem] leading-[1.7]">
+          <span className="text-dorado font-sans not-italic mr-2">→</span>
+          {reading.closing}
+        </p>
+      </div>
+
+      {/* Volver */}
+      <div className="flex justify-center mt-12">
+        <button
+          onClick={onReset}
+          className="inline-flex items-center justify-center gap-3 bg-vino/55 border border-dorado/65 text-pergamino px-8 py-3 rounded-[4px] text-[0.7rem] tracking-[0.28em] uppercase font-medium hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
+        >
+          <RotateCcw className="w-3.5 h-3.5" strokeWidth={1.3} />
+          <span>Volver al inicio</span>
+        </button>
+      </div>
+    </div>
+  )
+}
+
+
+/* ---------- LAYOUT CROSS + STAFF ---------- */
+function CelticLayout({ slots, onCarta }) {
+  /* Render: la cruz en la izquierda (3 columnas) + el staff a la derecha
+     (1 columna). En mobile se apila vertical. */
+  const [present, crossing, crown, foundation, past, future, ...staff] = slots
+  // staff = [self, environment, inner, horizon] ← 7..10
+
+  const card = (s) => (
+    <button
+      onClick={() => onCarta(s.slot.card, s.slot.reversed)}
+      className="block w-full active:scale-[0.985] transition-transform group text-left"
+    >
+      <div className="aspect-[2/3] w-full rounded-[3px] overflow-hidden ring-1 ring-dorado/30 group-hover:ring-dorado/65 transition-shadow shadow-[0_6px_16px_rgba(0,0,0,0.4)]">
+        <CartaMarco card={s.slot.card} reversed={s.slot.reversed} />
+      </div>
+      <p className="mt-2 text-[0.5rem] tracking-[0.22em] uppercase text-dorado/60 text-center leading-tight">
+        {s.pos.label}
+      </p>
+    </button>
+  )
+
+  return (
+    <div className="flex flex-col md:flex-row gap-10 md:gap-8 items-center md:items-start justify-center">
+      {/* CRUZ — 3x3 grid */}
+      <div className="grid grid-cols-3 gap-2 md:gap-3 w-full max-w-[340px] md:max-w-[360px]">
+        <div />
+        {card(crown)}
+        <div />
+
+        {card(past)}
+        <div className="relative">
+          {card(present)}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div style={{ transform: 'rotate(90deg)', width: '100%' }}>
+              <button
+                onClick={() => onCarta(crossing.slot.card, crossing.slot.reversed)}
+                className="block w-full pointer-events-auto active:scale-[0.985] transition-transform"
+                style={{ opacity: 0.92 }}
+                aria-label={`${crossing.pos.label}: ${crossing.slot.card.nombre}`}
+              >
+                <div className="aspect-[2/3] w-full rounded-[3px] overflow-hidden ring-1 ring-vino/55 shadow-[0_6px_16px_rgba(0,0,0,0.55)]">
+                  <CartaMarco card={crossing.slot.card} reversed={crossing.slot.reversed} />
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        {card(future)}
+
+        <div />
+        {card(foundation)}
+        <div />
+      </div>
+
+      {/* STAFF — columna vertical */}
+      <div className="flex md:flex-col gap-3 md:gap-3 w-full max-w-[340px] md:w-[120px] md:max-w-none">
+        {staff.map((s, i) => (
+          <div key={i} className="flex-1 md:w-full">
+            {card(s)}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+
 /**
  * ComposedReading — sintetiza una tirada de 3 cartas usando:
  *   · contentBridge       → contenido por carta (Mayor o Menor)
@@ -2223,7 +2614,11 @@ export default function App() {
         {view === 'cut' && (
           <CutDeckScreen
             key="cut"
-            onContinue={() => setView(pendingCount === 1 ? 'tirada1' : 'tirada3')}
+            onContinue={() => {
+              if (pendingCount === 1) setView('tirada1')
+              else if (pendingCount === 10) setView('cruzceltica')
+              else setView('tirada3')
+            }}
             onBack={() => setView('shuffle')}
           />
         )}
@@ -2250,6 +2645,14 @@ export default function App() {
             intention={intention}
             onCarta={(c, r) => goDetail(c, r)}
             onHome={() => setView('selector')}
+          />
+        )}
+        {view === 'cruzceltica' && (
+          <CruzCelticaWrapper
+            key="cruzceltica"
+            intention={intention}
+            onCarta={(c, r) => goDetail(c, r)}
+            onHome={() => setView('home')}
           />
         )}
         {view === 'detalle' && cardActiva && (
