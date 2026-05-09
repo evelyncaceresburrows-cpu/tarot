@@ -452,6 +452,70 @@ export function detectBlocks(cards, seed) {
 }
 
 
+/* ================================================================ *
+ *  DETECTORES DE INVERTIDAS
+ *
+ *   Cuando hay cartas invertidas, los attrs traen tags distorsionados
+ *   y la bandera __invertida__. Estos detectores leen ese estado y
+ *   nombran lo que está pasando — sin romantizar la inversión, sin
+ *   moralizar.
+ * ================================================================ */
+const INVERSION_PRESENCE_LINES = {
+  3: [
+    'Tres cartas invertidas en una tirada de tres. Esto es señal de bloqueo sostenido: nada está saliendo en su forma directa hoy. Conviene no decidir desde aquí.',
+    'Las tres cartas vinieron al revés. Eso no es casualidad — es la lectura diciéndote que cualquier respuesta hoy va a ser distorsión, no claridad.'
+  ],
+  2: [
+    'Dos cartas invertidas. Lo que la lectura quería decir está pasando filtros que conviene mirar antes de decidir.',
+    'Hay dos cartas al revés. La lectura no está saliendo en su forma limpia: hay algo bloqueando, exagerando o evitando.'
+  ]
+}
+
+/* Tags invertidos críticos → frase específica. Se busca el primero que
+   aparezca en cualquier carta. */
+const INVERTED_TAG_LINES = {
+  'fuerza-claridad-falsa': 'Estás apurando una respuesta que todavía no se dejó ver. La conclusión que armaste hoy es probable que no resista mañana.',
+  'apura-respuesta':       'Hay urgencia de cerrar algo que pide más tiempo. Decidir ya es decidir desde el cansancio, no desde la lectura.',
+  'sospecha-todo':         'La sospecha está leyendo todo como amenaza. Lo que el otro hace ya no se ve, solo se interpreta.',
+  'sostiene-fe-ciega':     'Hay una esperanza que no se está sosteniendo en gestos concretos. Creer está bien; creer sin moverte es otra cosa.',
+  'simula-libertad':       'Algo se está nombrando como elección libre que en realidad es repetición disfrazada. La cuerda ya no aprieta — sigue ahí porque así es más cómoda.',
+  'oculta-sombra':         'Una parte tuya está negando algo que el cuerpo ya registró. Disimular hacia adentro cuesta más caro que mirar.',
+  'desborda-emoción':      'Lo afectivo se está derramando sobre todo. No es sensibilidad — es desregulación que pide pausa, no confirmación.',
+  'fuerza-acción-prematura': 'Hay un impulso saliendo antes de tiempo. Lo que se mueve hoy va a tener que reescribirse mañana.',
+  'evita-decisión':        'La decisión está al alcance y la estás dejando pasar. Posponerla un día más también es elegir.',
+  'congela-ansiedad':      'La ansiedad ya no se mueve, se quedó. Naturalizar la angustia no es sostenerla: es dejar de mirarla.',
+  'rinde-posición':        'Estás soltando algo que sabías defender. Asegurate de que no es por agotamiento — perder lo propio por cansancio se paga después.',
+  'aferra-más-fuerte':     'Lo que tenía que cerrar se está sosteniendo con más fuerza. La negación del cierre lo vuelve más doloroso, no menos.',
+  'maquilla-mentira':      'Lo que ya se vio se está cubriendo otra vez. Dos personas saben que pasó: tú, y tu cuerpo.',
+  'romantiza-pérdida':     'La pérdida se volvió historia y la historia se volvió identidad. Lo que perdiste sigue siendo real; estar ahí no.',
+  'depende-de-ayuda':      'Pedir ayuda es bueno; convertir a alguien en muleta no. La diferencia es si sigues moviéndote tú o no.',
+  'sustituye-claridad':    'Estás reemplazando lo que ves con lo que prefieres ver. La cabeza ofrece otra explicación cada vez que la primera te incomoda.'
+}
+
+export function detectInvertedDominance(cards, seed) {
+  const inverted = cards.filter(c => c?.isReversed || c?.reversed || c?.attrs?.relationalTags?.includes('__invertida__'))
+  if (inverted.length < 2) return null
+  const variants = INVERSION_PRESENCE_LINES[Math.min(inverted.length, 3)] || INVERSION_PRESENCE_LINES[2]
+  return {
+    count: inverted.length,
+    line: pickVariant(variants, seed + 13)
+  }
+}
+
+export function detectInvertedTagSignal(cards, seed) {
+  // Buscar el primer tag invertido crítico que aparezca
+  for (const card of cards) {
+    const tags = card?.attrs?.relationalTags || []
+    for (const tag of tags) {
+      if (INVERTED_TAG_LINES[tag]) {
+        return { tag, line: INVERTED_TAG_LINES[tag] }
+      }
+    }
+  }
+  return null
+}
+
+
 /* =====================================================================
  *  ORQUESTADOR — corre los 10 detectores en orden y devuelve diagnóstico
  *  rico para que el motor compositor priorice y arme la lectura.
@@ -467,6 +531,9 @@ export function runAllDetectors(cards, seed) {
     majorPresence:  detectMajorPresence(cards, seed),
     rhythm:         detectEmotionalRhythm(cards, seed),
     amplifications: detectAmplifications(cards, seed),
-    blocks:         detectBlocks(cards, seed)
+    blocks:         detectBlocks(cards, seed),
+    // capa de invertidas
+    invertedDominance: detectInvertedDominance(cards, seed),
+    invertedSignal:    detectInvertedTagSignal(cards, seed)
   }
 }

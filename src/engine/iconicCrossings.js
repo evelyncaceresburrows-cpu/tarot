@@ -305,6 +305,14 @@ const CROSSINGS_NORMALIZED = (() => {
 
 /**
  * Busca todos los cruces icónicos presentes entre las cartas dadas.
+ *
+ * Las frases escritas asumen orientación derecha. Si cualquiera de las
+ * dos cartas en el par está invertida, el cruce no se dispara — la
+ * distorsión humana de la inversión cambia el significado simbólico,
+ * y aplicar la frase derecha sería un error semántico. Para cubrir
+ * invertidas con frases propias hay que escribir una segunda tabla
+ * (iconicCrossingsReversed) que aún no existe.
+ *
  * Devuelve array ordenado por weight desc, con { phrase, kind, weight,
  * pair: [keyA, keyB] }.
  */
@@ -313,7 +321,11 @@ export function findCrossings(cards) {
   const found = []
   for (let i = 0; i < list.length; i++) {
     for (let j = i + 1; j < list.length; j++) {
-      const key = pairKey(list[i], list[j])
+      const a = list[i]
+      const b = list[j]
+      // Si alguna está invertida, el cruce derecho no aplica.
+      if (a?.reversed || a?.isReversed || b?.reversed || b?.isReversed) continue
+      const key = pairKey(a, b)
       const c   = CROSSINGS_NORMALIZED[key]
       if (c) {
         found.push({

@@ -1052,7 +1052,7 @@ export const majorArcanaSymbolic = [
       'Las pequeñas alas de murciélago — un vuelo hecho de noche, no de aire'
     ],
 
-    reading: 'Hay algo que vuelves a buscar aunque sepas cómo termina. No te pide juzgarte; te pide mirar de cerca qué te da, qué te quita, y por qué sigues yendo. Las cadenas en esta carta están sueltas: lo que parece atadura, casi siempre, también es elección.',
+    reading: 'Hay algo que vuelves a buscar aunque sepas cómo termina. La carta no te pide juzgarte, pero tampoco te ofrece coartada: lo que parece atadura, casi siempre, también es elección. Las cadenas están sueltas. La pregunta no es por qué no puedes salir — es qué obtienes cada vez que decides quedarte.',
     synthesis: 'No es el deseo el problema. Es no mirarlo a los ojos.',
     extension: 'El Diablo no llega a condenar; llega a nombrar lo que tú ya sabías. Las cadenas que sostienen a las dos figuras no están cerradas con candado: se ven, se reconocen, se podrían quitar. Si todavía no se quitan, es porque el vínculo —con esa persona, con ese hábito, con esa imagen tuya— da algo además de quitar. La sombra no se cura mirándola con horror, se cura mirándola con curiosidad. Esta carta te pregunta qué estás obteniendo de eso que dices querer dejar, y por qué ese intercambio sigue siendo, por ahora, más tolerable que el vacío que dejaría su ausencia. Reconocer eso no es debilidad: es el primer movimiento honesto.',
     prompt: '¿Qué obtienes de eso que sabes que no te conviene?',

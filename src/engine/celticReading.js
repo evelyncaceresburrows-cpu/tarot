@@ -256,43 +256,43 @@ function detectSymbolicTensions(enriched) {
 
 const CLIMATE_LINES = {
   overwhelming: [
-    'Seis o más Arcanos Mayores cayeron en esta tirada. No es una pregunta del día — es un pasaje, y vas a recordar este momento.',
-    'Casi todo lo que ves son figuras grandes. Es de esos momentos donde lo que pasa ahora se nombra después como un antes y un después.'
+    'Seis o más Arcanos Mayores. No es pregunta del día — es un pasaje, y vas a recordar este momento.',
+    'Casi todas figuras grandes. La lectura no se cierra esta semana, ni el mes que viene.'
   ],
   strong: [
-    'Cuatro Mayores en escena. La pregunta que trajiste es más grande de lo que parece: no se resuelve esta semana.',
-    'Hay varios capítulos abiertos al mismo tiempo. Conviene leer despacio: no son escenas del día, son hilos de tu vida.'
+    'Cuatro Mayores en escena. La pregunta es más grande de lo que parece: no se resuelve esta semana.',
+    'Varios capítulos abiertos al mismo tiempo. No son escenas del día, son hilos de tu vida.'
   ],
   present: [
-    'Dos Mayores enmarcan la tirada. Algo importante te atraviesa, sin ocupar toda la escena.',
-    'La lectura tiene cotidiano y tiene capítulo. Las dos cosas conviven y conviene no aplastar una con la otra.'
+    'Dos Mayores enmarcan la tirada. Algo importante te atraviesa, sin ocupar toda la escena.'
   ],
   single: [
-    'Un solo Mayor se asoma entre Menores. Probablemente esa carta sea el ancla emocional — alrededor de ella se ordena el resto.',
-    'Una pieza grande sostenida por gestos chicos. La pregunta no es enorme, pero esa Mayor le da peso a algo en particular.'
+    'Un solo Mayor entre Menores. Esa carta es probablemente el ancla — alrededor de ella se ordena el resto.'
   ],
   absent: [
-    'Sin Mayores. La lectura está hecha de detalles, no de bisagras. No menos profunda: más íntima, más cotidiana.',
-    'No hay capítulos grandes, hay escenas. Es la clase de tirada que pide leerse sin buscar el drama.'
+    'Sin Mayores. Esto se vive a escala humana: una conversación, un mail, una decisión chica. No menos profundo — más íntimo.'
   ]
 }
 
+/* Solo frases con imagen humana o gesto reconocible. Las atmósferas
+   genéricas ("predomina la calidez", "el clima cambia carta a carta")
+   fueron eliminadas — si no hay imagen, no se dice nada. */
 const TEMP_LINES = {
-  tense:        'Hay un nervio sostenido atravesando varias cartas — algo concreto que todavía no se dijo en voz alta.',
-  warm:         'Predomina la calidez. No es alegría: es contención, algo que ya está abrigando aunque no lo notes.',
-  cold:         'Casi todo se lee en clave fría. No es dureza: es lucidez, ese tipo de claridad que llega cuando ya no hay para dónde correr.',
-  split:        'Frío y calor a partes iguales. Hay dos verdades en la misma escena que conviene no apurar a reconciliar.',
+  tense:          'Hay un nervio sostenido atravesando varias cartas — algo concreto que aún no se dijo en voz alta.',
+  warm:           '',
+  cold:           'Casi todo se lee en clave fría. No es dureza: es la lucidez de quien dejó de explicarse.',
+  split:          'Frío y calor a partes iguales. Hay dos verdades en la misma escena.',
   'warm-leaning': 'Lo cálido lleva la voz, pero hay un rincón frío que pide ser mirado antes de seguir.',
-  'cold-leaning': 'La lectura es más fría que cálida, salvo por un punto tibio que merece sostenerse.',
-  mixed:        'El clima cambia carta a carta. No hay una sola temperatura — la lectura es un mosaico.'
+  'cold-leaning': '',
+  mixed:          ''
 }
 
 const DIRECTION_LINES = {
-  'deeply-inward':   'La mayoría apunta hacia adentro. Este momento se piensa, no se actúa: cualquier movimiento exterior va a ser ruido sobre algo que todavía está madurando.',
-  'fully-outward':   'Casi todo empuja hacia afuera. Lo importante se está jugando en lo concreto: en una conversación, en una decisión, en un gesto que se ve.',
+  'deeply-inward':   'La mayoría apunta hacia adentro. Este momento se piensa, no se actúa: lo que se mueva afuera va a ser ruido sobre algo que aún está madurando.',
+  'fully-outward':   'Casi todo empuja hacia afuera. Lo importante se está jugando en una conversación, en una decisión, en un gesto que se ve.',
   'mostly-suspended':'Mucho de esto sigue en pausa. La lectura no pide moverte: pide esperar a que algo afuera se acomode primero.',
-  'split-direction': 'Una parte quiere salir, otra pide quedarse. Esa fricción no es indecisión — son dos necesidades reales conviviendo.',
-  mixed:             'No hay una dirección dominante. El movimiento va y vuelve.'
+  'split-direction': 'Una parte quiere salir, otra pide quedarse. No es indecisión — son dos necesidades reales conviviendo.',
+  mixed:             ''
 }
 
 const SUIT_LINES = {
@@ -352,10 +352,11 @@ function essenceOf(card, content) {
 /* ---------- OPENING — apertura general --------------------------- */
 
 function buildOpening(majorWeight, tempBalance, directionPull, seed) {
-  const climate = pickSeeded(CLIMATE_LINES[majorWeight], seed)
+  const climate = pickSeeded(CLIMATE_LINES[majorWeight], seed) || ''
   const tempL   = TEMP_LINES[tempBalance] || ''
   const dirL    = DIRECTION_LINES[directionPull] || ''
-  return [climate, tempL, dirL].filter(Boolean).join(' ')
+  // Si nada aporta, devolvemos cadena vacía y la UI omite la apertura.
+  return [climate, tempL, dirL].filter(s => s && s.trim().length > 0).join(' ')
 }
 
 

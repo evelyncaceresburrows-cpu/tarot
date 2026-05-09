@@ -726,9 +726,9 @@ export const minorArcanaCards = {
     Cinco: {
       suit:    'Espadas',
       number:  'Cinco',
-      essence: 'Tener razón no siempre te hace bien.',
-      reading: 'Hubo un choque y, aunque algo se ganó, queda un sabor incómodo. Esta carta te pide mirar el costo: hay batallas que vale más no librar y verdades que se entregan mejor sin filo.',
-      synthesis: 'Ganar también puede ser una forma de perder.',
+      essence: 'Tener razón no te hace bien hoy.',
+      reading: 'Hubo un choque y ganaste. Algo se ganó, sí, y a la vez se rompió algo que costaba años. Esta carta nombra el costo sin disculpas: las verdades dichas con filo cortan en los dos lados, y la razón que humilla deja de ser razón. No es debate moral — es factura concreta.',
+      synthesis: 'Ganar peleando así es perder a alguien.',
       prompt: '¿Qué discusión estás por sostener donde lo que vas a perder pesa más que lo que vas a ganar?',
       themes: ['Conflicto', 'Costo oculto', 'Victoria incómoda', 'Orgullo herido'],
       manifestations: [

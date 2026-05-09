@@ -2106,8 +2106,10 @@ function ComposedReading({ tirada, onCarta }) {
     content: findContentByCard(slot.card, slot.reversed)
   }))
 
-  // 2. Cards mínimas para el motor relacional (name / suit+number).
-  const engineCards = tirada.map(s => toEngineCard(s.card))
+  // 2. Cards mínimas para el motor relacional (name / suit+number),
+  //    cargando el flag `reversed` para que los atributos relacionales
+  //    se inviertan si la carta cayó al revés.
+  const engineCards = tirada.map(s => ({ ...toEngineCard(s.card), reversed: s.reversed }))
 
   // 3. Composición relacional — atmósfera, movimiento, síntesis.
   const relational = composeRelationalReading(engineCards)
@@ -2131,15 +2133,41 @@ function ComposedReading({ tirada, onCarta }) {
 
   return (
     <div className="px-2 max-w-[40rem] mx-auto">
-      {/* Atmósfera de apertura — peso de Mayores + temperatura + ritmo */}
-      <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[34rem] mx-auto mb-8">
-        {relational.atmosphere}
-      </p>
+      {/* Cruce icónico — frase específica del par de cartas. Italic + dorado.
+          Es lo más cargado simbólicamente: aterriza la lectura antes que la atmósfera. */}
+      {relational.crossing && (
+        <div className="text-center max-w-[34rem] mx-auto mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4 text-dorado/65">
+            <span className="h-px w-8 bg-dorado/35" />
+            <StarTiny size={9} />
+            <span className="h-px w-8 bg-dorado/35" />
+          </div>
+          <p className="font-serif italic text-dorado/95 text-[1.04rem] md:text-[1.06rem] leading-[1.7]">
+            {relational.crossing}
+          </p>
+        </div>
+      )}
+
+      {/* Atmósfera — solo cuando NO hay cruce icónico. Si hay cruce, el cruce
+          ya hizo el trabajo de aterrizar la lectura: la atmósfera redundaría. */}
+      {!relational.crossing && relational.atmosphere && (
+        <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[34rem] mx-auto mb-8">
+          {relational.atmosphere}
+        </p>
+      )}
 
       {/* Movimiento narrativo + contradicciones (si las hay) */}
       {relational.movement && (
-        <p className="font-light text-pergamino/65 text-[0.9rem] leading-[1.85] text-center max-w-[32rem] mx-auto mb-10 italic">
+        <p className="font-light text-pergamino/65 text-[0.9rem] leading-[1.85] text-center max-w-[32rem] mx-auto mb-9 italic">
           {relational.movement}
+        </p>
+      )}
+
+      {/* Detector emocional — observación del comportamiento del conjunto.
+          Tono observacional, gris medio, sans-serif. Nunca compite con el cruce. */}
+      {relational.detector && (
+        <p className="font-light text-pergamino/55 text-[0.85rem] leading-[1.8] text-center max-w-[30rem] mx-auto mb-10">
+          {relational.detector}
         </p>
       )}
 

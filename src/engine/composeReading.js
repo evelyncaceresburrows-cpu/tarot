@@ -64,12 +64,14 @@ export function composeReading(cards) {
 }
 
 /* Normaliza una carta del deck de App.jsx al formato que entiende el
-   motor relacional (suit + number para Menores; name para Mayores). */
+   motor relacional (suit + number para Menores; name para Mayores).
+   Conserva el flag `reversed` para que los atributos se inviertan. */
 function normalizeForEngine(card) {
   if (!card) return card
+  const reversed = card.reversed === true || card.inverted === true || card.isReversed === true
   // Mayor: ya viene con .name correcto.
   if (card.arcano === 'mayor' || card.paloKey === 'arcanos') {
-    return { name: card.nombre || card.name }
+    return { name: card.nombre || card.name, reversed }
   }
   // Menor: derivamos suit + number a partir de paloKey y romano.
   const suitMap = {
@@ -93,9 +95,9 @@ function normalizeForEngine(card) {
   }
   const suit = suitMap[card.paloKey] || card.suit
   const number = numberMap[card.romano] || card.number
-  if (suit && number) return { suit, number }
+  if (suit && number) return { suit, number, reversed }
   // último recurso: usar nombre (sirve para name-based matching de Mayores)
-  return { name: card.nombre || card.name }
+  return { name: card.nombre || card.name, reversed }
 }
 
 /* =====================================================================

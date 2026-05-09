@@ -161,101 +161,62 @@ function detectRhythmPattern(es) {
  *   otras cartas = otra frase.
  * ===================================================================*/
 
+/* TEMP_VARIANTS — solo frases con imagen humana o gesto reconocible.
+   Las atmósferas que podían servir para cualquier carta fueron eliminadas. */
 const TEMP_VARIANTS = {
   'warm': [
     'hay calidez sostenida, como cuando alguien te escucha sin interrumpirte',
-    'predomina algo que abriga, no que ahoga',
     'es esa temperatura de cuarto donde se puede llorar sin urgencia',
-    'la lectura tiene tono de mesa con luz baja, no de oficina',
-    'hay un calor que no pide demostraciones'
+    'la lectura tiene tono de mesa con luz baja, no de oficina'
   ],
   'cold': [
-    'hay una claridad fría, esa que llega cuando ya no hay para dónde correr',
     'no es dureza — es la lucidez de quien dejó de explicarse',
-    'el clima es como caminar al amanecer en mayo: limpio, sin abrigo, despierto',
     'todo se ve más nítido porque ya no hay nada que ocultar',
     'hay distancia honesta — la que se gana, no la que se impone'
   ],
   'cold-with-warmth': [
-    'predomina lo frío, con un punto cálido que no se apaga ni con el peor pronóstico',
-    'casi todo está bajo claridad fría, salvo un rincón que sigue abrigando',
     'es esa noche larga donde una luz al fondo de un pasillo cambia todo',
-    'la lectura es lúcida y un poco dura, pero alguien o algo está cuidando desde la sombra'
+    'la lectura es lúcida y un poco dura, pero algo cuida desde la sombra'
   ],
   'warm-with-cold': [
-    'predomina lo cálido, con una grieta fresca que conviene mirar de cerca',
-    'casi todo abriga, salvo un detalle frío que está pidiendo ser nombrado',
     'es esa charla buena donde, sin embargo, alguien dijo algo que no se va',
-    'lo cálido lleva la voz, pero hay un asunto pendiente que no se resuelve por sí solo'
+    'lo cálido lleva la voz, pero hay un asunto pendiente que no se resuelve solo'
   ],
   'tense': [
-    'hay un nervio sostenido en toda la lectura — algo concreto que aún no se dijo',
+    'hay un nervio sostenido — algo concreto que aún no se dijo',
     'es esa tirantez de las conversaciones que se postergaron demasiado',
-    'todo está cargado, en ese silencio antes de que alguien decida hablar',
     'la cuerda está corta — cualquier cosa que toques va a vibrar más de lo esperado'
   ],
   'tense-undertone': [
-    'la calma de la superficie esconde un hilo tirante por debajo',
-    'aparenta tranquilidad, pero algo agudo se mueve debajo sin nombrarse',
     'es la pausa antes del crujido: nada está pasando, todo está por pasar',
     'hay un nervio fino en el cuerpo que la mente todavía no escuchó'
   ],
-  'neutral': [
-    'el aire es parejo, sin urgencia ni drama',
-    'la lectura es de día normal, sin densidad especial — y a veces eso ya dice algo',
-    'no hay extremos: hay observación, registro, paciencia',
-    'todo respira en un punto medio, ni feliz ni difícil'
-  ],
-  'mixed': [
-    'cada carta trae su propio clima — la lectura no es de un solo color',
-    'el tono cambia de posición a posición, hay que leerlo escena por escena',
-    'no hay una sola temperatura: hay varias capas conviviendo',
-    'la lectura es un mosaico, no un paisaje'
-  ]
+  // 'neutral' y 'mixed' quedan vacíos — la atmósfera neutra/mosaico no
+  // aporta imagen humana. Si caemos aquí, el motor omite la línea de
+  // temperatura y la lectura respira sin relleno atmosférico.
+  'neutral': [],
+  'mixed':   []
 }
 
+/* RHYTHM_VARIANTS — el ritmo solo se nombra cuando aporta gesto humano.
+   stable/partly-fragmented/mixed quedan vacíos a propósito: cuando el
+   ritmo es parejo, no hace falta decirlo. */
 const RHYTHM_VARIANTS = {
   'slow': [
-    'el ritmo va despacio',
-    'el tiempo de la lectura es lento, casi de invierno',
-    'todo se demora en un compás bajo',
-    'la cadencia es lenta, sin apuro',
-    'el aire avanza en silencio largo'
+    'el tiempo de la lectura no está apurado — sería un error apurarlo'
   ],
   'fast': [
-    'el ritmo viene rápido',
-    'todo se mueve a un paso enérgico',
-    'la lectura tiene velocidad propia',
-    'el tiempo está acelerado, no caótico'
+    'esto se está moviendo a un ritmo que pide responder al día, no a la semana'
   ],
   'fragmented': [
-    'el ritmo está quebrado, en pulsos',
-    'el ritmo se interrumpe a sí mismo',
-    'todo viene a saltos, no en línea',
-    'el tiempo se astilla en partes'
-  ],
-  'stable': [
-    'el ritmo está sostenido',
-    'el pulso es parejo, sin saltos',
-    'la cadencia se mantiene, ni rápida ni lenta',
-    'todo respira en un mismo tiempo'
+    'el ritmo viene en saltos — lo que se decide hoy puede no calzar con lo de mañana'
   ],
   'pulsed': [
-    'el ritmo se mueve a saltos, lo lento alternado con lo rápido',
-    'algo apura, algo frena, y conviven',
-    'la cadencia tiene dos tiempos',
-    'el ritmo se acelera y se calma sin pelear'
+    'hay dos compases conviviendo: uno apura, uno frena'
   ],
-  'partly-fragmented': [
-    'el ritmo es regular salvo por un pulso suelto',
-    'el aire se mantiene parejo con un quiebre adentro',
-    'casi todo respira igual, salvo por un quiebre breve'
-  ],
-  'mixed': [
-    'el ritmo no es uniforme',
-    'cada posición late con un tempo distinto',
-    'el tiempo cambia de carta a carta'
-  ]
+  'stable':            [],
+  'partly-fragmented': [],
+  'mixed':             []
 }
 
 const MOVEMENT_VARIANTS = {
@@ -317,19 +278,13 @@ const MOVEMENT_VARIANTS = {
 
 /* ---------------------------------------------------------------- *
  * APERTURAS minimalistas — para modos cortos / silenciosos
+ *
+ * Antes había 10 frases atmosféricas tipo "el aire pide silencio". Las
+ * eliminé porque podían servir para cualquier lectura. En modo minimal,
+ * si no hay cruce icónico ni detector específico, la app simplemente
+ * no muestra apertura — el silencio es mejor que el relleno.
  * ---------------------------------------------------------------- */
-const MINIMAL_OPENINGS = [
-  'Algo ya cambió.',
-  'Todo respira distinto.',
-  'Hay un eco que no termina.',
-  'El aire pide silencio.',
-  'Algo se mueve sin nombrarse.',
-  'La escena ya cambió de luz.',
-  'Algo está empezando a contestar solo.',
-  'No es una respuesta cerrada todavía.',
-  'Algo se acomoda sin ruido.',
-  'El aire trae otra densidad.'
-]
+const MINIMAL_OPENINGS = []
 
 const CONTRADICTION_VARIANTS = {
   'temperature': [
@@ -394,14 +349,22 @@ const MAJOR_PRESENCE_VARIANTS = {
  * ===================================================================*/
 
 function composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed }) {
-  const tempLine   = pickVariant(TEMP_VARIANTS[dominantTemp]   || TEMP_VARIANTS['mixed'],   seed)
-  const rhythmLine = pickVariant(RHYTHM_VARIANTS[rhythmPattern] || RHYTHM_VARIANTS['mixed'], seed + 1)
+  const tempLine   = pickVariant(TEMP_VARIANTS[dominantTemp]   || [], seed)
+  const rhythmLine = pickVariant(RHYTHM_VARIANTS[rhythmPattern] || [], seed + 1)
   const majorLine  = pickVariant(MAJOR_PRESENCE_VARIANTS[majorPresence.count] ?? MAJOR_PRESENCE_VARIANTS[1], seed + 2)
 
-  return [
-    majorLine,
-    `Atmósfera: ${tempLine}, y ${rhythmLine}.`
-  ].join(' ')
+  // Si no hay temperatura ni ritmo con peso, omitimos la línea de
+  // atmósfera entera. Es mejor el silencio que el relleno.
+  let atmosphereLine = ''
+  if (tempLine && rhythmLine) {
+    atmosphereLine = `Atmósfera: ${tempLine}, y ${rhythmLine}.`
+  } else if (tempLine) {
+    atmosphereLine = `Atmósfera: ${tempLine}.`
+  } else if (rhythmLine) {
+    atmosphereLine = rhythmLine.charAt(0).toUpperCase() + rhythmLine.slice(1) + '.'
+  }
+
+  return [majorLine, atmosphereLine].filter(Boolean).join(' ')
 }
 
 function composeMovement({ narrativeMovement, contradictions, seed }) {
@@ -473,7 +436,12 @@ function decideMode(seed, diagnosis) {
  */
 export function composeRelationalReading(cards) {
   // Doble enriquecimiento: energía (compat) + atributos relacionales nuevos.
-  const enriched = (cards || []).map(c => withAttrs(enrichCard(c)))
+  // Si la carta viene con `.reversed=true` (inyectado por el caller), los
+  // atributos se transforman acorde a la inversión.
+  const enriched = (cards || []).map(c => {
+    const base = enrichCard(c)
+    return withAttrs(base, c?.reversed === true || c?.isReversed === true)
+  })
 
   const seed = hashSeed(cards)
 
@@ -585,14 +553,18 @@ function composeMovementEnriched(detectors, contradictions, narrativeMovement, s
 /**
  * Elige la frase más informativa entre los detectores que no se hayan
  * usado ya en composeMovementEnriched. Devuelve string vacío si no hay.
+ *
+ * Prioridad (de más específica a más general):
+ *   1) Señal de tag invertido — la inversión está nombrando algo concreto
+ *   2) Inversión dominante — 2+ cartas al revés cambia toda la lectura
+ *   3) Bloqueos
+ *   4) Amplificaciones
+ *   5) Claridad vs niebla
+ *   6) Contradicciones emocionales fuertes
  */
 function pickStrongestDetector(d) {
-  // Orden de prioridad:
-  //   1) bloques (cuando una carta cancela a otra)
-  //   2) amplificaciones (cuando una carta refuerza a otra)
-  //   3) claridad vs niebla
-  //   4) contradicciones emocionales fuertes
-  //   5) dominancia de palo (si no se usó como suitVoice)
+  if (d.invertedSignal)      return d.invertedSignal.line
+  if (d.invertedDominance)   return d.invertedDominance.line
   if (d.blocks?.[0])         return d.blocks[0].line
   if (d.amplifications?.[0]) return d.amplifications[0].line
   if (d.clarityVsFog)        return d.clarityVsFog.line

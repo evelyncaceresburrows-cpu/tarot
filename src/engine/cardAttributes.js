@@ -318,22 +318,204 @@ const MINOR_OVERRIDES = {
 
 
 /* ---------------------------------------------------------------- *
+ * INVERSIÓN — transformaciones de atributos cuando una carta cae    *
+ * invertida. La inversión NO es lo opuesto del símbolo, es su        *
+ * distorsión humana. El movimiento, la sombra y los tags cambian de *
+ * comportamiento; lo demás se conserva.                              *
+ * ---------------------------------------------------------------- */
+
+/* shadowMode invertido: cómo se desfigura cuando la carta cae al revés.
+   - represión   ↔ exhibición       (lo guardado se filtra o estalla)
+   - proyección  ↔ negación          (la sombra ya no se ve afuera, se niega adentro)
+   - sublimación ↔ desplazamiento    (lo elevado regresa, lo asimilado se descarga mal)
+   - exhibición  ↔ represión         (lo expuesto se reprime)
+   - desplazamiento → exhibición     (lo desviado se vuelve evidente)
+   - negación    → exhibición        (lo negado se nombra a la fuerza)
+   - ninguna     → desplazamiento    (cuando lo invertido distorsiona algo limpio)
+*/
+const SHADOW_INVERT = {
+  'represión':     'exhibición',
+  'proyección':    'negación',
+  'sublimación':   'desplazamiento',
+  'exhibición':    'represión',
+  'desplazamiento':'exhibición',
+  'negación':      'exhibición',
+  'ninguna':       'desplazamiento'
+}
+
+/* movementType invertido: cómo se rompe el movimiento natural de la carta.
+   - avance       → atropello       (avanzar sin escuchar señales)
+   - retroceso    → repetición       (volver al mismo lugar sin aprender)
+   - circulación  → estancamiento    (la corriente se cierra)
+   - suspensión   → fuga             (la pausa se vuelve evasión activa)
+   - colapso      → resistencia      (lo que tenía que caer se sostiene con esfuerzo)
+*/
+const MOVEMENT_INVERT = {
+  'avance':       'atropello',
+  'retroceso':    'repetición',
+  'circulación':  'estancamiento',
+  'suspensión':   'fuga',
+  'colapso':      'resistencia'
+}
+
+/* Tags invertidos: cómo se distorsiona cada relación.
+   Solo transformamos los tags conocidos; los desconocidos se descartan. */
+const TAG_INVERT = {
+  // amplificación → distorsión / negación
+  'amplifica-niebla':     'niega-niebla',
+  'amplifica-emoción':    'desborda-emoción',
+  'amplifica-sombra':     'oculta-sombra',
+  'amplifica-acción':     'atropella-acción',
+  'amplifica-claridad':   'rechaza-claridad',
+  'amplifica-paciencia':  'fuerza-prisa',
+  'amplifica-niebla':     'fuerza-claridad-falsa',
+  'amplifica-esperanza':  'sostiene-fe-ciega',
+  'amplifica-sospecha':   'anula-sospecha',
+  'amplifica-ansiedad':   'congela-ansiedad',
+
+  // bloqueo → atropello del bloqueo
+  'bloquea-flujo-emocional': 'desborda-flujo-emocional',
+  'bloquea-acción':       'fuerza-acción-prematura',
+  'bloquea-libertad':     'simula-libertad',
+  'bloquea-claridad':     'sustituye-claridad',
+
+  // gestos → su distorsión
+  'pide-gesto':           'fuerza-gesto',
+  'pide-silencio':        'rechaza-silencio',
+  'pide-claridad':        'rechaza-claridad',
+  'pide-confianza':       'sospecha-todo',
+  'pide-paciencia':       'apura-respuesta',
+  'pide-discernimiento':  'rechaza-discernimiento',
+  'pide-decisión':        'evita-decisión',
+  'pide-coherencia':      'fuerza-incoherencia',
+  'pide-aceptación':      'rechaza-aceptación',
+  'pide-lectura-larga':   'reduce-a-anécdota',
+
+  // movimientos → su negación
+  'enciende-impulso':     'apaga-impulso',
+  'concreta-intención':   'diluye-intención',
+  'guarda-secreto':       'filtra-secreto',
+  'sostiene-cuidado':     'sobrecuida',
+  'sostiene-pausa':       'rompe-pausa',
+  'sostiene-presencia':   'simula-presencia',
+  'sostiene-cuidado':     'invade-con-cuidado',
+  'pone-estructura':      'rigidiza-estructura',
+  'transmite-tradición':  'impone-tradición',
+  'invoca-mandato':       'esquiva-mandato',
+  'empuja-foco':          'dispersa-foco',
+  'tensiona-rumbo':       'pierde-rumbo',
+  'contiene-intensidad':  'reprime-intensidad',
+  'enciende-lucidez':     'aísla-lucidez',
+  'aísla-presencia':      'huye-presencia',
+  'marca-ciclo':          'niega-ciclo',
+  'desordena-control':    'aferra-control',
+  'expone-verdad':        'tergiversa-verdad',
+  'corta-evasión':        'inventa-evasión',
+  'frena-acción':         'fuerza-acción',
+  'cambia-perspectiva':   'fija-perspectiva',
+  'fuerza-cierre':        'evita-cierre',
+  'rompe-aferramiento':   'aferra-más-fuerte',
+  'armoniza-opuestos':    'desbalancea-opuestos',
+  'integra-ritmo':        'fragmenta-ritmo',
+  'intensifica-deseo':    'niega-deseo',
+  'rompe-estructura':     'sostiene-ruina',
+  'fuerza-verdad':        'tapa-verdad',
+  'desnuda-mentira':      'maquilla-mentira',
+  'repara-confianza':     'sospecha-de-todo',
+  'distorsiona-percepción':'fuerza-percepción-falsa',
+  'simplifica-escena':    'complica-escena',
+  'descarta-niebla':      'romantiza-niebla',
+  'llama-decisión':       'silencia-llamado',
+  'fuerza-reconocimiento':'rechaza-reconocimiento',
+  'cierra-evasión':       'fortalece-evasión',
+  'cierra-ciclo':         'estira-ciclo',
+  'integra-recorrido':    'descarta-recorrido',
+  'abre-siguiente':       'cierra-puerta',
+  'expone-tensión-pareja':'oculta-tensión-pareja',
+  'fragmenta-rumbo':      'aferra-rumbo-malo',
+  'equilibra-ritmo':      'desbalancea-ritmo',
+  'esconde-jugada':       'expone-jugada-mal',
+  'repite-gesto':         'rompe-gesto',
+  'intensifica-soledad':  'huye-de-la-soledad',
+  'curiosea-territorio':  'invade-territorio',
+  'acelera-acción':       'paraliza-acción',
+  'firma-criterio':       'cede-criterio',
+  'nombra-herida':        'tapa-herida',
+  'expone-corte':         'maquilla-corte',
+  'encierra-narrativa':   'invade-narrativa',
+  'cierra-relato':        'estira-relato',
+  'pide-amanecer':        'rechaza-amanecer',
+  'fija-pérdida':         'romantiza-pérdida',
+  'esconde-lo-que-queda': 'devalúa-lo-que-queda',
+  'paraliza-elección':    'fuerza-elección',
+  'suelta-sin-cerrar':    'aferra-sin-elegir',
+  'enciende-fricción':    'apaga-fricción-falsa',
+  'gasta-energía':        'congela-energía',
+  'carga-cuerpo':         'somatiza-resentimiento',
+  'pide-soltar':          'aferra-más',
+  'defiende-posición':    'rinde-posición',
+  'rigidiza-trinchera':   'abandona-trinchera',
+  'retiene-recurso':      'malgasta-recurso',
+  'cierra-circulación':   'desborda-circulación',
+  'expone-carencia':      'oculta-carencia',
+  'rechaza-ayuda':        'depende-de-ayuda',
+  'abre-umbral':          'cierra-umbral',
+  'abre-cuerpo':          'cierra-cuerpo',
+  'abre-vínculo':         'evita-vínculo',
+  'expone-coherencia':    'simula-coherencia'
+}
+
+/* tensionType invertido: la tensión que la carta normalmente sostiene se
+   desreguló. mental → mental difuso, emocional → emocional desbordado, etc.
+   Conservamos el tipo pero marcamos en relationalTags que está invertido
+   para que los detectores lo lean. */
+function invertVisibility(v) {
+  return ({
+    'clara':   'borrosa',     // la luz se enturbia
+    'expuesta':'oculta',      // lo expuesto se esconde
+    'oculta':  'expuesta',    // lo oculto se filtra
+    'borrosa': 'borrosa',     // la niebla negada sigue niebla
+    'parcial': 'parcial'      // lo parcial se mantiene
+  })[v] || v
+}
+
+/* Construye atributos modificados por inversión. */
+function applyInversionToAttrs(base) {
+  const newTags = (base.relationalTags || [])
+    .map(t => TAG_INVERT[t] || t) // si no hay mapeo, dejamos el tag tal cual
+    .concat(['__invertida__']) // bandera para detectores
+
+  return {
+    ...base,
+    movementType:  MOVEMENT_INVERT[base.movementType] || base.movementType,
+    shadowMode:    SHADOW_INVERT[base.shadowMode]     || base.shadowMode,
+    visibility:    invertVisibility(base.visibility),
+    relationalTags: newTags
+  }
+}
+
+
+/* ---------------------------------------------------------------- *
  * API                                                                *
  * ---------------------------------------------------------------- */
 
 /**
  * Devuelve el perfil relacional completo de una carta.
- * Carta puede ser Mayor (con .name), Menor (suit + number) o ya
- * enriquecida.
+ * Carta puede ser Mayor (con .name), Menor (suit + number) o ya enriquecida.
+ *
+ * @param {Object}  card     La carta.
+ * @param {boolean} reversed Si está invertida, modificamos atributos.
  */
-export function getCardAttrs(card) {
+export function getCardAttrs(card, reversed = false) {
   if (!card) return fallback()
+
+  let base
 
   // Mayor — lookup directo
   if (card.name && MAJOR_ATTRS[card.name]) {
     const m = MAJOR_ATTRS[card.name]
     const e = getCardEnergetics(card)
-    return {
+    base = {
       emotionalAxis: m.emotionalAxis,
       tensionType:   m.tensionType,
       movementType:  m.movementType,
@@ -343,16 +525,15 @@ export function getCardAttrs(card) {
       relationalTags: [...m.relationalTags]
     }
   }
-
   // Menor — derivación por palo + número + override
-  if (card.suit && card.number) {
+  else if (card.suit && card.number) {
     const e   = getCardEnergetics(card)
     const np  = NUMBER_PROFILE[card.number] || { movement: 'circulación', tags: [] }
     const ov  = MINOR_OVERRIDES[`${card.suit}/${card.number}`] || {}
 
     const tags = [...(np.tags || []), ...(ov.tags || [])]
 
-    return {
+    base = {
       emotionalAxis: ov.axis || SUIT_AXIS[card.suit] || ['conexión-aislamiento'],
       tensionType:   ov.tensionType || SUIT_TENSION[card.suit] || 'ninguna',
       movementType:  ov.movement || np.movement,
@@ -362,17 +543,23 @@ export function getCardAttrs(card) {
       relationalTags: tags
     }
   }
+  else {
+    return fallback()
+  }
 
-  return fallback()
+  return reversed ? applyInversionToAttrs(base) : base
 }
 
-/** Versión enriquecida de la carta: la original + energetics + attrs. */
-export function withAttrs(card) {
+/** Versión enriquecida de la carta: la original + energetics + attrs.
+ *  Acepta `reversed` para que el motor pueda enriquecer correctamente
+ *  cartas invertidas en una tirada. */
+export function withAttrs(card, reversed = false) {
   return {
     ...card,
-    isMajor: isMajor(card),
-    energy:  getCardEnergetics(card),
-    attrs:   getCardAttrs(card)
+    isMajor:   isMajor(card),
+    isReversed: !!reversed,
+    energy:    getCardEnergetics(card),
+    attrs:     getCardAttrs(card, reversed)
   }
 }
 
