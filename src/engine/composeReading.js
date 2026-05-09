@@ -3,8 +3,16 @@
  *
  * Reglas locales, sin IA generativa.
  * Input:  cards = [{ name, positions, inverted, reading? }, ...]
- * Output: { intro, byPosition[3], synthesis, question }
+ * Output: { intro, byPosition[3], synthesis, question, crossing, detector }
+ *
+ * Capa nueva: si el motor relacional encuentra un cruce icónico (Luna+7E,
+ * Torre+10E, etc.), esa frase aparece en `crossing` y se antepone a la
+ * `synthesis`. Si los detectores agregan algo (sobrecarga mental, energía
+ * suspendida, bloqueo, amplificación), aparece en `detector`. El bridge
+ * heredado queda como fallback narrativo.
  * ===================================================================*/
+
+import { composeRelationalReading } from './relationalEngine.js'
 
 export function composeReading(cards) {
   if (!Array.isArray(cards) || cards.length < 3) {
@@ -20,6 +28,27 @@ export function composeReading(cards) {
   const bridge   = buildBridge(c1, c2, c3)
   const closing  = buildClosingQuestion(cards)
 
+  // Capa relacional emergente — toma cruces icónicos + detectores nuevos.
+  // Si las cartas son Mayores ya tienen .name. Si son Menores ADE las
+  // pasa con .name como "Tres de Espadas"; aquí derivamos suit/number
+  // a partir del campo .paloKey y .romano si están disponibles, para
+  // que el motor pueda matchear los pares.
+  const normalized = cards.map(normalizeForEngine)
+  let crossingLine = ''
+  let detectorLine = ''
+  try {
+    const rel = composeRelationalReading(normalized)
+    crossingLine = rel?.crossing || ''
+    detectorLine = rel?.detector || ''
+  } catch (_) {
+    // Si algo falla en el motor relacional, no rompemos la lectura.
+  }
+
+  // La synthesis se construye con: cruce icónico (si hay) + bridge legacy.
+  // El cruce manda y aterriza la lectura en lo específico antes del
+  // puente atmosférico.
+  const synthesis = [crossingLine, bridge].filter(Boolean).join(' ')
+
   return {
     intro: tone.intro,
     byPosition: [
@@ -27,9 +56,46 @@ export function composeReading(cards) {
       { label: 'Lo que cruza',   text: t2 },
       { label: 'Lo que se abre', text: t3 }
     ],
-    synthesis: bridge,
+    synthesis,
+    crossing: crossingLine,
+    detector: detectorLine,
     question:  closing
   }
+}
+
+/* Normaliza una carta del deck de App.jsx al formato que entiende el
+   motor relacional (suit + number para Menores; name para Mayores). */
+function normalizeForEngine(card) {
+  if (!card) return card
+  // Mayor: ya viene con .name correcto.
+  if (card.arcano === 'mayor' || card.paloKey === 'arcanos') {
+    return { name: card.nombre || card.name }
+  }
+  // Menor: derivamos suit + number a partir de paloKey y romano.
+  const suitMap = {
+    copas: 'Copas', espadas: 'Espadas', bastos: 'Bastos', oros: 'Oros'
+  }
+  const numberMap = {
+    '1': 'As', 'I': 'As', 'A': 'As',
+    '2': 'Dos', 'II': 'Dos',
+    '3': 'Tres', 'III': 'Tres',
+    '4': 'Cuatro', 'IV': 'Cuatro',
+    '5': 'Cinco', 'V': 'Cinco',
+    '6': 'Seis', 'VI': 'Seis',
+    '7': 'Siete', 'VII': 'Siete',
+    '8': 'Ocho', 'VIII': 'Ocho',
+    '9': 'Nueve', 'IX': 'Nueve',
+    '10': 'Diez', 'X': 'Diez',
+    'S': 'Sota', 'P': 'Sota',
+    'C': 'Caballero', 'K': 'Caballero',
+    'Q': 'Reina', 'R': 'Reina',
+    'Re': 'Rey', 'KING': 'Rey'
+  }
+  const suit = suitMap[card.paloKey] || card.suit
+  const number = numberMap[card.romano] || card.number
+  if (suit && number) return { suit, number }
+  // último recurso: usar nombre (sirve para name-based matching de Mayores)
+  return { name: card.nombre || card.name }
 }
 
 /* =====================================================================
@@ -105,7 +171,7 @@ function buildBridge(c1, c2, c3) {
     return 'Lo que se abre tiene aire de cierre. Algo se integra, aunque todavía estés caminando hacia ahí.'
   }
   if (a === 'La Muerte' || a === 'La Torre') {
-    return 'Partís desde un terreno que ya cambió. Lo que sigue se ordena con más calma si reconoces ese suelo nuevo.'
+    return 'Partes desde un terreno que ya cambió. Lo que sigue se ordena con más calma si reconoces ese suelo nuevo.'
   }
   if (a === 'El Ermitaño' || b === 'El Ermitaño' || c === 'El Ermitaño') {
     return 'En algún punto del recorrido, el silencio es lo que ordena. Mirar adentro acomoda lo que afuera parece urgente.'
@@ -126,7 +192,7 @@ function buildClosingQuestion(cards) {
   const invertedCount = cards.filter(c => c.inverted).length
 
   if (invertedCount >= 2) {
-    return '¿Qué se ordena distinto cuando dejás de pelearte con lo que estás sintiendo?'
+    return '¿Qué se ordena distinto cuando dejas de pelearte con lo que estás sintiendo?'
   }
   if (invertedCount === 1) {
     return '¿Qué se ordena distinto cuando miras esto sin apuro?'

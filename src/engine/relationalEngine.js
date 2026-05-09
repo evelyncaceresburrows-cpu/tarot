@@ -35,6 +35,9 @@
  * ===================================================================*/
 
 import { getCardEnergetics, isMajor, enrichCard } from './cardEnergetics.js'
+import { withAttrs } from './cardAttributes.js'
+import { findCrossings } from './iconicCrossings.js'
+import { runAllDetectors } from './relationalDetectors.js'
 
 
 /* =====================================================================
@@ -469,64 +472,132 @@ function decideMode(seed, diagnosis) {
  * }}
  */
 export function composeRelationalReading(cards) {
-  const enriched = (cards || []).map(c => enrichCard(c))
+  // Doble enriquecimiento: energía (compat) + atributos relacionales nuevos.
+  const enriched = (cards || []).map(c => withAttrs(enrichCard(c)))
 
+  const seed = hashSeed(cards)
+
+  // ---- 1) CRUCES ICÓNICOS — prioridad máxima ----
+  // Si dos cartas tienen un par escrito a mano, esa frase manda y se
+  // antepone a la atmósfera genérica.
+  const crossings = findCrossings(cards)
+
+  // ---- 2) DETECTORES — los 10 ----
+  const detectors = runAllDetectors(enriched, seed)
+
+  // ---- 3) Diagnóstico legacy (compat con UI vieja) ----
   const dominantTemp      = detectDominantTemperature(enriched)
   const contradictions    = detectContradictions(enriched)
   const narrativeMovement = detectNarrativeMovement(enriched)
   const suitConcentration = detectSuitConcentration(enriched)
-  const majorPresence     = detectMajorPresence(enriched)
+  const majorPresenceLeg  = detectMajorPresence(enriched)
   const rhythmPattern     = detectRhythmPattern(enriched)
 
   const diagnosis = {
+    // legacy (consumido por UI/Cruz Celta)
     dominantTemperature: dominantTemp,
     rhythmPattern,
     narrativeMovement,
     contradictions,
     suitConcentration,
-    majorPresence
+    majorPresence: majorPresenceLeg,
+
+    // nuevo (consumido por compositor relacional emergente)
+    crossings,
+    detectors
   }
 
-  const seed = hashSeed(cards)
   const mode = decideMode(seed, diagnosis)
 
   /* Composición por modo. Cada uno respeta una atmósfera distinta. */
   let atmosphere = ''
   let movement   = ''
   let suitVoice  = ''
+  let crossingLine = ''
+
+  // Si hay un cruce icónico fuerte (weight >= 0.85) lo usamos como ancla
+  // de la atmósfera. Las frases de cruces son específicas y humanas, y
+  // pesan más que la temperatura/ritmo abstractos.
+  const topCrossing = crossings.find(c => c.weight >= 0.85) || crossings[0]
+
+  // El cruce icónico siempre se expone en `crossing` cuando existe, y
+  // queda fuera de `atmosphere` para que la UI pueda mostrarlo aparte.
+  if (topCrossing) crossingLine = topCrossing.phrase
 
   if (mode === 'minimal') {
-    /* Solo una frase corta — el silencio importa más que la explicación */
-    atmosphere = pickVariant(MINIMAL_OPENINGS, seed)
-    /* Si hay contradicción fuerte, agregar UNA línea de tensión */
-    if (contradictions.length > 0 && contradictions[0].type === 'temperature') {
-      atmosphere += ' ' + pickVariant(CONTRADICTION_VARIANTS.temperature, seed + 11)
+    if (!topCrossing) {
+      atmosphere = pickVariant(MINIMAL_OPENINGS, seed)
+      if (contradictions.length > 0 && contradictions[0].type === 'temperature') {
+        atmosphere += ' ' + pickVariant(CONTRADICTION_VARIANTS.temperature, seed + 11)
+      }
     }
   } else if (mode === 'short') {
-    /* Solo la atmósfera, sin movimiento ni voz de palo */
-    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
+    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence: majorPresenceLeg, seed })
   } else if (mode === 'medium') {
-    /* Atmósfera + movimiento, sin voz de palo */
-    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
-    movement   = composeMovement({ narrativeMovement, contradictions, seed })
+    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence: majorPresenceLeg, seed })
+    movement = composeMovementEnriched(detectors, contradictions, narrativeMovement, seed)
   } else {
-    /* full: atmósfera + movimiento + voz de palo */
-    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence, seed })
-    movement   = composeMovement({ narrativeMovement, contradictions, seed })
+    atmosphere = composeAtmosphere({ dominantTemp, rhythmPattern, majorPresence: majorPresenceLeg, seed })
+    movement   = composeMovementEnriched(detectors, contradictions, narrativeMovement, seed)
     suitVoice  = composeSuitVoice(suitConcentration, seed)
   }
 
-  const synthesis = [atmosphere, movement, suitVoice].filter(Boolean).join(' ')
+  // Capa adicional: detectores específicos que no pasan por atmósfera.
+  // Solo se inyecta UNO, el más informativo, para no sobrecargar.
+  const detectorLine = pickStrongestDetector(detectors)
+
+  const synthesis = [crossingLine, atmosphere, movement, detectorLine, suitVoice]
+    .filter(Boolean)
+    .join(' ')
 
   return {
     mode,
     atmosphere,
     movement,
     suitVoice,
+    crossing: crossingLine,
+    detector: detectorLine,
     synthesis,
     diagnosis,
     enriched
   }
+}
+
+
+/* =====================================================================
+ *  Helpers de composición que usan los detectores nuevos.
+ * ===================================================================*/
+
+/**
+ * Compone la línea de movimiento. Si los detectores nuevos detectan
+ * suspensión total, mental overload, o movimiento vs inmovilidad,
+ * usamos esa frase específica antes de caer en la genérica.
+ */
+function composeMovementEnriched(detectors, contradictions, narrativeMovement, seed) {
+  if (detectors.suspended) return detectors.suspended.line
+  if (detectors.mentalOverload) return detectors.mentalOverload.line
+  if (detectors.movementVsStillness) return detectors.movementVsStillness.line
+
+  // fallback al compositor legacy
+  return composeMovement({ narrativeMovement, contradictions, seed })
+}
+
+/**
+ * Elige la frase más informativa entre los detectores que no se hayan
+ * usado ya en composeMovementEnriched. Devuelve string vacío si no hay.
+ */
+function pickStrongestDetector(d) {
+  // Orden de prioridad:
+  //   1) bloques (cuando una carta cancela a otra)
+  //   2) amplificaciones (cuando una carta refuerza a otra)
+  //   3) claridad vs niebla
+  //   4) contradicciones emocionales fuertes
+  //   5) dominancia de palo (si no se usó como suitVoice)
+  if (d.blocks?.[0])         return d.blocks[0].line
+  if (d.amplifications?.[0]) return d.amplifications[0].line
+  if (d.clarityVsFog)        return d.clarityVsFog.line
+  if (d.contradictions?.length) return d.contradictions[0].line
+  return ''
 }
 
 
