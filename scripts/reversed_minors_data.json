@@ -1,0 +1,228 @@
+{
+  "Oros": {
+    "As": {
+      "essence": "La mano sigue extendida con la moneda, pero alguien cerró el puño antes de tomarla. La oferta queda colgando en el aire.",
+      "reading": "La oportunidad concreta apareció y la dejaste pasar, o la calculaste tanto que cuando moviste la mano ya no estaba. O al revés: la tomaste sin mirarla bien y ahora cargas algo que no querías. Lo material pidió aterrizaje sereno y obtuvo desconfianza o impulso.",
+      "synthesis": "Lo concreto no espera para siempre.",
+      "prompt": "¿Qué oferta tangible —de trabajo, recurso, cuerpo, vínculo— estás demorando porque calcular cuesta menos que decidir?",
+      "manifestations": [
+        "Recibir una propuesta laboral sólida y postergar la respuesta hasta que el otro busca a alguien más",
+        "Aceptar un recurso o trabajo sin mirarlo bien y descubrir, después, que no era lo que decías querer",
+        "Dejar pasar el cuidado del cuerpo —turno, rutina, descanso— por estar esperando el momento ideal"
+      ],
+      "shadows": [
+        "Se bloquea la recepción concreta.",
+        "Se exagera el cálculo o la aceptación apurada.",
+        "Se evita mirar que lo material también pide gesto en tiempo real."
+      ]
+    },
+    "Dos": {
+      "essence": "La figura sigue haciendo malabarismo con las dos monedas, pero la sonrisa se borró. Los barcos detrás se balancean cada vez más fuerte.",
+      "reading": "El malabarismo se volvió oficio sin pausa. O sostienes diez cosas a la vez por costumbre y ya no sabes cuál es la que importa, o caíste en el otro extremo: tiraste todo al piso porque no soportabas seguir y ahora no estás cumpliendo con nada. El ritmo pidió revisión, no más virtuosismo.",
+      "synthesis": "Sostenerlo todo todo el tiempo es una forma de no sostener nada.",
+      "prompt": "¿Qué pelota podrías dejar caer esta semana sin que el mundo se acabe, y a qué te asusta descubrir si lo hicieras?",
+      "manifestations": [
+        "Llevar trabajo, casa, hijos, estudios y rutina física al mismo tiempo y descubrirte llorando en el baño un martes cualquiera",
+        "Hacer del \"yo puedo con todo\" identidad y notar que ya nadie te ofrece ayuda",
+        "Soltar todo de golpe en un colapso porque no había forma de soltar de a poco"
+      ],
+      "shadows": [
+        "Se bloquea la priorización honesta.",
+        "Se exagera el aguante o el colapso final.",
+        "Se evita mirar que la agilidad también pide saber qué no sostener."
+      ]
+    },
+    "Tres": {
+      "essence": "Los tres trabajadores siguen en la catedral, pero ya no se hablan. El plano del arquitecto cambió y nadie lo dijo en voz alta.",
+      "reading": "La colaboración se rompió o se evita. O quisiste hacerlo todo sola para no deber nada y descubriste que tu parte no calzaba con nada, o aceptaste un \"trabajo en equipo\" en el que nadie tiene claro su rol y todos hacen como que. El oficio compartido pide pedir, decir y revisar — no asumir.",
+      "synthesis": "Construir en silencio paralelo no es construir juntos.",
+      "prompt": "¿Qué pieza no estás pidiendo —ayuda, claridad, reconocimiento— que está frenando lo que se podría construir mejor entre varios?",
+      "manifestations": [
+        "Sostener tu parte de un proyecto en perfecto silencio y descubrir, al entregar, que el otro hizo otra cosa",
+        "Aceptar un equipo donde no se decide nada y notar que cada quien va tirando para su lado",
+        "Cargar sola lo que era de varios para no tener que pedir, y volver a casa agotada"
+      ],
+      "shadows": [
+        "Se bloquea la comunicación dentro del oficio compartido.",
+        "Se exagera la autosuficiencia o la falsa colaboración.",
+        "Se evita mirar que pedir también es trabajo."
+      ]
+    },
+    "Cuatro": {
+      "essence": "La figura sigue sentada en su trono con las cuatro monedas, pero las manos se volvieron piedra. La ciudad atrás se ve cada vez más lejos.",
+      "reading": "Lo conseguido se volvió rehén. O aprietas tanto los recursos —dinero, tiempo, afecto, posición— que la propia vida se vuelve estrecha, o lo abriste todo de golpe por miedo a parecer avara y ahora estás en otra forma de exposición. La estabilidad pide mano abierta sin perder firmeza.",
+      "synthesis": "Cuidarlo cerrando es otra forma de perderlo.",
+      "prompt": "¿Qué estás reteniendo con miedo cuando, en realidad, ya es tuyo y solo pide ser usado?",
+      "manifestations": [
+        "Postergar una compra que necesitas hace meses para \"sentirte segura\" y notar que la sensación de inseguridad sigue igual",
+        "Defender una rutina, un cargo o una posición con tanta rigidez que ya nadie se atreve a sugerir cambios",
+        "Abrir todo de golpe por miedo a quedar como controladora y arrepentirte después"
+      ],
+      "shadows": [
+        "Se bloquea la circulación de lo que se tiene.",
+        "Se exagera el control o el desprendimiento performativo.",
+        "Se evita mirar que la seguridad real no se construye apretando."
+      ]
+    },
+    "Cinco": {
+      "essence": "Las dos figuras siguen caminando por la nieve. La luz de la iglesia detrás está, pero ninguno la mira ya.",
+      "reading": "La carencia se volvió identidad. O te quedaste afuera tanto tiempo que ya no quieres entrar aunque te abran la puerta, o niegas la dificultad real y te exiges felicidad performada cuando lo que necesitas es decir \"no estoy bien\". El frío pidió ser nombrado, no romantizado ni tapado.",
+      "synthesis": "Vivir afuera del refugio porque entrar duele orgullo es otra forma de seguir afuera.",
+      "prompt": "¿Qué ayuda concreta estás rechazando esta semana, y qué prefieres no admitir si la aceptaras?",
+      "manifestations": [
+        "Pasar un mal momento económico, afectivo o de salud y rechazar a quienes ofrecen ayuda real",
+        "Decir \"todo bien\" en automático cuando todo no está bien, y descubrir que ya nadie te pregunta dos veces",
+        "Hacer de la dificultad una historia de identidad en lugar de un tramo a cruzar"
+      ],
+      "shadows": [
+        "Se bloquea la posibilidad de pedir y recibir.",
+        "Se exagera el orgullo defensivo o la negación performada.",
+        "Se evita mirar que estar mal es información, no fracaso."
+      ]
+    },
+    "Seis": {
+      "essence": "La figura sigue pesando las monedas en la balanza, pero ya no mira a quién le da. Los pobres a sus pies se volvieron pose.",
+      "reading": "El intercambio se desbalanceó. O das para sentirte indispensable y después te resentís porque \"nadie te lo agradece\", o recibes y te sentís en deuda perpetua aunque el otro no haya pedido devolución. La generosidad cuidada pide claridad sobre el motivo, no solo sobre la cifra.",
+      "synthesis": "Dar para tener autoridad o recibir para deberse no es intercambio: es contrato disfrazado.",
+      "prompt": "¿Por qué exactamente estás dando lo que estás dando, y por qué te cuesta recibir lo que estás recibiendo?",
+      "manifestations": [
+        "Prestar dinero, tiempo o atención y llevarlo en la cabeza como crédito hasta que alguien te falle y exploten cinco años de cuentas",
+        "Recibir una ayuda chica y sentirte tan en deuda que ya no te animas a estar cerca de quien te la dio",
+        "Confundir generosidad con tener algo que el otro no, y ubicarte arriba sin querer"
+      ],
+      "shadows": [
+        "Se bloquea el intercambio honesto.",
+        "Se exagera la donación con costo emocional o la deuda invisible.",
+        "Se evita mirar que dar y recibir no son favores: son lengua común."
+      ]
+    },
+    "Siete": {
+      "essence": "La figura sigue apoyada en la herramienta mirando la planta. Pero ahora mira el reloj cada dos minutos. Las monedas que ya cuelgan dejaron de contarse.",
+      "reading": "La paciencia se volvió impaciencia disfrazada de meditación, o se cronificó en resignación. O arrancas las raíces porque no soportas no ver progreso, o llevas años contemplando un proyecto que ya no crece y al que ya no estás cuidando. El cultivo pide presencia activa, no vigilancia ni abandono romántico.",
+      "synthesis": "Esperar sin atender es otra forma de no esperar.",
+      "prompt": "¿Qué proyecto, vínculo o proceso llevás \"madurando\" tanto que ya empezó a secarse sin que lo notaras?",
+      "manifestations": [
+        "Mirar las métricas de tu emprendimiento todos los días buscando una señal de cambio que no llega",
+        "Quedarte en una etapa estancada y llamar paciencia a lo que ya es resignación",
+        "Arrancar el proyecto justo antes de que diera fruto porque no soportabas no saber"
+      ],
+      "shadows": [
+        "Se bloquea la presencia activa en la espera.",
+        "Se exagera la impaciencia o la resignación romántica.",
+        "Se evita mirar que esperar bien también pide mantener el riego."
+      ]
+    },
+    "Ocho": {
+      "essence": "El artesano sigue sentado golpeando la moneda, pero ya no mira lo que hace. La ciudad detrás cerró las puertas.",
+      "reading": "La práctica se volvió rutina sin alma. O repites el oficio en piloto automático y la maestría se volvió producción mecánica, o saltas de técnica en técnica buscando \"perfeccionarte\" sin profundizar ninguna. El taller pidió constancia con mirada despierta, no autoexplotación ni colección de cursos.",
+      "synthesis": "Repetir sin presencia no afina: solo gasta.",
+      "prompt": "¿Qué estás haciendo en piloto automático que merecería diez minutos de mirada nueva — o qué estás aprendiendo en serie sin practicar ninguna?",
+      "manifestations": [
+        "Llevar años en el mismo oficio y no recordar la última vez que aprendiste algo nuevo",
+        "Anotarte a tres cursos de algo y abandonarlos a la mitad porque ya \"sabes lo básico\"",
+        "Practicar diez horas al día y romperte el cuerpo en nombre de un dominio que ya no estás disfrutando"
+      ],
+      "shadows": [
+        "Se bloquea la presencia dentro de la repetición.",
+        "Se exagera la mecánica o la dispersión teórica.",
+        "Se evita mirar que el oficio también pide cuidar al que lo ejerce."
+      ]
+    },
+    "Nueve": {
+      "essence": "La mujer sigue en su jardín con el halcón en la mano, pero el guante se le quedó pegado a la piel. Las uvas detrás están maduras y nadie las come.",
+      "reading": "La autonomía se volvió aislamiento. O construiste un jardín tan tuyo que ya no entra nadie y empezó a quedarte chico, o lo abriste por desgaste y te disolviste en lo de los demás sin haberte dado el rato de habitarlo sola. La suficiencia pide ser jardín, no fortaleza ni puerta abierta sin filtro.",
+      "synthesis": "Estar bien sola no significa quedarse sola para siempre.",
+      "prompt": "¿Qué estás disfrutando sola por convicción y qué por miedo a que alguien lo arruine si lo compartieras?",
+      "manifestations": [
+        "Tener la vida que querías y darte cuenta de que rechazas, sin pensarlo, casi cada invitación",
+        "Confundir tu independencia con \"no necesito a nadie\" hasta que pasa algo y no sabes a quién llamar",
+        "Abrir tu jardín a alguien apurada y descubrir, después, que no querías compartirlo así"
+      ],
+      "shadows": [
+        "Se bloquea la flexibilidad entre estar sola y estar con otros.",
+        "Se exagera la autosuficiencia o la fusión por agotamiento.",
+        "Se evita mirar que el jardín bien construido también puede recibir."
+      ]
+    },
+    "Diez": {
+      "essence": "La familia sigue bajo el arco, pero el viejo del fondo ya no sabe quién es quién. Los perros guardan algo que nadie nombra.",
+      "reading": "El legado se volvió peso o se volvió postal. O sostenes una pertenencia familiar o de tradición que ya no te representa, por culpa o por costumbre, o renegaste de todo lo heredado y descubres, después, que estás repitiendo los mismos patrones con otro decorado. Las raíces piden revisión consciente, no sumisión ni ruptura ciega.",
+      "synthesis": "Heredar sin elegir y romper sin entender son la misma trampa con dirección opuesta.",
+      "prompt": "¿Qué tradición, regla o lealtad familiar estás sosteniendo que ya no es tuya — o cuál estás repitiendo creyendo que la rompiste?",
+      "manifestations": [
+        "Pasar Navidad cumpliendo el mismo ritual incómodo durante años sin animarte a sugerir un cambio",
+        "Romper con tu familia o con tu cultura y descubrir que armaste otra estructura igual de rígida",
+        "Confundir pertenencia con obligación y vivir cumpliendo papeles que ya no eliges"
+      ],
+      "shadows": [
+        "Se bloquea la elección consciente sobre lo recibido.",
+        "Se exagera la sumisión a la herencia o la ruptura con todo.",
+        "Se evita mirar que las raíces también se podan y se cuidan."
+      ]
+    },
+    "Sota": {
+      "essence": "La sota sigue sosteniendo la moneda, pero la mira como objeto, no como puerta. El campo detrás se quedó sin labrar.",
+      "reading": "La curiosidad concreta se volvió consumo. O coleccionas cursos, libros, podcasts e ideas sin practicar ninguna, o te enredaste tanto en la teoría que perdiste el cuerpo. El aprendiz honesto pide manos sucias y errores reales, no biblioteca creciente ni resúmenes de fin de semana.",
+      "synthesis": "Saber sin probar no es saber: es esperar el momento que no llega.",
+      "prompt": "¿Cuántas cosas que dijiste \"voy a aprender\" siguen sin un solo intento real, y qué te sostiene en la teoría?",
+      "manifestations": [
+        "Tener una biblioteca llena de libros sobre algo que jamás practicaste un solo día",
+        "Llevar dos años \"investigando\" un cambio de carrera y no haber hablado nunca con nadie del rubro",
+        "Resumir el tema con autoridad delante de otros y no haber tocado la materia con las manos"
+      ],
+      "shadows": [
+        "Se bloquea el paso del estudio a la práctica.",
+        "Se exagera la teoría o el coleccionismo de información.",
+        "Se evita mirar que aprender también incluye exponerse a hacerlo mal."
+      ]
+    },
+    "Caballero": {
+      "essence": "El caballero sigue sobre el caballo quieto, pero ya no avanza. La moneda en su mano se enfrió y el campo no se ara solo.",
+      "reading": "La constancia se volvió rutina muerta. O sostienes lo mismo durante años sin preguntarte si todavía tiene sentido, o saltaste de un \"paso firme\" a otro buscando seguridad y nunca avanzas en serio. La confiabilidad pide presencia despierta, no piloto automático ni fuga prolija.",
+      "synthesis": "Hacer todos los días lo mismo sin mirarlo es otra forma de no estar haciendo nada.",
+      "prompt": "¿Qué rutina llevás meses sosteniendo por costumbre que ya no te conduce a ningún lado?",
+      "manifestations": [
+        "Cumplir con tu trabajo, tu rutina o tu pareja durante años sin volver a preguntarte si todavía lo eliges",
+        "Cambiar de empleo \"estable\" cada dos años buscando una seguridad que se mueve contigo",
+        "Hacer las mismas tareas semana tras semana y no saber cuándo fue la última vez que decidiste hacerlas"
+      ],
+      "shadows": [
+        "Se bloquea la revisión consciente del rumbo.",
+        "Se exagera la rutina sin sentido o el cambio compulsivo entre rutinas.",
+        "Se evita mirar que la constancia honesta también incluye preguntar si todavía vale."
+      ]
+    },
+    "Reina": {
+      "essence": "La reina sigue en su trono rodeada de plantas y el conejo en el pasto. Pero la mano sobre la moneda perdió calor y ella misma no comió hace días.",
+      "reading": "El cuidado encarnado se volvió servicio sin pausa. O atendés la casa, los hijos, el equipo o el círculo durante años olvidándote del propio cuerpo, o te volviste tan exigente con tu auto-cuidado que se transformó en otra obligación más. La nutrición pide circulación, no martirio ni perfeccionismo.",
+      "synthesis": "Cuidar a todos menos al cuerpo que cuida es otra forma de no cuidar.",
+      "prompt": "¿Cuándo fue la última vez que comiste sentada, dormiste sin alarma, o te dejaste atender a vos sin sentir culpa?",
+      "manifestations": [
+        "Cocinar para los demás cinco días seguidos y darte cuenta de que tú comiste apurada de pie",
+        "Sostener a tres personas en crisis y desplomarte en cama el domingo sin que nadie pregunte",
+        "Convertir el auto-cuidado en un check-list tan estricto que cuidarte se volvió tarea más"
+      ],
+      "shadows": [
+        "Se bloquea la recepción del propio cuidado.",
+        "Se exagera el servicio a otros o el rigor sobre una misma.",
+        "Se evita mirar que sostener a otros pide, primero, sostenerte."
+      ]
+    },
+    "Rey": {
+      "essence": "El rey sigue en su trono entre las uvas, pero el cetro se le volvió cómodo. El castillo atrás está, pero hace tiempo nadie hace nada nuevo.",
+      "reading": "La estabilidad se volvió quietud. O acumulaste recursos, prestigio o estructura y dejaste de mover nada, o sigues construyendo por costumbre sin compartir lo que ya sabes. El dominio práctico pide ser puesto al servicio: si no circula, se vuelve trono solitario.",
+      "synthesis": "Tener mucho y no compartir nada es otra forma de no tener.",
+      "prompt": "¿Qué saber, recurso o posición tuya está sin circular hace meses, y a quién le serviría si lo compartieras?",
+      "manifestations": [
+        "Llevar años en un cargo de autoridad y no haber formado a nadie que pueda continuarlo",
+        "Acumular recursos materiales y vivir como si todavía estuvieras juntando para una emergencia que ya pasó",
+        "Tener la experiencia para guiar a otros y no ofrecerla porque \"que se las arreglen como yo me las arreglé\""
+      ],
+      "shadows": [
+        "Se bloquea la circulación de lo construido.",
+        "Se exagera la acumulación o el control sobre lo estable.",
+        "Se evita mirar que la madurez práctica pide enseñar, no solo poseer."
+      ]
+    }
+  }
+}
