@@ -154,6 +154,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay voluntad disponible y herramientas concretas para iniciar algo.',
       whatCrosses: 'La dispersión o la búsqueda de aprobación pueden frenar el movimiento.',
       whatOpens:   'Se abre un terreno donde lo intencional puede tomar forma real.'
+    },
+
+    reversed: {
+      essence: 'La lemniscata se apagó. Los elementos siguen sobre la mesa, pero las manos se quedaron quietas o se mueven sin canal.',
+      reading: 'Tienes las herramientas y no las eliges, o las usas para impresionar en lugar de concretar. La voluntad se dispersa en proyectos paralelos, en planificar más, en hablar bonito. Lo que falta no es talento — es el gesto humilde de poner la mano sobre algo y empezar sin público.',
+      synthesis: 'El poder sin gesto se vuelve performance.',
+      prompt: '¿Qué herramienta tuya estás usando para mostrarte capaz, en vez de para hacer algo concreto?',
+      manifestations: [
+        'Anunciar un proyecto en redes y dejarlo morir antes de la primera acción real',
+        'Saber exactamente cómo se hace algo y postergarlo durante meses por miedo a que no salga perfecto',
+        'Convencer con palabras a alguien de algo que tú mismo no terminas de creer ni de hacer'
+      ],
+      shadows: [
+        'Se bloquea la concreción — todo queda en idea brillante o en demostración.',
+        'Se exagera la apariencia (vendes la capacidad) o la dispersión (saltas de herramienta en herramienta).',
+        'Se evita mirar que el poder real exige sostener algo aunque nadie aplauda.'
+      ]
     }
   },
 
@@ -264,6 +281,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un proceso creativo o afectivo que pide cuidado, presencia y tiempo lento.',
       whatCrosses: 'La urgencia o la auto-exigencia pueden bloquear la fertilidad de lo que está naciendo.',
       whatOpens:   'Se abre una etapa más sensorial, donde habitar el cuerpo y el placer es parte del crecimiento.'
+    },
+
+    reversed: {
+      essence: 'El jardín está descuidado o asfixiado. La Emperatriz cuida lo de afuera y se olvida de su propio cuerpo, o cuida tanto que ahoga lo que crece.',
+      reading: 'El cuidado se desreguló. O das tanto que ya no queda jardín para ti, o te encerraste en ti misma y dejas que lo que cuidas se marchite. Lo fértil pide presencia equilibrada, y la presencia se volvió sacrificio o abandono.',
+      synthesis: 'Cuidar todo menos a una misma no es generosidad. Es agotamiento con buena prensa.',
+      prompt: '¿A quién o qué estás cuidando con una intensidad que ya no es vida, sino control?',
+      manifestations: [
+        'Cocinar para todos, escuchar a todos, sostener a todos, y llegar al baño a llorar sin saber por qué',
+        'Sobreproteger a un hijo, una pareja o un proyecto hasta que ya no respira solo',
+        'Dejar de cuidarte —el cuerpo, el descanso, el placer— como si no merecieras ese cuidado tú también'
+      ],
+      shadows: [
+        'Se bloquea el goce simple — lo sensorial pierde lugar bajo la lista de tareas.',
+        'Se exagera el sacrificio o el control sobre lo que se cuida; la abundancia se vuelve carga.',
+        'Se evita mirar que necesitas recibir, no solo dar.'
+      ]
     }
   },
 
@@ -312,6 +346,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay una situación que pide orden, decisión clara o límites firmes.',
       whatCrosses: 'El control rígido puede confundirse con cuidado y ahogar lo vivo.',
       whatOpens:   'Se abre la posibilidad de sostener desde la firmeza serena, no desde el miedo.'
+    },
+
+    reversed: {
+      essence: 'El trono se quedó vacío, o se volvió una jaula. La armadura aprieta a quien debería sostener.',
+      reading: 'Hay caos donde pediste orden, o hay rigidez donde pediste cuidado. O abandonaste tu autoridad y todo se está cayendo a los costados, o la usaste para imponer y ya nadie quiere acercarse. La firmeza serena se desfiguró: hacia un lado se volvió tiranía, hacia el otro se volvió ausencia.',
+      synthesis: 'La autoridad sin afecto se vuelve cárcel. El afecto sin estructura se vuelve caos.',
+      prompt: '¿Dónde te volviste demasiado rígido para no sentirte frágil, o demasiado blando para no enfrentar?',
+      manifestations: [
+        'Imponer reglas a una pareja, un hijo o un equipo, y notar que se alejaron sin decirlo',
+        'Soltar todos los límites por agotamiento y sentir que la vida te está pasando por encima',
+        'Llamar "responsabilidad" a un control que en realidad nace de no confiar en nadie'
+      ],
+      shadows: [
+        'Se bloquea el sostén afectivo — la estructura se vuelve fría o desaparece.',
+        'Se exagera el control (rigidez, autoritarismo) o el descontrol (abdicación, caos).',
+        'Se evita mirar el miedo de fondo: a perder el lugar, a no poder con todo, a no ser querido si dejas de proveer.'
+      ]
     }
   },
 
@@ -359,7 +410,24 @@ export const majorArcanaSymbolic = [
     positions: {
       whatIs:      'Hay una situación atravesada por la tradición, los mandatos o el saber recibido.',
       whatCrosses: 'Aceptar sin cuestionar —o rebelarse sin discernir— puede simplificar de menos.',
-      whatOpens:   'Se abre la posibilidad de elegir, dentro de lo recibido, qué haces tuyo y qué soltás.'
+      whatOpens:   'Se abre la posibilidad de elegir, dentro de lo recibido, qué haces tuyo y qué sueltas.'
+    },
+
+    reversed: {
+      essence: 'El templo se cerró por dentro, o se rompió desde afuera sin haber entendido qué guardaba. Las dos llaves quedaron mezcladas en el piso.',
+      reading: 'O cumples una doctrina —familiar, profesional, espiritual— que ya no crees, solo porque romper costaría más, o saliste a romper todo sin haber distinguido qué te servía y qué no. Pertenecer y pensar por una misma se volvieron polos enfrentados, cuando en realidad necesitan convivir.',
+      synthesis: 'Acatar sin convicción y rebelarse sin discernir son la misma trampa con distinto traje.',
+      prompt: '¿Qué estás repitiendo por costumbre, y qué estás rechazando solo para diferenciarte?',
+      manifestations: [
+        'Sostener una práctica religiosa, profesional o familiar en piloto automático mientras por dentro ya no crees nada',
+        'Cortar lazo con una tradición y descubrir, después, que no tenías nada propio para poner en su lugar',
+        'Confundir tu voz con la voz de tu familia y no notar que llevas años repitiendo frases que no son tuyas'
+      ],
+      shadows: [
+        'Se bloquea el discernimiento — todo lo recibido se vuelve verdad o todo se vuelve mentira.',
+        'Se exagera la obediencia (sumisión sin convicción) o la rebeldía (rechazo sin examen).',
+        'Se evita mirar la tarea adulta: separar lo recibido en lo que sostiene y lo que ya no, una pieza a la vez.'
+      ]
     }
   },
 
@@ -397,14 +465,31 @@ export const majorArcanaSymbolic = [
     ],
 
     reading: 'Hay una decisión que ya no es solo sobre lo que quieres, sino sobre quién quieres ser. Esta carta no romantiza el amor ni obliga a elegir rápido: te muestra que toda elección significativa también te define. La pregunta no es solo "qué elijo", sino "desde dónde elijo".',
-    synthesis: 'Eliges dos veces: una con lo que dices, otra con lo que dejás de hacer.',
-    extension: 'Los Enamorados no son solo una carta de amor: son una carta de coherencia. El ángel que sostiene la escena no decide por las figuras, las observa: lo que se está poniendo en juego no es solo el vínculo, es la propia honestidad. Si esta carta aparece, hay una decisión —vincular, vital, ética— que ya no se puede postergar sin costo. La trampa es esperar que las cosas se acomoden solas o que alguien decida por ti; la sabiduría es entender que toda elección importante también es una declaración sobre quién sos. La paz que viene después no depende de haber acertado; depende de haber elegido despierta.',
-    prompt: '¿Qué te pide elegir esta situación, no solo a nivel de afuera, sino a nivel de quién sos?',
+    synthesis: 'Eliges dos veces: una con lo que dices, otra con lo que dejas de hacer.',
+    extension: 'Los Enamorados no son solo una carta de amor: son una carta de coherencia. El ángel que sostiene la escena no decide por las figuras, las observa: lo que se está poniendo en juego no es solo el vínculo, es la propia honestidad. Si esta carta aparece, hay una decisión —vincular, vital, ética— que ya no se puede postergar sin costo. La trampa es esperar que las cosas se acomoden solas o que alguien decida por ti; la sabiduría es entender que toda elección importante también es una declaración sobre quién eres. La paz que viene después no depende de haber acertado; depende de haber elegido despierta.',
+    prompt: '¿Qué te pide elegir esta situación, no solo a nivel de afuera, sino a nivel de quién eres?',
 
     positions: {
       whatIs:      'Hay una elección significativa, vincular o existencial pidiendo definición.',
       whatCrosses: 'Querer evitar el costo de elegir puede prolongar la confusión.',
-      whatOpens:   'Se abre una claridad propia cuando eliges desde lo que sos, no desde lo que conviene.'
+      whatOpens:   'Se abre una claridad propia cuando eliges desde lo que eres, no desde lo que conviene.'
+    },
+
+    reversed: {
+      essence: 'El ángel sigue sobre la escena, pero las dos figuras dejaron de mirarse y de mirarse entre sí. La elección se postergó tanto que empezó a tomarse sola.',
+      reading: 'No estás eligiendo con honestidad. O sostienes dos cosas a la vez para no perder ninguna, o eliges desde el cálculo —lo que conviene, lo que duele menos, lo que dicen los demás— y el cuerpo lo registra. La carta no te pide acertar: te pide dejar de mentirte sobre el costo de no decidir.',
+      synthesis: 'Posponer la elección también es una elección. Una más cara y menos consciente.',
+      prompt: '¿Qué decisión estás dejando que el tiempo tome por ti porque enfrentarla obligaría a perder algo?',
+      manifestations: [
+        'Mantener dos vínculos, dos trabajos o dos ciudades en simultáneo durante meses, llamándolo "todavía estoy viendo"',
+        'Decidir según lo que minimice el conflicto inmediato y descubrir, después, que ese era el conflicto',
+        'Elegir desde la culpa, desde la deuda o desde el deseo de aprobación, y notar que la decisión no se siente tuya'
+      ],
+      shadows: [
+        'Se bloquea la coherencia entre lo que sientes, lo que dices y lo que haces.',
+        'Se exagera la indecisión, o se exagera la elección apurada para librarse de la incomodidad.',
+        'Se evita mirar que toda decisión cuesta algo, y que el costo de no decidir suele ser el más alto.'
+      ]
     }
   },
 
@@ -444,7 +529,7 @@ export const majorArcanaSymbolic = [
       'La ciudad detrás — lo conocido, ya pequeño, que se va dejando atrás'
     ],
 
-    reading: 'Hay un avance posible si sostienes el foco. Esta carta no te promete que el camino sea fácil: te muestra que tienes la fuerza necesaria si no te dispersás. El triunfo aquí no es sobre los otros, es sobre lo que en ti quería ir para todos lados.',
+    reading: 'Hay un avance posible si sostienes el foco. Esta carta no te promete que el camino sea fácil: te muestra que tienes la fuerza necesaria si no te dispersas. El triunfo aquí no es sobre los otros, es sobre lo que en ti quería ir para todos lados.',
     synthesis: 'No siempre falta fuerza. A veces falta dirección.',
     extension: 'El Carro avanza con dos esfinges tirando en sentidos casi opuestos, y sin embargo se mueve: porque quien va arriba no las pelea, las sostiene. Esa es la verdadera fuerza de esta carta: no la del músculo, la de la dirección. Si aparece, probablemente lo que la situación pide no sea más empuje, sino más enfoque. La trampa es confundir avanzar con dominar; la sabiduría es saber que el carro no se mueve por gritar a las esfinges, sino por mantener firme la rienda y clara la mirada hacia adelante. Y un detalle importante: este avance también descansa, también pausa. La voluntad sin escucha del cuerpo se rompe.',
     prompt: '¿Qué fuerzas internas estás peleando que, en realidad, podrían tirar del mismo carro?',
@@ -453,6 +538,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un avance, una dirección o un foco pidiendo sostenerse.',
       whatCrosses: 'La dispersión, la prisa o la dureza pueden agotar el movimiento.',
       whatOpens:   'Se abre un camino real cuando la voluntad se alinea con el cuidado.'
+    },
+
+    reversed: {
+      essence: 'Las dos esfinges tiran cada una para su lado. El carro se atascó, o avanza a los tumbos atropellando lo que encuentra.',
+      reading: 'El avance se descontroló: o no hay rumbo y empujas a ciegas, agotándote, o frenaste por dispersión y miedo y la voluntad se diluyó. La fuerza está. Lo que falta es la rienda — el foco que distingue urgencia de prioridad, esfuerzo de obstinación.',
+      synthesis: 'Empujar sin dirección no es valor. Es desgaste vestido de coraje.',
+      prompt: '¿Hacia dónde te estás moviendo, y cuándo fue la última vez que verificaste si ese rumbo todavía es el tuyo?',
+      manifestations: [
+        'Trabajar muchas horas en un proyecto sin parar a preguntar si todavía tiene sentido',
+        'Sentirte parado en una intersección sin moverte, viendo pasar oportunidades porque no eliges ninguna',
+        'Avanzar atropellando a quien tienes al lado para llegar primero a un lugar que después no sabes por qué querías'
+      ],
+      shadows: [
+        'Se bloquea el alineamiento entre voluntad y rumbo — hay esfuerzo sin destino claro.',
+        'Se exagera la prisa o la inercia; ambas vacían el viaje.',
+        'Se evita mirar que liderarte a ti misma incluye saber cuándo parar y revisar la ruta.'
+      ]
     }
   },
 
@@ -508,6 +610,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un momento que pide coraje sereno, no fuerza dura.',
       whatCrosses: 'Endurecerse o reprimir puede romper lo que pedía ser sostenido.',
       whatOpens:   'Se abre una manera más íntima y firme de habitar lo intenso.'
+    },
+
+    reversed: {
+      essence: 'La mujer le grita al león o se aparta asustada. La lemniscata sobre su cabeza titila.',
+      reading: 'La fuerza se desordenó. O reprimes lo que sientes hasta que estalla por otro lado, o te dejas arrastrar por la intensidad y después culpas al cuerpo. La firmeza serena se reemplazó por dureza con una misma o por entrega sin contención. Lo que pedía paciencia está recibiendo violencia o abandono.',
+      synthesis: 'No es debilidad sentir mucho. Es debilidad pelear con eso que sientes en lugar de acompañarlo.',
+      prompt: '¿A qué parte tuya le estás gritando para que se calle, cuando lo que necesita es ser escuchada?',
+      manifestations: [
+        'Aguantar todo durante semanas y explotar por una pavada con la persona equivocada',
+        'Tratarte con una dureza interna que jamás aplicarías sobre alguien a quien quieres',
+        'Ceder a un impulso —comer, gastar, decir, cortar— y después castigarte por haber cedido'
+      ],
+      shadows: [
+        'Se bloquea la presencia firme — todo se vuelve represión o desborde.',
+        'Se exagera la dureza con uno mismo o la rendición ante el impulso.',
+        'Se evita mirar que la intensidad no necesita ser vencida, sino habitada.'
+      ]
     }
   },
 
@@ -549,13 +668,30 @@ export const majorArcanaSymbolic = [
 
     reading: 'Hay una pausa que está pidiendo ser tomada. Esta carta no te aleja del mundo: te recuerda que algunas verdades solo aparecen cuando bajás el ruido. Lo que parece estar quieto, en realidad, está depurándose.',
     synthesis: 'A veces lo más sabio es no estar disponible para todos.',
-    extension: 'El Ermitaño no se retira porque no le importe el mundo: se retira para volver a él con algo más claro adentro. Su lámpara no ilumina la montaña entera, ilumina el siguiente paso. Y eso es exactamente lo que sugiere esta carta: que no necesitás resolver todo de una vez, sino encender lo justo para no perder el rumbo. Si aparece, probablemente sea momento de retirarte un poco —de las redes, de las opiniones ajenas, del ruido emocional— y escuchar qué dice tu propia voz cuando deja de competir con todo lo demás. La trampa es confundir el retiro con la huida; la sabiduría es entender que la soledad bien elegida no aleja: te acerca a ti misma.',
-    prompt: '¿Qué necesitás escuchar de ti misma que solo aparece en silencio?',
+    extension: 'El Ermitaño no se retira porque no le importe el mundo: se retira para volver a él con algo más claro adentro. Su lámpara no ilumina la montaña entera, ilumina el siguiente paso. Y eso es exactamente lo que sugiere esta carta: que no necesitas resolver todo de una vez, sino encender lo justo para no perder el rumbo. Si aparece, probablemente sea momento de retirarte un poco —de las redes, de las opiniones ajenas, del ruido emocional— y escuchar qué dice tu propia voz cuando deja de competir con todo lo demás. La trampa es confundir el retiro con la huida; la sabiduría es entender que la soledad bien elegida no aleja: te acerca a ti misma.',
+    prompt: '¿Qué necesitas escuchar de ti misma que solo aparece en silencio?',
 
     positions: {
       whatIs:      'Hay una pausa, un retiro o una introspección pidiendo lugar.',
       whatCrosses: 'El ruido externo o la urgencia social pueden tapar lo que estás escuchando adentro.',
-      whatOpens:   'Se abre una claridad propia cuando dejás de buscar afuera lo que ya estás iluminando.'
+      whatOpens:   'Se abre una claridad propia cuando dejas de buscar afuera lo que ya estás iluminando.'
+    },
+
+    reversed: {
+      essence: 'La lámpara está apagada o el ermitaño se quedó solo en la cumbre, sin pensar en bajar. La luz que tenía para sí mismo dejó de circular.',
+      reading: 'El retiro perdió su sentido. O huyes del mundo y le llamas introspección, o te negaste tanto el silencio que estás reaccionando a todo en piel viva. Lo que pedía soledad amorosa se volvió aislamiento defensivo, o lo que pedía vínculo se volvió ruido constante para no quedarte sola contigo.',
+      synthesis: 'No toda soledad es escucha. Algunas son escondite con buena estética.',
+      prompt: '¿Te estás retirando para volver con algo, o para no volver nunca a algo que duele?',
+      manifestations: [
+        'No contestar mensajes durante semanas y llamarlo "tiempo para mí" cuando en realidad es esquiva',
+        'Llenarte el día de tareas y compañía para no enfrentarte a la pregunta que aparece de madrugada',
+        'Romantizar tu aislamiento como sabiduría mientras la vida se va angostando alrededor'
+      ],
+      shadows: [
+        'Se bloquea el regreso — el retiro deja de ser pausa y se vuelve rutina sin retorno.',
+        'Se exagera la huida (aislamiento defensivo) o el ruido (incapacidad de estar sola contigo).',
+        'Se evita mirar que la luz se enciende para iluminar el siguiente paso, no para esconderte de él.'
+      ]
     }
   },
 
@@ -595,8 +731,8 @@ export const majorArcanaSymbolic = [
       'La esfinge arriba con espada — el silencio que conoce el patrón completo'
     ],
 
-    reading: 'Algo está girando y no necesita tu permiso. Esta carta no te dice si la rueda sube o baja: te recuerda que es rueda, y que tu trabajo es estar atenta al patrón, no detenerla. Lo que parecía azar suele ser, cuando lo mirás de cerca, un ciclo que vuelve.',
-    synthesis: 'No controlás la rueda. Sí eliges cómo te parás en ella.',
+    reading: 'Algo está girando y no necesita tu permiso. Esta carta no te dice si la rueda sube o baja: te recuerda que es rueda, y que tu trabajo es estar atenta al patrón, no detenerla. Lo que parecía azar suele ser, cuando lo miras de cerca, un ciclo que vuelve.',
+    synthesis: 'No controlas la rueda. Sí eliges cómo te paras en ella.',
     extension: 'La Rueda de la Fortuna no es destino ni capricho: es la confirmación de que todo en la experiencia humana se mueve en ciclos, y que el patrón —no el suceso aislado— es lo que enseña. Las criaturas en las esquinas leen, fijas; lo que cambia es el centro. Si esta carta aparece, vale la pena preguntarse menos "¿por qué ahora?" y más "¿qué se está cerrando, qué se está abriendo, y dónde estuve antes en este mismo lugar?". La rueda no premia ni castiga; revela. Lo que se va, ya estaba aflojándose; lo que llega, ya venía circulando. Tu lugar en este momento es estar despierta al giro y no resistirlo desde la nostalgia de lo anterior.',
     prompt: '¿Qué patrón de tu vida está volviendo, y qué te pide hacer distinto esta vez?',
 
@@ -604,6 +740,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un cambio cíclico, un giro de momento o una repetición pidiendo atención.',
       whatCrosses: 'Querer detener el movimiento o ignorar el patrón puede prolongar el desgaste.',
       whatOpens:   'Se abre la posibilidad de leer el ciclo y ubicarte distinto en él.'
+    },
+
+    reversed: {
+      essence: 'La rueda gira y alguien intenta detenerla con las manos. Las criaturas en las esquinas dejaron de leer.',
+      reading: 'El ciclo se está repitiendo y no quieres mirar el patrón. Llamas mala suerte a algo que ya tuvo ensayo, eliges la misma situación con distintos protagonistas, o te resignas a que "siempre te pasa lo mismo". El giro no te castiga: te muestra. Lo que falta no es suerte, es la pregunta sobre tu rol en la repetición.',
+      synthesis: 'Si vuelve la misma escena con distinto reparto, deja de ser azar.',
+      prompt: '¿Qué versión de esta misma situación ya viviste antes, y qué papel sigues haciendo?',
+      manifestations: [
+        'Quejarte de un jefe, una pareja o un amigo y darte cuenta de que es la misma queja con distinto nombre',
+        'Esperar que esta vez la rueda gire a tu favor sin cambiar nada de lo que tú haces',
+        'Acelerar para "salir" de algo y volver a aterrizar en el mismo punto unos meses después'
+      ],
+      shadows: [
+        'Se bloquea la lectura del patrón — cada vuelta se vive como evento aislado.',
+        'Se exagera la victimización ante la suerte o la obstinación contra el cambio.',
+        'Se evita mirar que tu lugar en el giro también es elección.'
+      ]
     }
   },
 
@@ -643,7 +796,7 @@ export const majorArcanaSymbolic = [
       'El broche que cierra el manto — lo que se contiene para poder decidir bien'
     ],
 
-    reading: 'Algo te está pidiendo coherencia: alinear lo que dices, lo que pensás y lo que haces. Esta carta no acusa; pesa. Y pesar no es castigarse: es mirar lo real con cuidado y elegir desde ahí, aunque la verdad implique un costo.',
+    reading: 'Algo te está pidiendo coherencia: alinear lo que dices, lo que piensas y lo que haces. Esta carta no acusa; pesa. Y pesar no es castigarse: es mirar lo real con cuidado y elegir desde ahí, aunque la verdad implique un costo.',
     synthesis: 'La verdad no se discute. Se sostiene.',
     extension: 'La Justicia no es una corte: es una voz interna que te reconoce. Su balanza no decide a favor de nadie en particular; mide lo real, y lo real incluye también lo que tú hiciste o dejaste de hacer. La espada que sostiene es vertical, no apoyada: corta porque a veces eso es lo que cuida, no porque sea cruel. Si esta carta aparece, hay un punto donde la incoherencia ya no se sostiene sin costo. Eso no significa explotar ni confesar todo dramáticamente; significa ajustar, decir lo que faltaba decir, asumir lo que te corresponde. La paz que llega después no es alivio rápido; es la calma sólida de quien ya no carga lo que no era suyo —y ya no esquiva lo que sí—.',
     prompt: '¿Qué verdad estás postergando porque su consecuencia te incomoda?',
@@ -651,7 +804,24 @@ export const majorArcanaSymbolic = [
     positions: {
       whatIs:      'Hay una situación que pide honestidad y decisión coherente.',
       whatCrosses: 'Esperar justicia afuera sin asumir la propia parte puede frenar el proceso.',
-      whatOpens:   'Se abre un cierre limpio cuando lo que pensás, dices y haces vuelven a alinearse.'
+      whatOpens:   'Se abre un cierre limpio cuando lo que piensas, dices y haces vuelven a alinearse.'
+    },
+
+    reversed: {
+      essence: 'La balanza está descalibrada o cuelga torcida. Alguien sostiene la espada como si fuera arma personal, no medida.',
+      reading: 'La justicia interna se distorsionó. O la usas para acusar a otros y limpiarte tú, o la usas para flagelarte mientras los demás siguen impunes. La coherencia que pedía la carta se reemplazó por discurso moral que no toca lo propio, o por culpa que no produce cambio.',
+      synthesis: 'Apuntar el dedo afuera no es honestidad. Castigarte no es responsabilidad.',
+      prompt: '¿De qué estás acusando al otro para no tener que mirar tu parte? ¿O qué te estás castigando para no tener que cambiarlo?',
+      manifestations: [
+        'Llevar registro mental detallado de lo que el otro hizo mal y olvidar todo lo que tú no hiciste bien',
+        'Confesarte y pedir disculpas en bucle sin modificar el comportamiento que produjo el daño',
+        'Buscar argumentos legales o morales para "tener razón" en una situación donde nadie gana así'
+      ],
+      shadows: [
+        'Se bloquea la coherencia entre pensar, decir y hacer.',
+        'Se exagera el juicio (a otros o a una misma) y se debilita el ajuste real.',
+        'Se evita mirar que la verdad cuesta lo mismo decirla afuera que sostenerla por dentro.'
+      ]
     }
   },
 
@@ -694,6 +864,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay una pausa, una suspensión o un punto donde forzar empeora.',
       whatCrosses: 'La impaciencia o la pasividad disfrazada de calma pueden alargar el proceso.',
       whatOpens:   'Se abre una nueva perspectiva al sostener la quietud el tiempo necesario.'
+    },
+
+    reversed: {
+      essence: 'El árbol se secó o alguien forcejea por bajar a los gritos. El halo se apagó.',
+      reading: 'La pausa se distorsionó. O empujas y arañas la situación —llamadas, mensajes, intentos— sin dar el tiempo que el proceso pide, o te quedaste suspendida tanto que la suspensión se volvió excusa para no actuar nunca. La perspectiva nueva que prometía esta carta no llega, porque o no la dejas asomar o la usaste para no responsabilizarte.',
+      synthesis: 'Forzar lo que pide tiempo y abandonarse a la espera son la misma evasión por dos caminos.',
+      prompt: '¿Estás esperando que algo madure, o estás llamando "espera" a tu miedo a moverte?',
+      manifestations: [
+        'Reescribir un mensaje quince veces y mandar el peor, porque no soportabas más estar quieta con la pregunta',
+        'Llevar años "tomándote tu tiempo" para algo que sabes que ya pide acción',
+        'Decir "voy a meditar sobre esto" cada vez que aparece una decisión incómoda'
+      ],
+      shadows: [
+        'Se bloquea el ajuste real — ni la quietud madura, ni la acción se concreta.',
+        'Se exagera la prisa o la pasividad; ambas evitan habitar el momento sin respuesta.',
+        'Se evita mirar que la pausa lúcida pide presencia, no fuga.'
+      ]
     }
   },
 
@@ -808,6 +995,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un proceso de integración o de regulación emocional en curso.',
       whatCrosses: 'Querer eliminar lo incómodo en lugar de mezclarlo puede romper el equilibrio.',
       whatOpens:   'Se abre una calma más estable al sostener los opuestos a la vez.'
+    },
+
+    reversed: {
+      essence: 'Una de las copas se vacía, la otra se desborda. Las alas perdieron equilibrio y los pies ya no encuentran orilla.',
+      reading: 'La integración se rompió. Te volcaste a un solo lado —solo trabajo, solo afecto, solo control, solo entrega— y lo otro empezó a pasar factura. O cambias de extremo a extremo y le llamas vivir intensamente, cuando en realidad nunca estás del todo en ningún lugar. La calma no se construye eliminando una de las dos copas: se construye dosificando.',
+      synthesis: 'Estar en uno solo de los polos también es estar fuera de ti.',
+      prompt: '¿Qué parte tuya está tan ocupando la escena que la otra ya casi no aparece?',
+      manifestations: [
+        'Trabajar de lunes a domingo y descubrir que el cuerpo, el deseo y los vínculos se apagaron al mismo tiempo',
+        'Pasar del control absoluto al descontrol absoluto sin un solo gesto medido en el medio',
+        'Pedir paz a una situación mientras saboteas todas las formas de calma que aparecen'
+      ],
+      shadows: [
+        'Se bloquea la dosificación — todo se vive como elección entre dos puros.',
+        'Se exagera el sacrificio de un lado o el desborde del otro.',
+        'Se evita mirar que la integración no es promedio, es atención sostenida.'
+      ]
     }
   },
 
@@ -857,6 +1061,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un apego, un deseo o una repetición que está pesando más de lo que parece.',
       whatCrosses: 'Confundir intensidad con verdad puede mantener atada una historia que ya pidió cambio.',
       whatOpens:   'Se abre la posibilidad de mirar sin juicio lo que te ata, y desde ahí elegir distinto.'
+    },
+
+    reversed: {
+      essence: 'Las cadenas se aflojaron y las dos figuras siguen sin levantar la cabeza. O alguien se las quitó de un tirón violento y se cortó la piel en el intento.',
+      reading: 'Sabes lo que te ata y la respuesta es heroísmo o autoengaño. O te juraste salir "ya mismo" y descubres una semana después que volviste por la puerta de atrás, o le llamas "ya no me afecta" a algo que sigue dirigiendo silenciosamente tus decisiones. Lo invertido del Diablo no es la liberación: es la pretensión de liberación sin haber mirado el deseo de fondo.',
+      synthesis: 'Quitarse las cadenas a los gritos y disimular que nunca estuvieron es la misma evasión.',
+      prompt: '¿Qué estás dejando "por convicción" mientras por dentro sigues yendo a buscarlo en otra forma?',
+      manifestations: [
+        'Cortar de tajo con un vínculo, una sustancia o una rutina, y reemplazarla por otra que cumple exactamente la misma función',
+        'Anunciar tu liberación en redes y volver al patrón un mes después, esta vez en silencio',
+        'Convencerte de que ya estás bien para no tener que hacer el trabajo lento de mirar qué buscabas ahí'
+      ],
+      shadows: [
+        'Se bloquea el reconocimiento del intercambio — qué te daba eso que dejaste.',
+        'Se exagera la ruptura heroica o la negación elegante; ambas saltan el paso de mirar de cerca.',
+        'Se evita mirar que la libertad real pasa por entender el deseo, no por borrarlo.'
+      ]
     }
   },
 
@@ -971,6 +1192,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay un proceso de reparación, esperanza o calma volviendo después de algo difícil.',
       whatCrosses: 'Apurar la curación o desconfiar de la calma puede frenar la apertura.',
       whatOpens:   'Se abre una confianza nueva, suave y sostenida en el tiempo.'
+    },
+
+    reversed: {
+      essence: 'La figura desnuda se cubrió otra vez, las jarras quedaron en la orilla. La estrella sigue arriba, pero alguien dejó de mirarla.',
+      reading: 'La esperanza está y no le tienes confianza. Después del quiebre, la calma asusta más que la tormenta: si bajas la guardia y vuelve el dolor, esta vez te quiebra entera. Entonces te adelantas, te cubres, te ocupas, sospechas — y la reparación no termina de instalarse. O al revés: te aferras a una esperanza que aún no tiene base, sin hacer nada concreto para sostenerla.',
+      synthesis: 'Desconfiar de la calma es seguir viviendo dentro del quiebre.',
+      prompt: '¿De qué te estás protegiendo cuando rechazas la calma que ya está disponible?',
+      manifestations: [
+        'Sentir alivio y, en el mismo instante, escanear el horizonte buscando la próxima desgracia',
+        'Volver a contarte las viejas heridas para "no olvidarte" de ellas, justo cuando el cuerpo había empezado a soltar',
+        'Poner toda tu fe en una promesa, una persona o una idea, sin moverte un milímetro tú misma'
+      ],
+      shadows: [
+        'Se bloquea la confianza vulnerable — toda calma se vuelve sospecha.',
+        'Se exagera el escudo (cinismo defensivo) o la fe ciega (esperanza sin acción).',
+        'Se evita mirar que la reparación pide entregarse a algo que aún no garantiza nada.'
+      ]
     }
   },
 
@@ -1099,6 +1337,23 @@ export const majorArcanaSymbolic = [
       whatIs:      'Hay claridad, energía vital o comprensión directa apareciendo en escena.',
       whatCrosses: 'El exceso de exposición —o la exigencia de "estar bien"— puede desbalancear lo que ya estaba ordenado.',
       whatOpens:   'Se abre una etapa más liviana, donde lo importante se vuelve claro sin esfuerzo.'
+    },
+
+    reversed: {
+      essence: 'El sol todavía está, pero el niño se cubrió con una manta. La claridad llegó y nadie sale a recibirla.',
+      reading: 'La luz está disponible y no la dejas entrar. O te exiges una felicidad performada para mostrar que estás bien y la alegría real se queda pidiendo permiso, o no terminas de creerle a la calma porque "siempre que estoy bien pasa algo". La carta no se invirtió en oscuridad: se invirtió en simplicidad rechazada.',
+      synthesis: 'Hay una alegría discreta que pide ser recibida. Negarla también es una forma de complicarlo todo.',
+      prompt: '¿Qué cosa simple y buena estás complicando para no tener que aceptarla tal cual es?',
+      manifestations: [
+        'Estar en una situación luminosa y descubrirte buscando, sin querer, qué podría salir mal',
+        'Posar una vida feliz para los demás mientras adentro te falta el placer básico de estar siendo tú',
+        'Necesitar que algo sea complicado para sentir que vale la pena, y rechazar lo fácil aunque te haga bien'
+      ],
+      shadows: [
+        'Se bloquea la recepción — la claridad llega y no se deja habitar.',
+        'Se exagera la performance de bienestar o la sospecha hacia lo bueno.',
+        'Se evita mirar que mereces lo simple, lo claro, lo sin disfraz.'
+      ]
     }
   },
 
@@ -1147,13 +1402,30 @@ export const majorArcanaSymbolic = [
 
     reading: 'Algo en ti está pidiendo ser reconocido. Esta carta no es premio ni castigo: es despertar. Hay una verdad propia, callada hace tiempo, que está empezando a hacer ruido, y lo que pide es ser escuchada sin negociarla más.',
     synthesis: 'El llamado no se inventa. Se reconoce.',
-    extension: 'El Juicio no juzga en sentido moral: juzga en sentido de discernir, de ver con claridad. La trompeta del ángel no anuncia un veredicto; anuncia que algo dentro tuyo —una vocación, un valor, una verdad— está pidiendo salir a la superficie. Las figuras que se levantan de las tumbas no llegan rotas: llegan con los brazos abiertos, porque reconocer lo propio, aunque cueste, también libera. Si esta carta aparece, hay un llamado que ya no se puede silenciar sin costo. No tiene que ser grande ni dramático; muchas veces es íntimo, casi privado: una decisión que viene de más adentro que las anteriores, una claridad sobre quién sos cuando dejás de actuar para los demás. Y lo importante: este despertar no exige que cambies todo de golpe. Exige que dejes de fingir que no escuchaste.',
+    extension: 'El Juicio no juzga en sentido moral: juzga en sentido de discernir, de ver con claridad. La trompeta del ángel no anuncia un veredicto; anuncia que algo dentro tuyo —una vocación, un valor, una verdad— está pidiendo salir a la superficie. Las figuras que se levantan de las tumbas no llegan rotas: llegan con los brazos abiertos, porque reconocer lo propio, aunque cueste, también libera. Si esta carta aparece, hay un llamado que ya no se puede silenciar sin costo. No tiene que ser grande ni dramático; muchas veces es íntimo, casi privado: una decisión que viene de más adentro que las anteriores, una claridad sobre quién eres cuando dejas de actuar para los demás. Y lo importante: este despertar no exige que cambies todo de golpe. Exige que dejes de fingir que no escuchaste.',
     prompt: '¿Qué llamado interno estás postergando reconocer?',
 
     positions: {
       whatIs:      'Hay un despertar interno o un reconocimiento que pide ser escuchado.',
       whatCrosses: 'Negar lo que ya sabes o esperar permiso externo puede frenar el proceso.',
       whatOpens:   'Se abre una etapa de coherencia profunda contigo misma.'
+    },
+
+    reversed: {
+      essence: 'La trompeta sonó y nadie levantó la cabeza. Las tumbas siguen abiertas, pero las figuras se quedaron adentro.',
+      reading: 'Escuchaste el llamado y bajaste el volumen. Pospones la decisión de fondo —la que cambia el rumbo, no las apariencias— y te ocupas de tareas más chicas para no enfrentarla. O al revés: reaccionaste con tanto fervor que el despertar se volvió fanatismo, una nueva máscara más alta que la anterior.',
+      synthesis: 'Hacer oídos sordos también es una decisión. Una que cobra intereses.',
+      prompt: '¿Qué llamado interno estás silenciando con qué tipo de ruido?',
+      manifestations: [
+        'Saber que algo profundo te pide cambiar y dedicarte a reorganizar el clóset',
+        'Convertir tu despertar en una nueva identidad rígida que repite con dogma lo que antes era intuición',
+        'Esperar el momento perfecto para responderle a algo que ya hace meses que te llama'
+      ],
+      shadows: [
+        'Se bloquea el reconocimiento — hay alarma sin respuesta.',
+        'Se exagera la postergación o el fanatismo recién convertido.',
+        'Se evita mirar que el llamado pide gesto, no diagnóstico ni espectáculo.'
+      ]
     }
   },
 
@@ -1191,13 +1463,30 @@ export const majorArcanaSymbolic = [
 
     reading: 'Algo se está cerrando, y este cierre tiene la calma de lo que llegó a término. Esta carta no es final: es totalidad. Reconocer lo recorrido también es parte del próximo paso, y lo que se completa no se pierde, se integra.',
     synthesis: 'Lo que cierras bien, te acompaña distinto.',
-    extension: 'El Mundo es la última carta del recorrido y, sin embargo, no se siente como llegada definitiva: se siente como cierre con dignidad. La figura adentro de la mandorla no levanta los brazos en triunfo: baila, suavemente, en un espacio que reconoce lo recorrido y, al mismo tiempo, deja la puerta abierta. Las cuatro figuras en las esquinas son las mismas que aparecieron en la Rueda: testigos del ciclo, ahora completos. Si esta carta aparece, probablemente algo en ti esté reconociendo que terminó un capítulo —un proyecto, una identidad, una forma de relacionarte, una etapa— y que el próximo no necesita inventarse desde cero: nace de lo que tú ya sos. La trampa es creer que llegar es quedarse; la sabiduría es entender que toda totalidad humana es siempre, también, el inicio del siguiente Loco.',
+    extension: 'El Mundo es la última carta del recorrido y, sin embargo, no se siente como llegada definitiva: se siente como cierre con dignidad. La figura adentro de la mandorla no levanta los brazos en triunfo: baila, suavemente, en un espacio que reconoce lo recorrido y, al mismo tiempo, deja la puerta abierta. Las cuatro figuras en las esquinas son las mismas que aparecieron en la Rueda: testigos del ciclo, ahora completos. Si esta carta aparece, probablemente algo en ti esté reconociendo que terminó un capítulo —un proyecto, una identidad, una forma de relacionarte, una etapa— y que el próximo no necesita inventarse desde cero: nace de lo que tú ya eres. La trampa es creer que llegar es quedarse; la sabiduría es entender que toda totalidad humana es siempre, también, el inicio del siguiente Loco.',
     prompt: '¿Qué estás llegando a cerrar y qué reconoces haber aprendido en el camino?',
 
     positions: {
       whatIs:      'Hay un cierre consciente, una integración o una culminación de un ciclo.',
       whatCrosses: 'Quedarte en el cierre sin preparar el próximo paso puede volverlo nostalgia.',
       whatOpens:   'Se abre un nuevo ciclo nacido de lo que ya integraste, no de lo que te falta.'
+    },
+
+    reversed: {
+      essence: 'La figura ya no baila adentro de la mandorla. O se quedó posando como en una foto, o salió a empezar otra cosa sin haber terminado de cerrar la primera.',
+      reading: 'El cierre quedó incompleto. O instalaste el final como identidad ("ya completé esto", como timbre de logro) y dejaste de moverte, o pasaste a lo siguiente sin honrar lo que terminó —y ese resto sin cerrar se cuela en el próximo capítulo. La integración no es trofeo ni fuga: es despedida con dignidad.',
+      synthesis: 'Lo que no cierras bien, te acompaña distinto. Y casi nunca a tu favor.',
+      prompt: '¿Qué ciclo estás dando por cerrado de la boca para afuera, y qué pieza de él sigues cargando sin nombre?',
+      manifestations: [
+        'Hablar con orgullo de "una etapa que ya cerré" mientras en la práctica sigues buscando aprobación de la persona que dejaste',
+        'Empezar un proyecto, una mudanza o un vínculo nuevo sin haber siquiera dicho gracias o adiós a lo anterior',
+        'Confundir la culminación con la cima: vivir como si ya no hubiera más nada, y dejar de crecer ahí'
+      ],
+      shadows: [
+        'Se bloquea el cierre integrado — termina la forma sin terminar lo que la habitaba.',
+        'Se exagera la pose de logro o la huida hacia lo nuevo.',
+        'Se evita mirar que toda totalidad humana también es comienzo — y todo comienzo pide despedirse de quien no vuelve.'
+      ]
     }
   }
 ]
