@@ -928,30 +928,30 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
     >
       <AtmosphereLayer scene="home" />
 
-      {/* ADE COMO PRESENCIA — no logo arriba del título.
-          Aparece en el costado derecho, más grande, semi-saliendo del frame,
-          con sombra propia y leve flotación. Es una entidad observadora,
-          no una mascota. */}
-      <motion.div
-        className="pointer-events-none absolute top-[3%] right-[-22px] md:right-[-8px] z-[6] select-none"
-        animate={{ y: [0, -3, 0, 3, 0] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ width: '180px' }}
-      >
-        {/* Sombra propia de Ade — cálida, proyectada al suelo */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] w-[60%] h-[10px] rounded-full"
-          style={{
-            background: 'radial-gradient(ellipse 60% 100% at 50% 0%, rgba(168,139,69,0.32) 0%, rgba(168,139,69,0.10) 40%, transparent 70%)',
-            filter: 'blur(6px)'
-          }}
-        />
-        <AdeGlyph className="w-[180px] md:w-[210px] relative z-10" />
-      </motion.div>
+      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-8 md:pt-10 pb-28 md:pb-12 flex flex-col items-center min-h-[100svh] justify-start gap-7 md:gap-9">
 
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-32 md:pt-36 pb-28 md:pb-12 flex flex-col items-center min-h-[100svh] justify-start gap-10 md:gap-12">
+        {/* ADE COMO PRESENCIA — sobre el título, centrado, con sombra
+            propia y flotación lenta. No es logo: es la entidad observadora
+            que abre la composición.
+            (Salía del frame antes y se veía desconfigurado; lo devolví a
+            posición canónica con peso editorial.) */}
+        <motion.div
+          className="relative flex justify-center select-none"
+          animate={{ y: [0, -3, 0, 3, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          {/* Sombra propia cálida — sugiere que ocupa espacio físico */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 bottom-[-4px] w-[55%] h-[12px] rounded-full pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse 60% 100% at 50% 0%, rgba(168,139,69,0.28) 0%, rgba(168,139,69,0.08) 45%, transparent 75%)',
+              filter: 'blur(6px)'
+            }}
+          />
+          <AdeGlyph className="w-[140px] md:w-[170px] relative z-10" />
+        </motion.div>
 
-        {/* TÍTULO — más espaciado, más editorial, sin Ade encima */}
+        {/* TÍTULO — más espaciado, más editorial */}
         <header className="text-center relative">
           {/* Filete dorado fino sobre el título */}
           <div className="mx-auto w-12 h-px bg-dorado/40 mb-5" />
