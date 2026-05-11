@@ -24,6 +24,7 @@ import { withAttrs } from './cardAttributes.js'
 import { findCrossings } from './iconicCrossings.js'
 import { detectMacros, readingStats } from './narrativeMacros.js'
 import { composeCelticNarrative } from './narrativeComposer.js'
+import { composeCelticInformReport } from './celticNarrative.js'
 
 /* =====================================================================
  * 1. POSICIONES — metadatos completos
@@ -539,14 +540,27 @@ export function composeCelticReading(slots) {
   const directionPull = detectDirectionPull(enriched)
   const tensions      = detectSymbolicTensions(enriched)
 
-  // === NUEVA CAPA NARRATIVA ===
-  // macros + stats + cruce icónico + composición en 8 secciones.
+  // === NUEVA CAPA NARRATIVA — narrativeComposer (5 capas reducidas) ===
   const macros    = detectMacros(enriched)
   const stats     = readingStats(enriched)
   const crossings = findCrossings(cardsForCrossings)
   const topCrossing = crossings.find(c => c.weight >= 0.85) || crossings[0]
   const narrative = composeCelticNarrative({
     cards: enriched,
+    macros,
+    stats,
+    crossing: topCrossing,
+    seed
+  })
+
+  // === INFORME COMPLETO — celticNarrative (8 capas densas) ===
+  // Sistema de fuerzas + cartas dominantes + invertidas como
+  // modificador de hipótesis + situaciones humanas + cierre con eco.
+  const contents = slots.slice(0, 10).map(s => s.content || null)
+  const report = composeCelticInformReport({
+    slots: slots.slice(0, 10).map(s => s.slot), // pasa { card, reversed }
+    enriched,
+    contents,
     macros,
     stats,
     crossing: topCrossing,
@@ -565,7 +579,10 @@ export function composeCelticReading(slots) {
     || '¿Qué pasaría si dejaras que esta lectura sea cierta por un día?'
 
   return {
-    // === SALIDA NUEVA — informe en 8 capas ===
+    // === INFORME — la salida principal de Cruz Celta ===
+    report,        // ← arquitectura nueva: 8 capas densas
+
+    // === NARRATIVE — compositor reducido (compat con tirada de 3) ===
     narrative,
 
     // === LEGACY — para compatibilidad mientras la UI migra ===
@@ -587,7 +604,6 @@ export function composeCelticReading(slots) {
       tempBalance,
       directionPull,
       tensions,
-      // capas nuevas
       macros,
       stats,
       crossings

@@ -1962,35 +1962,56 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta
 }
 
 
-/* ---------- LECTURA COMPLETA — informe interpretativo en 8 capas + layout ---------- */
+/* ---------- LECTURA COMPLETA — INFORME SIMBÓLICO en 8 capas + layout ----------
+ *
+ * Esta vista NO es una tirada corta expandida — es un informe denso que
+ * trata las 10 cartas como un sistema de fuerzas, no como suma. Cada
+ * capa tiene microheading y voz editorial distinta:
+ *
+ *   1. tesis        — hipótesis específica de la tirada
+ *   2. macros       — predominancia de patrones humanos
+ *   3. layout       — visual cruz+staff
+ *   4. núcleo       — carta 1 + carta 2 como relación
+ *   5. fuerzas push — pasado + corona + futuro próximo
+ *   6. fuerzas hold — base + entorno + interno
+ *   7. dominantes   — qué carta o palo reconfigura la lectura
+ *   8. invertidas   — qué se distorsiona, modifica hipótesis
+ *   9. escenas      — situaciones humanas observables
+ *  10. cierre       — eco + dirección posible
+ *
+ * Cada sección solo se renderiza si tiene contenido — si el informe no
+ * detectó X, X no aparece en pantalla.
+ * ------------------------------------------------------------------- */
 function CelticFullReading({ slots, cards, onCarta, onReset }) {
   /* Compose la lectura larga con todas las cartas */
   const reading = useMemo(() => composeCelticReading(slots), [slots])
   if (!reading) return null
 
-  // ARQUITECTURA NUEVA — informe interpretativo en 8 capas, no 10 mini lecturas pegadas.
+  // El informe denso (8 capas). Si por algún motivo no existe, caemos
+  // al compositor reducido (narrative) que es más corto.
+  const r = reading.report
   const n = reading.narrative
 
   return (
     <div className="px-1 max-w-[640px] mx-auto">
-      {/* TESIS — apertura. Observación sobre el conjunto, no atmósfera. */}
-      {n?.thesis && (
+      {/* TESIS — hipótesis específica de esta tirada. */}
+      {r?.thesis && (
         <div className="text-center max-w-[34rem] mx-auto mb-7">
           <div className="flex items-center justify-center gap-3 mb-4 text-dorado/65">
             <span className="h-px w-8 bg-dorado/35" />
             <StarTiny size={9} />
             <span className="h-px w-8 bg-dorado/35" />
           </div>
-          <p className="font-serif italic text-dorado/95 text-[1.12rem] md:text-[1.18rem] leading-[1.68]">
-            {n.thesis}
+          <p className="font-serif italic text-dorado/95 text-[1.12rem] md:text-[1.20rem] leading-[1.68]">
+            {r.thesis}
           </p>
         </div>
       )}
 
       {/* MACROS — patrones detectados sobre las 10 cartas. */}
-      {n?.macros && n.macros.length >= 2 && (
+      {r?.macros && r.macros.length >= 2 && (
         <p className="text-center text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/45 font-medium mb-8">
-          Predomina: {n.macros.slice(0, 4).map(m => m.label).join(' · ')}
+          Predomina: {r.macros.slice(0, 4).map(m => m.label).join(' · ')}
         </p>
       )}
 
@@ -1999,86 +2020,99 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
 
       <StarDivider className="my-10" />
 
-      {/* DESARROLLO — núcleo + tensión + intento + resistencia + patrón + invertidas.
-          Cada sección lleva microheading para que se lea como informe, no como prosa. */}
-      <div className="max-w-[34rem] mx-auto space-y-8">
-        {n?.core && (
+      {/* DESARROLLO — 8 capas con microheadings.
+          Cada sección solo aparece si tiene contenido propio. */}
+      <div className="max-w-[34rem] mx-auto space-y-9">
+        {/* NÚCLEO — relación entre carta 1 (presente) y carta 2 (cruce) */}
+        {r?.core && (
           <section>
             <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
               Núcleo
             </p>
-            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
-              {n.core}
+            <p className="font-light text-pergamino/85 text-[0.95rem] leading-[1.95]">
+              {r.core}
             </p>
           </section>
         )}
 
-        {n?.tension && (
+        {/* FUERZAS QUE EMPUJAN — pasado + corona + futuro próximo */}
+        {r?.pushing && (
           <section>
             <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
-              Qué sostiene el conflicto
+              Fuerzas que empujan
             </p>
             <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
-              {n.tension}
+              {r.pushing}
             </p>
           </section>
         )}
 
-        {n?.attempt && (
+        {/* FUERZAS QUE RETIENEN — base + entorno + interno */}
+        {r?.holding && (
           <section>
             <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
-              Qué intenta cambiar
+              Fuerzas que retienen
             </p>
             <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
-              {n.attempt}
+              {r.holding}
             </p>
           </section>
         )}
 
-        {n?.resistance && (
-          <section>
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
-              Qué se resiste
+        {/* CARTAS DOMINANTES — qué reconfigura la lectura */}
+        {r?.dominants && (
+          <section className="pl-3 border-l border-dorado/40">
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/85 font-medium mb-3">
+              Lo que reconfigura la lectura
             </p>
             <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
-              {n.resistance}
+              {r.dominants}
             </p>
           </section>
         )}
 
-        {n?.pattern && (
-          <section>
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
-              Patrón repetido
-            </p>
-            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
-              {n.pattern}
-            </p>
-          </section>
-        )}
-
-        {n?.inversions && (
-          <section className="pl-3 border-l border-vino/35">
+        {/* SISTEMA DE INVERTIDAS — modifica la hipótesis principal */}
+        {r?.inversions && (
+          <section className="pl-3 border-l border-vino/45">
             <p className="text-[0.58rem] tracking-[0.28em] uppercase text-vino/75 font-medium mb-3">
-              Lo que muestran las invertidas
+              Cómo cambia con las invertidas
             </p>
             <p className="font-light text-pergamino/80 text-[0.93rem] leading-[1.9]">
-              {n.inversions}
+              {r.inversions}
             </p>
+          </section>
+        )}
+
+        {/* SITUACIONES HUMANAS — escenas observables, no símbolo */}
+        {r?.scenes && r.scenes.length >= 1 && (
+          <section>
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              Cómo se nota esto en lo cotidiano
+            </p>
+            <ul className="space-y-2.5">
+              {r.scenes.map((scene, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="text-dorado/55 mt-2 shrink-0"><StarTiny size={6} /></span>
+                  <span className="font-light text-pergamino/80 text-[0.92rem] leading-[1.85]">
+                    {scene}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
       </div>
 
       <StarDivider className="my-10" />
 
-      {/* SÍNTESIS final — qué pide la lectura entera. */}
-      {n?.synthesis && (
+      {/* CIERRE NARRATIVO — eco + dirección posible, sin moraleja */}
+      {r?.closing && (
         <div className="text-center max-w-[34rem] mx-auto mb-8">
           <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-4">
-            Síntesis
+            Cierre
           </p>
-          <p className="font-serif italic text-pergamino/90 text-[1.05rem] leading-[1.7]">
-            {n.synthesis}
+          <p className="font-serif italic text-pergamino/90 text-[1.06rem] md:text-[1.10rem] leading-[1.7]">
+            {r.closing}
           </p>
         </div>
       )}
