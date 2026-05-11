@@ -37,30 +37,53 @@ body {
 .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 
 /* =====================================================================
- * RITUAL BG — fondo de mesa ceremonial cinematográfica
- * Centro ligeramente iluminado, bordes oscuros (vignette)
- * Capas: gradiente principal + halo cálido + vino al pie + vignette + grano
+ * RITUAL BG — fondo nocturno con oscuridad viva
+ *
+ * No es un color plano. Son 6 capas: base nocturna + mancha de tinta
+ * cobre off-center + halo de luz cenital + vino al pie + vignette
+ * dramática + grano cinematográfico visible. Cada capa hace un trabajo
+ * distinto. La capa más importante es la mancha asimétrica: rompe la
+ * simetría perfecta y hace que el fondo se sienta dibujado a mano,
+ * no generado.
  * ===================================================================*/
 .ritual-bg {
   position: relative;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 35%, rgba(22, 38, 60, 0.95) 0%, rgba(13, 27, 42, 0.95) 45%, transparent 70%),
-    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(122, 30, 44, 0.07) 0%, transparent 60%),
-    linear-gradient(180deg, #0a131e 0%, #060c14 100%);
+    /* 1. Mancha de cobre/tinta off-center — el detalle que da identidad.
+       No está centrada. Aparece a la izquierda arriba, como tinta vieja. */
+    radial-gradient(ellipse 38% 30% at 28% 22%, rgba(168, 139, 69, 0.10) 0%, rgba(168, 139, 69, 0.04) 35%, transparent 65%),
+    /* 2. Halo de luz cenital — sugiere vela arriba */
+    radial-gradient(ellipse 60% 40% at 50% 8%, rgba(198, 168, 90, 0.07) 0%, transparent 60%),
+    /* 3. Halo central tenue donde va la composición */
+    radial-gradient(ellipse 70% 55% at 50% 38%, rgba(22, 38, 60, 0.92) 0%, rgba(13, 27, 42, 0.95) 45%, transparent 70%),
+    /* 4. Mancha de vino al pie — base ritual */
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(122, 30, 44, 0.10) 0%, transparent 60%),
+    /* 5. Mancha de tinta a la derecha abajo — asimétrica intencional */
+    radial-gradient(ellipse 30% 22% at 78% 75%, rgba(92, 22, 32, 0.08) 0%, transparent 60%),
+    /* 6. Base nocturna — degradado vertical sutil */
+    linear-gradient(180deg, #0a131e 0%, #060c14 50%, #04080f 100%);
 }
+
+/* Vignette dramática — bordes oscuros que enfocan el centro como cine */
 .ritual-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 60% at center, transparent 20%, rgba(0,0,0,0.55) 100%);
+  background:
+    radial-gradient(ellipse 75% 65% at center, transparent 20%, rgba(0,0,0,0.65) 100%),
+    /* Sombra superior — sensación de bóveda */
+    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 18%);
   pointer-events: none;
   z-index: 1;
 }
+
+/* Grano cinematográfico visible — más denso que antes para que el ojo
+   registre que hay textura, no superficie limpia. */
 .ritual-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.045'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.085'/></svg>");
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: overlay;
@@ -256,6 +279,156 @@ body {
 .card-tilt:hover {
   transform: perspective(900px) rotateX(2.5deg) rotateY(-2.5deg) translateY(-2px);
 }
+
+/* CARTA INVOCADA — para la carta del día / carta destacada.
+   No es "una carta con sombra". Es una invocación visual:
+   - sombra dramática debajo (no centrada — sugiere altura real sobre la mesa)
+   - sombra cercana dura para profundidad inmediata
+   - ring dorado pulsante muy sutil
+   - luz cenital cálida sobre el borde superior */
+.card-invoked {
+  position: relative;
+}
+.card-invoked::before {
+  /* Sombra de invocación — proyectada hacia abajo, dramática */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 88%;
+  height: 38px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 100% 100% at 50% 0%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.20) 35%, transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: -1;
+}
+.card-invoked::after {
+  /* Ring dorado pulsante — luz que emana del objeto */
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, rgba(198,168,90,0.35) 0%, rgba(168,139,69,0.15) 50%, rgba(198,168,90,0.30) 100%);
+  z-index: -1;
+  filter: blur(0.5px);
+  animation: ritual-breath 9s ease-in-out infinite;
+}
+
+/* Pedestal ritual debajo de la carta — geometría alquímica de soporte.
+   Se usa como wrapper junto con la carta invocada. */
+.card-pedestal {
+  position: relative;
+}
+.card-pedestal::before {
+  /* Disco ritual — el suelo simbólico donde descansa la carta */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  width: 130%;
+  height: 60px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 50% 100% at 50% 0%, rgba(198, 168, 90, 0.15) 0%, rgba(198, 168, 90, 0.04) 40%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 0%, rgba(0, 0, 0, 0.45) 0%, transparent 75%);
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* BOTÓN UMBRAL — estilo objeto ritual tallado.
+   Por defecto: solo borde fino + tipografía. Sin fill agresivo.
+   Hover: fill borgoña interno revelado lentamente, borde dorado más visible.
+   Tap: glow cálido brevísimo. */
+.btn-threshold {
+  position: relative;
+  background: transparent;
+  border: 1px solid rgba(198, 168, 90, 0.22);
+  color: rgba(234, 230, 220, 0.85);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-threshold::before {
+  /* Fill interno revelado — empieza colapsado, se abre al hover */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(122,30,44,0.42) 0%, rgba(92,22,32,0.28) 100%);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.65s cubic-bezier(0.32, 0.72, 0.24, 1);
+  z-index: 0;
+}
+.btn-threshold::after {
+  /* Filete dorado superior — solo aparece en hover */
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(198,168,90,0.55) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.btn-threshold > * { position: relative; z-index: 1; }
+.btn-threshold:hover {
+  border-color: rgba(198, 168, 90, 0.55);
+  color: rgba(244, 241, 230, 1);
+  box-shadow:
+    0 0 24px rgba(198, 168, 90, 0.08),
+    inset 0 0 16px rgba(198, 168, 90, 0.06);
+}
+.btn-threshold:hover::before { transform: scaleY(1); }
+.btn-threshold:hover::after  { opacity: 1; }
+.btn-threshold:active {
+  box-shadow:
+    0 0 18px rgba(198, 168, 90, 0.18),
+    inset 0 0 10px rgba(198, 168, 90, 0.10);
+}
+
+/* Variante intensa — botón primario "Iniciar Tirada" */
+.btn-threshold-primary {
+  position: relative;
+  background: linear-gradient(180deg, rgba(122,30,44,0.28) 0%, rgba(92,22,32,0.18) 100%);
+  border: 1px solid rgba(198, 168, 90, 0.35);
+  color: rgba(244, 241, 230, 1);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-threshold-primary::before {
+  /* Glow interno muy sutil siempre presente — el botón primario "respira" */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 100% at 50% 50%, rgba(198,168,90,0.06) 0%, transparent 70%);
+  z-index: 0;
+  animation: ritual-breath 11s ease-in-out infinite;
+}
+.btn-threshold-primary > * { position: relative; z-index: 1; }
+.btn-threshold-primary:hover {
+  background: linear-gradient(180deg, rgba(140,38,52,0.38) 0%, rgba(110,28,40,0.28) 100%);
+  border-color: rgba(198, 168, 90, 0.65);
+  box-shadow:
+    0 0 28px rgba(198, 168, 90, 0.12),
+    inset 0 1px 0 rgba(198, 168, 90, 0.18);
+}
+
+/* FRAME EDITORIAL — marco de página antigua sutil sobre todo el viewport.
+   Es la sensación de "estás dentro de un manuscrito". */
+.page-frame::before,
+.page-frame::after {
+  content: '';
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(198,168,90,0.18) 20%, rgba(198,168,90,0.28) 50%, rgba(198,168,90,0.18) 80%, transparent 100%);
+  pointer-events: none;
+  z-index: 50;
+}
+.page-frame::before { top: 14px; }
+.page-frame::after  { bottom: 78px; } /* sobre la nav inferior */
 
 /* Estrella mínima — punto dorado tenue que aparece y desaparece */
 @keyframes star-blink {

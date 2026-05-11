@@ -901,8 +901,7 @@ function AtmosphereLayer({ scene = 'default' }) {
 
 function Home({ destacada, onTirada, onExplorar, onCarta }) {
   // Pool de frases contemplativas — rotan determinísticamente según
-  // la fecha del día, así una misma persona no ve la misma frase dos
-  // veces seguidas pero tampoco cambia mientras está en la app.
+  // la fecha del día.
   const dailyPhrases = [
     'las cartas no adivinan. revelan.',
     'hay símbolos que vuelven.',
@@ -924,95 +923,105 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.55 }}
-      className="relative min-h-[100svh] noise-dark bg-noche text-pergamino"
+      transition={{ duration: 0.7 }}
+      className="relative min-h-[100svh] ritual-bg text-pergamino page-frame"
     >
       <AtmosphereLayer scene="home" />
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-6 pb-28 md:pt-10 md:pb-12 flex flex-col items-center min-h-[100svh] justify-center gap-5 md:gap-8">
 
-        {/* ENCABEZADO — Ade ya no es un logo: está integrado con la
-            composición. Aparece más arriba con sombra propia, leve flotación
-            y se siente como observando la carta de abajo. */}
+      {/* ADE COMO PRESENCIA — no logo arriba del título.
+          Aparece en el costado derecho, más grande, semi-saliendo del frame,
+          con sombra propia y leve flotación. Es una entidad observadora,
+          no una mascota. */}
+      <motion.div
+        className="pointer-events-none absolute top-[3%] right-[-22px] md:right-[-8px] z-[6] select-none"
+        animate={{ y: [0, -3, 0, 3, 0] }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ width: '180px' }}
+      >
+        {/* Sombra propia de Ade — cálida, proyectada al suelo */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] w-[60%] h-[10px] rounded-full"
+          style={{
+            background: 'radial-gradient(ellipse 60% 100% at 50% 0%, rgba(168,139,69,0.32) 0%, rgba(168,139,69,0.10) 40%, transparent 70%)',
+            filter: 'blur(6px)'
+          }}
+        />
+        <AdeGlyph className="w-[180px] md:w-[210px] relative z-10" />
+      </motion.div>
+
+      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-32 md:pt-36 pb-28 md:pb-12 flex flex-col items-center min-h-[100svh] justify-start gap-10 md:gap-12">
+
+        {/* TÍTULO — más espaciado, más editorial, sin Ade encima */}
         <header className="text-center relative">
-          <motion.div
-            className="text-dorado mb-2 md:mb-4 flex justify-center relative"
-            animate={{ y: [0, -2, 0, 2, 0] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            {/* Sombra cálida tenue debajo de Ade — sugiere que ocupa espacio */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 bottom-[-6px] w-[60%] h-[8px] rounded-full opacity-50"
-              style={{
-                background: 'radial-gradient(ellipse 60% 100% at 50% 50%, rgba(198,168,90,0.18) 0%, transparent 70%)',
-                filter: 'blur(4px)'
-              }}
-            />
-            <AdeGlyph className="w-[120px] md:w-[160px] relative z-10" />
-          </motion.div>
-          <h1 className="font-serif text-[1.7rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.28em] md:tracking-[0.38em] mb-2 md:mb-3">
+          {/* Filete dorado fino sobre el título */}
+          <div className="mx-auto w-12 h-px bg-dorado/40 mb-5" />
+          <h1 className="font-serif text-[1.8rem] md:text-[2.4rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.42em] mb-3 md:mb-4">
             Tarot Ade
           </h1>
-          <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/75 tracking-[0.02em]">
+          <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/65 tracking-[0.02em] max-w-[24rem] mx-auto leading-relaxed">
             {dailyPhrases[dayIndex]}
           </p>
+          <div className="mx-auto w-12 h-px bg-dorado/40 mt-5" />
         </header>
 
-        {/* CARTA DEL DÍA — objeto físico, no imagen UI.
-            Lleva debajo geometría ritual, halo cinematográfico, respiración
-            sutil y sombra profunda. La carta se siente revelada, no renderizada. */}
-        <div className="flex flex-col items-center gap-3 relative">
-          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/55 font-medium">
+        {/* CARTA INVOCADA — el corazón de la pantalla.
+            Capas: geometría ritual como pedestal — halo cálido pulsante —
+            sombra dramática proyectada — ring dorado pulsante — carta con
+            tilt 3D y respiración sutil. */}
+        <div className="flex flex-col items-center gap-4 relative">
+          <p className="text-[0.56rem] tracking-[0.32em] uppercase text-dorado/55 font-light">
             Carta del día
           </p>
 
-          <div className="relative w-[180px] md:w-[240px] flex items-center justify-center">
-            {/* Geometría ritual detrás — círculo astral muy tenue.
-                Es la firma simbólica del sistema. */}
-            <div className="absolute inset-0 -inset-x-12 -inset-y-12 md:-inset-x-16 md:-inset-y-16 flex items-center justify-center pointer-events-none text-dorado">
-              <RitualGeometry size={320} opacity={0.13} />
+          <div className="relative w-[200px] md:w-[260px] flex items-center justify-center pt-2 pb-6">
+            {/* Geometría ritual detrás — más grande y más visible */}
+            <div className="absolute inset-0 -inset-x-20 -inset-y-20 md:-inset-x-24 md:-inset-y-24 flex items-center justify-center pointer-events-none text-dorado">
+              <RitualGeometry size={400} opacity={0.17} className="ritual-breath" />
             </div>
 
-            {/* Halo cálido cinematográfico — más denso que candle-glow */}
+            {/* Halo cálido cinematográfico — más denso */}
             <div
-              className="absolute inset-0 -inset-x-8 -inset-y-6 pointer-events-none ritual-breath"
+              className="absolute inset-0 -inset-x-10 -inset-y-8 pointer-events-none ritual-breath"
               style={{
-                background: 'radial-gradient(ellipse 55% 65% at 50% 48%, rgba(198,168,90,0.22) 0%, rgba(198,168,90,0.07) 38%, transparent 70%)',
-                filter: 'blur(8px)'
+                background: 'radial-gradient(ellipse 55% 65% at 50% 48%, rgba(198,168,90,0.28) 0%, rgba(198,168,90,0.10) 38%, transparent 70%)',
+                filter: 'blur(10px)'
               }}
             />
 
             <motion.button
               onClick={() => onCarta(destacada)}
-              className="relative w-[180px] md:w-[240px] active:scale-[0.99]"
+              className="relative w-[200px] md:w-[260px] active:scale-[0.99] card-invoked card-pedestal"
               aria-label={`Carta del día: ${destacada.nombre}. Toca para leer.`}
-              /* Respiración sutil — la carta parece viva, no estática.
-                 Scale entre 0.998 y 1.002 — imperceptible conscientemente */
-              animate={{ scale: [1, 1.002, 1, 0.998, 1] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+              animate={{ scale: [1, 1.003, 1, 0.997, 1] }}
+              transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
               whileTap={{ scale: 0.985 }}
+              whileHover={{ rotateX: 2, rotateY: -2, translateY: -2 }}
+              style={{ transformStyle: 'preserve-3d', perspective: 1000 }}
             >
               <CartaMarco card={destacada} />
             </motion.button>
           </div>
 
-          <p className="text-[0.6rem] tracking-[0.26em] text-dorado/55 italic font-serif mt-1">
+          <p className="text-[0.58rem] tracking-[0.30em] text-dorado/45 italic font-serif uppercase mt-2">
             toca para leer
           </p>
         </div>
 
-        {/* UMBRALES — botones como entrada a otro espacio, no como CTA web */}
-        <div className="w-full max-w-[300px] flex flex-col gap-3 md:gap-3.5">
+        {/* UMBRALES — botones tallados, no CTA web.
+            Primario respira. Secundario es solo borde. Ambos revelan fill
+            interno al hover y filete dorado superior. */}
+        <div className="w-full max-w-[300px] flex flex-col gap-3.5">
           <button
             onClick={onTirada}
-            className="w-full py-4 btn-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
+            className="w-full py-4 btn-threshold-primary text-[0.62rem] tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
           >
-            Iniciar Tirada
+            <span>Iniciar Tirada</span>
           </button>
           <button
             onClick={onExplorar}
-            className="w-full py-4 btn-ghost-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
+            className="w-full py-4 btn-threshold text-[0.62rem] tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
           >
-            Explorar Mazo
+            <span>Explorar Mazo</span>
           </button>
         </div>
       </div>
