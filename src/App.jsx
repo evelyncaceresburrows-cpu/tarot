@@ -451,10 +451,53 @@ function CardIcon({ size = 22, className = '' }) {
 }
 
 /** Una carta con el reverso compass-rose (tamaño contenedor padre) */
-function CardBackTile({ className = '' }) {
+function CardBackTile({ className = '', stackIndex = 0, stackTotal = 1 }) {
+  // Las cartas inferiores del mazo proyectan sombras más densas; las
+  // superiores reciben más luz cálida en el borde superior. Las del
+  // medio quedan presionadas (menos halo). Esto simula presión física.
+  const depthRatio   = stackTotal > 1 ? stackIndex / (stackTotal - 1) : 0  // 0 abajo, 1 arriba
+  const fromMidNorm  = Math.abs(depthRatio - 0.5) * 2                       // 0 centro, 1 borde
+
+  // Sombra: las cartas más arriba en el stack proyectan sombra MÁS suave
+  // hacia las de abajo (las inferiores ya están comprimidas y reciben).
+  const shadowAlpha  = 0.18 + depthRatio * 0.22
+  const shadowBlur   = 6 + depthRatio * 14
+  const shadowY      = 2 + depthRatio * 4
+
+  // Brillo en el borde superior — más visible en las cartas de arriba del stack
+  const topGlowAlpha = 0.10 + depthRatio * 0.18
+  // Sombra interna lateral — más densa en las cartas comprimidas del centro
+  const innerShadow  = 0.12 + (1 - fromMidNorm) * 0.10
+
   return (
-    <div className={`w-full h-full rounded-[5px] overflow-hidden ring-1 ring-dorado/25 shadow-[0_8px_22px_rgba(0,0,0,0.35)] ${className}`}>
+    <div
+      className={`relative w-full h-full rounded-[5px] overflow-hidden ${className}`}
+      style={{
+        boxShadow: `
+          0 ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, ${shadowAlpha}),
+          0 1px 2px rgba(0, 0, 0, 0.35),
+          inset 0 0 0 0.5px rgba(198, 168, 90, 0.22),
+          inset 0 1px 0 rgba(255, 230, 180, ${topGlowAlpha}),
+          inset 0 -1px 0 rgba(40, 18, 10, ${innerShadow}),
+          inset 0 0 8px rgba(40, 18, 10, ${innerShadow * 0.5})
+        `
+      }}
+    >
       <Reverso />
+      {/* Brillo cálido tenue sobre el borde superior — luz cinematográfica */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[20%]"
+        style={{
+          background: `linear-gradient(180deg, rgba(255, 235, 190, ${topGlowAlpha * 0.55}) 0%, transparent 100%)`
+        }}
+      />
+      {/* Sombra inferior interna — la carta de abajo recibe sombra de la de arriba */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[18%]"
+        style={{
+          background: `linear-gradient(0deg, rgba(0, 0, 0, ${innerShadow * 1.4}) 0%, transparent 100%)`
+        }}
+      />
     </div>
   )
 }
@@ -1161,38 +1204,95 @@ function IntentionScreen({ initialIntention, onContinue, onBack }) {
 }
 
 function DeckStack({ phase }) {
-  const cards = [0, 1, 2, 3, 4, 5, 6, 7]
+  // 14 cartas. Más cartas = sensación de mazo real, no de 3-4 tiles flotando.
+  const cards = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+  /* JITTER DETERMINÍSTICO POR CARTA — cada índice tiene su propia
+     "personalidad" de carta física: rotación, x/y, escala mínimas.
+     Determinístico porque depende del índice; orgánico porque no es
+     una progresión lineal. Genera la sensación de que cada carta es
+     una pieza con leve uso, no UI clonado. */
+  const jitter = (i) => {
+    const r1 = Math.sin(i * 12.9898) * 43758.5453
+    const r2 = Math.sin(i * 78.233)  * 12345.678
+    const r3 = Math.sin(i * 39.421)  * 23456.789
+    return {
+      rot:  ((r1 - Math.floor(r1)) - 0.5) * 4.2,   // -2.1° a +2.1°
+      x:    ((r2 - Math.floor(r2)) - 0.5) * 5.0,   // -2.5px a +2.5px lateral
+      yJit: ((r3 - Math.floor(r3)) - 0.5) * 2.0    // -1px a +1px vertical
+    }
+  }
+
+  /* PRESIÓN DEL CENTRO — las cartas del medio del stack están más
+     comprimidas, los bordes ligeramente más abiertos. Crea sensación
+     de presión física, no de espaciado matemático. */
+  const compression = (i) => {
+    const mid    = (cards.length - 1) / 2
+    const fromMid = Math.abs(i - mid)
+    // Centro: gap chico (0.6px). Bordes: gap mayor (1.5px)
+    return 0.6 + (fromMid / mid) * 0.9
+  }
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative" style={{ width: '140px', height: '210px' }}>
+      <motion.div
+        className="relative"
+        style={{ width: '142px', height: '212px' }}
+        /* Respiración del conjunto entero — muy lenta, casi imperceptible */
+        animate={{ scale: [1, 0.997, 1, 1.002, 1] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+      >
         {cards.map((i) => {
-          const isLeft     = i % 2 === 0
-          const yStack     = -i * 1.1
-          const baseRotate = (i - 3.5) * 0.5
+          const isLeft = i % 2 === 0
+          const j      = jitter(i)
+          // Acumulación de gaps en y: cada carta se apila pero con
+          // gap variable según la compresión local.
+          let yStackAccum = 0
+          for (let k = 0; k <= i; k++) yStackAccum -= compression(k)
+          const yStack = yStackAccum + j.yJit
 
-          let target = { x: 0, y: yStack, rotate: baseRotate }
-          let trans  = { duration: 1.0, ease: [0.32, 0.72, 0.24, 1] }
+          const baseRotate = (i - (cards.length - 1) / 2) * 0.35 + j.rot
+
+          // microvariación por carta para que los timings no sean idénticos
+          const cardDelay = (i % 5) * 0.08
+
+          let target = { x: j.x, y: yStack, rotate: baseRotate }
+          let trans  = { duration: 1.0, ease: [0.32, 0.72, 0.24, 1], delay: cardDelay * 0.4 }
 
           if (phase === 'split') {
-            target = { x: isLeft ? -54 : 54, y: yStack, rotate: isLeft ? -3.5 : 3.5 }
-            trans  = { duration: 1.1, ease: [0.32, 0.72, 0.24, 1] }
+            target = {
+              x: (isLeft ? -54 : 54) + j.x,
+              y: yStack,
+              rotate: (isLeft ? -3.5 : 3.5) + j.rot * 0.5
+            }
+            trans  = { duration: 1.1, ease: [0.32, 0.72, 0.24, 1], delay: cardDelay * 0.5 }
           } else if (phase === 'shuffle') {
+            // Vaivén lateral con leve jitter por carta — no idéntico para
+            // cada una, las del medio se mueven menos, las de los bordes más.
+            const swayAmp = 4 + (i % 3) * 1.5   // 4-7px de variación
+            const baseX   = isLeft ? -54 : 54
             target = {
               x: isLeft
-                ? [-54, -42, -52, -44, -52, -45, -54]
-                : [ 54,  42,  52,  44,  52,  45,  54],
-              y: yStack,
-              rotate: isLeft ? -3.5 : 3.5
+                ? [baseX + j.x, baseX + swayAmp + j.x, baseX - 2 + j.x, baseX + swayAmp - 1 + j.x, baseX + j.x]
+                : [baseX + j.x, baseX - swayAmp + j.x, baseX + 2 + j.x, baseX - swayAmp + 1 + j.x, baseX + j.x],
+              y: [yStack, yStack - 1 - (i % 2), yStack, yStack - 0.5, yStack],
+              rotate: [
+                (isLeft ? -3.5 : 3.5) + j.rot * 0.5,
+                (isLeft ? -4.5 : 4.5) + j.rot * 0.5,
+                (isLeft ? -3.0 : 3.0) + j.rot * 0.5,
+                (isLeft ? -4.2 : 4.2) + j.rot * 0.5,
+                (isLeft ? -3.5 : 3.5) + j.rot * 0.5
+              ]
             }
             trans = {
-              duration: 3.0,
+              duration: 3.0 + cardDelay * 0.3,
               ease: 'easeInOut',
-              times: [0, 0.16, 0.32, 0.48, 0.66, 0.82, 1]
+              times: [0, 0.25, 0.5, 0.75, 1],
+              delay: cardDelay * 0.25
             }
           } else if (phase === 'reunite' || phase === 'settle' || phase === 'exit') {
-            target = { x: 0, y: yStack, rotate: baseRotate }
-            trans  = { duration: 1.1, ease: [0.32, 0.72, 0.24, 1] }
+            target = { x: j.x, y: yStack, rotate: baseRotate }
+            trans  = { duration: 1.1, ease: [0.32, 0.72, 0.24, 1], delay: cardDelay * 0.3 }
           }
 
           return (
@@ -1203,11 +1303,11 @@ function DeckStack({ phase }) {
               transition={trans}
               style={{ zIndex: i + 1 }}
             >
-              <CardBackTile />
+              <CardBackTile stackIndex={i} stackTotal={cards.length} />
             </motion.div>
           )
         })}
-      </div>
+      </motion.div>
     </div>
   )
 }
