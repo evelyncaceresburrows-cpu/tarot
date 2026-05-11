@@ -280,6 +280,85 @@ function StarDivider({ className = '' }) {
   )
 }
 
+/** Geometría ritual — círculo astral + marcas alquímicas + 12 divisiones
+ *  zodiacales. Va detrás de cartas destacadas con opacidad muy baja.
+ *  Construye un motivo visual repetido propio del sistema. */
+function RitualGeometry({ size = 320, className = '', opacity = 0.18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 200 200"
+      className={`pointer-events-none select-none ${className}`}
+      style={{ opacity }}
+      fill="none"
+      stroke="currentColor"
+    >
+      {/* Anillo principal — círculo zodiacal */}
+      <circle cx="100" cy="100" r="92" strokeWidth="0.5" />
+      <circle cx="100" cy="100" r="84" strokeWidth="0.3" />
+      <circle cx="100" cy="100" r="62" strokeWidth="0.4" />
+      <circle cx="100" cy="100" r="42" strokeWidth="0.25" strokeDasharray="1 2" />
+
+      {/* 12 divisiones — marcas pequeñas en el anillo exterior */}
+      <g strokeWidth="0.5">
+        {Array.from({ length: 12 }).map((_, i) => {
+          const angle = (i * 30 - 90) * Math.PI / 180
+          const x1 = 100 + Math.cos(angle) * 84
+          const y1 = 100 + Math.sin(angle) * 84
+          const x2 = 100 + Math.cos(angle) * 92
+          const y2 = 100 + Math.sin(angle) * 92
+          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />
+        })}
+      </g>
+
+      {/* 4 ejes cardinales — más densos en N/S/E/W */}
+      <g strokeWidth="0.35" strokeDasharray="2 3" opacity="0.6">
+        <line x1="100" y1="8"  x2="100" y2="42" />
+        <line x1="100" y1="158" x2="100" y2="192" />
+        <line x1="8"   y1="100" x2="42"  y2="100" />
+        <line x1="158" y1="100" x2="192" y2="100" />
+      </g>
+
+      {/* Estrella central — 8 puntas, símbolo de orientación */}
+      <g strokeWidth="0.3" opacity="0.7">
+        {Array.from({ length: 8 }).map((_, i) => {
+          const angle = (i * 45) * Math.PI / 180
+          const x = 100 + Math.cos(angle) * 32
+          const y = 100 + Math.sin(angle) * 32
+          return <line key={i} x1="100" y1="100" x2={x} y2={y} />
+        })}
+      </g>
+
+      {/* Marcas alquímicas — sol, luna, mercurio sutiles */}
+      <g strokeWidth="0.4" opacity="0.55">
+        {/* Sol arriba */}
+        <circle cx="100" cy="22" r="3" />
+        <circle cx="100" cy="22" r="0.6" fill="currentColor" stroke="none" />
+        {/* Luna abajo */}
+        <path d="M 96 178 a 4 4 0 0 0 8 0 a 3 3 0 0 1 -8 0 Z" />
+        {/* Cruz a la izquierda */}
+        <line x1="18" y1="100" x2="26" y2="100" />
+        <line x1="22" y1="96"  x2="22" y2="104" />
+        {/* Diamante a la derecha */}
+        <path d="M 178 100 L 174 96 L 170 100 L 174 104 Z" />
+      </g>
+
+      {/* Pequeñas estrellas en los entremedios — orientación de constelación */}
+      <g fill="currentColor" stroke="none" opacity="0.5">
+        <circle cx="58"  cy="40"  r="0.7" />
+        <circle cx="142" cy="40"  r="0.7" />
+        <circle cx="58"  cy="160" r="0.7" />
+        <circle cx="142" cy="160" r="0.7" />
+        <circle cx="40"  cy="58"  r="0.5" />
+        <circle cx="160" cy="58"  r="0.5" />
+        <circle cx="40"  cy="142" r="0.5" />
+        <circle cx="160" cy="142" r="0.5" />
+      </g>
+    </svg>
+  )
+}
+
 /** Reverso ceremonial — sigilo hermético sobre azul profundo */
 function Reverso() {
   return (
@@ -821,6 +900,24 @@ function AtmosphereLayer({ scene = 'default' }) {
  * ===================================================================*/
 
 function Home({ destacada, onTirada, onExplorar, onCarta }) {
+  // Pool de frases contemplativas — rotan determinísticamente según
+  // la fecha del día, así una misma persona no ve la misma frase dos
+  // veces seguidas pero tampoco cambia mientras está en la app.
+  const dailyPhrases = [
+    'las cartas no adivinan. revelan.',
+    'hay símbolos que vuelven.',
+    'respira antes de elegir.',
+    'algunas respuestas llegan de lado.',
+    'todo aparece por algo.',
+    'lo que insiste también habla.',
+    'no preguntes rápido. mira primero.'
+  ]
+  const dayIndex = (() => {
+    const d = new Date()
+    const day = Math.floor(d / (1000 * 60 * 60 * 24))
+    return day % dailyPhrases.length
+  })()
+
   return (
     <motion.section
       key="home"
@@ -832,34 +929,78 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
     >
       <AtmosphereLayer scene="home" />
       <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-6 pb-28 md:pt-10 md:pb-12 flex flex-col items-center min-h-[100svh] justify-center gap-5 md:gap-8">
-        <header className="text-center">
-          <div className="text-dorado mb-2 md:mb-4 flex justify-center">
-            <AdeGlyph className="w-[120px] md:w-[160px]" />
-          </div>
+
+        {/* ENCABEZADO — Ade ya no es un logo: está integrado con la
+            composición. Aparece más arriba con sombra propia, leve flotación
+            y se siente como observando la carta de abajo. */}
+        <header className="text-center relative">
+          <motion.div
+            className="text-dorado mb-2 md:mb-4 flex justify-center relative"
+            animate={{ y: [0, -2, 0, 2, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            {/* Sombra cálida tenue debajo de Ade — sugiere que ocupa espacio */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 bottom-[-6px] w-[60%] h-[8px] rounded-full opacity-50"
+              style={{
+                background: 'radial-gradient(ellipse 60% 100% at 50% 50%, rgba(198,168,90,0.18) 0%, transparent 70%)',
+                filter: 'blur(4px)'
+              }}
+            />
+            <AdeGlyph className="w-[120px] md:w-[160px] relative z-10" />
+          </motion.div>
           <h1 className="font-serif text-[1.7rem] md:text-[2.3rem] font-light text-dorado uppercase tracking-[0.28em] md:tracking-[0.38em] mb-2 md:mb-3">
             Tarot Ade
           </h1>
           <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/75 tracking-[0.02em]">
-            las cartas no adivinan. revelan.
+            {dailyPhrases[dayIndex]}
           </p>
         </header>
 
-        <div className="flex flex-col items-center gap-3">
+        {/* CARTA DEL DÍA — objeto físico, no imagen UI.
+            Lleva debajo geometría ritual, halo cinematográfico, respiración
+            sutil y sombra profunda. La carta se siente revelada, no renderizada. */}
+        <div className="flex flex-col items-center gap-3 relative">
           <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/55 font-medium">
             Carta del día
           </p>
-          <button
-            onClick={() => onCarta(destacada)}
-            className="w-[180px] md:w-[240px] active:scale-[0.99] transition-transform"
-            aria-label={`Carta del día: ${destacada.nombre}. Toca para leer.`}
-          >
-            <CartaMarco card={destacada} />
-          </button>
+
+          <div className="relative w-[180px] md:w-[240px] flex items-center justify-center">
+            {/* Geometría ritual detrás — círculo astral muy tenue.
+                Es la firma simbólica del sistema. */}
+            <div className="absolute inset-0 -inset-x-12 -inset-y-12 md:-inset-x-16 md:-inset-y-16 flex items-center justify-center pointer-events-none text-dorado">
+              <RitualGeometry size={320} opacity={0.13} />
+            </div>
+
+            {/* Halo cálido cinematográfico — más denso que candle-glow */}
+            <div
+              className="absolute inset-0 -inset-x-8 -inset-y-6 pointer-events-none ritual-breath"
+              style={{
+                background: 'radial-gradient(ellipse 55% 65% at 50% 48%, rgba(198,168,90,0.22) 0%, rgba(198,168,90,0.07) 38%, transparent 70%)',
+                filter: 'blur(8px)'
+              }}
+            />
+
+            <motion.button
+              onClick={() => onCarta(destacada)}
+              className="relative w-[180px] md:w-[240px] active:scale-[0.99]"
+              aria-label={`Carta del día: ${destacada.nombre}. Toca para leer.`}
+              /* Respiración sutil — la carta parece viva, no estática.
+                 Scale entre 0.998 y 1.002 — imperceptible conscientemente */
+              animate={{ scale: [1, 1.002, 1, 0.998, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+              whileTap={{ scale: 0.985 }}
+            >
+              <CartaMarco card={destacada} />
+            </motion.button>
+          </div>
+
           <p className="text-[0.6rem] tracking-[0.26em] text-dorado/55 italic font-serif mt-1">
             toca para leer
           </p>
         </div>
 
+        {/* UMBRALES — botones como entrada a otro espacio, no como CTA web */}
         <div className="w-full max-w-[300px] flex flex-col gap-3 md:gap-3.5">
           <button
             onClick={onTirada}
@@ -2873,8 +3014,20 @@ function BottomNav({ view, onGo }) {
   const isActive = (k) => view === k || (k === 'selector' && (view === 'tirada1' || view === 'tirada3'))
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-30 bg-noche/92 backdrop-blur-md border-t border-dorado/15">
-      <div className="max-w-[440px] mx-auto px-6 py-3 flex items-stretch justify-around">
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-30 border-t border-dorado/15"
+      style={{
+        /* Fondo más integrado con la atmósfera — gradiente que conecta con
+           el fondo nocturno en lugar de pegarse encima como una barra UI. */
+        background: 'linear-gradient(180deg, rgba(13, 27, 42, 0.55) 0%, rgba(13, 27, 42, 0.92) 40%, rgba(6, 12, 20, 0.96) 100%)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)'
+      }}
+    >
+      {/* Línea dorada superior ultra fina — separa sin cortar */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dorado/25 to-transparent" />
+
+      <div className="relative max-w-[440px] mx-auto px-6 py-3 flex items-stretch justify-around">
         {items.map(it => {
           const Icon = it.icon
           const active = isActive(it.key)
@@ -2882,15 +3035,33 @@ function BottomNav({ view, onGo }) {
             <button
               key={it.key}
               onClick={() => onGo(it.key)}
-              className={`flex flex-col items-center gap-1.5 px-3 py-1 transition-colors active:scale-[0.96] ${
-                active ? 'text-dorado' : 'text-dorado/45 hover:text-dorado/80'
+              className={`relative flex flex-col items-center gap-1.5 px-3 py-1 transition-all duration-500 active:scale-[0.96] ${
+                active ? 'text-dorado' : 'text-dorado/40 hover:text-dorado/75'
               }`}
               aria-label={it.label}
             >
-              <Icon className="w-[22px] h-[22px]" strokeWidth={1.3} size={22} />
-              <span className="text-[0.6rem] tracking-[0.26em] uppercase font-light">
+              {/* Halo ceremonial detrás del ícono activo — glow mínimo cálido */}
+              {active && (
+                <span
+                  className="pointer-events-none absolute left-1/2 top-[2px] -translate-x-1/2 w-[34px] h-[34px] rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(198, 168, 90, 0.20) 0%, transparent 70%)',
+                    filter: 'blur(2px)'
+                  }}
+                />
+              )}
+              <Icon
+                className="relative z-10 w-[22px] h-[22px]"
+                strokeWidth={active ? 1.4 : 1.1}
+                size={22}
+              />
+              <span className={`relative z-10 text-[0.58rem] tracking-[0.30em] uppercase font-light ${active ? 'text-dorado' : ''}`}>
                 {it.label}
               </span>
+              {/* Punto dorado ultra fino debajo del activo — marca ceremonial */}
+              {active && (
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-dorado/70" />
+              )}
             </button>
           )
         })}
