@@ -16,7 +16,7 @@ export default {
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans:  ['"Poppins"', 'system-ui', 'sans-serif']
+        sans:  ['"Inter"', 'system-ui', 'sans-serif']
       },
       letterSpacing: {
         editorial: '0.18em'
