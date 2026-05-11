@@ -2411,65 +2411,146 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
 
 /* ---------- LAYOUT CROSS + STAFF ---------- */
 function CelticLayout({ slots, onCarta }) {
-  /* Render: la cruz en la izquierda (3 columnas) + el staff a la derecha
-     (1 columna). En mobile se apila vertical. */
+  /* DISPOSICIÓN RITUAL — no es "cruz a la izquierda + staff a la derecha"
+     como dashboard. Es UNA composición unificada sobre una superficie
+     ritual: cruz central + staff lateral conectados por líneas alquímicas
+     casi invisibles. Cada carta tiene tilt orgánico determinístico para
+     que no parezcan grids. */
   const [present, crossing, crown, foundation, past, future, ...staff] = slots
-  // staff = [self, environment, inner, horizon] ← 7..10
 
-  const card = (s) => (
-    <button
+  /* Tilt orgánico determinístico por posición — cartas no idénticas, cada
+     una con leve personalidad. El usuario no nota la rotación individual,
+     pero registra que las cartas no están alineadas como grid. */
+  const tilt = (i) => {
+    const r = Math.sin(i * 12.9898 + 78.233) * 43758.5453
+    return ((r - Math.floor(r)) - 0.5) * 2.4  // -1.2° a +1.2°
+  }
+
+  /* Renderiza una carta sobre la mesa ritual — sombra suave entre cartas,
+     ring dorado tenue, tilt orgánico, hover sutil. */
+  const card = (s, idx) => (
+    <motion.button
       onClick={() => onCarta(s.slot.card, s.slot.reversed)}
-      className="block w-full active:scale-[0.985] transition-transform group text-left"
+      className="block w-full active:scale-[0.985] group text-left"
+      style={{ transform: `rotate(${tilt(idx)}deg)` }}
+      whileHover={{ rotate: 0, scale: 1.02 }}
+      transition={{ duration: 0.5, ease: [0.32, 0.72, 0.24, 1] }}
+      aria-label={`${s.pos.label}: ${s.slot.card.nombre}`}
     >
-      <div className="aspect-[2/3] w-full rounded-[3px] overflow-hidden ring-1 ring-dorado/30 group-hover:ring-dorado/65 transition-shadow shadow-[0_6px_16px_rgba(0,0,0,0.4)]">
-        <CartaMarco card={s.slot.card} reversed={s.slot.reversed} />
+      <div className="aspect-[2/3] w-full rounded-[4px] overflow-hidden ring-1 ring-dorado/30 group-hover:ring-dorado/65 shadow-ritual transition-shadow">
+        <CartaMarco card={s.slot.card} reversed={s.slot.reversed} showLabel={false} />
       </div>
-      <p className="mt-2 text-[0.5rem] tracking-[0.22em] uppercase text-dorado/60 text-center leading-tight">
+      <p className="mt-1.5 text-[0.48rem] tracking-[0.22em] uppercase text-dorado/55 text-center leading-tight font-light">
         {s.pos.label}
       </p>
-    </button>
+    </motion.button>
   )
 
   return (
-    <div className="flex flex-col md:flex-row gap-10 md:gap-8 items-center md:items-start justify-center">
-      {/* CRUZ — 3x3 grid */}
-      <div className="grid grid-cols-3 gap-2 md:gap-3 w-full max-w-[340px] md:max-w-[360px]">
-        <div />
-        {card(crown)}
-        <div />
+    <div className="relative max-w-[640px] mx-auto">
 
-        {card(past)}
-        <div className="relative">
-          {card(present)}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div style={{ transform: 'rotate(90deg)', width: '100%' }}>
-              <button
-                onClick={() => onCarta(crossing.slot.card, crossing.slot.reversed)}
-                className="block w-full pointer-events-auto active:scale-[0.985] transition-transform"
-                style={{ opacity: 0.92 }}
-                aria-label={`${crossing.pos.label}: ${crossing.slot.card.nombre}`}
-              >
-                <div className="aspect-[2/3] w-full rounded-[3px] overflow-hidden ring-1 ring-vino/55 shadow-[0_6px_16px_rgba(0,0,0,0.55)]">
-                  <CartaMarco card={crossing.slot.card} reversed={crossing.slot.reversed} />
-                </div>
-              </button>
-            </div>
-          </div>
+      {/* CAPA 1 — SUPERFICIE RITUAL DE FONDO.
+          Geometría alquímica grande detrás de toda la disposición.
+          Opacidad muy baja: existe, no protagoniza. */}
+      <div className="absolute inset-x-0 top-[5%] bottom-[5%] flex items-start justify-center pointer-events-none text-dorado">
+        <div className="relative w-[460px] h-[460px] md:w-[520px] md:h-[520px]">
+          <RitualGeometry size={520} opacity={0.07} className="absolute inset-0 ritual-breath" />
         </div>
-        {card(future)}
-
-        <div />
-        {card(foundation)}
-        <div />
       </div>
 
-      {/* STAFF — columna vertical */}
-      <div className="flex md:flex-col gap-3 md:gap-3 w-full max-w-[340px] md:w-[120px] md:max-w-none">
-        {staff.map((s, i) => (
-          <div key={i} className="flex-1 md:w-full">
-            {card(s)}
+      {/* CAPA 2 — POLVO DORADO MÍNIMO sobre la mesa ritual.
+          Partículas tenues que sugieren que el aire tiene materia. */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <span className="atmo-star" style={{ top: '18%', left: '20%' }} />
+        <span className="atmo-star" style={{ top: '8%',  right: '24%', animationDelay: '2.5s' }} />
+        <span className="atmo-star" style={{ top: '48%', left: '8%',  animationDelay: '1.2s' }} />
+        <span className="atmo-star" style={{ top: '70%', right: '18%', animationDelay: '3.4s' }} />
+        <span className="atmo-star" style={{ bottom: '12%', left: '36%', animationDelay: '0.8s' }} />
+      </div>
+
+      {/* CAPA 3 — DISPOSICIÓN DE LAS CARTAS.
+          flex-row en escritorio (cruz + staff lado a lado, conectados);
+          flex-col en mobile (cruz arriba, staff abajo) sin separación. */}
+      <div className="relative flex flex-col md:flex-row gap-6 md:gap-5 items-center md:items-center justify-center px-4 py-6">
+
+        {/* CRUZ — composición compacta. Gap reducido (gap-1 móvil, gap-1.5
+            escritorio) para que las cartas se sientan agrupadas, no
+            espaciadas. */}
+        <div className="relative grid grid-cols-3 gap-1 md:gap-1.5 w-full max-w-[320px] md:max-w-[340px]">
+
+          {/* Glow cálido que envuelve la cruz — la disposición tiene una
+              "luz central" sobre la carta del presente. */}
+          <div
+            className="absolute inset-0 -inset-x-4 -inset-y-4 pointer-events-none ritual-breath"
+            style={{
+              background: 'radial-gradient(ellipse 55% 55% at 50% 50%, rgba(198,168,90,0.10) 0%, rgba(198,168,90,0.04) 40%, transparent 70%)',
+              filter: 'blur(6px)',
+              zIndex: 0
+            }}
+          />
+
+          <div />
+          <div className="relative z-[2]">{card(crown, 2)}</div>
+          <div />
+
+          <div className="relative z-[2]">{card(past, 4)}</div>
+
+          {/* Núcleo: presente + cruce superpuesto. La carta del cruce está
+              rotada 90° y semi-transparente, como en la cruz celta tradicional. */}
+          <div className="relative z-[3]">
+            {card(present, 0)}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div style={{ transform: 'rotate(90deg)', width: '100%' }}>
+                <motion.button
+                  onClick={() => onCarta(crossing.slot.card, crossing.slot.reversed)}
+                  className="block w-full pointer-events-auto active:scale-[0.985]"
+                  aria-label={`${crossing.pos.label}: ${crossing.slot.card.nombre}`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.5, ease: [0.32, 0.72, 0.24, 1] }}
+                >
+                  <div
+                    className="aspect-[2/3] w-full rounded-[4px] overflow-hidden ring-1 ring-vino/55 shadow-ritual"
+                    style={{ opacity: 0.93 }}
+                  >
+                    <CartaMarco card={crossing.slot.card} reversed={crossing.slot.reversed} showLabel={false} />
+                  </div>
+                </motion.button>
+              </div>
+            </div>
           </div>
-        ))}
+
+          <div className="relative z-[2]">{card(future, 5)}</div>
+
+          <div />
+          <div className="relative z-[2]">{card(foundation, 3)}</div>
+          <div />
+        </div>
+
+        {/* CONECTOR — línea fina dorada que une la cruz con el staff.
+            Solo visible en escritorio. Funciona como hilo alquímico
+            que sostiene la disposición como una sola pieza. */}
+        <div className="hidden md:flex flex-col items-center justify-center self-stretch px-1">
+          <div className="w-px flex-1 bg-gradient-to-b from-transparent via-dorado/25 to-transparent" />
+          <span className="my-2 text-dorado/40"><StarTiny size={6} /></span>
+          <div className="w-px flex-1 bg-gradient-to-b from-transparent via-dorado/25 to-transparent" />
+        </div>
+
+        {/* STAFF — columna vertical. En escritorio justo al lado de la cruz,
+            sin separación grande. En mobile abajo, en fila compacta. */}
+        <div className="relative flex md:flex-col gap-1.5 md:gap-2 w-full max-w-[320px] md:w-[88px]">
+          {staff.map((s, i) => (
+            <div key={i} className="flex-1 md:w-full relative z-[2]">
+              {card(s, 6 + i)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CAPA 4 — Ade observador en esquina inferior izquierda.
+          Muy tenue, casi una silueta. Sugiere que la disposición está
+          siendo mirada por una presencia. */}
+      <div className="hidden md:block absolute -bottom-2 left-2 pointer-events-none opacity-25 z-[1]">
+        <AdeGlyph className="w-[64px]" />
       </div>
     </div>
   )
