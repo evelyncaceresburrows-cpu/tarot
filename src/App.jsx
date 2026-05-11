@@ -1962,42 +1962,129 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta
 }
 
 
-/* ---------- LECTURA COMPLETA — layout cross+staff + síntesis larga ---------- */
+/* ---------- LECTURA COMPLETA — informe interpretativo en 8 capas + layout ---------- */
 function CelticFullReading({ slots, cards, onCarta, onReset }) {
   /* Compose la lectura larga con todas las cartas */
   const reading = useMemo(() => composeCelticReading(slots), [slots])
   if (!reading) return null
 
+  // ARQUITECTURA NUEVA — informe interpretativo en 8 capas, no 10 mini lecturas pegadas.
+  const n = reading.narrative
+
   return (
     <div className="px-1 max-w-[640px] mx-auto">
-      {/* Atmósfera de apertura */}
-      <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[34rem] mx-auto mb-6">
-        {reading.climate}
-      </p>
-
-      {/* Arco pasado-futuro (si hay) */}
-      {reading.arc && (
-        <p className="font-light text-pergamino/65 text-[0.9rem] leading-[1.85] text-center max-w-[32rem] mx-auto mb-10 italic">
-          {reading.arc}
-        </p>
+      {/* TESIS — apertura. Observación sobre el conjunto, no atmósfera. */}
+      {n?.thesis && (
+        <div className="text-center max-w-[34rem] mx-auto mb-7">
+          <div className="flex items-center justify-center gap-3 mb-4 text-dorado/65">
+            <span className="h-px w-8 bg-dorado/35" />
+            <StarTiny size={9} />
+            <span className="h-px w-8 bg-dorado/35" />
+          </div>
+          <p className="font-serif italic text-dorado/95 text-[1.12rem] md:text-[1.18rem] leading-[1.68]">
+            {n.thesis}
+          </p>
+        </div>
       )}
 
-      <StarDivider className="my-8" />
+      {/* MACROS — patrones detectados sobre las 10 cartas. */}
+      {n?.macros && n.macros.length >= 2 && (
+        <p className="text-center text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/45 font-medium mb-8">
+          Predomina: {n.macros.slice(0, 4).map(m => m.label).join(' · ')}
+        </p>
+      )}
 
       {/* Layout cross+staff — visual del recorrido */}
       <CelticLayout slots={slots} onCarta={onCarta} />
 
       <StarDivider className="my-10" />
 
-      {/* Eco de tensiones simbólicas */}
-      {reading.echo && (
-        <p className="font-light text-pergamino/70 text-[0.94rem] leading-[1.95] text-center max-w-[34rem] mx-auto mb-10 italic">
-          {reading.echo}
-        </p>
+      {/* DESARROLLO — núcleo + tensión + intento + resistencia + patrón + invertidas.
+          Cada sección lleva microheading para que se lea como informe, no como prosa. */}
+      <div className="max-w-[34rem] mx-auto space-y-8">
+        {n?.core && (
+          <section>
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              Núcleo
+            </p>
+            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+              {n.core}
+            </p>
+          </section>
+        )}
+
+        {n?.tension && (
+          <section>
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              Qué sostiene el conflicto
+            </p>
+            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+              {n.tension}
+            </p>
+          </section>
+        )}
+
+        {n?.attempt && (
+          <section>
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              Qué intenta cambiar
+            </p>
+            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+              {n.attempt}
+            </p>
+          </section>
+        )}
+
+        {n?.resistance && (
+          <section>
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              Qué se resiste
+            </p>
+            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+              {n.resistance}
+            </p>
+          </section>
+        )}
+
+        {n?.pattern && (
+          <section>
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+              Patrón repetido
+            </p>
+            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+              {n.pattern}
+            </p>
+          </section>
+        )}
+
+        {n?.inversions && (
+          <section className="pl-3 border-l border-vino/35">
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-vino/75 font-medium mb-3">
+              Lo que muestran las invertidas
+            </p>
+            <p className="font-light text-pergamino/80 text-[0.93rem] leading-[1.9]">
+              {n.inversions}
+            </p>
+          </section>
+        )}
+      </div>
+
+      <StarDivider className="my-10" />
+
+      {/* SÍNTESIS final — qué pide la lectura entera. */}
+      {n?.synthesis && (
+        <div className="text-center max-w-[34rem] mx-auto mb-8">
+          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-4">
+            Síntesis
+          </p>
+          <p className="font-serif italic text-pergamino/90 text-[1.05rem] leading-[1.7]">
+            {n.synthesis}
+          </p>
+        </div>
       )}
 
-      {/* Pregunta de cierre */}
-      <div className="text-center max-w-[28rem] mx-auto mb-10">
+      {/* Pregunta de cierre — viene de la carta 10 (horizonte). */}
+      <div className="text-center max-w-[28rem] mx-auto mb-10 mt-8">
         <p className="text-[0.6rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-5">
           Para mirar después
         </p>
@@ -2131,47 +2218,71 @@ function ComposedReading({ tirada, onCarta }) {
     slots[2]?.content?.prompt ||
     'Si dejaras que esta tirada respire un poco más, ¿qué cambiaría?'
 
+  // ARQUITECTURA NUEVA — lectura como informe interpretativo.
+  // La tirada parte de una TESIS y las cartas justifican esa tesis.
+  // Las secciones que no tienen contenido no se renderizan.
+  const n = relational.narrative
+
   return (
     <div className="px-2 max-w-[40rem] mx-auto">
-      {/* Cruce icónico — frase específica del par de cartas. Italic + dorado.
-          Es lo más cargado simbólicamente: aterriza la lectura antes que la atmósfera. */}
-      {relational.crossing && (
+      {/* TESIS — apertura. Es la observación de la lectura, no atmósfera.
+          Tipografía más grande, italic, dorado fuerte. Acompañada de
+          divisor para marcar que es el centro de gravedad textual. */}
+      {n?.thesis && (
         <div className="text-center max-w-[34rem] mx-auto mb-8">
           <div className="flex items-center justify-center gap-3 mb-4 text-dorado/65">
             <span className="h-px w-8 bg-dorado/35" />
             <StarTiny size={9} />
             <span className="h-px w-8 bg-dorado/35" />
           </div>
-          <p className="font-serif italic text-dorado/95 text-[1.04rem] md:text-[1.06rem] leading-[1.7]">
-            {relational.crossing}
+          <p className="font-serif italic text-dorado/95 text-[1.08rem] md:text-[1.12rem] leading-[1.7]">
+            {n.thesis}
           </p>
         </div>
       )}
 
-      {/* Atmósfera — solo cuando NO hay cruce icónico. Si hay cruce, el cruce
-          ya hizo el trabajo de aterrizar la lectura: la atmósfera redundaría. */}
-      {!relational.crossing && relational.atmosphere && (
-        <p className="font-serif italic text-pergamino/75 text-[0.98rem] leading-[1.75] text-center max-w-[34rem] mx-auto mb-8">
-          {relational.atmosphere}
+      {/* MACROS — lista corta de patrones detectados. "Predomina: X · Y · Z".
+          Solo visible si hay 2+ macros, en tipografía pequeña uppercase. */}
+      {n?.macros && n.macros.length >= 2 && (
+        <p className="text-center text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/45 font-medium mb-8">
+          Predomina: {n.macros.slice(0, 3).map(m => m.label).join(' · ')}
         </p>
       )}
 
-      {/* Movimiento narrativo + contradicciones (si las hay) */}
-      {relational.movement && (
-        <p className="font-light text-pergamino/65 text-[0.9rem] leading-[1.85] text-center max-w-[32rem] mx-auto mb-9 italic">
-          {relational.movement}
+      {/* NÚCLEO — qué pasa en el centro (cartas 1 y 2) */}
+      {n?.core && (
+        <p className="font-light text-pergamino/85 text-[0.95rem] leading-[1.95] max-w-[32rem] mx-auto mb-6">
+          {n.core}
         </p>
       )}
 
-      {/* Detector emocional — observación del comportamiento del conjunto.
-          Tono observacional, gris medio, sans-serif. Nunca compite con el cruce. */}
-      {relational.detector && (
-        <p className="font-light text-pergamino/55 text-[0.85rem] leading-[1.8] text-center max-w-[30rem] mx-auto mb-10">
-          {relational.detector}
+      {/* TENSIÓN — qué sostiene el conflicto */}
+      {n?.tension && (
+        <p className="font-light text-pergamino/80 text-[0.92rem] leading-[1.9] max-w-[32rem] mx-auto mb-6">
+          {n.tension}
         </p>
       )}
 
-      {/* 3 posiciones — contenido específico por carta */}
+      {/* INVERTIDAS — solo si hay 2+ cartas al revés y cambian el tono */}
+      {n?.inversions && (
+        <div className="max-w-[32rem] mx-auto mb-8 pl-3 border-l border-vino/35">
+          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-vino/75 font-medium mb-2">
+            Sobre las invertidas
+          </p>
+          <p className="font-light text-pergamino/75 text-[0.9rem] leading-[1.85]">
+            {n.inversions}
+          </p>
+        </div>
+      )}
+
+      <StarDivider className="my-8" />
+
+      {/* 3 POSICIONES — las cartas como evidencia.
+          Microheading "La evidencia" para que se lea como sostén de la tesis,
+          no como suma de significados. */}
+      <p className="text-center text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-7">
+        La evidencia
+      </p>
       <div className="space-y-7 mb-10">
         {slots.map(({ slot, content }, idx) => {
           const positionKey   = ['whatIs', 'whatCrosses', 'whatOpens'][idx]
@@ -2208,13 +2319,18 @@ function ComposedReading({ tirada, onCarta }) {
         })}
       </div>
 
-      {/* Voz del palo (si hay concentración) — eco simbólico de la lectura */}
-      {relational.suitVoice && (
+      {/* SÍNTESIS — qué pide la lectura. */}
+      {n?.synthesis && (
         <>
-          <StarDivider className="my-7" />
-          <p className="font-light text-pergamino/65 text-[0.88rem] leading-[1.85] text-center max-w-[30rem] mx-auto mb-8 italic">
-            {relational.suitVoice}
-          </p>
+          <StarDivider className="my-8" />
+          <div className="text-center max-w-[32rem] mx-auto mb-2">
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-4">
+              Lo que pide la lectura
+            </p>
+            <p className="font-serif italic text-pergamino/90 text-[1rem] leading-[1.75]">
+              {n.synthesis}
+            </p>
+          </div>
         </>
       )}
 

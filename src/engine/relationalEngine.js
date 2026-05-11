@@ -38,6 +38,8 @@ import { getCardEnergetics, isMajor, enrichCard } from './cardEnergetics.js'
 import { withAttrs } from './cardAttributes.js'
 import { findCrossings } from './iconicCrossings.js'
 import { runAllDetectors } from './relationalDetectors.js'
+import { detectMacros, readingStats } from './narrativeMacros.js'
+import { composeThreeCardNarrative } from './narrativeComposer.js'
 
 
 /* =====================================================================
@@ -443,6 +445,12 @@ export function composeRelationalReading(cards) {
     return withAttrs(base, c?.reversed === true || c?.isReversed === true)
   })
 
+  // NUEVA CAPA — detectores macro y composición narrativa.
+  // El compositor narrativo arma una tesis y secciones donde las cartas
+  // son evidencia, no suma de significados.
+  const macros = detectMacros(enriched)
+  const stats  = readingStats(enriched)
+
   const seed = hashSeed(cards)
 
   // ---- 1) CRUCES ICÓNICOS — prioridad máxima ----
@@ -518,6 +526,17 @@ export function composeRelationalReading(cards) {
     .filter(Boolean)
     .join(' ')
 
+  // === NARRATIVA EN CAPAS — la salida nueva del compositor ===
+  // Compone tesis + núcleo + tensión + invertidas + síntesis a partir
+  // de macros + stats + cruce icónico. Las cartas son evidencia, no suma.
+  const narrative = composeThreeCardNarrative({
+    cards: enriched,
+    macros,
+    stats,
+    crossing: topCrossing,
+    seed
+  })
+
   return {
     mode,
     atmosphere,
@@ -526,8 +545,9 @@ export function composeRelationalReading(cards) {
     crossing: crossingLine,
     detector: detectorLine,
     synthesis,
-    diagnosis,
-    enriched
+    diagnosis: { ...diagnosis, macros, stats },
+    enriched,
+    narrative   // ← arquitectura nueva
   }
 }
 

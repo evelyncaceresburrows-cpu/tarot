@@ -20,6 +20,10 @@
  * ===================================================================*/
 
 import { enrichCard, isMajor } from './cardEnergetics.js'
+import { withAttrs } from './cardAttributes.js'
+import { findCrossings } from './iconicCrossings.js'
+import { detectMacros, readingStats } from './narrativeMacros.js'
+import { composeCelticNarrative } from './narrativeComposer.js'
 
 /* =====================================================================
  * 1. POSICIONES — metadatos completos
@@ -521,16 +525,35 @@ function buildClosing(s10, tensions, suitDominance) {
 export function composeCelticReading(slots) {
   if (!slots || slots.length < 10) return null
 
-  const cards    = slots.slice(0, 10).map(s => s.slot.card)
-  const enriched = cards.map(c => enrichCard(c))
+  const cards         = slots.slice(0, 10).map(s => s.slot.card)
+  const reversedFlags = slots.slice(0, 10).map(s => !!s.slot.reversed)
+  const enriched      = cards.map((c, i) => withAttrs(enrichCard(c), reversedFlags[i]))
+  // Para cruces icónicos necesitamos cartas con flag .reversed.
+  const cardsForCrossings = cards.map((c, i) => ({ ...c, reversed: reversedFlags[i] }))
   const seed     = hashFor(cards)
 
+  // Detectores legacy (compat con UI vieja)
   const majorWeight   = detectMajorWeight(enriched)
   const suitDominance = detectSuitDominance(enriched)
   const tempBalance   = detectTempBalance(enriched)
   const directionPull = detectDirectionPull(enriched)
   const tensions      = detectSymbolicTensions(enriched)
 
+  // === NUEVA CAPA NARRATIVA ===
+  // macros + stats + cruce icónico + composición en 8 secciones.
+  const macros    = detectMacros(enriched)
+  const stats     = readingStats(enriched)
+  const crossings = findCrossings(cardsForCrossings)
+  const topCrossing = crossings.find(c => c.weight >= 0.85) || crossings[0]
+  const narrative = composeCelticNarrative({
+    cards: enriched,
+    macros,
+    stats,
+    crossing: topCrossing,
+    seed
+  })
+
+  // Composición legacy (compat).
   const opening = buildOpening(majorWeight, tempBalance, directionPull, seed)
   const block1  = buildBlock1(slots[0], slots[1], slots[2])
   const block2  = buildBlock2(slots[3], slots[4], slots[5])
@@ -542,6 +565,10 @@ export function composeCelticReading(slots) {
     || '¿Qué pasaría si dejaras que esta lectura sea cierta por un día?'
 
   return {
+    // === SALIDA NUEVA — informe en 8 capas ===
+    narrative,
+
+    // === LEGACY — para compatibilidad mientras la UI migra ===
     opening,
     block1,
     block2,
@@ -549,8 +576,6 @@ export function composeCelticReading(slots) {
     horizonLine,
     synthesis,
     closingPrompt,
-
-    /* Compatibilidad con la versión anterior */
     climate: opening,
     arc: block2,
     echo: synthesis,
@@ -561,7 +586,11 @@ export function composeCelticReading(slots) {
       suitDominance,
       tempBalance,
       directionPull,
-      tensions
+      tensions,
+      // capas nuevas
+      macros,
+      stats,
+      crossings
     },
     enriched
   }
