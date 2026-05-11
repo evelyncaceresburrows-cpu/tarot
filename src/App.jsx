@@ -362,18 +362,21 @@ function CandleHalo({ className = '' }) {
 /** Marco de carta. Sin bordes pesados, sólo sombra suave. */
 function CartaMarco({ card, reversed = false, showLabel = true, className = '' }) {
   return (
-    <div className={`w-full aspect-[2/3] bg-marfil overflow-hidden flex flex-col rounded-[5px] shadow-[0_10px_30px_rgba(0,0,0,0.45)] ${className}`}>
-      <div className="flex-1 bg-gradient-to-br from-[#e8dcc4] to-[#d4c5a8] flex items-center justify-center overflow-hidden">
+    <div className={`relative w-full aspect-[2/3] bg-marfil overflow-hidden flex flex-col rounded-[5px] shadow-ritual paper-texture ${className}`}>
+      <div className="relative flex-1 bg-gradient-to-br from-[#e8dcc4] to-[#d4c5a8] flex items-center justify-center overflow-hidden">
         <img
           src={card.src}
           alt={card.nombre}
           loading="lazy"
-          className="w-full h-full object-contain"
+          className="relative z-[2] w-full h-full object-contain"
           style={{ transform: reversed ? 'rotate(180deg)' : 'none' }}
         />
+        {/* Sombra interna superior — luz cálida cinematográfica que cae sobre la carta */}
+        <div className="pointer-events-none absolute inset-0 z-[3]"
+             style={{ background: 'linear-gradient(180deg, rgba(255,235,200,0.10) 0%, transparent 18%, transparent 80%, rgba(60,30,20,0.18) 100%)' }} />
       </div>
       {showLabel && (
-        <div className="px-2 py-1.5 bg-marfil text-center">
+        <div className="relative z-[2] px-2 py-1.5 bg-marfil text-center border-t border-noche/10">
           <p className="font-serif text-[0.66rem] font-medium uppercase tracking-[0.08em] text-noche/80 leading-tight">
             {card.nombre}
           </p>
@@ -545,7 +548,7 @@ function BookOpening({ onExit }) {
           Tarot Ade
         </h1>
         <p className="mt-4 font-serif italic text-dorado/55 text-[0.95rem] md:text-[1rem] tracking-[0.04em]">
-          conócete, elige, transforma
+          las cartas no adivinan. revelan.
         </p>
         {/* Filete editorial fino debajo del título */}
         <div className="mt-8 h-px w-12 bg-dorado/35" />
@@ -690,17 +693,28 @@ function ConstellationPatch({ seed = 0, w = 120, h = 80, className = '' }) {
 function AtmosphereLayer({ scene = 'default' }) {
   if (scene === 'home') {
     return (
-      <div className="absolute inset-0 pointer-events-none z-[3] overflow-hidden text-dorado">
-        {/* Fila de fases lunares — arriba, muy tenue */}
-        <div className="absolute left-0 right-0 top-[20%] opacity-[0.07]">
-          <LunarPhasesRow />
+      <>
+        {/* Niebla cálida ambiental */}
+        <div className="atmo-haze" />
+        {/* Polvo lumínico ascendente — partículas muy lentas */}
+        <div className="atmo-dust" />
+        <div className="absolute inset-0 pointer-events-none z-[3] overflow-hidden text-dorado">
+          {/* Fila de fases lunares — arriba, muy tenue */}
+          <div className="absolute left-0 right-0 top-[20%] opacity-[0.07]">
+            <LunarPhasesRow />
+          </div>
+          {/* Símbolos de los 4 palos — esquinas, casi invisibles */}
+          <div className="absolute top-[8%]    left-[6%]   opacity-[0.05]"><GlyphCopa    size={42} /></div>
+          <div className="absolute top-[8%]    right-[6%]  opacity-[0.05]"><GlyphEspada  size={42} /></div>
+          <div className="absolute bottom-[14%] left-[6%]  opacity-[0.05]"><GlyphOro     size={42} /></div>
+          <div className="absolute bottom-[14%] right-[6%] opacity-[0.05]"><GlyphBasto   size={42} /></div>
+          {/* Estrellas tenues que parpadean — muy poco frecuentes */}
+          <span className="atmo-star" style={{ top: '28%', left: '18%' }} />
+          <span className="atmo-star" style={{ top: '38%', right: '22%', animationDelay: '2s' }} />
+          <span className="atmo-star" style={{ top: '62%', left: '76%', animationDelay: '4s' }} />
+          <span className="atmo-star" style={{ top: '72%', left: '24%', animationDelay: '1s' }} />
         </div>
-        {/* Símbolos de los 4 palos — esquinas, casi invisibles */}
-        <div className="absolute top-[8%]    left-[6%]   opacity-[0.05]"><GlyphCopa    size={42} /></div>
-        <div className="absolute top-[8%]    right-[6%]  opacity-[0.05]"><GlyphEspada  size={42} /></div>
-        <div className="absolute bottom-[14%] left-[6%]  opacity-[0.05]"><GlyphOro     size={42} /></div>
-        <div className="absolute bottom-[14%] right-[6%] opacity-[0.05]"><GlyphBasto   size={42} /></div>
-      </div>
+      </>
     )
   }
   if (scene === 'intention') {
@@ -715,17 +729,28 @@ function AtmosphereLayer({ scene = 'default' }) {
   }
   if (scene === 'shuffle' || scene === 'cut') {
     return (
-      <div className="absolute inset-0 pointer-events-none z-[3] overflow-hidden text-dorado">
-        {/* Símbolos rituales muy suaves en el fondo */}
-        <div className="absolute top-[6%]   left-[10%]  opacity-[0.04]"><GlyphCopa    size={48} /></div>
-        <div className="absolute top-[8%]   right-[12%] opacity-[0.04]"><GlyphEspada  size={48} /></div>
-        <div className="absolute bottom-[28%] left-[8%]  opacity-[0.04]"><GlyphOro     size={50} /></div>
-        <div className="absolute bottom-[26%] right-[8%] opacity-[0.04]"><GlyphBasto   size={50} /></div>
-        {/* Pequeña constelación arriba */}
-        <div className="absolute top-[22%]  left-1/2 -translate-x-1/2 opacity-[0.06]">
-          <ConstellationPatch seed={3} w={140} h={50} />
+      <>
+        {/* Niebla ambiental */}
+        <div className="atmo-haze" />
+        {/* Polvo lumínico — más denso durante el shuffle */}
+        <div className="atmo-dust" />
+        <div className="absolute inset-0 pointer-events-none z-[3] overflow-hidden text-dorado">
+          {/* Símbolos rituales muy suaves en el fondo */}
+          <div className="absolute top-[6%]   left-[10%]  opacity-[0.04]"><GlyphCopa    size={48} /></div>
+          <div className="absolute top-[8%]   right-[12%] opacity-[0.04]"><GlyphEspada  size={48} /></div>
+          <div className="absolute bottom-[28%] left-[8%]  opacity-[0.04]"><GlyphOro     size={50} /></div>
+          <div className="absolute bottom-[26%] right-[8%] opacity-[0.04]"><GlyphBasto   size={50} /></div>
+          {/* Pequeña constelación arriba */}
+          <div className="absolute top-[22%]  left-1/2 -translate-x-1/2 opacity-[0.06]">
+            <ConstellationPatch seed={3} w={140} h={50} />
+          </div>
+          {/* Estrellas que parpadean — vibración ceremonial */}
+          <span className="atmo-star" style={{ top: '16%', left: '32%' }} />
+          <span className="atmo-star" style={{ top: '34%', right: '36%', animationDelay: '1.5s' }} />
+          <span className="atmo-star" style={{ top: '58%', left: '14%', animationDelay: '3s' }} />
+          <span className="atmo-star" style={{ top: '74%', right: '20%', animationDelay: '0.5s' }} />
         </div>
-      </div>
+      </>
     )
   }
   if (scene === 'reading') {
@@ -772,7 +797,7 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
             Tarot Ade
           </h1>
           <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/75 tracking-[0.02em]">
-            conócete, elige, transforma
+            las cartas no adivinan. revelan.
           </p>
         </header>
 
@@ -795,13 +820,13 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
         <div className="w-full max-w-[300px] flex flex-col gap-3 md:gap-3.5">
           <button
             onClick={onTirada}
-            className="w-full py-4 bg-vino text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
+            className="w-full py-4 btn-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
           >
             Iniciar Tirada
           </button>
           <button
             onClick={onExplorar}
-            className="w-full py-4 bg-vino/55 border border-dorado/65 text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
+            className="w-full py-4 btn-ghost-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
           >
             Explorar Mazo
           </button>
@@ -1125,7 +1150,7 @@ function IntentionScreen({ initialIntention, onContinue, onBack }) {
 
           <button
             onClick={handleContinue}
-            className="px-10 py-3.5 bg-vino text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
+            className="px-10 py-3.5 btn-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
           >
             Barajar cartas
           </button>
@@ -1578,7 +1603,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
             <StarDivider className="my-8" />
             <button
               onClick={revealAll}
-              className="mx-auto inline-flex items-center justify-center gap-3 bg-vino text-pergamino px-10 py-3.5 rounded-[4px] text-[0.7rem] tracking-[0.28em] uppercase font-medium hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300"
+              className="mx-auto inline-flex items-center justify-center gap-3 btn-ritual text-pergamino px-10 py-3 rounded-[3px] text-[0.66rem] tracking-[0.30em] uppercase font-light active:scale-[0.985]"
             >
               <span>{isThree ? 'Revelar cartas' : 'Revelar carta'}</span>
             </button>
@@ -1655,7 +1680,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
 
               <button
                 onClick={reset}
-                className="mx-auto mt-12 flex items-center justify-center gap-3 bg-vino/55 border border-dorado/65 text-pergamino px-10 py-3.5 rounded-[4px] text-[0.7rem] tracking-[0.28em] uppercase font-medium hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
+                className="mx-auto mt-12 flex items-center justify-center gap-3 btn-ghost-ritual text-pergamino px-10 py-3 rounded-[3px] text-[0.66rem] tracking-[0.30em] uppercase font-light active:scale-[0.985]"
               >
                 <RotateCcw className="w-3.5 h-3.5" strokeWidth={1.3} />
                 <span>Nueva tirada</span>
@@ -2132,7 +2157,7 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
       <div className="flex justify-center mt-12">
         <button
           onClick={onReset}
-          className="inline-flex items-center justify-center gap-3 bg-vino/55 border border-dorado/65 text-pergamino px-8 py-3 rounded-[4px] text-[0.7rem] tracking-[0.28em] uppercase font-medium hover:bg-vino/70 active:scale-[0.99] transition-all duration-300"
+          className="inline-flex items-center justify-center gap-3 btn-ghost-ritual text-pergamino px-8 py-3 rounded-[3px] text-[0.66rem] tracking-[0.30em] uppercase font-light active:scale-[0.985]"
         >
           <RotateCcw className="w-3.5 h-3.5" strokeWidth={1.3} />
           <span>Volver al inicio</span>
@@ -2511,7 +2536,7 @@ function ShareModal({ open, onClose, card, reversed = false, intention, kind = '
               {/* Botón principal — share nativo */}
               <button
                 onClick={tryNativeShare}
-                className="w-full py-3.5 mb-3 bg-vino text-pergamino text-[0.7rem] tracking-[0.28em] uppercase font-medium rounded-[4px] hover:bg-vinoAlt active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-3"
+                className="w-full py-3.5 mb-3 btn-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985] flex items-center justify-center gap-3"
               >
                 <Share2 className="w-3.5 h-3.5" strokeWidth={1.5} />
                 <span>Compartir</span>
@@ -2582,9 +2607,9 @@ function Detalle({ card, reversed, onBack }) {
           <Bookmark className="w-5 h-5 text-dorado/85 justify-self-end" strokeWidth={1.3} />
         </header>
 
-        <div className="w-[240px] md:w-[280px] mx-auto">
-          <div className="aspect-[2/3] bg-white rounded-[5px] overflow-hidden flex shadow-[0_14px_44px_rgba(13,27,42,0.18)] ring-1 ring-dorado/40">
-            <div className="flex-1 bg-gradient-to-br from-[#e8dcc4] to-[#d4c5a8] flex items-center justify-center overflow-hidden">
+        <div className="w-[240px] md:w-[280px] mx-auto card-halo card-tilt">
+          <div className="aspect-[2/3] bg-white rounded-[5px] overflow-hidden flex shadow-ritual paper-texture ring-1 ring-dorado/40 relative">
+            <div className="flex-1 bg-gradient-to-br from-[#e8dcc4] to-[#d4c5a8] flex items-center justify-center overflow-hidden relative">
               <img
                 src={card.src}
                 alt={card.nombre}

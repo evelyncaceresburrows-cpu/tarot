@@ -124,3 +124,178 @@ body {
 .noise-light {
   position: relative;
 }
+
+/* =====================================================================
+ * DIRECCIÓN DE ARTE — capas atmosféricas
+ *
+ * Objetivo: silencio + misterio + contemplación. Minimalismo atmosférico.
+ * No glow excesivo, no neon, no cyberpunk. Manuscrito alquímico nocturno.
+ * ===================================================================*/
+
+/* Polvo lumínico — partículas muy lentas, opacidad mínima */
+@keyframes drift-dust {
+  0%   { transform: translateY(0)      translateX(0); opacity: 0.0; }
+  10%  { opacity: 0.55; }
+  90%  { opacity: 0.55; }
+  100% { transform: translateY(-100vh) translateX(8px); opacity: 0; }
+}
+
+.atmo-dust {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+.atmo-dust::before,
+.atmo-dust::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 1.5px;
+  height: 1.5px;
+  background: rgba(198, 168, 90, 0.55);
+  border-radius: 50%;
+  box-shadow:
+    20vw -10vh 0 rgba(198, 168, 90, 0.45),
+    35vw -25vh 0 rgba(198, 168, 90, 0.30),
+    55vw -40vh 0 rgba(198, 168, 90, 0.50),
+    72vw -15vh 0 rgba(198, 168, 90, 0.35),
+    85vw -55vh 0 rgba(198, 168, 90, 0.40),
+    10vw -65vh 0 rgba(198, 168, 90, 0.30),
+    45vw -80vh 0 rgba(198, 168, 90, 0.45);
+  animation: drift-dust 38s linear infinite;
+}
+.atmo-dust::after {
+  animation-duration: 56s;
+  animation-delay: -20s;
+  opacity: 0.7;
+  box-shadow:
+    18vw -22vh 0 rgba(198, 168, 90, 0.35),
+    32vw -45vh 0 rgba(198, 168, 90, 0.50),
+    60vw -8vh  0 rgba(198, 168, 90, 0.40),
+    78vw -60vh 0 rgba(198, 168, 90, 0.35),
+    8vw  -38vh 0 rgba(198, 168, 90, 0.40),
+    50vw -72vh 0 rgba(198, 168, 90, 0.30);
+}
+
+/* Respiración lumínica — pulso muy lento para fondos rituales */
+@keyframes ritual-breath {
+  0%, 100% { opacity: 0.9; }
+  50%      { opacity: 1; }
+}
+.ritual-breath {
+  animation: ritual-breath 7s ease-in-out infinite;
+}
+
+/* Niebla casi imperceptible — capa de neblina cálida sobre fondo nocturno */
+.atmo-haze {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 70%, rgba(198, 168, 90, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 75% 30%, rgba(122, 30, 44, 0.05) 0%, transparent 60%);
+  filter: blur(20px);
+}
+
+/* Halo cálido cinematográfico detrás de cartas — más cinematográfico que candle-glow.
+   Se aplica al wrapper de la carta principal en home/barajando. */
+.card-halo {
+  position: relative;
+}
+.card-halo::before {
+  content: '';
+  position: absolute;
+  inset: -22% -28% -10% -28%;
+  background:
+    radial-gradient(ellipse 50% 60% at 50% 45%, rgba(198, 168, 90, 0.22) 0%, rgba(198, 168, 90, 0.08) 38%, transparent 70%),
+    radial-gradient(ellipse 60% 35% at 50% 90%, rgba(122, 30, 44, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(8px);
+  animation: ritual-breath 11s ease-in-out infinite;
+}
+
+/* Textura de papel antiguo — para CartaMarco (sutil, sin estridencia) */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(110, 75, 35, 0.04) 0%, transparent 22%),
+    radial-gradient(circle at 80% 70%, rgba(110, 75, 35, 0.05) 0%, transparent 25%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0.10 0'/></filter><rect width='160' height='160' filter='url(%23p)'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Sombra cinematográfica cálida — reemplaza shadow-[0_10px_30px] genérica */
+.shadow-ritual {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.30),
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 4px 16px rgba(122, 30, 44, 0.12),
+    inset 0 0 0 0.5px rgba(198, 168, 90, 0.18);
+}
+
+/* Tilt sutil para carta destacada — interactivo en Detalle */
+.card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.card-tilt:hover {
+  transform: perspective(900px) rotateX(2.5deg) rotateY(-2.5deg) translateY(-2px);
+}
+
+/* Estrella mínima — punto dorado tenue que aparece y desaparece */
+@keyframes star-blink {
+  0%, 80%, 100% { opacity: 0.18; }
+  40%, 50%      { opacity: 0.55; }
+}
+.atmo-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(198, 168, 90, 0.5);
+  border-radius: 50%;
+  animation: star-blink 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Botón ritual — estilo editorial, no SaaS.
+   Bordes suaves, glow suave, altura medida. */
+.btn-ritual {
+  background: linear-gradient(180deg, #7A1E2C 0%, #5C1620 100%);
+  border: 1px solid rgba(198, 168, 90, 0.30);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(198, 168, 90, 0.08);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-ritual:hover {
+  background: linear-gradient(180deg, #8B2434 0%, #6A1B27 100%);
+  border-color: rgba(198, 168, 90, 0.55);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.40),
+    0 0 14px rgba(198, 168, 90, 0.10),
+    inset 0 1px 0 rgba(198, 168, 90, 0.12);
+}
+
+.btn-ghost-ritual {
+  background: rgba(122, 30, 44, 0.18);
+  border: 1px solid rgba(198, 168, 90, 0.30);
+  backdrop-filter: blur(2px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-ghost-ritual:hover {
+  background: rgba(122, 30, 44, 0.28);
+  border-color: rgba(198, 168, 90, 0.50);
+}
