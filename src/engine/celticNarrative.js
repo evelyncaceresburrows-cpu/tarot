@@ -70,11 +70,11 @@ function isMajor(card) {
 const CELTIC_THESES = {
   // patrón triple
   'desgaste-cronico':
-    'Esta lectura no habla de conflicto: habla de demora. Hay varias cartas tratando de sostener algo que ya perdió estabilidad, y la pregunta no es qué hacer — es cuánto más estás dispuesta a sostenerlo así.',
+    'Esta lectura no habla de conflicto: habla de demora. Hay varias cartas tratando de sostener algo que ya perdió estabilidad. La pregunta no es qué hacer ahora — es cuánto más vale la pena sostenerlo así.',
   'tension-mental-sin-direccion':
     'Hay mucho movimiento mental sin dirección emocional. La cabeza está corriendo escenarios mientras el cuerpo lleva días pidiendo que se detenga la simulación.',
   'comprension-sin-movimiento':
-    'Aquí está casi todo entendido. Lo que falta no es claridad — es la decisión de actuar sobre lo que ya se vio.',
+    'Aquí está casi todo entendido. La claridad ya está. Lo que falta es la decisión de actuar sobre lo que ya se vio.',
   'sostener-demasiado':
     'La tensión principal no está en decidir: está en sostener demasiado. Varias cartas señalan que se cargó más de lo necesario y eso es lo que se está cobrando.',
   'movimiento-bloqueado':
@@ -88,7 +88,7 @@ const CELTIC_THESES = {
   'capitulo-largo':
     'Esto no es una pregunta del día. Es un capítulo entero abriéndose, y va a tardar más de lo que la cabeza quiere admitir.',
   'patron-cierra-ciclo':
-    'Lo que aparece no es escena nueva: es la última escena de un patrón viejo. La lectura no muestra crisis — muestra el final de algo que llevaba más años de lo que parecía.'
+    'Lo que aparece se siente como escena nueva. Es la última escena de un patrón viejo: la lectura describe un final que llevaba más años de lo que parecía.'
 }
 
 /**
@@ -131,8 +131,8 @@ export function generateCelticThesis({ macros, stats, enriched, crossing }) {
   if (stats.invertedCount >= 4) return CELTIC_THESES['distorsion-por-invertidas']
   if (stats.majorCount >= 4)    return CELTIC_THESES['capitulo-largo']
 
-  // 4. Si hay macro fuerte solo
-  if (macros[0]) {
+  // 4. Si hay macro fuerte solo (intensity ≥ 2)
+  if (macros[0] && macros[0].intensity >= 2) {
     const single = {
       'tension-mental-dominante':  CELTIC_THESES['tension-mental-sin-direccion'],
       'agotamiento-sostenido':     CELTIC_THESES['desgaste-cronico'],
@@ -145,8 +145,9 @@ export function generateCelticThesis({ macros, stats, enriched, crossing }) {
     if (single[macros[0].key]) return single[macros[0].key]
   }
 
-  // Fallback
-  return 'Esta lectura no resuelve — distingue. Lo que sigue depende de qué te animes a ver primero.'
+  // SILENCIO DELIBERADO. Sin material suficiente, devolvemos null y la
+  // UI omite la sección de tesis. Algunas tiradas se viven sin veredicto.
+  return null
 }
 
 
@@ -192,11 +193,11 @@ const CORE_LINES = {
   'sabotea': (c1, c2, e1, e2) =>
     `En el centro: ${e1 || cardName(c1).toLowerCase()}. Pero ${cardName(c2)} cae invertida, y eso desfigura todo el cruce — la carta que tendría que dar fricción honesta está haciendo otra cosa por debajo: sabotear, no atravesar.`,
   'acelera': (c1, c2, e1, e2) =>
-    `${cardName(c2)} acelera algo que ${cardName(c1)} todavía estaba tratando de entender. La fricción no es entre dos verdades: es entre dos tiempos.`,
+    `${cardName(c2)} acelera algo que ${cardName(c1)} todavía estaba tratando de entender. La fricción está entre dos tiempos, no entre dos verdades.`,
   'frena': (c1, c2, e1, e2) =>
-    `${cardName(c2)} frena algo que ${cardName(c1)} venía moviendo casi sin darte cuenta. Lo que se cruza no es obstáculo: es el cuerpo pidiendo pausa.`,
+    `${cardName(c2)} frena algo que ${cardName(c1)} venía moviendo casi sin darte cuenta. Lo que se cruza ahí no es obstáculo. Es el cuerpo pidiendo pausa.`,
   'corta-afecto': (c1, c2, e1, e2) =>
-    `${cardName(c1)} es afectivo en el centro — ${e1}. Lo cruza ${cardName(c2)}, que decide con la cabeza lo que el corazón todavía está sintiendo. El choque no es de quién tiene razón: es de qué órgano está al mando hoy.`,
+    `${cardName(c1)} es afectivo en el centro — ${e1}. Lo cruza ${cardName(c2)}, que decide con la cabeza lo que el corazón todavía está sintiendo. El choque no se trata de quién tiene razón. Se trata de qué órgano está al mando hoy.`,
   'mentaliza': (c1, c2, e1, e2) =>
     `Lo que está pasando es del cuerpo (${cardName(c1)}, ${e1}), y la cabeza ya armó tres explicaciones para no sentirlo. ${cardName(c2)} no aclara: anestesia.`,
   'eleva-a-capítulo': (c1, c2, e1, e2) =>
@@ -271,7 +272,7 @@ export function buildPushingForces(slots, contents) {
 
   let coherence = ''
   if (sameTension && past.attrs.tensionType === 'mental') {
-    coherence = ' Las tres son cartas mentales: lo que empuja no es ola, es discurso interno.'
+    coherence = ' Las tres son cartas mentales: lo que empuja no es marea. Es discurso interno repitiéndose.'
   } else if (sameTension && past.attrs.tensionType === 'emocional') {
     coherence = ' Las tres se mueven en lo afectivo: el empuje tiene cuerpo, no argumento.'
   }

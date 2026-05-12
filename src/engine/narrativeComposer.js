@@ -53,7 +53,7 @@ const THESIS_BY_COMBO = {
   'agotamiento-sostenido|tension-mental-dominante':
     'Esta tirada habla más de desgaste que de conflicto. Varias cartas tratan de sostener algo que ya perdió estabilidad.',
   'agotamiento-sostenido|dificultad-cerrar':
-    'Lo que pesa no es lo que está pasando — es que llevas demasiado tiempo cargándolo sin soltarlo.',
+    'El peso no es la situación. Es el tiempo que llevas cargándola sin soltarla.',
   'claridad-retenida|evasion-activa':
     'Ya viste lo que pasa. La tirada no es sobre lo que falta entender — es sobre lo que estás eligiendo no nombrar.',
   'claridad-retenida|tension-mental-dominante':
@@ -75,7 +75,7 @@ const THESIS_BY_COMBO = {
   'resistencia-cierre|dificultad-cerrar':
     'Algo terminó hace tiempo y la tirada lo confirma. Sostenerlo un día más cuesta lo mismo que soltarlo, solo que se nota menos.',
   'ruptura-en-curso|tension-mental-dominante':
-    'Algo está cediendo y el cuerpo lo sabe antes que la cabeza. La tensión que sientes no es paranoia: es lectura precisa.',
+    'Algo está cediendo y el cuerpo lo sabe antes que la cabeza. La tensión que sientes está leyendo bien, aunque la cabeza todavía no quiera firmarla.',
   'avance-ciego|tension-mental-dominante':
     'Hay un impulso saliendo antes de tiempo, y otra parte tuya queriendo frenarlo. Una de las dos tiene razón hoy.',
   'reparacion-en-curso|tension-mental-dominante':
@@ -98,7 +98,7 @@ const THESIS_BY_SINGLE = {
   'dificultad-cerrar':
     'Algo terminó por dentro y se sigue sosteniendo por fuera. La lectura nombra la diferencia entre las dos cosas.',
   'agotamiento-sostenido':
-    'Lo que aparece no es crisis — es cansancio acumulado. La situación pide pausa real, no más esfuerzo.',
+    'Lo que aparece tiene cara de crisis. Por dentro es cansancio acumulado, y pide pausa real más que esfuerzo.',
   'claridad-retenida':
     'Hay algo que ya viste con claridad y no estás diciendo. La tirada habla del peso de esa información retenida.',
   'evasion-activa':
@@ -106,7 +106,7 @@ const THESIS_BY_SINGLE = {
   'exceso-control':
     'La situación se está manejando con muy poca soltura. El control que estás poniendo está costando más que la situación misma.',
   'deseo-bloqueado':
-    'Hay un querer vivo y una parte tuya conteniéndolo. La pelea no es con afuera, es entre dos partes tuyas.',
+    'Hay un querer vivo y una parte tuya conteniéndolo. Afuera no hay con quién pelear: la disputa es interna.',
   'patron-vuelve':
     'No es una situación nueva. La misma escena vuelve con otro reparto, y la pregunta es qué parte tuya sigue eligiéndola.',
   'resistencia-cierre':
@@ -137,7 +137,7 @@ const THESIS_BY_STATS = {
   threeSameSuit_Copas:
     'Tres Copas. La tirada late en lo afectivo de principio a fin — y la cabeza, por una vez, está fuera del centro.',
   threeSameSuit_Bastos:
-    'Tres Bastos. Hay deseo, hay impulso, hay fuego. La pregunta no es si hay energía: es hacia dónde.',
+    'Tres Bastos. Hay deseo, hay impulso, hay fuego. La pregunta no se trata de la energía, sino de su dirección.',
   threeSameSuit_Oros:
     'Tres Oros. Esto pide cuerpo, oficio, recurso. Las decisiones simbólicas no van a alcanzar — pide aterrizaje material.'
 }
@@ -160,19 +160,24 @@ function generateThesis(macros, stats, seed) {
     if (THESIS_BY_STATS[key]) return THESIS_BY_STATS[key]
   }
 
-  // Prioridad 2: combinación de dos macros fuertes
-  if (macros.length >= 2) {
-    const k = pairKey(macros[0].key, macros[1].key)
+  // Prioridad 2: combinación de dos macros fuertes (intensity ≥ 2)
+  const strongMacros = macros.filter(m => m.intensity >= 2)
+  if (strongMacros.length >= 2) {
+    const k = pairKey(strongMacros[0].key, strongMacros[1].key)
     if (THESIS_BY_COMBO[k]) return THESIS_BY_COMBO[k]
   }
 
-  // Prioridad 3: un macro fuerte solo
-  if (macros.length >= 1 && THESIS_BY_SINGLE[macros[0].key]) {
-    return THESIS_BY_SINGLE[macros[0].key]
+  // Prioridad 3: un macro fuerte solo (intensity ≥ 2)
+  if (strongMacros.length >= 1 && THESIS_BY_SINGLE[strongMacros[0].key]) {
+    return THESIS_BY_SINGLE[strongMacros[0].key]
   }
 
-  // Fallback
-  return THESIS_FALLBACK[seed % THESIS_FALLBACK.length]
+  // PRIORIDAD 4: SILENCIO DELIBERADO.
+  // Si no hay estadísticas extremas ni macros con intensity ≥ 2, la
+  // lectura no tiene material suficiente para sostener una tesis honesta.
+  // En vez de inventar una con el fallback genérico, devolvemos null —
+  // el compositor omite la sección. Algunas lecturas no piden veredicto.
+  return null
 }
 
 
@@ -263,7 +268,7 @@ function buildAttempt(cards, macros) {
       case 'reparacion-en-curso':
         return 'Algo se está intentando recomponer — despacio, sin garantía pero con dirección.'
       case 'ruptura-en-curso':
-        return 'Algo está intentando romperse para que pueda salir lo siguiente. No es decisión consciente: ya está pasando.'
+        return 'Algo está intentando romperse para que pueda salir lo siguiente. No hace falta decidirlo — ya está pasando.'
       case 'decision-postergada':
         return 'Lo que la tirada intenta mover es una decisión que llevas demasiado tiempo evitando. La situación pide elegir, no más análisis.'
       case 'avance-ciego':
@@ -341,7 +346,7 @@ function buildSynthesis(macros, stats, hasCrossing) {
   }
   switch (top.key) {
     case 'tension-mental-dominante':
-      return 'La tirada pide salir de la cabeza. No es decidir más rápido — es decidir con el cuerpo en la conversación.'
+      return 'La tirada pide salir de la cabeza. Decidir más rápido no aclara: lo que falta es traer el cuerpo a la conversación.'
     case 'contencion-emocional':
       return 'La tirada pide dejar que lo que se está guardando encuentre forma. No tiene que ser dicho a todos — tiene que ser dicho.'
     case 'dificultad-cerrar':

@@ -1006,9 +1006,6 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
             </motion.button>
           </div>
 
-          <p className="text-[0.58rem] tracking-[0.30em] text-dorado/45 italic font-serif uppercase mt-2">
-            toca para leer
-          </p>
         </div>
 
         {/* UMBRALES — botones tallados, no CTA web.
@@ -2069,6 +2066,16 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
               transition={{ duration: 0.9 }}
               className="flex-1 w-full flex flex-col items-center"
             >
+              {/* Intención persistente — header sutil arriba de la
+                  pantalla de revelación. No grita, pero el usuario sabe
+                  que su pregunta sigue acompañando la lectura. */}
+              {intention && intention.length > 0 && (
+                <div className="text-center mb-6 px-4 max-w-[32rem]">
+                  <p className="font-serif italic text-dorado/45 text-[0.85rem] md:text-[0.9rem] leading-[1.7]">
+                    «{intention}»
+                  </p>
+                </div>
+              )}
               <CelticRevealStage
                 slots={slots}
                 revealedCount={revealedCount}
@@ -2089,6 +2096,19 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
               transition={{ duration: 1.4 }}
               className="w-full"
             >
+              {/* Intención persistente — header de la lectura completa.
+                  La pregunta que el usuario trajo sigue siendo el eje. */}
+              {intention && intention.length > 0 && (
+                <div className="text-center mb-8 px-6 max-w-[34rem] mx-auto">
+                  <p className="text-[0.56rem] tracking-[0.30em] uppercase text-dorado/55 font-light mb-3">
+                    La pregunta
+                  </p>
+                  <p className="font-serif italic text-pergamino/70 text-[0.95rem] md:text-[1rem] leading-[1.75]">
+                    «{intention}»
+                  </p>
+                  <div className="mx-auto w-8 h-px bg-dorado/30 mt-4" />
+                </div>
+              )}
               <CelticFullReading
                 slots={slots}
                 cards={cards}
