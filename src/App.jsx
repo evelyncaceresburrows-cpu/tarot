@@ -269,6 +269,59 @@ function StarTiny({ size = 10, className = '' }) {
   )
 }
 
+/** Menú ritual superior — editorial, no tabs SaaS.
+ *  Tres entradas separadas por puntos dorados. Estado activo con
+ *  punto mínimo bajo el texto + tipografía dorada. Vive en el flujo,
+ *  no es nav fija. */
+function TopRitualNav({ active = 'home', onGo }) {
+  const items = [
+    { key: 'home',     label: 'Inicio' },
+    { key: 'selector', label: 'Tirada' },
+    { key: 'explorar', label: 'Mazo'   }
+  ]
+  const isItemActive = (k) =>
+    active === k ||
+    (k === 'selector' && ['intention','shuffle','cut','tirada1','tirada3','celtic'].includes(active))
+
+  // Intercalamos separadores · entre items sin Fragment
+  const nodes = []
+  items.forEach((it, i) => {
+    if (i > 0) {
+      nodes.push(
+        <span key={`sep-${i}`} className="text-dorado/30 select-none" aria-hidden="true">·</span>
+      )
+    }
+    const isActive = isItemActive(it.key)
+    nodes.push(
+      <button
+        key={it.key}
+        onClick={() => onGo(it.key)}
+        className={`relative px-1 py-1 text-[0.58rem] md:text-[0.6rem] tracking-[0.32em] uppercase font-light transition-colors duration-500 ${
+          isActive ? 'text-dorado' : 'text-pergamino/50 hover:text-dorado/85'
+        }`}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {it.label}
+        {isActive && (
+          <span
+            className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-1 h-1 rounded-full bg-dorado/75"
+            aria-hidden="true"
+          />
+        )}
+      </button>
+    )
+  })
+
+  return (
+    <nav
+      className="w-full max-w-[360px] mx-auto flex items-center justify-center gap-3 md:gap-4"
+      aria-label="Menú principal"
+    >
+      {nodes}
+    </nav>
+  )
+}
+
 /** Divisor editorial: línea — estrella — línea */
 function StarDivider({ className = '' }) {
   return (
@@ -899,7 +952,7 @@ function AtmosphereLayer({ scene = 'default' }) {
  * VISTAS
  * ===================================================================*/
 
-function Home({ destacada, onTirada, onExplorar, onCarta }) {
+function Home({ destacada, onTirada, onExplorar, onCarta, onNav }) {
   // Pool de frases contemplativas — rotan determinísticamente según
   // la fecha del día.
   const dailyPhrases = [
@@ -928,73 +981,73 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
     >
       <AtmosphereLayer scene="home" />
 
+      {/* MENÚ RITUAL SUPERIOR — fijo arriba con safe-area-inset.
+          Vive sobre el filete editorial; navega entre Inicio/Tirada/Mazo. */}
       <div
-        className="relative z-10 max-w-[440px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center gap-6 md:gap-9"
+        className="absolute inset-x-0 z-20"
+        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 1.65rem)' }}
+      >
+        <TopRitualNav active="home" onGo={onNav} />
+      </div>
+
+      <div
+        className="relative z-10 max-w-[440px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center gap-5 md:gap-8"
         style={{
-          paddingTop: 'calc(2rem + env(safe-area-inset-top, 0px))',
-          paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
+          paddingTop: 'calc(4.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(2rem + env(safe-area-inset-bottom, 0px))'
         }}
       >
 
         {/* ADE COMO PRESENCIA — sobre el título, centrado, con sombra
-            propia y flotación lenta. Tamaño mobile reducido para que el
-            contenido entre cómodamente en iPhone SE / 13 mini. */}
+            propia y flotación lenta. Tamaño compacto para mobile. */}
         <motion.div
           className="relative flex justify-center select-none"
           animate={{ y: [0, -3, 0, 3, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
         >
-          {/* Sombra propia cálida — sugiere que ocupa espacio físico */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 bottom-[-4px] w-[55%] h-[12px] rounded-full pointer-events-none"
+            className="absolute left-1/2 -translate-x-1/2 bottom-[-4px] w-[55%] h-[10px] rounded-full pointer-events-none"
             style={{
               background: 'radial-gradient(ellipse 60% 100% at 50% 0%, rgba(168,139,69,0.28) 0%, rgba(168,139,69,0.08) 45%, transparent 75%)',
               filter: 'blur(6px)'
             }}
           />
-          <AdeGlyph className="w-[100px] md:w-[150px] relative z-10" />
+          <AdeGlyph className="w-[88px] md:w-[130px] relative z-10" />
         </motion.div>
 
-        {/* TÍTULO — más espaciado, más editorial */}
+        {/* TÍTULO — sin filetes redundantes, más compacto.
+            El menú superior ya marca el inicio de la página. */}
         <header className="text-center relative">
-          {/* Filete dorado fino sobre el título */}
-          <div className="mx-auto w-12 h-px bg-dorado/40 mb-5" />
-          <h1 className="font-serif text-[1.8rem] md:text-[2.4rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.42em] mb-3 md:mb-4">
+          <h1 className="font-serif text-[1.65rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.42em] mb-2.5 md:mb-3">
             Tarot Ade
           </h1>
-          <p className="font-serif italic text-[0.88rem] md:text-[0.95rem] text-dorado/65 tracking-[0.02em] max-w-[24rem] mx-auto leading-relaxed">
+          <p className="font-serif italic text-[0.85rem] md:text-[0.95rem] text-dorado/65 tracking-[0.02em] max-w-[24rem] mx-auto leading-relaxed">
             {dailyPhrases[dayIndex]}
           </p>
-          <div className="mx-auto w-12 h-px bg-dorado/40 mt-5" />
         </header>
 
-        {/* CARTA INVOCADA — el corazón de la pantalla.
-            Capas: geometría ritual como pedestal — halo cálido pulsante —
-            sombra dramática proyectada — ring dorado pulsante — carta con
-            tilt 3D y respiración sutil. */}
-        <div className="flex flex-col items-center gap-4 relative">
-          <p className="text-[0.56rem] tracking-[0.32em] uppercase text-dorado/55 font-light">
+        {/* CARTA INVOCADA — el corazón de la pantalla. */}
+        <div className="flex flex-col items-center gap-3 relative">
+          <p className="text-[0.55rem] tracking-[0.30em] uppercase text-dorado/55 font-light">
             Carta del día
           </p>
 
-          <div className="relative w-[170px] md:w-[240px] flex items-center justify-center pt-2 pb-6">
-            {/* Geometría ritual detrás — más grande y más visible */}
-            <div className="absolute inset-0 -inset-x-16 -inset-y-16 md:-inset-x-24 md:-inset-y-24 flex items-center justify-center pointer-events-none text-dorado">
-              <RitualGeometry size={340} opacity={0.17} className="ritual-breath" />
+          <div className="relative w-[160px] md:w-[230px] flex items-center justify-center pt-1 pb-5">
+            <div className="absolute inset-0 -inset-x-14 -inset-y-14 md:-inset-x-22 md:-inset-y-22 flex items-center justify-center pointer-events-none text-dorado">
+              <RitualGeometry size={320} opacity={0.16} className="ritual-breath" />
             </div>
 
-            {/* Halo cálido cinematográfico — más denso */}
             <div
-              className="absolute inset-0 -inset-x-10 -inset-y-8 pointer-events-none ritual-breath"
+              className="absolute inset-0 -inset-x-9 -inset-y-7 pointer-events-none ritual-breath"
               style={{
-                background: 'radial-gradient(ellipse 55% 65% at 50% 48%, rgba(198,168,90,0.28) 0%, rgba(198,168,90,0.10) 38%, transparent 70%)',
+                background: 'radial-gradient(ellipse 55% 65% at 50% 48%, rgba(198,168,90,0.26) 0%, rgba(198,168,90,0.08) 38%, transparent 70%)',
                 filter: 'blur(10px)'
               }}
             />
 
             <motion.button
               onClick={() => onCarta(destacada)}
-              className="relative w-[170px] md:w-[240px] active:scale-[0.99] card-invoked card-pedestal"
+              className="relative w-[160px] md:w-[230px] active:scale-[0.99] card-invoked card-pedestal"
               aria-label={`Carta del día: ${destacada.nombre}. Toca para leer.`}
               animate={{ scale: [1, 1.003, 1, 0.997, 1] }}
               transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
@@ -1008,21 +1061,15 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
 
         </div>
 
-        {/* UMBRALES — botones tallados, no CTA web.
-            Primario respira. Secundario es solo borde. Ambos revelan fill
-            interno al hover y filete dorado superior. */}
-        <div className="w-full max-w-[300px] flex flex-col gap-3.5">
+        {/* UMBRAL ÚNICO — "Iniciar Tirada".
+            El acceso a "Explorar Mazo" vive ahora en el menú superior.
+            Una sola acción primaria en la home: tirar. */}
+        <div className="w-full max-w-[280px]">
           <button
             onClick={onTirada}
             className="w-full py-4 btn-threshold-primary text-[0.62rem] tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
           >
             <span>Iniciar Tirada</span>
-          </button>
-          <button
-            onClick={onExplorar}
-            className="w-full py-4 btn-threshold text-[0.62rem] tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
-          >
-            <span>Explorar Mazo</span>
           </button>
         </div>
       </div>
@@ -3258,6 +3305,7 @@ export default function App() {
             onTirada={() => setView('selector')}
             onExplorar={() => setView('explorar')}
             onCarta={(c) => goDetail(c)}
+            onNav={onGo}
           />
         )}
         {view === 'selector' && (
