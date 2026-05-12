@@ -415,7 +415,8 @@ body {
 }
 
 /* FRAME EDITORIAL — marco de página antigua sutil sobre todo el viewport.
-   Es la sensación de "estás dentro de un manuscrito". */
+   Es la sensación de "estás dentro de un manuscrito".
+   safe-area-inset para iOS con notch / Dynamic Island / home indicator. */
 .page-frame::before,
 .page-frame::after {
   content: '';
@@ -427,8 +428,14 @@ body {
   pointer-events: none;
   z-index: 50;
 }
-.page-frame::before { top: 14px; }
-.page-frame::after  { bottom: 78px; } /* sobre la nav inferior */
+.page-frame::before {
+  top: calc(14px + env(safe-area-inset-top, 0px));
+}
+.page-frame::after  {
+  /* Sin nav inferior fija — el filete vive al pie del viewport.
+     env(safe-area-inset-bottom) respeta el home indicator de iOS. */
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+}
 
 /* Estrella mínima — punto dorado tenue que aparece y desaparece */
 @keyframes star-blink {

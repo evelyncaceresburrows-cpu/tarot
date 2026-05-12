@@ -81,7 +81,7 @@ const THESIS_BY_COMBO = {
   'reparacion-en-curso|tension-mental-dominante':
     'Algo se está acomodando despacio y la cabeza está tratando de apurar lo que pide tiempo.',
   'proyeccion-afuera|tension-mental-dominante':
-    'Hay una sombra que estás viendo en otros más nítida que en ti misma. La tirada invita a girar el espejo.',
+    'Hay una sombra que estás viendo en otros más nítida que en ti. La tirada invita a girar el espejo.',
   'vinculo-en-juego|decision-postergada':
     'La pregunta es vincular aunque no la hayas formulado así. Y hay una decisión esperando que no se va a resolver pensando más.',
   'vinculo-en-juego|contencion-emocional':

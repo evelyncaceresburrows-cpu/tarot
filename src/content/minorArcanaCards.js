@@ -76,11 +76,11 @@ export const minorArcanaCards = {
       essence: 'Dos miradas que se reconocen sin esfuerzo.',
       reading: 'Hay un encuentro —con alguien o con una parte tuya— que no necesita ser explicado para entenderse. Lo que esta carta pide es presencia, no estrategia: estar ahí, mirar y dejarse mirar.',
       synthesis: 'Lo afectivo se encuentra cuando se reconoce, no cuando se conquista.',
-      prompt: '¿Con quién —incluso tú misma— te estás encontrando sin tener que actuar?',
+      prompt: '¿Con quién, incluso contigo, te estás encontrando sin tener que actuar?',
       themes: ['Vínculo', 'Reciprocidad', 'Reconocimiento mutuo', 'Encuentro afectivo'],
       manifestations: [
         'Una conversación donde no hace falta llenar los silencios',
-        'Reconciliación silenciosa con alguien o contigo misma',
+        'Reconciliación silenciosa con alguien o contigo',
         'Sentir que en este vínculo no estás sosteniendo la balanza sola',
         'Un afecto que te calma sin pedirte nada'
       ],
@@ -239,7 +239,7 @@ export const minorArcanaCards = {
       shadows: [
         'Confundir nostalgia con presente',
         'Idealizar lo anterior',
-        'Quedar atrapada en una versión vieja de ti misma'
+        'Volver a una versión vieja tuya'
       ],
       reversed: {
         essence:   "Los niños se quedaron en el patio. La memoria se volvió refugio en lugar de fuente.",
@@ -477,7 +477,7 @@ export const minorArcanaCards = {
         manifestations: [
           "Mandar el mismo tipo de mensaje cariñoso a varias personas y darte cuenta de que ninguno te lo pidió así",
           "Hacer regalos elaborados y faltar al momento simple en el que el otro te necesitaba",
-          "Decir 'te quiero' por compromiso y notar que te suena hueco a ti misma"
+          "Decir 'te quiero' por compromiso y notar que te suena hueco a ti"
         ],
         shadows: [
           "Se bloquea la veracidad del gesto afectivo.",
@@ -843,13 +843,13 @@ export const minorArcanaCards = {
       essence: 'Las paredes también pueden estar adentro.',
       reading: 'Hay una historia que te estás contando como si fuera la única posible. La sensación de encierro es real, pero las cuerdas que la sostienen son narrativas: cosas que piensas sobre ti que ya no necesitan ser ciertas.',
       synthesis: 'Lo que parece imposible, a veces, solo no se ha mirado dos veces.',
-      prompt: '¿Qué te estás diciendo sobre ti misma como si fuera ley, y no es?',
+      prompt: '¿Qué te estás diciendo sobre ti como si fuera ley, y no es?',
       themes: ['Encierro mental', 'Narrativa interna', 'Imposibilidad percibida', 'Mirada estrecha'],
       manifestations: [
         'Repetirte que no puedes cuando todavía no probaste',
         'Sentir que no hay salida en una situación que tiene varias',
         'Pedir permiso para algo que ya puedes decidir sola',
-        'Quedar inmovilizada por una versión vieja de ti misma'
+        'Volver, sin querer, a una versión vieja tuya'
       ],
       shadows: [
         'Identificarte con la víctima del propio relato',
@@ -1207,7 +1207,7 @@ export const minorArcanaCards = {
       ],
       reversed: {
         essence:   "La figura sigue de espaldas mirando el mar. Los barcos zarparon y ella no termina de soltar la mirada.",
-        reading:   "Lanzaste algo y no puedes parar de revisar. La espera activa se volvió hostigamiento — al proyecto, al otro, a ti misma. O al revés: te quedaste tan mirando el horizonte que no notaste que algunos barcos ya volvieron y nadie está atendiendo el puerto.",
+        reading:   "Lanzaste algo y no puedes parar de revisar. La espera activa se volvió hostigamiento — al proyecto, al otro, a ti. O al revés: te quedaste tan mirando el horizonte que no notaste que algunos barcos ya volvieron y nadie está atendiendo el puerto.",
         synthesis: "Mirar todo el tiempo lo lanzado es otra manera de no soltarlo.",
         prompt:    "¿Cuántas veces al día revisas algo que decidiste \"dejar circular\", y qué te dice ese gesto sobre tu confianza real?",
         manifestations: [

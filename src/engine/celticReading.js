@@ -468,7 +468,7 @@ function buildBlock3(s7, s8, s9) {
   if (tempInner === 'tense' && tempSelf !== 'tense') {
     innerLine = `Y en el lugar de los miedos: ${e9}. Por adentro estás cargando algo más tenso de lo que muestras afuera. Vale preguntarse a quién le sirve esa diferencia.`
   } else if (tempInner === tempSelf) {
-    innerLine = `Y en el lugar de las esperanzas y los miedos: ${e9}. Lo que cuidas por dentro y cómo te ves hoy van en el mismo tono — al menos no estás peleando contigo misma.`
+    innerLine = `Y en el lugar de las esperanzas y los miedos: ${e9}. Lo que cuidas por dentro y cómo te ves hoy van en el mismo tono — al menos no estás peleando contigo.`
   } else {
     innerLine = `Y en el lugar más íntimo, esa mezcla rara entre lo que quieres y lo que temes que pase: ${e9}. A veces lo que más miedo da es justo lo que más estás deseando.`
   }

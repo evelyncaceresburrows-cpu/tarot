@@ -208,7 +208,7 @@ function pickRandomCards(deck, count) {
   for (let i = 0; i < count; i++) {
     const idx = Math.floor(Math.random() * pool.length)
     const card = pool.splice(idx, 1)[0]
-    out.push({ card, reversed: Math.random() < 0.3 })
+    out.push({ card, reversed: Math.random() < 0.28 })
   }
   return out
 }
@@ -928,13 +928,17 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
     >
       <AtmosphereLayer scene="home" />
 
-      <div className="relative z-10 max-w-[440px] mx-auto px-7 pt-8 md:pt-10 pb-28 md:pb-12 flex flex-col items-center min-h-[100svh] justify-start gap-7 md:gap-9">
+      <div
+        className="relative z-10 max-w-[440px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center gap-6 md:gap-9"
+        style={{
+          paddingTop: 'calc(2rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
+        }}
+      >
 
         {/* ADE COMO PRESENCIA — sobre el título, centrado, con sombra
-            propia y flotación lenta. No es logo: es la entidad observadora
-            que abre la composición.
-            (Salía del frame antes y se veía desconfigurado; lo devolví a
-            posición canónica con peso editorial.) */}
+            propia y flotación lenta. Tamaño mobile reducido para que el
+            contenido entre cómodamente en iPhone SE / 13 mini. */}
         <motion.div
           className="relative flex justify-center select-none"
           animate={{ y: [0, -3, 0, 3, 0] }}
@@ -948,7 +952,7 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
               filter: 'blur(6px)'
             }}
           />
-          <AdeGlyph className="w-[140px] md:w-[170px] relative z-10" />
+          <AdeGlyph className="w-[100px] md:w-[150px] relative z-10" />
         </motion.div>
 
         {/* TÍTULO — más espaciado, más editorial */}
@@ -973,10 +977,10 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
             Carta del día
           </p>
 
-          <div className="relative w-[200px] md:w-[260px] flex items-center justify-center pt-2 pb-6">
+          <div className="relative w-[170px] md:w-[240px] flex items-center justify-center pt-2 pb-6">
             {/* Geometría ritual detrás — más grande y más visible */}
-            <div className="absolute inset-0 -inset-x-20 -inset-y-20 md:-inset-x-24 md:-inset-y-24 flex items-center justify-center pointer-events-none text-dorado">
-              <RitualGeometry size={400} opacity={0.17} className="ritual-breath" />
+            <div className="absolute inset-0 -inset-x-16 -inset-y-16 md:-inset-x-24 md:-inset-y-24 flex items-center justify-center pointer-events-none text-dorado">
+              <RitualGeometry size={340} opacity={0.17} className="ritual-breath" />
             </div>
 
             {/* Halo cálido cinematográfico — más denso */}
@@ -990,7 +994,7 @@ function Home({ destacada, onTirada, onExplorar, onCarta }) {
 
             <motion.button
               onClick={() => onCarta(destacada)}
-              className="relative w-[200px] md:w-[260px] active:scale-[0.99] card-invoked card-pedestal"
+              className="relative w-[170px] md:w-[240px] active:scale-[0.99] card-invoked card-pedestal"
               aria-label={`Carta del día: ${destacada.nombre}. Toca para leer.`}
               animate={{ scale: [1, 1.003, 1, 0.997, 1] }}
               transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
@@ -3172,7 +3176,38 @@ export default function App() {
   const [pendingCount, setPendingCount] = useState(3)
   const [intention, setIntention]       = useState('')
   const [opening, setOpening]           = useState(true)
-  const [destacada]                     = useState(() => DECK[Math.floor(Math.random() * DECK.length)])
+  /* CARTA DEL DÍA — determinística por fecha local del usuario.
+   *
+   * Garantías:
+   *   1. La misma carta para todo el día (no cambia al refrescar).
+   *   2. Cambia automáticamente al cruzar medianoche local.
+   *   3. Distinta entre usuarios en la misma fecha (semilla incluye
+   *      una clave anónima por dispositivo, persistida en localStorage).
+   *   4. Si fallara localStorage (modo privado, SSR), cae a un seed
+   *      basado solo en la fecha local — la carta del día sigue siendo
+   *      estable durante la sesión.
+   */
+  const [destacada] = useState(() => {
+    const today = new Date()
+    const dateKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+
+    let userSalt = '0'
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        userSalt = window.localStorage.getItem('ade.userSalt')
+        if (!userSalt) {
+          userSalt = Math.random().toString(36).slice(2, 10)
+          window.localStorage.setItem('ade.userSalt', userSalt)
+        }
+      }
+    } catch (_) { /* modo privado: usamos salt fija */ }
+
+    const seedStr = `${dateKey}|${userSalt}`
+    let hash = 0
+    for (let i = 0; i < seedStr.length; i++) hash = (hash * 31 + seedStr.charCodeAt(i)) | 0
+    const idx = Math.abs(hash) % DECK.length
+    return DECK[idx]
+  })
 
   useEffect(() => {
     if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })

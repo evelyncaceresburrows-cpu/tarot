@@ -285,7 +285,7 @@ export const majorArcanaSymbolic = [
 
     reversed: {
       essence: 'El jardín está descuidado o asfixiado. La Emperatriz cuida lo de afuera y se olvida de su propio cuerpo, o cuida tanto que ahoga lo que crece.',
-      reading: 'El cuidado se desreguló. O das tanto que ya no queda jardín para ti, o te encerraste en ti misma y dejas que lo que cuidas se marchite. Lo fértil pide presencia equilibrada, y la presencia se volvió sacrificio o abandono.',
+      reading: 'El cuidado se desreguló. O das tanto que ya no queda jardín para ti, o te encerraste en ti y dejas que lo que cuidas se marchite. Lo fértil pide presencia equilibrada, y la presencia se volvió sacrificio o abandono.',
       synthesis: 'Cuidar todo menos a una misma no es generosidad. Es agotamiento con buena prensa.',
       prompt: '¿A quién o qué estás cuidando con una intensidad que ya no es vida, sino control?',
       manifestations: [
@@ -404,7 +404,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'Hay una tensión entre lo que aprendiste y lo que sientes ahora. Esta carta no te dice que rompas con la tradición: te invita a discernir qué de todo lo recibido todavía te sostiene y qué pide ser revisado. Pertenecer y pensar por una misma no son opuestos.',
     synthesis: 'Heredar no es destino. Es punto de partida.',
-    extension: 'El Hierofante guarda algo importante: la memoria de que nadie aprende de cero, que toda búsqueda interior se apoya en saberes anteriores aunque después los reformule. Las dos llaves a sus pies dicen que el saber abre y también cierra: depende de cómo se use. Si esta carta aparece, probablemente haya un cruce entre lo que te enseñaron —en tu familia, en tu profesión, en tu cultura— y lo que estás empezando a sentir como propio. El trabajo no es destruir lo recibido ni acatarlo en bloque: es separar con cuidado, quedarte con lo que te representa y dejar ir lo que ya no. Pertenecer a algo más grande que tú misma no es debilidad; pertenecer sin discernir, sí.',
+    extension: 'El Hierofante guarda algo importante: la memoria de que nadie aprende de cero, que toda búsqueda interior se apoya en saberes anteriores aunque después los reformule. Las dos llaves a sus pies dicen que el saber abre y también cierra: depende de cómo se use. Si esta carta aparece, probablemente haya un cruce entre lo que te enseñaron —en tu familia, en tu profesión, en tu cultura— y lo que estás empezando a sentir como propio. El trabajo no es destruir lo recibido ni acatarlo en bloque: es separar con cuidado, quedarte con lo que te representa y dejar ir lo que ya no. Pertenecer a algo más grande que tú no es debilidad; pertenecer sin discernir, sí.',
     prompt: '¿Qué creencia heredada estás sosteniendo por costumbre y no por convicción?',
 
     positions: {
@@ -553,7 +553,7 @@ export const majorArcanaSymbolic = [
       shadows: [
         'Se bloquea el alineamiento entre voluntad y rumbo — hay esfuerzo sin destino claro.',
         'Se exagera la prisa o la inercia; ambas vacían el viaje.',
-        'Se evita mirar que liderarte a ti misma incluye saber cuándo parar y revisar la ruta.'
+        'Se evita mirar que liderarte incluye saber cuándo parar y revisar la ruta.'
       ]
     }
   },
@@ -668,8 +668,8 @@ export const majorArcanaSymbolic = [
 
     reading: 'Hay una pausa que está pidiendo ser tomada. Esta carta no te aleja del mundo: te recuerda que algunas verdades solo aparecen cuando bajás el ruido. Lo que parece estar quieto, en realidad, está depurándose.',
     synthesis: 'A veces lo más sabio es no estar disponible para todos.',
-    extension: 'El Ermitaño no se retira porque no le importe el mundo: se retira para volver a él con algo más claro adentro. Su lámpara no ilumina la montaña entera, ilumina el siguiente paso. Y eso es exactamente lo que sugiere esta carta: que no necesitas resolver todo de una vez, sino encender lo justo para no perder el rumbo. Si aparece, probablemente sea momento de retirarte un poco —de las redes, de las opiniones ajenas, del ruido emocional— y escuchar qué dice tu propia voz cuando deja de competir con todo lo demás. La trampa es confundir el retiro con la huida; la sabiduría es entender que la soledad bien elegida no aleja: te acerca a ti misma.',
-    prompt: '¿Qué necesitas escuchar de ti misma que solo aparece en silencio?',
+    extension: 'El Ermitaño no se retira porque no le importe el mundo: se retira para volver a él con algo más claro adentro. Su lámpara no ilumina la montaña entera, ilumina el siguiente paso. Y eso es exactamente lo que sugiere esta carta: que no necesitas resolver todo de una vez, sino encender lo justo para no perder el rumbo. Si aparece, probablemente sea momento de retirarte un poco —de las redes, de las opiniones ajenas, del ruido emocional— y escuchar qué dice tu propia voz cuando deja de competir con todo lo demás. La trampa es confundir el retiro con la huida; la sabiduría es entender que la soledad bien elegida no aleja: te acerca a ti.',
+    prompt: '¿Qué necesitas escuchar de ti que solo aparece en silencio?',
 
     positions: {
       whatIs:      'Hay una pausa, un retiro o una introspección pidiendo lugar.',
@@ -964,7 +964,7 @@ export const majorArcanaSymbolic = [
     emotionalThemes: [
       'Serenidad ganada',
       'Equilibrio inestable y real',
-      'Paciencia contigo misma',
+      'Paciencia con uno mismo',
       'Dosis justa',
       'Síntesis emocional'
     ],
@@ -1120,7 +1120,7 @@ export const majorArcanaSymbolic = [
 
     reading: 'Algo se cayó. No con elegancia — con el ruido y la humillación de un golpe seco que no esperabas. Y el alivio empieza después, cuando entiendes que lo que se vino abajo era la versión de ti que no se sostenía hace tiempo.',
     synthesis: 'No se cayó lo verdadero. Se cayó lo que ya no era cierto.',
-    extension: 'La Torre es la única carta del Tarot donde el rayo viene del cielo, no del piso. La estructura está en llamas, la corona vuela por el aire, y dos figuras caen de cabeza con los brazos extendidos. No hay tiempo de prepararse. La sensación que aterriza esta carta es muy concreta: ese impacto del suelo cuando te caes hacia atrás de una silla y te falta un instante para procesar qué acaba de pasar. Una conversación que no tendrías que haber tenido. Un mail que no tendrías que haber leído. Algo dicho en voz alta que ya no se puede des-saber. A diferencia de La Muerte, que es un proceso orgánico y va dando tiempo, La Torre es súbita y humillante — rompe el ego de un golpe. Pero aquí está la trampa: lo que se cayó no era verdadero. Era una mentira que sostenías sobre ti misma —un trabajo que ya no te representaba, una imagen prestada, un acuerdo silencioso con alguien que ya no te servía. Y abajo, donde aterrizas de cabeza, el aire es más limpio que arriba.',
+    extension: 'La Torre es la única carta del Tarot donde el rayo viene del cielo, no del piso. La estructura está en llamas, la corona vuela por el aire, y dos figuras caen de cabeza con los brazos extendidos. No hay tiempo de prepararse. La sensación que aterriza esta carta es muy concreta: ese impacto del suelo cuando te caes hacia atrás de una silla y te falta un instante para procesar qué acaba de pasar. Una conversación que no tendrías que haber tenido. Un mail que no tendrías que haber leído. Algo dicho en voz alta que ya no se puede des-saber. A diferencia de La Muerte, que es un proceso orgánico y va dando tiempo, La Torre es súbita y humillante — rompe el ego de un golpe. Pero aquí está la trampa: lo que se cayó no era verdadero. Era una mentira que sostenías sobre ti —un trabajo que ya no te representaba, una imagen prestada, un acuerdo silencioso con alguien que ya no te servía. Y abajo, donde aterrizas de cabeza, el aire es más limpio que arriba.',
     prompt: '¿Qué mentira sobre ti acaba de saltar por los aires?',
 
     positions: {
@@ -1202,7 +1202,7 @@ export const majorArcanaSymbolic = [
       manifestations: [
         'Sentir alivio y, en el mismo instante, escanear el horizonte buscando la próxima desgracia',
         'Volver a contarte las viejas heridas para "no olvidarte" de ellas, justo cuando el cuerpo había empezado a soltar',
-        'Poner toda tu fe en una promesa, una persona o una idea, sin moverte un milímetro tú misma'
+        'Poner toda tu fe en una promesa, una persona o una idea, sin moverte un milímetro'
       ],
       shadows: [
         'Se bloquea la confianza vulnerable — toda calma se vuelve sospecha.',
@@ -1408,7 +1408,7 @@ export const majorArcanaSymbolic = [
     positions: {
       whatIs:      'Hay un despertar interno o un reconocimiento que pide ser escuchado.',
       whatCrosses: 'Negar lo que ya sabes o esperar permiso externo puede frenar el proceso.',
-      whatOpens:   'Se abre una etapa de coherencia profunda contigo misma.'
+      whatOpens:   'Se abre una etapa de coherencia profunda contigo.'
     },
 
     reversed: {
