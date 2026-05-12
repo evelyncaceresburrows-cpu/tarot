@@ -494,7 +494,19 @@ function CandleHalo({ className = '' }) {
 /** Marco de carta. Sin bordes pesados, sólo sombra suave. */
 function CartaMarco({ card, reversed = false, showLabel = true, className = '' }) {
   return (
-    <div className={`relative w-full aspect-[2/3] bg-marfil overflow-hidden flex flex-col rounded-[5px] shadow-ritual paper-texture ${className}`}>
+    <div
+      className={`relative w-full aspect-[2/3] bg-marfil overflow-hidden flex flex-col rounded-[5px] shadow-ritual paper-texture ${className}`}
+      style={reversed ? {
+        // Borde vino sutil + sombra interna roja MUY tenue indican estado invertido.
+        // No grita: el ojo entrenado lo nota, el casual no se confunde.
+        boxShadow:
+          '0 1px 2px rgba(0, 0, 0, 0.30), ' +
+          '0 14px 32px rgba(0, 0, 0, 0.55), ' +
+          '0 4px 16px rgba(122, 30, 44, 0.22), ' +
+          'inset 0 0 0 1px rgba(122, 30, 44, 0.45), ' +
+          'inset 0 0 14px rgba(122, 30, 44, 0.08)'
+      } : undefined}
+    >
       <div className="relative flex-1 bg-gradient-to-br from-[#e8dcc4] to-[#d4c5a8] flex items-center justify-center overflow-hidden">
         <img
           src={card.src}
@@ -503,14 +515,29 @@ function CartaMarco({ card, reversed = false, showLabel = true, className = '' }
           className="relative z-[2] w-full h-full object-contain"
           style={{ transform: reversed ? 'rotate(180deg)' : 'none' }}
         />
-        {/* Sombra interna superior — luz cálida cinematográfica que cae sobre la carta */}
+        {/* Sombra interna superior — luz cálida cinematográfica */}
         <div className="pointer-events-none absolute inset-0 z-[3]"
              style={{ background: 'linear-gradient(180deg, rgba(255,235,200,0.10) 0%, transparent 18%, transparent 80%, rgba(60,30,20,0.18) 100%)' }} />
+
+        {/* Marca de invertida — punto vino en esquina superior-izq.
+            Cuando la carta está rotada 180°, esa esquina aparece visualmente
+            en la inferior-derecha del lado que ve el lector. Es una marca
+            sutil que confirma el estado sin tapar la ilustración. */}
+        {reversed && (
+          <span
+            className="absolute top-1.5 left-1.5 z-[4] w-1.5 h-1.5 rounded-full pointer-events-none"
+            style={{
+              background: 'rgba(122, 30, 44, 0.85)',
+              boxShadow: '0 0 4px rgba(122, 30, 44, 0.55)'
+            }}
+            aria-hidden="true"
+          />
+        )}
       </div>
       {showLabel && (
-        <div className="relative z-[2] px-2 py-1.5 bg-marfil text-center border-t border-noche/10">
-          <p className="font-serif text-[0.66rem] font-medium uppercase tracking-[0.08em] text-noche/80 leading-tight">
-            {card.nombre}
+        <div className={`relative z-[2] px-2 py-1.5 bg-marfil text-center border-t ${reversed ? 'border-vino/35' : 'border-noche/10'}`}>
+          <p className={`font-serif text-[0.66rem] font-medium uppercase tracking-[0.08em] leading-tight ${reversed ? 'text-vino/85' : 'text-noche/80'}`}>
+            {card.nombre}{reversed ? ' ↻' : ''}
           </p>
         </div>
       )}
@@ -953,8 +980,9 @@ function AtmosphereLayer({ scene = 'default' }) {
  * ===================================================================*/
 
 function Home({ destacada, onTirada, onExplorar, onCarta, onNav }) {
-  // Pool de frases contemplativas — rotan determinísticamente según
-  // la fecha del día.
+  // Pool ampliado de frases contemplativas — 28 entradas para que la
+  // rotación no se vuelva semanal predecible. La elección depende de
+  // (año + mes + día), distribuida con hash, así no hay días fijos.
   const dailyPhrases = [
     'las cartas no adivinan. revelan.',
     'hay símbolos que vuelven.',
@@ -962,12 +990,35 @@ function Home({ destacada, onTirada, onExplorar, onCarta, onNav }) {
     'algunas respuestas llegan de lado.',
     'todo aparece por algo.',
     'lo que insiste también habla.',
-    'no preguntes rápido. mira primero.'
+    'no preguntes rápido. mira primero.',
+    'lo que se repite tiene algo que decir.',
+    'no toda pregunta pide respuesta.',
+    'la lectura no se controla — se escucha.',
+    'lo que vuelve, vuelve por algo.',
+    'los símbolos no apuran.',
+    'una carta no es un veredicto.',
+    'lo que no se nombra igual ocupa lugar.',
+    'el silencio también es lectura.',
+    'no todo lo que pasa está pidiendo ser resuelto.',
+    'mirar de cerca es la primera respuesta.',
+    'lo importante rara vez se ve primero.',
+    'lo difícil no siempre es lo urgente.',
+    'algo está pasando antes de que te enteres.',
+    'la pregunta correcta no siempre es la que trajiste.',
+    'ver es decisión.',
+    'el cuerpo sabe antes.',
+    'lo que se postpone también deja huella.',
+    'algunas cartas piden volver más tarde.',
+    'no toda señal es para hoy.',
+    'lo claro a veces tarda en ser dicho.',
+    'el deseo también es información.'
   ]
   const dayIndex = (() => {
     const d = new Date()
-    const day = Math.floor(d / (1000 * 60 * 60 * 24))
-    return day % dailyPhrases.length
+    const dateKey = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+    let hash = 0
+    for (let i = 0; i < dateKey.length; i++) hash = (hash * 31 + dateKey.charCodeAt(i)) | 0
+    return Math.abs(hash) % dailyPhrases.length
   })()
 
   return (
@@ -1564,15 +1615,19 @@ function ChoreographedHand({ side, phase }) {
 
 function ShuffleScreen({ onContinue, onBack }) {
   const [phase, setPhase] = useState('idle')
+  // Skip habilitado desde el segundo 1 — quien ya conoce el flujo no
+  // debe quedar 5+ segundos esperando. La ritualidad sigue siendo la
+  // default (animación completa de ~10.5s); el skip es escape, no atajo
+  // que se promueva.
   const [canSkip, setCanSkip] = useState(false)
 
   useEffect(() => {
     // Coreografía cinematográfica — total ~10.3 s
     const timers = []
     timers.push(setTimeout(() => setPhase('enter'),    1000))   // mazo quieto + manos entran
+    timers.push(setTimeout(() => setCanSkip(true),     1200))   // skip disponible casi inmediato
     timers.push(setTimeout(() => setPhase('split'),    2700))   // manos toman las dos mitades
     timers.push(setTimeout(() => setPhase('shuffle'),  3700))   // mezcla suave (3 s)
-    timers.push(setTimeout(() => setCanSkip(true),     5200))   // permite avanzar
     timers.push(setTimeout(() => setPhase('reunite'),  6700))   // mazo se reúne
     timers.push(setTimeout(() => setPhase('settle'),   7700))   // ajuste final
     timers.push(setTimeout(() => setPhase('exit'),     8500))   // manos salen
@@ -2615,9 +2670,13 @@ function CelticLayout({ slots, onCarta }) {
           <div className="w-px flex-1 bg-gradient-to-b from-transparent via-dorado/25 to-transparent" />
         </div>
 
-        {/* STAFF — columna vertical. En escritorio justo al lado de la cruz,
-            sin separación grande. En mobile abajo, en fila compacta. */}
-        <div className="relative flex md:flex-col gap-1.5 md:gap-2 w-full max-w-[320px] md:w-[88px]">
+        {/* STAFF — columna vertical en escritorio, fila compacta en mobile.
+            Orden tradicional Rider-Waite: de abajo hacia arriba viene self,
+            environment, inner, horizon. En la columna desktop el horizonte
+            (carta 10) corona la pila; self (carta 7) queda al pie.
+            Por eso usamos md:flex-col-reverse — el array sigue siendo
+            [self, env, inner, horizon] pero visualmente se invierte. */}
+        <div className="relative flex md:flex-col-reverse gap-1.5 md:gap-2 w-full max-w-[320px] md:w-[88px]">
           {staff.map((s, i) => (
             <div key={i} className="flex-1 md:w-full relative z-[2]">
               {card(s, 6 + i)}
@@ -3272,8 +3331,14 @@ export default function App() {
     const seedStr = `${dateKey}|${userSalt}`
     let hash = 0
     for (let i = 0; i < seedStr.length; i++) hash = (hash * 31 + seedStr.charCodeAt(i)) | 0
-    const idx = Math.abs(hash) % DECK.length
-    return DECK[idx]
+
+    // Solo Arcanos Mayores para la carta del día. Decisión editorial:
+    // un tarot serio reserva la carta diaria a símbolos de peso pleno.
+    // El 3 de Bastos como guía del día es flaco; El Hierofante denso.
+    const mayores = DECK.filter(c => c.arcano === 'mayor' || c.paloKey === 'arcanos')
+    const pool = mayores.length > 0 ? mayores : DECK
+    const idx = Math.abs(hash) % pool.length
+    return pool[idx]
   })
 
   useEffect(() => {
