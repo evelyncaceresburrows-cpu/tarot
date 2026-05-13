@@ -3571,7 +3571,7 @@ export default function App() {
             onTirada={() => setView('selector')}
             onExplorar={() => setView('explorar')}
             onCarta={(c) => goDetail(c)}
-            onNav={onGo}
+            onNav={goNav}
           />
         )}
         {view === 'selector' && (
