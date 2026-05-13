@@ -245,10 +245,9 @@ function CompassStar({ size = 64, className = '' }) {
   )
 }
 
-/** Ade — mascota de la app.
- *  PNG transparente (gato tabby naranja con flora dorada y luna creciente).
- *  Asset en /public/ade.png. El tamaño se controla por className para
- *  responsive (ej. "w-[130px] md:w-[160px]"). */
+/** Ade — el familiar ritual.
+ *  PNG transparente (oriental shorthair cobre con flora, luna y estrella).
+ *  Asset en /public/ade.png. El tamaño se controla por className. */
 function AdeGlyph({ className = '' }) {
   return (
     <img
@@ -257,6 +256,46 @@ function AdeGlyph({ className = '' }) {
       draggable="false"
       className={`select-none h-auto ${className}`}
     />
+  )
+}
+
+/** AdePresence — aparición ritual de Ade en momentos específicos.
+ *  No es logo. Es entidad que cruza la pantalla brevemente cuando la
+ *  lectura toca un umbral: revelación completa, fin de tirada.
+ *
+ *  Patrón: fade-in lateral lento → permanencia 2.5s → fade-out.
+ *  Se renderiza dentro de AnimatePresence con `key` único para que
+ *  cada gesto sea una aparición.
+ *
+ *  Posiciones:
+ *    side='bottom-left'  — Ade entra desde abajo a la izquierda
+ *    side='bottom-right' — Ade entra desde abajo a la derecha
+ *    side='top-right'    — Ade asoma arriba a la derecha (más raro)
+ */
+function AdePresence({ side = 'bottom-left', size = 90, opacity = 0.5 }) {
+  const positions = {
+    'bottom-left':  { left:  '8px',  bottom: '12px', enterX: -20 },
+    'bottom-right': { right: '8px',  bottom: '12px', enterX: 20  },
+    'top-right':    { right: '8px',  top:    '64px', enterX: 20  }
+  }
+  const pos = positions[side] || positions['bottom-left']
+  return (
+    <motion.div
+      className="pointer-events-none absolute z-[7] select-none"
+      style={{
+        left:   pos.left,
+        right:  pos.right,
+        top:    pos.top,
+        bottom: pos.bottom,
+        width:  `${size}px`
+      }}
+      initial={{ opacity: 0, x: pos.enterX, y: 4 }}
+      animate={{ opacity, x: 0, y: 0 }}
+      exit={{ opacity: 0, x: pos.enterX * 0.5, y: 0 }}
+      transition={{ duration: 1.4, ease: [0.32, 0.72, 0.24, 1] }}
+    >
+      <AdeGlyph className="w-full" />
+    </motion.div>
   )
 }
 
@@ -412,65 +451,69 @@ function RitualGeometry({ size = 320, className = '', opacity = 0.18 }) {
   )
 }
 
-/** Reverso ceremonial — sigilo hermético sobre azul profundo */
+/** Reverso del mazo — patrón repetido tipo brocado alquímico antiguo.
+ *
+ *  Antes: sigilo central tipo logo (rosa de los vientos compleja). Era
+ *  demasiado distintivo — cualquier persona con cultura tarot pensaba
+ *  "esto no es un Rider-Waite genuino".
+ *
+ *  Ahora: red de rombos cruzados (diamond grid) con pequeños puntos
+ *  dorados en las intersecciones, sin centro narrativo. Es un fondo
+ *  ornamental honesto, como los reversos clásicos de mazos europeos
+ *  antiguos (Marsella, Camoin, IJJ Swiss): patrón repetido + viñeta de
+ *  borde + degradado central. No grita "logo".
+ */
 function Reverso() {
   return (
     <div className="relative w-full h-full overflow-hidden flex items-center justify-center" style={{
-      background: 'radial-gradient(ellipse at 50% 45%, #1a2a40 0%, #0d1b2a 55%, #050a12 100%)'
+      background: 'radial-gradient(ellipse at 50% 50%, #16273c 0%, #0d1b2a 55%, #050a12 100%)'
     }}>
-      {/* Marco ceremonial */}
-      <div className="absolute inset-2 border border-dorado/35 pointer-events-none" />
-      <div className="absolute inset-[10px] border border-dorado/15 pointer-events-none" />
-      {/* Esquinas con flores de oro */}
+      {/* Marco doble dorado fino — borde editorial clásico */}
+      <div className="absolute inset-2 border border-dorado/30 pointer-events-none" />
+      <div className="absolute inset-[8px] border border-dorado/12 pointer-events-none" />
+
+      {/* PATRÓN REPETIDO — red de rombos finos.
+          Definimos un tile de 20x20 con dos líneas diagonales que se
+          cruzan en el centro. SVG con <pattern> de tamaño chico,
+          repetido. Sin centro narrativo, sin sigilo distintivo. */}
+      <svg
+        className="absolute inset-[12px] w-[calc(100%-24px)] h-[calc(100%-24px)] pointer-events-none"
+        viewBox="0 0 100 145"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <pattern id="brocade" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+            {/* Cruz diagonal del tile */}
+            <line x1="0"  y1="0"  x2="14" y2="14" stroke="#C6A85A" strokeOpacity="0.22" strokeWidth="0.35" />
+            <line x1="14" y1="0"  x2="0"  y2="14" stroke="#C6A85A" strokeOpacity="0.22" strokeWidth="0.35" />
+            {/* Punto dorado en intersección */}
+            <circle cx="7" cy="7" r="0.6" fill="#C6A85A" fillOpacity="0.55" />
+          </pattern>
+
+          {/* Viñeta central — el patrón se atenúa en el centro, da volumen */}
+          <radialGradient id="reversoVignette" cx="50%" cy="50%" r="58%">
+            <stop offset="0%"  stopColor="#0d1b2a" stopOpacity="0.55" />
+            <stop offset="55%" stopColor="#0d1b2a" stopOpacity="0" />
+            <stop offset="100%" stopColor="#050a12" stopOpacity="0.65" />
+          </radialGradient>
+        </defs>
+
+        {/* Fondo del patrón */}
+        <rect width="100" height="145" fill="url(#brocade)" />
+        {/* Viñeta encima — atenúa centro y bordes */}
+        <rect width="100" height="145" fill="url(#reversoVignette)" />
+      </svg>
+
+      {/* Cuatro estrellas mínimas en las esquinas interiores —
+          recurso ornamental editorial, no logo */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 145" preserveAspectRatio="none">
-        <g fill="#C6A85A" fillOpacity="0.55">
-          <circle cx="6"  cy="6"   r="0.9" />
-          <circle cx="94" cy="6"   r="0.9" />
-          <circle cx="6"  cy="139" r="0.9" />
-          <circle cx="94" cy="139" r="0.9" />
+        <g fill="#C6A85A" fillOpacity="0.45">
+          <circle cx="10" cy="14" r="0.7" />
+          <circle cx="90" cy="14" r="0.7" />
+          <circle cx="10" cy="131" r="0.7" />
+          <circle cx="90" cy="131" r="0.7" />
         </g>
       </svg>
-      {/* Sigilo central — rosa de los vientos hermética */}
-      <div className="text-dorado/65 relative z-10" style={{ width: '72%', aspectRatio: '1' }}>
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.45" className="w-full h-full">
-          {/* Anillos concéntricos */}
-          <circle cx="50" cy="50" r="44" strokeOpacity="0.6" />
-          <circle cx="50" cy="50" r="36" strokeOpacity="0.85" />
-          <circle cx="50" cy="50" r="26" />
-          <circle cx="50" cy="50" r="16" />
-          <circle cx="50" cy="50" r="6" />
-          {/* Cruz cardinal */}
-          <line x1="50" y1="2"  x2="50" y2="98" strokeWidth="0.55" />
-          <line x1="2"  y1="50" x2="98" y2="50" strokeWidth="0.55" />
-          {/* Cruz diagonal — más fina */}
-          <line x1="14" y1="14" x2="86" y2="86" strokeOpacity="0.55" />
-          <line x1="86" y1="14" x2="14" y2="86" strokeOpacity="0.55" />
-          {/* Estrella de 8 puntas central */}
-          <path d="M 50,18 L 53,47 L 82,50 L 53,53 L 50,82 L 47,53 L 18,50 L 47,47 Z" fill="#C6A85A" fillOpacity="0.55" stroke="none" />
-          <circle cx="50" cy="50" r="2" fill="#C6A85A" fillOpacity="0.85" stroke="none" />
-          {/* Marcas cardinales */}
-          <g strokeWidth="0.7">
-            <line x1="50" y1="2"  x2="50" y2="10" />
-            <line x1="50" y1="90" x2="50" y2="98" />
-            <line x1="2"  y1="50" x2="10" y2="50" />
-            <line x1="90" y1="50" x2="98" y2="50" />
-          </g>
-          {/* Marcas dodecagonales pequeñas (signos zodiacales abstraidos como tics) */}
-          <g strokeWidth="0.35" strokeOpacity="0.7">            <line x1="50.0" y1="12.0" x2="50.0" y2="8.0" />
-            <line x1="69.0" y1="17.1" x2="71.0" y2="13.6" />
-            <line x1="82.9" y1="31.0" x2="86.4" y2="29.0" />
-            <line x1="88.0" y1="50.0" x2="92.0" y2="50.0" />
-            <line x1="82.9" y1="69.0" x2="86.4" y2="71.0" />
-            <line x1="69.0" y1="82.9" x2="71.0" y2="86.4" />
-            <line x1="50.0" y1="88.0" x2="50.0" y2="92.0" />
-            <line x1="31.0" y1="82.9" x2="29.0" y2="86.4" />
-            <line x1="17.1" y1="69.0" x2="13.6" y2="71.0" />
-            <line x1="12.0" y1="50.0" x2="8.0" y2="50.0" />
-            <line x1="17.1" y1="31.0" x2="13.6" y2="29.0" />
-            <line x1="31.0" y1="17.1" x2="29.0" y2="13.6" />
-          </g>
-        </svg>
-      </div>
     </div>
   )
 }
@@ -973,6 +1016,138 @@ function AtmosphereLayer({ scene = 'default' }) {
     )
   }
   return null
+}
+
+/* =====================================================================
+ * ONBOARDING — 3 pantallas mínimas para primera visita.
+ *
+ *  Se muestra solo cuando localStorage 'ade.onboarded' no existe. Tras
+ *  completar (o cerrar) se marca como visto. Es skipable desde el primer
+ *  momento.
+ *
+ *  Las 3 pantallas siguen el espíritu editorial: imagen mínima, una idea,
+ *  espacio para respirar, sin coaching motivacional.
+ * ===================================================================*/
+
+const ONBOARDING_STEPS = [
+  {
+    eyebrow: 'Bienvenida',
+    title:   'Tarot Ade',
+    body:    'Esto no predice. Revela. Cada lectura es una manera de mirar lo que ya está en movimiento.',
+    cta:     'Seguir'
+  },
+  {
+    eyebrow: 'Cómo se usa',
+    title:   'Tres gestos',
+    body:    'Una pregunta interna — sin necesidad de respuesta clara. Las cartas se barajan. Lo que aparezca, se mira despacio.',
+    cta:     'Seguir'
+  },
+  {
+    eyebrow: 'Lo que no es',
+    title:   'No es un veredicto',
+    body:    'Las cartas no juzgan ni deciden. Son un reflejo simbólico que devuelve la pregunta más afilada de lo que llegó.',
+    cta:     'Empezar'
+  }
+]
+
+function Onboarding({ onComplete }) {
+  const [step, setStep] = useState(0)
+  const isLast = step >= ONBOARDING_STEPS.length - 1
+  const current = ONBOARDING_STEPS[step]
+
+  const advance = () => {
+    if (isLast) {
+      try { window.localStorage.setItem('ade.onboarded', '1') } catch (_) {}
+      onComplete()
+    } else {
+      setStep(s => s + 1)
+    }
+  }
+  const skip = () => {
+    try { window.localStorage.setItem('ade.onboarded', '1') } catch (_) {}
+    onComplete()
+  }
+
+  return (
+    <motion.section
+      key="onboarding"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7 }}
+      className="fixed inset-0 z-[60] ritual-bg text-pergamino page-frame"
+    >
+      <AtmosphereLayer scene="home" />
+      <div
+        className="relative z-10 max-w-[440px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center text-center"
+        style={{
+          paddingTop: 'calc(2.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
+        }}
+      >
+        {/* Skip discreto arriba a la derecha */}
+        <button
+          onClick={skip}
+          className="absolute right-6 text-[0.56rem] tracking-[0.30em] uppercase text-pergamino/35 hover:text-dorado/80 font-light transition-colors"
+          style={{ top: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
+        >
+          Saltar
+        </button>
+
+        {/* Ade como acompañante silencioso, no protagonista */}
+        <div className="relative mb-8">
+          <div
+            className="absolute left-1/2 -translate-x-1/2 bottom-[-4px] w-[55%] h-[10px] rounded-full pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse 60% 100% at 50% 0%, rgba(168,139,69,0.28) 0%, transparent 75%)',
+              filter: 'blur(6px)'
+            }}
+          />
+          <AdeGlyph className="w-[88px] md:w-[110px]" />
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`onb-${step}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="flex flex-col items-center"
+          >
+            <p className="text-[0.56rem] tracking-[0.32em] uppercase text-dorado/55 font-light mb-4">
+              {current.eyebrow}
+            </p>
+            <h2 className="font-serif text-[1.5rem] md:text-[1.85rem] font-light text-dorado uppercase tracking-[0.28em] md:tracking-[0.34em] mb-6">
+              {current.title}
+            </h2>
+            <p className="font-serif italic text-pergamino/75 text-[1rem] md:text-[1.05rem] leading-[1.75] max-w-[26rem] mb-12">
+              {current.body}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Indicadores de progreso — tres puntos dorados */}
+        <div className="flex items-center gap-2 mb-10">
+          {ONBOARDING_STEPS.map((_, i) => (
+            <span
+              key={i}
+              className={`h-px rounded-full transition-all duration-500 ${
+                i === step ? 'w-6 bg-dorado' : i < step ? 'w-3 bg-dorado/60' : 'w-3 bg-pergamino/15'
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={advance}
+          className="w-full max-w-[260px] py-3.5 btn-threshold-primary text-[0.62rem] tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
+        >
+          <span>{current.cta}</span>
+        </button>
+      </div>
+    </motion.section>
+  )
 }
 
 /* =====================================================================
@@ -2240,7 +2415,7 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta
   const focusIdx  = lastRevealedSlot ? lastRevealedIdx : nextIdx
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="relative w-full flex flex-col items-center">
       {/* === ENCABEZADO DE POSICIÓN — siempre visible === */}
       <div className="text-center mb-5 px-4 max-w-[30rem]">
         <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/55 font-medium mb-2">
@@ -2358,6 +2533,20 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta
           Todo está sobre la mesa. Espera un momento.
         </p>
       )}
+
+      {/* GESTO DE ADE — aparece solo cuando todas las cartas están
+          reveladas, al pie izquierdo. Acompaña el "Todo está sobre la
+          mesa". Es la única vez que Ade aparece en esta pantalla. */}
+      <AnimatePresence>
+        {isComplete && (
+          <AdePresence
+            key="ade-celtic-complete"
+            side="bottom-left"
+            size={72}
+            opacity={0.45}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
@@ -3302,6 +3491,18 @@ export default function App() {
   const [pendingCount, setPendingCount] = useState(3)
   const [intention, setIntention]       = useState('')
   const [opening, setOpening]           = useState(true)
+
+  /* ONBOARDING — se muestra solo en la primera visita.
+     Flag ade.onboarded en localStorage. Si falla (modo privado), se
+     muestra cada vez — preferimos eso a saltarlo siempre. */
+  const [showOnboarding, setShowOnboarding] = useState(() => {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        return !window.localStorage.getItem('ade.onboarded')
+      }
+    } catch (_) {}
+    return false
+  })
   /* CARTA DEL DÍA — determinística por fecha local del usuario.
    *
    * Garantías:
@@ -3455,6 +3656,14 @@ export default function App() {
 
       <AnimatePresence>
         {opening && <BookOpening key="book-opening" onExit={() => setOpening(false)} />}
+      </AnimatePresence>
+
+      {/* Onboarding — primera visita, sobre el book-opening si ambos
+          coinciden; el book termina rápido y deja paso al onboarding. */}
+      <AnimatePresence>
+        {!opening && showOnboarding && (
+          <Onboarding key="onboarding" onComplete={() => setShowOnboarding(false)} />
+        )}
       </AnimatePresence>
     </main>
   )
