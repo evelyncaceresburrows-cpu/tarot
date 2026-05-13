@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, RotateCcw, Sun, Sparkles, Bookmark, Share2, Copy, Check, X } from 'lucide-react'
+import { ChevronLeft, RotateCcw, Sun, Sparkles, Bookmark, Share2, Copy, Check, X, BookOpen, Trash2 } from 'lucide-react'
 import {
   findContentByCard,
   findPositionByCard,
@@ -16,6 +16,16 @@ import {
   composeCardWhisper,
   composeCelticReading
 } from './engine/celticReading.js'
+import {
+  listEntries,
+  getEntry,
+  saveEntry,
+  updateNote,
+  removeEntry,
+  groupByDay,
+  humanDate,
+  humanTime
+} from './engine/journal.js'
 
 const ARCANOS_MAYORES = [
   { num: 0,  romano: '0',     nombre: 'El Loco',                 file: '00-el-loco.png',
@@ -316,11 +326,13 @@ function TopRitualNav({ active = 'home', onGo }) {
   const items = [
     { key: 'home',     label: 'Inicio' },
     { key: 'selector', label: 'Tirada' },
-    { key: 'explorar', label: 'Mazo'   }
+    { key: 'explorar', label: 'Mazo'   },
+    { key: 'diario',   label: 'Diario' }
   ]
   const isItemActive = (k) =>
     active === k ||
-    (k === 'selector' && ['intention','shuffle','cut','tirada1','tirada3','celtic'].includes(active))
+    (k === 'selector' && ['intention','shuffle','cut','tirada1','tirada3','celtic'].includes(active)) ||
+    (k === 'diario' && active === 'diarioDetalle')
 
   // Intercalamos separadores · entre items sin Fragment
   const nodes = []
@@ -353,7 +365,7 @@ function TopRitualNav({ active = 'home', onGo }) {
 
   return (
     <nav
-      className="w-full max-w-[360px] mx-auto flex items-center justify-center gap-3 md:gap-4"
+      className="w-full max-w-[440px] mx-auto flex items-center justify-center gap-2.5 md:gap-4"
       aria-label="Menú principal"
     >
       {nodes}
@@ -2034,8 +2046,10 @@ function DeckPile({ seed = 0, chosen = false }) {
 function Tirada({ count, intention, onCarta, onHome }) {
   const [tirada,   setTirada]   = useState(() => pickRandomCards(DECK, count))
   const [revealed, setRevealed] = useState(() => Array(count).fill(false))
+  const savedRef = useRef(false)
 
   const reset = () => {
+    savedRef.current = false
     setRevealed(Array(count).fill(false))
     setTimeout(() => setTirada(pickRandomCards(DECK, count)), 380)
   }
@@ -2062,6 +2076,28 @@ function Tirada({ count, intention, onCarta, onHome }) {
   const allRevealed = revealed.every(Boolean)
   const isThree = count === 3
   const someRevealed = revealed.some(Boolean)
+
+  // Guardado silencioso al diario cuando todas las cartas están reveladas.
+  // No interrumpe el ritual: la entrada queda registrada sin pop-up.
+  useEffect(() => {
+    if (!allRevealed || savedRef.current) return
+    savedRef.current = true
+    try {
+      const cards = tirada.map((slot, idx) => ({
+        id: slot.card.id,
+        reversed: !!slot.reversed,
+        position: isThree ? POSICIONES_TIRADA[idx]?.titulo : undefined
+      }))
+      // Summary: nombres de las cartas separadas — preview para la lista.
+      const summary = tirada.map(s => s.card.nombre).join(' · ')
+      saveEntry({
+        type: isThree ? 'tres' : 'unica',
+        intention,
+        cards,
+        summary
+      })
+    } catch (_) { /* no romper la lectura por un error de guardado */ }
+  }, [allRevealed, tirada, intention, isThree])
 
   return (
     <motion.section
@@ -2251,6 +2287,7 @@ function CruzCelticaWrapper({ intention, onCarta, onHome }) {
 function CruzCeltica({ cards, intention, onCarta, onHome }) {
   const [phase, setPhase]                 = useState('intro')
   const [revealedCount, setRevealedCount] = useState(0)
+  const savedRef = useRef(false)
 
   /* Auto-fade del intro (3.5s) */
   useEffect(() => {
@@ -2265,6 +2302,26 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
     const t = setTimeout(() => setPhase('reading'), 1400)
     return () => clearTimeout(t)
   }, [revealedCount])
+
+  /* Guardado silencioso al diario cuando entramos en fase reading */
+  useEffect(() => {
+    if (phase !== 'reading' || savedRef.current) return
+    savedRef.current = true
+    try {
+      const cardsEntry = cards.map((slot, idx) => ({
+        id: slot.card.id,
+        reversed: !!slot.reversed,
+        position: CELTIC_POSITIONS[idx]?.titulo
+      }))
+      const summary = cards.map(s => s.card.nombre).slice(0, 4).join(' · ') + ' …'
+      saveEntry({
+        type: 'celtica',
+        intention,
+        cards: cardsEntry,
+        summary
+      })
+    } catch (_) { /* silencioso */ }
+  }, [phase, cards, intention])
 
   const revealNext = () => {
     setRevealedCount(c => Math.min(c + 1, CELTIC_POSITION_COUNT))
@@ -3480,6 +3537,330 @@ function BottomNav({ view, onGo }) {
 }
 
 /* =====================================================================
+ * DIARIO — historial contemplativo de lecturas
+ *
+ * No es una colección estadística: es memoria ritual. Cada entrada
+ * recuerda el día, la pregunta, las cartas y deja espacio para una
+ * nota que la persona puede agregar después, cuando algo se aclaró.
+ * ===================================================================*/
+
+const TYPE_LABEL = {
+  unica: 'Carta del momento',
+  tres: 'Tirada de 3 cartas',
+  celtica: 'Cruz Celta'
+}
+
+function findCardById(id) {
+  return DECK.find(c => c.id === id) || null
+}
+
+function Diario({ onHome, onNav, onOpen }) {
+  const [entries, setEntries] = useState(() => listEntries())
+
+  // Refrescamos si la vista se monta (por si guardaron algo recién).
+  useEffect(() => {
+    setEntries(listEntries())
+  }, [])
+
+  const groups = useMemo(() => groupByDay(entries), [entries])
+  const isEmpty = entries.length === 0
+
+  return (
+    <motion.section
+      key="diario"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative min-h-[100svh] bg-noche text-pergamino overflow-x-hidden page-frame"
+    >
+      <AtmosphereLayer scene="reading" />
+
+      <div className="relative z-10 max-w-[700px] mx-auto px-6 pt-8 pb-16">
+        {/* Nav superior ritual */}
+        <div className="mb-8">
+          <TopRitualNav active="diario" onGo={onNav} />
+        </div>
+
+        {/* Header del diario */}
+        <header className="text-center mb-10">
+          <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/70 font-light mb-3">
+            Memoria
+          </p>
+          <h2 className="font-serif text-[1.6rem] md:text-[1.85rem] text-pergamino leading-tight">
+            Diario
+          </h2>
+          <p className="font-serif italic text-pergamino/55 text-[0.92rem] mt-4 max-w-[28rem] mx-auto leading-[1.7]">
+            Las lecturas quedan acá. Puedes volver a leerlas cuando lo necesites.
+          </p>
+        </header>
+
+        <StarDivider className="mb-10" />
+
+        {isEmpty ? (
+          <div className="text-center py-10">
+            <BookOpen className="w-7 h-7 text-dorado/40 mx-auto mb-5" strokeWidth={1.1} />
+            <p className="font-serif italic text-pergamino/55 text-[0.95rem] leading-[1.8] max-w-[24rem] mx-auto">
+              Todavía no hay lecturas guardadas. Después de tu primera tirada, aparecerán acá.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-10">
+            {groups.map(([dateISO, items]) => (
+              <div key={dateISO}>
+                <p className="text-[0.6rem] tracking-[0.30em] uppercase text-dorado/75 font-light mb-5">
+                  {humanDate(dateISO)}
+                </p>
+                <div className="space-y-3">
+                  {items.map(entry => (
+                    <DiarioEntryCard
+                      key={entry.id}
+                      entry={entry}
+                      onOpen={() => onOpen(entry.id)}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </motion.section>
+  )
+}
+
+function DiarioEntryCard({ entry, onOpen }) {
+  const cards = entry.cards.map(c => ({
+    info: findCardById(c.id),
+    reversed: c.reversed
+  })).filter(c => c.info)
+
+  return (
+    <button
+      onClick={onOpen}
+      className="block w-full text-left p-4 rounded-[3px] border border-dorado/15 hover:border-dorado/35 transition-colors duration-500 active:scale-[0.995]"
+      style={{
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.015) 0%, rgba(0,0,0,0.10) 100%)'
+      }}
+    >
+      <div className="flex items-baseline justify-between mb-2">
+        <span className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/70 font-light">
+          {TYPE_LABEL[entry.type] || entry.type}
+        </span>
+        <span className="text-[0.7rem] text-pergamino/45 font-light tabular-nums">
+          {humanTime(entry.timestamp)}
+        </span>
+      </div>
+
+      {entry.intention && entry.intention.length > 0 && (
+        <p className="font-serif italic text-pergamino/75 text-[0.9rem] leading-[1.6] mb-3">
+          «{entry.intention}»
+        </p>
+      )}
+
+      <div className="flex flex-wrap gap-1.5">
+        {cards.slice(0, 6).map((c, i) => (
+          <span
+            key={`${entry.id}-c-${i}`}
+            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm text-[0.68rem] text-pergamino/75 border border-dorado/15 bg-noche/40"
+          >
+            {c.info.nombre}
+            {c.reversed && <span className="text-vino/80 text-[0.55rem]" aria-label="invertida">↻</span>}
+          </span>
+        ))}
+        {cards.length > 6 && (
+          <span className="text-[0.68rem] text-pergamino/45 italic px-1 py-0.5">
+            +{cards.length - 6}
+          </span>
+        )}
+      </div>
+
+      {entry.note && entry.note.length > 0 && (
+        <p className="mt-3 pt-3 border-t border-dorado/10 text-[0.78rem] text-pergamino/60 font-light leading-[1.6] line-clamp-2">
+          {entry.note}
+        </p>
+      )}
+    </button>
+  )
+}
+
+function DiarioDetalle({ entryId, onBack, onCarta, onDeleted }) {
+  const [entry, setEntry] = useState(() => getEntry(entryId))
+  const [noteDraft, setNoteDraft] = useState(() => (entry ? entry.note : ''))
+  const [savingNote, setSavingNote] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
+
+  useEffect(() => {
+    const e = getEntry(entryId)
+    setEntry(e)
+    setNoteDraft(e ? e.note : '')
+  }, [entryId])
+
+  if (!entry) {
+    return (
+      <motion.section
+        key="diario-detalle"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="relative min-h-[100svh] bg-noche text-pergamino"
+      >
+        <div className="max-w-[600px] mx-auto px-6 pt-10">
+          <button onClick={onBack} className="text-pergamino/70 hover:text-dorado active:scale-[0.96] transition mb-6" aria-label="Volver">
+            <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
+          </button>
+          <p className="font-serif italic text-pergamino/55 text-center py-12">
+            Esta entrada ya no está disponible.
+          </p>
+        </div>
+      </motion.section>
+    )
+  }
+
+  const cards = entry.cards.map(c => ({
+    info: findCardById(c.id),
+    reversed: c.reversed,
+    position: c.position
+  })).filter(c => c.info)
+
+  const handleSaveNote = () => {
+    setSavingNote(true)
+    updateNote(entry.id, noteDraft)
+    setTimeout(() => setSavingNote(false), 800)
+  }
+
+  const handleDelete = () => {
+    if (!confirmDelete) {
+      setConfirmDelete(true)
+      setTimeout(() => setConfirmDelete(false), 4000)
+      return
+    }
+    removeEntry(entry.id)
+    onDeleted()
+  }
+
+  const noteChanged = noteDraft !== entry.note
+
+  return (
+    <motion.section
+      key="diario-detalle"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative min-h-[100svh] bg-noche text-pergamino overflow-x-hidden page-frame"
+    >
+      <AtmosphereLayer scene="reading" />
+
+      <div className="relative z-10 max-w-[640px] mx-auto px-6 pt-8 pb-16">
+        <header className="grid grid-cols-3 items-center mb-8">
+          <button onClick={onBack} className="text-pergamino/75 hover:text-dorado active:scale-[0.96] transition justify-self-start" aria-label="Volver al diario">
+            <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
+          </button>
+          <h2 className="font-serif text-[0.85rem] uppercase tracking-[0.28em] text-dorado text-center">
+            Entrada
+          </h2>
+          <span />
+        </header>
+
+        <div className="text-center mb-8">
+          <p className="text-[0.58rem] tracking-[0.30em] uppercase text-dorado/70 font-light mb-2">
+            {TYPE_LABEL[entry.type] || entry.type}
+          </p>
+          <p className="font-serif text-pergamino/85 text-[0.95rem]">
+            {humanDate(entry.dateISO)} · <span className="tabular-nums">{humanTime(entry.timestamp)}</span>
+          </p>
+        </div>
+
+        {entry.intention && entry.intention.length > 0 && (
+          <div className="text-center mb-10 px-4">
+            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/35 font-light mb-3">
+              Sobre
+            </p>
+            <p className="font-serif italic text-pergamino/70 text-[1rem] leading-[1.7] max-w-[28rem] mx-auto">
+              «{entry.intention}»
+            </p>
+          </div>
+        )}
+
+        <StarDivider className="mb-8" />
+
+        {/* Cartas */}
+        <div className="space-y-3 mb-10">
+          {cards.map((c, idx) => (
+            <button
+              key={`${entry.id}-card-${idx}`}
+              onClick={() => onCarta(c.info, c.reversed)}
+              className="block w-full text-left p-3 rounded-[3px] border border-dorado/15 hover:border-dorado/35 transition-colors active:scale-[0.995]"
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-dorado/70 mt-1 shrink-0"><StarTiny size={9} /></span>
+                <div className="flex-1">
+                  {c.position && (
+                    <p className="text-[0.6rem] tracking-[0.22em] uppercase text-dorado/65 font-light mb-1">
+                      {c.position}
+                    </p>
+                  )}
+                  <p className="font-serif text-pergamino text-[1rem]">
+                    {c.info.nombre}
+                    {c.reversed && (
+                      <span className="ml-2 text-[0.65rem] tracking-[0.20em] uppercase text-vino/85 font-medium">
+                        invertida
+                      </span>
+                    )}
+                  </p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Nota libre */}
+        <div className="mb-10">
+          <label className="block text-[0.58rem] tracking-[0.30em] uppercase text-dorado/75 font-light mb-3">
+            Nota
+          </label>
+          <textarea
+            value={noteDraft}
+            onChange={(e) => setNoteDraft(e.target.value)}
+            placeholder="Lo que se aclaró después, lo que volvió a aparecer, lo que quieras recordar…"
+            rows={5}
+            className="w-full bg-noche/40 border border-dorado/20 focus:border-dorado/50 rounded-[3px] px-4 py-3 text-pergamino/85 font-light text-[0.92rem] leading-[1.7] placeholder:text-pergamino/30 placeholder:italic focus:outline-none transition-colors resize-y"
+          />
+          {noteChanged && (
+            <button
+              onClick={handleSaveNote}
+              disabled={savingNote}
+              className="mt-3 inline-flex items-center gap-2 text-[0.62rem] tracking-[0.28em] uppercase text-dorado hover:text-dorado/85 active:scale-[0.97] transition font-light"
+            >
+              {savingNote ? <Check className="w-3.5 h-3.5" strokeWidth={1.5} /> : null}
+              <span>{savingNote ? 'Guardado' : 'Guardar nota'}</span>
+            </button>
+          )}
+        </div>
+
+        <StarDivider className="mb-8" />
+
+        {/* Eliminar */}
+        <div className="text-center">
+          <button
+            onClick={handleDelete}
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-[3px] text-[0.62rem] tracking-[0.28em] uppercase font-light transition-colors active:scale-[0.97] ${
+              confirmDelete
+                ? 'text-vino border border-vino/60'
+                : 'text-pergamino/45 hover:text-vino/85 border border-transparent'
+            }`}
+          >
+            <Trash2 className="w-3.5 h-3.5" strokeWidth={1.3} />
+            <span>{confirmDelete ? 'Toca otra vez para confirmar' : 'Eliminar entrada'}</span>
+          </button>
+        </div>
+      </div>
+    </motion.section>
+  )
+}
+
+/* =====================================================================
  * APP
  * ===================================================================*/
 
@@ -3491,6 +3872,7 @@ export default function App() {
   const [pendingCount, setPendingCount] = useState(3)
   const [intention, setIntention]       = useState('')
   const [opening, setOpening]           = useState(true)
+  const [journalEntryId, setJournalEntryId] = useState(null)
 
   /* ONBOARDING — se muestra solo en la primera visita.
      Flag ade.onboarded en localStorage. Si falla (modo privado), se
@@ -3559,6 +3941,13 @@ export default function App() {
     if (target === 'home') setView('home')
     else if (target === 'explorar') setView('explorar')
     else if (target === 'selector') setView('selector')
+    else if (target === 'diario') setView('diario')
+  }
+
+  const openJournalEntry = (id) => {
+    setJournalEntryId(id)
+    setPreviousView('diario')
+    setView('diarioDetalle')
   }
 
   return (
@@ -3646,6 +4035,23 @@ export default function App() {
             card={cardActiva}
             reversed={cardReversed}
             onBack={back}
+          />
+        )}
+        {view === 'diario' && (
+          <Diario
+            key="diario"
+            onHome={() => setView('home')}
+            onNav={goNav}
+            onOpen={openJournalEntry}
+          />
+        )}
+        {view === 'diarioDetalle' && journalEntryId && (
+          <DiarioDetalle
+            key={`diario-detalle-${journalEntryId}`}
+            entryId={journalEntryId}
+            onBack={() => setView('diario')}
+            onCarta={(c, r) => goDetail(c, r)}
+            onDeleted={() => { setJournalEntryId(null); setView('diario') }}
           />
         )}
       </AnimatePresence>
