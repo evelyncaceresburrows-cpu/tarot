@@ -10,3 +10,9 @@ dist-preview
 .test-write.txt
 test_engine.mjs
 test_integration.mjs
+
+# Secrets locales — Supabase keys, etc.
+.env
+.env.local
+.env.production
+.env.development

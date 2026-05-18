@@ -26,6 +26,17 @@ import {
   humanDate,
   humanTime
 } from './engine/journal.js'
+import {
+  isAuthConfigured,
+  sendMagicLink,
+  getCurrentUser,
+  signOut,
+  onAuthChange
+} from './engine/auth.js'
+import {
+  checkCelticAccess,
+  consumeCelticUse
+} from './engine/celticAccess.js'
 
 const ARCANOS_MAYORES = [
   { num: 0,  romano: '0',     nombre: 'El Loco',                 file: '00-el-loco.png',
@@ -2274,12 +2285,13 @@ function Tirada({ count, intention, onCarta, onHome }) {
 
 /* Wrapper que selecciona 10 cartas una sola vez al montar y se las
  * entrega a CruzCeltica. Aísla el azar del re-render. */
-function CruzCelticaWrapper({ intention, onCarta, onHome }) {
+function CruzCelticaWrapper({ intention, access, onCarta, onHome }) {
   const [cards] = useState(() => pickRandomCards(DECK, CELTIC_POSITION_COUNT))
   return (
     <CruzCeltica
       cards={cards}
       intention={intention}
+      access={access}
       onCarta={onCarta}
       onHome={onHome}
     />
@@ -2287,7 +2299,7 @@ function CruzCelticaWrapper({ intention, onCarta, onHome }) {
 }
 
 
-function CruzCeltica({ cards, intention, onCarta, onHome }) {
+function CruzCeltica({ cards, intention, access, onCarta, onHome }) {
   const [phase, setPhase]                 = useState('intro')
   const [revealedCount, setRevealedCount] = useState(0)
   const savedRef = useRef(false)
@@ -2306,7 +2318,10 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
     return () => clearTimeout(t)
   }, [revealedCount])
 
-  /* Guardado silencioso al diario cuando entramos en fase reading */
+  /* Guardado silencioso al diario + registro del consumo de acceso
+     cuando entramos en fase reading. El consumeCelticUse descuenta la
+     tirada gratis o paga según corresponda. Si access es null o
+     unconfigured, no hace nada. */
   useEffect(() => {
     if (phase !== 'reading' || savedRef.current) return
     savedRef.current = true
@@ -2324,7 +2339,10 @@ function CruzCeltica({ cards, intention, onCarta, onHome }) {
         summary
       })
     } catch (_) { /* silencioso */ }
-  }, [phase, cards, intention])
+
+    // Consumir el uso. No bloqueamos el render.
+    try { consumeCelticUse(access) } catch (_) {}
+  }, [phase, cards, intention, access])
 
   const revealNext = () => {
     setRevealedCount(c => Math.min(c + 1, CELTIC_POSITION_COUNT))
@@ -3960,6 +3978,279 @@ function DiarioDetalle({ entryId, onBack, onCarta, onDeleted }) {
 }
 
 /* =====================================================================
+ * INSCRIPCIÓN · MAGIC LINK SENT · PAYWALL
+ *
+ * Gate de la Cruz Celta: la primera tirada es gratis pero pide
+ * inscripción (email + magic link). Las siguientes piden pago.
+ * Tres pantallas con el mismo lenguaje visual del onboarding —
+ * editorial, contemplativo, sin formularios estridentes.
+ * ===================================================================*/
+
+function Inscripcion({ onBack, onSent }) {
+  const [email, setEmail] = useState('')
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
+
+  const submit = async () => {
+    setError('')
+    const v = email.trim()
+    if (!v || v.indexOf('@') === -1) {
+      setError('Escribe un correo válido.')
+      return
+    }
+    setSending(true)
+    try {
+      await sendMagicLink(v)
+      onSent(v)
+    } catch (e) {
+      setError(e?.message || 'No pude enviar el correo. Intenta otra vez.')
+      setSending(false)
+    }
+  }
+
+  return (
+    <motion.section
+      key="inscripcion"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative min-h-[100svh] ritual-bg text-pergamino page-frame"
+    >
+      <AtmosphereLayer scene="intention" />
+
+      <div
+        className="relative z-10 max-w-[460px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center text-center"
+        style={{
+          paddingTop: 'calc(2.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
+        }}
+      >
+        {/* Volver */}
+        <button
+          onClick={onBack}
+          className="absolute left-3 sm:left-6 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-pergamino/70 hover:text-dorado transition active:scale-[0.96]"
+          style={{ top: 'calc(0.5rem + env(safe-area-inset-top, 0px))' }}
+          aria-label="Volver"
+        >
+          <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
+        </button>
+
+        <div className="text-dorado/60 mb-8"><CompassStar size={42} /></div>
+
+        <p className="text-[0.58rem] tracking-[0.30em] uppercase text-dorado/65 font-light mb-3">
+          Antes de la Cruz
+        </p>
+        <h2 className="font-serif font-light text-dorado uppercase mb-6 ritual-loose-tracking" style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.7rem)', letterSpacing: 'clamp(0.20em, 1vw, 0.32em)' }}>
+          Tu nombre acá
+        </h2>
+        <p className="font-serif italic text-pergamino/70 text-[0.98rem] sm:text-[1rem] leading-[1.75] max-w-[26rem] mb-10 px-2">
+          La Cruz Celta es una lectura larga. Para abrirla, deja tu correo. Te enviamos un enlace para entrar — sin contraseñas, sin envíos extra.
+        </p>
+
+        <div className="w-full max-w-[26rem] mb-2">
+          <input
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') submit() }}
+            placeholder="tu@correo.com"
+            disabled={sending}
+            autoFocus
+            className="w-full bg-transparent border-0 border-b border-dorado/30 focus:border-dorado/70 outline-none text-pergamino text-center font-serif italic leading-[1.7] py-3 placeholder:text-pergamino/30 placeholder:font-serif placeholder:italic transition-colors disabled:opacity-60"
+            style={{ fontSize: 'max(16px, 1.05rem)' }}
+          />
+        </div>
+
+        <p className="text-[0.6rem] tracking-[0.22em] uppercase text-pergamino/30 font-light mb-10">
+          Privado · sin compartir
+        </p>
+
+        {error && (
+          <p className="text-[0.85rem] text-vino/85 font-serif italic mb-6 max-w-[24rem]">
+            {error}
+          </p>
+        )}
+
+        <button
+          onClick={submit}
+          disabled={sending}
+          className="min-h-[48px] px-10 py-3.5 btn-threshold-primary text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985] disabled:opacity-60"
+        >
+          <span>{sending ? 'Enviando…' : 'Enviar enlace'}</span>
+        </button>
+      </div>
+    </motion.section>
+  )
+}
+
+function MagicLinkSent({ email, onBack, onResend }) {
+  const [resending, setResending] = useState(false)
+  const [resentOk, setResentOk] = useState(false)
+
+  const resend = async () => {
+    setResending(true)
+    try {
+      await sendMagicLink(email)
+      setResentOk(true)
+      setTimeout(() => setResentOk(false), 3500)
+    } catch (_) {}
+    setResending(false)
+  }
+
+  return (
+    <motion.section
+      key="magiclink-sent"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative min-h-[100svh] ritual-bg text-pergamino page-frame"
+    >
+      <AtmosphereLayer scene="intention" />
+
+      <div
+        className="relative z-10 max-w-[460px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center text-center"
+        style={{
+          paddingTop: 'calc(2.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
+        }}
+      >
+        <button
+          onClick={onBack}
+          className="absolute left-3 sm:left-6 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-pergamino/70 hover:text-dorado transition active:scale-[0.96]"
+          style={{ top: 'calc(0.5rem + env(safe-area-inset-top, 0px))' }}
+          aria-label="Volver"
+        >
+          <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
+        </button>
+
+        <div className="text-dorado/65 mb-8"><CompassStar size={42} /></div>
+
+        <p className="text-[0.58rem] tracking-[0.30em] uppercase text-dorado/65 font-light mb-3">
+          Revisa tu correo
+        </p>
+        <h2 className="font-serif font-light text-dorado uppercase mb-6 ritual-loose-tracking" style={{ fontSize: 'clamp(1.25rem, 4.2vw, 1.55rem)', letterSpacing: 'clamp(0.18em, 1vw, 0.30em)' }}>
+          Te envié un enlace
+        </h2>
+        <p className="font-serif italic text-pergamino/75 text-[0.98rem] sm:text-[1rem] leading-[1.75] max-w-[26rem] mb-6 px-2">
+          Abre el correo en este mismo dispositivo y toca el enlace. Vas a volver a la app lista para tu Cruz.
+        </p>
+        <p className="font-serif text-pergamino/55 text-[0.88rem] leading-[1.65] max-w-[24rem] mb-12">
+          Enviado a <span className="text-dorado/80 not-italic">{email}</span>
+        </p>
+
+        <button
+          onClick={resend}
+          disabled={resending}
+          className="min-h-[44px] px-4 py-2 text-[0.62rem] tracking-[0.26em] sm:tracking-[0.30em] uppercase text-pergamino/60 hover:text-dorado font-light transition-colors active:scale-[0.97] disabled:opacity-60"
+        >
+          {resending ? 'Enviando…' : resentOk ? 'Enviado de nuevo' : 'Reenviar enlace'}
+        </button>
+      </div>
+    </motion.section>
+  )
+}
+
+function Paywall({ onBack }) {
+  return (
+    <motion.section
+      key="paywall"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+      className="relative min-h-[100svh] ritual-bg text-pergamino page-frame"
+    >
+      <AtmosphereLayer scene="intention" />
+
+      <div
+        className="relative z-10 max-w-[460px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center text-center"
+        style={{
+          paddingTop: 'calc(2.5rem + env(safe-area-inset-top, 0px))',
+          paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
+        }}
+      >
+        <button
+          onClick={onBack}
+          className="absolute left-3 sm:left-6 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-pergamino/70 hover:text-dorado transition active:scale-[0.96]"
+          style={{ top: 'calc(0.5rem + env(safe-area-inset-top, 0px))' }}
+          aria-label="Volver"
+        >
+          <ChevronLeft className="w-6 h-6" strokeWidth={1.3} />
+        </button>
+
+        <div className="text-dorado/55 mb-8"><CompassStar size={42} /></div>
+
+        <p className="text-[0.58rem] tracking-[0.30em] uppercase text-dorado/65 font-light mb-3">
+          Cruz Celta
+        </p>
+        <h2 className="font-serif font-light text-dorado uppercase mb-6 ritual-loose-tracking" style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.7rem)', letterSpacing: 'clamp(0.20em, 1vw, 0.32em)' }}>
+          Tirada acompañada
+        </h2>
+        <p className="font-serif italic text-pergamino/75 text-[0.98rem] sm:text-[1rem] leading-[1.75] max-w-[26rem] mb-4 px-2">
+          Ya usaste tu primera Cruz Celta. La siguiente sigue disponible, con la misma calidad de lectura — diez cartas, ocho capas, una pregunta que se queda.
+        </p>
+        <p className="font-serif italic text-pergamino/55 text-[0.92rem] leading-[1.7] max-w-[24rem] mb-12 px-2">
+          La compra estará disponible muy pronto.
+        </p>
+
+        <button
+          disabled
+          className="min-h-[48px] px-10 py-3.5 btn-threshold text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] opacity-60 cursor-not-allowed"
+        >
+          <span>Comprar tirada · próximamente</span>
+        </button>
+
+        <button
+          onClick={onBack}
+          className="mt-8 min-h-[44px] px-4 py-2 text-[0.62rem] tracking-[0.26em] sm:tracking-[0.30em] uppercase text-pergamino/55 hover:text-dorado/85 font-light transition-colors active:scale-[0.97]"
+        >
+          Volver al inicio
+        </button>
+      </div>
+    </motion.section>
+  )
+}
+
+/* Resolver intermedio: cuando el listener de auth detecta sesión nueva
+   (magic link entró), pasamos por acá brevemente. Chequea acceso y
+   rebota al destino correcto. La pantalla es solo un punto de
+   transición visual. */
+function CelticGateResolver({ onResolved }) {
+  useEffect(() => {
+    let cancelled = false
+    checkCelticAccess().then(access => {
+      if (cancelled) return
+      if (access.state === 'allowed' || access.state === 'unconfigured') {
+        onResolved('cruzceltica', access)
+      } else if (access.state === 'needs_payment') {
+        onResolved('paywall', access)
+      } else {
+        // needs_signup raro acá pero por completeness
+        onResolved('inscripcion', access)
+      }
+    })
+    return () => { cancelled = true }
+  }, [onResolved])
+
+  return (
+    <motion.section
+      key="celticGate"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="relative min-h-[100svh] ritual-bg text-pergamino flex items-center justify-center"
+    >
+      <p className="font-serif italic text-dorado/65 text-[0.95rem]">
+        Acomodando la mesa…
+      </p>
+    </motion.section>
+  )
+}
+
+/* =====================================================================
  * APP
  * ===================================================================*/
 
@@ -3972,6 +4263,42 @@ export default function App() {
   const [intention, setIntention]       = useState('')
   const [opening, setOpening]           = useState(true)
   const [journalEntryId, setJournalEntryId] = useState(null)
+
+  /* AUTH / ACCESO A CRUZ CELTA — modelo "primera gratis, después paga".
+   *
+   *   celticAccess: el último resultado de checkCelticAccess(). Se usa
+   *   en CruzCelticaWrapper para registrar el consumo al terminar.
+   *   pendingEmail: el correo al que se envió el magic link (para la
+   *   pantalla de espera).
+   */
+  const [currentUser, setCurrentUser]       = useState(null)
+  const [celticAccess, setCelticAccess]     = useState(null)
+  const [pendingEmail, setPendingEmail]     = useState('')
+
+  /* Sesión inicial + listener de cambios de sesión.
+     El magic link, cuando vuelve, dispara onAuthChange con el user.
+     En ese caso, si la persona quedó en 'magiclink-sent', la rebotamos
+     al gate de la Cruz Celta. */
+  useEffect(() => {
+    if (!isAuthConfigured()) return
+    let mounted = true
+    getCurrentUser().then(u => { if (mounted) setCurrentUser(u) })
+
+    const unsub = onAuthChange((u) => {
+      if (!mounted) return
+      setCurrentUser(u)
+      if (u) {
+        setView(prev => {
+          if (prev === 'magiclink-sent' || prev === 'inscripcion') {
+            // Al autenticarse, retomamos el gate de Cruz Celta.
+            return 'celticGate'
+          }
+          return prev
+        })
+      }
+    })
+    return () => { mounted = false; unsub() }
+  }, [])
 
   /* ONBOARDING — se muestra solo en la primera visita.
      Flag ade.onboarded en localStorage. Si falla (modo privado), se
@@ -4043,6 +4370,24 @@ export default function App() {
     else if (target === 'diario') setView('diario')
   }
 
+  /* Gate de la Cruz Celta. Se ejecuta cuando la persona termina el
+     corte del mazo y pidió 10 cartas. Decide:
+       - allowed     → entrar a cruzceltica
+       - needs_signup → inscripcion
+       - needs_payment → paywall
+       - unconfigured → entrar (modo dev / sin Supabase)  */
+  const enterCelticOrGate = async () => {
+    const access = await checkCelticAccess()
+    setCelticAccess(access)
+    if (access.state === 'allowed' || access.state === 'unconfigured') {
+      setView('cruzceltica')
+    } else if (access.state === 'needs_signup') {
+      setView('inscripcion')
+    } else {
+      setView('paywall')
+    }
+  }
+
   const openJournalEntry = (id) => {
     setJournalEntryId(id)
     setPreviousView('diario')
@@ -4089,10 +4434,43 @@ export default function App() {
             key="cut"
             onContinue={() => {
               if (pendingCount === 1) setView('tirada1')
-              else if (pendingCount === 10) setView('cruzceltica')
+              else if (pendingCount === 10) enterCelticOrGate()
               else setView('tirada3')
             }}
             onBack={() => setView('shuffle')}
+          />
+        )}
+        {/* Estado intermedio: el listener de auth lo deja acá si la
+            persona acaba de loguearse por magic link. Lo resolvemos
+            en cuanto entramos: chequeamos acceso y rutamos. */}
+        {view === 'celticGate' && (
+          <CelticGateResolver
+            key="celticGate"
+            onResolved={(target, access) => {
+              if (access) setCelticAccess(access)
+              setView(target)
+            }}
+          />
+        )}
+        {view === 'inscripcion' && (
+          <Inscripcion
+            key="inscripcion"
+            onBack={() => setView('home')}
+            onSent={(email) => { setPendingEmail(email); setView('magiclink-sent') }}
+          />
+        )}
+        {view === 'magiclink-sent' && (
+          <MagicLinkSent
+            key="magiclink-sent"
+            email={pendingEmail}
+            onBack={() => setView('home')}
+            onResend={() => {}}
+          />
+        )}
+        {view === 'paywall' && (
+          <Paywall
+            key="paywall"
+            onBack={() => setView('home')}
           />
         )}
         {view === 'explorar' && (
@@ -4124,6 +4502,7 @@ export default function App() {
           <CruzCelticaWrapper
             key="cruzceltica"
             intention={intention}
+            access={celticAccess}
             onCarta={(c, r) => goDetail(c, r)}
             onHome={() => setView('home')}
           />
