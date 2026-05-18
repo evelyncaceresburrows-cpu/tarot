@@ -2641,9 +2641,9 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
 
   return (
     <div className="px-1 max-w-[640px] mx-auto">
-      {/* TESIS — hipótesis específica de esta tirada. */}
+      {/* === 1 · TESIS — hipótesis específica de esta tirada. === */}
       {r?.thesis && (
-        <div className="text-center max-w-[34rem] mx-auto mb-7">
+        <div className="text-center max-w-[34rem] mx-auto mb-4">
           <div className="flex items-center justify-center gap-3 mb-4 text-dorado/65">
             <span className="h-px w-8 bg-dorado/35" />
             <StarTiny size={9} />
@@ -2657,18 +2657,109 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
 
       {/* MACROS — patrones detectados sobre las 10 cartas. */}
       {r?.macros && r.macros.length >= 2 && (
-        <p className="text-center text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/45 font-medium mb-8">
+        <p className="text-center text-[0.58rem] tracking-[0.28em] uppercase text-pergamino/45 font-medium mb-10">
           Predomina: {r.macros.slice(0, 4).map(m => m.label).join(' · ')}
         </p>
       )}
 
-      {/* Layout cross+staff — visual del recorrido */}
+      {/* === 2 · LA CRUZ — composición visual armada === */}
+      <div className="text-center mb-5">
+        <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/70 font-light">
+          La cruz
+        </p>
+      </div>
       <CelticLayout slots={slots} onCarta={onCarta} />
 
-      <StarDivider className="my-10" />
+      {/* === 3 · CARTA POR CARTA — explicación detallada de cada
+              posición. Esta sección no existía antes: la lectura saltaba
+              directo a la síntesis y la persona perdía el sentido
+              individual de cada carta. Acá cada una pesa por separado. === */}
+      <StarDivider className="my-12" />
 
-      {/* DESARROLLO — 8 capas con microheadings.
-          Cada sección solo aparece si tiene contenido propio. */}
+      <div className="text-center mb-8">
+        <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/75 font-light mb-3">
+          Carta por carta
+        </p>
+        <p className="font-serif italic text-pergamino/55 text-[0.92rem] leading-[1.7] max-w-[28rem] mx-auto">
+          Cada posición pesa por separado. Después se mira el conjunto.
+        </p>
+      </div>
+
+      <div className="space-y-10 max-w-[34rem] mx-auto">
+        {slots.map((s, idx) => {
+          const c   = s.content
+          const num = String(idx + 1).padStart(2, '0')
+          const fallback = s.slot.reversed ? s.slot.card.invertido : s.slot.card.derecho
+          return (
+            <article key={`celtic-card-${idx}`} className="relative">
+              {/* Encabezado de posición */}
+              <header className="mb-3">
+                <p className="text-[0.58rem] tracking-[0.30em] uppercase text-dorado/70 font-medium">
+                  {num} · {s.pos.role || s.pos.classical}
+                </p>
+                {s.pos.label && (
+                  <p className="font-serif italic text-pergamino/55 text-[0.85rem] mt-1 leading-[1.6]">
+                    {s.pos.label}
+                  </p>
+                )}
+              </header>
+
+              {/* Nombre de la carta + marca de invertida */}
+              <button
+                onClick={() => onCarta(s.slot.card, s.slot.reversed)}
+                className="block text-left mb-3 active:scale-[0.995]"
+                aria-label={`Abrir ficha de ${s.slot.card.nombre}`}
+              >
+                <p className="font-serif text-pergamino text-[1.08rem] hover:text-dorado/95 transition-colors">
+                  {s.slot.card.nombre}
+                  {s.slot.reversed && (
+                    <span className="ml-2 text-[0.62rem] tracking-[0.22em] uppercase text-vino/85 font-medium align-middle">
+                      invertida
+                    </span>
+                  )}
+                </p>
+              </button>
+
+              {/* Essence — la línea poética */}
+              {c?.essence && (
+                <p className="font-serif italic text-dorado/85 text-[0.95rem] leading-[1.6] mb-3">
+                  {c.essence}
+                </p>
+              )}
+
+              {/* Cuerpo de la lectura — lo que realmente dice la carta acá */}
+              <p className="font-light text-pergamino/85 text-[0.92rem] leading-[1.9]">
+                {c?.reading || fallback}
+                {(() => {
+                  const sit = composeSituations(c?.manifestations)
+                  return sit ? ' ' + sit : ''
+                })()}
+              </p>
+
+              {/* Prompt — la pregunta que la carta abre */}
+              {c?.prompt && (
+                <p className="font-serif italic text-pergamino/65 text-[0.88rem] leading-[1.7] mt-4 pt-3 border-t border-dorado/12">
+                  <span className="text-dorado not-italic font-sans mr-2">→</span>
+                  {c.prompt}
+                </p>
+              )}
+            </article>
+          )
+        })}
+      </div>
+
+      {/* === 4 · LECTURA GENERAL — la síntesis sobre las 10 cartas === */}
+      <StarDivider className="my-12" />
+
+      <div className="text-center mb-8">
+        <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/75 font-light mb-3">
+          Lectura general
+        </p>
+        <p className="font-serif italic text-pergamino/55 text-[0.92rem] leading-[1.7] max-w-[28rem] mx-auto">
+          Lo que dicen las cartas juntas, no por separado.
+        </p>
+      </div>
+
       <div className="max-w-[34rem] mx-auto space-y-9">
         {/* NÚCLEO — relación entre carta 1 (presente) y carta 2 (cruce) */}
         {r?.core && (
@@ -2729,36 +2820,39 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
             </p>
           </section>
         )}
-
-        {/* SITUACIONES HUMANAS — escenas observables, no símbolo */}
-        {r?.scenes && r.scenes.length >= 1 && (
-          <section>
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
-              Cómo se nota esto en lo cotidiano
-            </p>
-            <ul className="space-y-2.5">
-              {r.scenes.map((scene, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="text-dorado/55 mt-2 shrink-0"><StarTiny size={6} /></span>
-                  <span className="font-light text-pergamino/80 text-[0.92rem] leading-[1.85]">
-                    {scene}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
       </div>
 
-      <StarDivider className="my-10" />
+      {/* === 5 · COTIDIANO — situaciones humanas observables === */}
+      {r?.scenes && r.scenes.length >= 1 && (
+        <>
+          <StarDivider className="my-12" />
+          <div className="text-center mb-6">
+            <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/75 font-light">
+              Cómo se nota en lo cotidiano
+            </p>
+          </div>
+          <ul className="space-y-3 max-w-[34rem] mx-auto">
+            {r.scenes.map((scene, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="text-dorado/55 mt-2 shrink-0"><StarTiny size={6} /></span>
+                <span className="font-light text-pergamino/80 text-[0.92rem] leading-[1.85]">
+                  {scene}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
 
-      {/* CIERRE NARRATIVO — eco + dirección posible, sin moraleja */}
+      {/* === 6 · CIERRE — eco final + pregunta de horizonte === */}
+      <StarDivider className="my-12" />
+
       {r?.closing && (
         <div className="text-center max-w-[34rem] mx-auto mb-8">
-          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-4">
+          <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/75 font-light mb-4">
             Cierre
           </p>
-          <p className="font-serif italic text-pergamino/90 text-[1.06rem] md:text-[1.10rem] leading-[1.7]">
+          <p className="font-serif italic text-pergamino/90 text-[1.06rem] md:text-[1.10rem] leading-[1.75]">
             {r.closing}
           </p>
         </div>
@@ -2769,7 +2863,7 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
         <p className="text-[0.6rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-5">
           Para mirar después
         </p>
-        <p className="font-serif italic text-pergamino text-[1.08rem] leading-[1.7]">
+        <p className="font-serif italic text-pergamino text-[1.08rem] leading-[1.75]">
           <span className="text-dorado font-sans not-italic mr-2">→</span>
           {reading.closing}
         </p>
