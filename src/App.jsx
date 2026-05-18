@@ -347,7 +347,7 @@ function TopRitualNav({ active = 'home', onGo }) {
       <button
         key={it.key}
         onClick={() => onGo(it.key)}
-        className={`relative px-1 py-1 text-[0.58rem] md:text-[0.6rem] tracking-[0.32em] uppercase font-light transition-colors duration-500 ${
+        className={`relative inline-flex items-center justify-center min-h-[44px] px-2 py-2 text-[0.6rem] md:text-[0.62rem] tracking-[0.28em] md:tracking-[0.32em] ritual-loose-tracking uppercase font-light transition-colors duration-500 ${
           isActive ? 'text-dorado' : 'text-pergamino/50 hover:text-dorado/85'
         }`}
         aria-current={isActive ? 'page' : undefined}
@@ -355,7 +355,7 @@ function TopRitualNav({ active = 'home', onGo }) {
         {it.label}
         {isActive && (
           <span
-            className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-1 h-1 rounded-full bg-dorado/75"
+            className="absolute left-1/2 -translate-x-1/2 bottom-1 w-1 h-1 rounded-full bg-dorado/75"
             aria-hidden="true"
           />
         )}
@@ -365,7 +365,7 @@ function TopRitualNav({ active = 'home', onGo }) {
 
   return (
     <nav
-      className="w-full max-w-[440px] mx-auto flex items-center justify-center gap-2.5 md:gap-4"
+      className="w-full max-w-[460px] mx-auto flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 px-2"
       aria-label="Menú principal"
     >
       {nodes}
@@ -1097,11 +1097,11 @@ function Onboarding({ onComplete }) {
           paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
         }}
       >
-        {/* Skip discreto arriba a la derecha */}
+        {/* Skip discreto arriba a la derecha — touch target ≥44px */}
         <button
           onClick={skip}
-          className="absolute right-6 text-[0.56rem] tracking-[0.30em] uppercase text-pergamino/35 hover:text-dorado/80 font-light transition-colors"
-          style={{ top: 'calc(1.5rem + env(safe-area-inset-top, 0px))' }}
+          className="absolute right-3 sm:right-6 min-h-[44px] min-w-[44px] px-3 inline-flex items-center justify-center text-[0.58rem] tracking-[0.26em] sm:tracking-[0.30em] uppercase text-pergamino/35 hover:text-dorado/80 font-light transition-colors"
+          style={{ top: 'calc(0.5rem + env(safe-area-inset-top, 0px))' }}
         >
           Saltar
         </button>
@@ -1127,13 +1127,13 @@ function Onboarding({ onComplete }) {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="flex flex-col items-center"
           >
-            <p className="text-[0.56rem] tracking-[0.32em] uppercase text-dorado/55 font-light mb-4">
+            <p className="text-[0.58rem] tracking-[0.26em] sm:tracking-[0.32em] uppercase text-dorado/55 font-light mb-4">
               {current.eyebrow}
             </p>
-            <h2 className="font-serif text-[1.5rem] md:text-[1.85rem] font-light text-dorado uppercase tracking-[0.28em] md:tracking-[0.34em] mb-6">
+            <h2 className="font-serif font-light text-dorado uppercase mb-6 ritual-loose-tracking" style={{ fontSize: 'clamp(1.35rem, 5vw, 1.85rem)', letterSpacing: 'clamp(0.22em, 1vw, 0.34em)' }}>
               {current.title}
             </h2>
-            <p className="font-serif italic text-pergamino/75 text-[1rem] md:text-[1.05rem] leading-[1.75] max-w-[26rem] mb-12">
+            <p className="font-serif italic text-pergamino/75 text-[0.98rem] sm:text-[1rem] md:text-[1.05rem] leading-[1.75] max-w-[26rem] mb-10 sm:mb-12 px-2">
               {current.body}
             </p>
           </motion.div>
@@ -1153,7 +1153,7 @@ function Onboarding({ onComplete }) {
 
         <button
           onClick={advance}
-          className="w-full max-w-[260px] py-3.5 btn-threshold-primary text-[0.62rem] tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
+          className="w-full max-w-[260px] min-h-[48px] py-3.5 btn-threshold-primary text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985]"
         >
           <span>{current.cta}</span>
         </button>
@@ -1254,12 +1254,13 @@ function Home({ destacada, onTirada, onExplorar, onCarta, onNav }) {
         </motion.div>
 
         {/* TÍTULO — sin filetes redundantes, más compacto.
-            El menú superior ya marca el inicio de la página. */}
+            El menú superior ya marca el inicio de la página.
+            Tracking más estrecho en mobile chico para que no se desborde. */}
         <header className="text-center relative">
-          <h1 className="font-serif text-[1.65rem] md:text-[2.2rem] font-light text-dorado uppercase tracking-[0.32em] md:tracking-[0.42em] mb-2.5 md:mb-3">
+          <h1 className="font-serif font-light text-dorado uppercase mb-2.5 md:mb-3 ritual-loose-tracking" style={{ fontSize: 'clamp(1.45rem, 6vw, 2.2rem)', letterSpacing: 'clamp(0.22em, 1.2vw, 0.42em)' }}>
             Tarot Ade
           </h1>
-          <p className="font-serif italic text-[0.85rem] md:text-[0.95rem] text-dorado/65 tracking-[0.02em] max-w-[24rem] mx-auto leading-relaxed">
+          <p className="font-serif italic text-[0.83rem] sm:text-[0.85rem] md:text-[0.95rem] text-dorado/65 tracking-[0.02em] max-w-[24rem] mx-auto leading-relaxed px-2">
             {dailyPhrases[dayIndex]}
           </p>
         </header>
@@ -1601,15 +1602,16 @@ function IntentionScreen({ initialIntention, onContinue, onBack }) {
           <span />
         </header>
 
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
-          <p className="font-serif text-[1.6rem] md:text-[1.85rem] text-pergamino leading-[1.45] mb-6">
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-2">
+          <p className="font-serif text-pergamino leading-[1.45] mb-6" style={{ fontSize: 'clamp(1.4rem, 5vw, 1.85rem)' }}>
             Tómate un momento.
           </p>
-          <p className="font-serif italic text-pergamino/55 text-[0.98rem] md:text-[1rem] leading-[1.7] max-w-[24rem] mb-14">
+          <p className="font-serif italic text-pergamino/55 text-[0.95rem] sm:text-[0.98rem] md:text-[1rem] leading-[1.7] max-w-[24rem] mb-12 sm:mb-14">
             Si quieres, puedes escribir lo que te trae aquí.
           </p>
 
-          {/* Input editorial — solo línea inferior */}
+          {/* Input editorial — solo línea inferior. font-size ≥16px
+              para que iOS no haga auto-zoom al focus. */}
           <div className="w-full max-w-[26rem] mb-2">
             <input
               type="text"
@@ -1619,17 +1621,18 @@ function IntentionScreen({ initialIntention, onContinue, onBack }) {
               placeholder="Estoy pensando en…"
               maxLength={140}
               autoFocus
-              className="w-full bg-transparent border-0 border-b border-dorado/30 focus:border-dorado/70 outline-none text-pergamino text-center font-serif italic text-[1.05rem] leading-[1.7] py-3 placeholder:text-pergamino/30 placeholder:font-serif placeholder:italic transition-colors"
+              className="w-full bg-transparent border-0 border-b border-dorado/30 focus:border-dorado/70 outline-none text-pergamino text-center font-serif italic leading-[1.7] py-3 placeholder:text-pergamino/30 placeholder:font-serif placeholder:italic transition-colors"
+              style={{ fontSize: 'max(16px, 1.05rem)' }}
             />
           </div>
 
-          <p className="text-[0.6rem] tracking-[0.22em] uppercase text-pergamino/30 font-light mb-14">
+          <p className="text-[0.6rem] tracking-[0.22em] uppercase text-pergamino/30 font-light mb-12 sm:mb-14">
             Opcional
           </p>
 
           <button
             onClick={handleContinue}
-            className="px-10 py-3.5 btn-ritual text-pergamino text-[0.66rem] tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
+            className="min-h-[44px] px-10 py-3.5 btn-ritual text-pergamino text-[0.66rem] tracking-[0.26em] sm:tracking-[0.30em] uppercase font-light rounded-[3px] active:scale-[0.985]"
           >
             Barajar cartas
           </button>
@@ -2129,9 +2132,9 @@ function Tirada({ count, intention, onCarta, onHome }) {
         {allRevealed && <StarDivider className="mt-3 mb-10" />}
 
         {isThree ? (
-          <div className="grid grid-cols-3 gap-4 md:gap-7 px-2 mb-8">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-7 px-1 sm:px-2 mb-8">
             {tirada.map((slot, idx) => (
-              <div key={`${slot.card.id}-${idx}`} className="flex flex-col items-center">
+              <div key={`${slot.card.id}-${idx}`} className="flex flex-col items-center min-w-0">
                 <SlotMarco>
                   <CartaFlippable
                     card={slot.card}
@@ -2140,7 +2143,7 @@ function Tirada({ count, intention, onCarta, onHome }) {
                     onFlip={() => flip(idx)}
                   />
                 </SlotMarco>
-                <p className="mt-4 text-[0.7rem] font-serif italic text-dorado/75 text-center min-h-[1rem]">
+                <p className="mt-3 sm:mt-4 text-[0.62rem] sm:text-[0.68rem] md:text-[0.7rem] font-serif italic text-dorado/75 text-center min-h-[1rem] leading-tight px-0.5">
                   {POSICIONES_TIRADA[idx].titulo}
                 </p>
               </div>
@@ -2559,14 +2562,14 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta
       </AnimatePresence>
 
       {/* === Controles: volver / siguiente === */}
-      <div className="flex items-center gap-6 mt-2">
+      <div className="flex items-center justify-center gap-4 sm:gap-6 mt-2 px-4 flex-wrap">
         {revealedCount > 0 && !isComplete && (
           <button
             onClick={onUnreveal}
-            className="text-[0.58rem] tracking-[0.26em] uppercase text-pergamino/45 hover:text-dorado/75 font-medium transition-colors flex items-center gap-1.5"
+            className="min-h-[44px] px-3 py-2 text-[0.6rem] tracking-[0.22em] sm:tracking-[0.26em] uppercase text-pergamino/55 hover:text-dorado/75 font-medium transition-colors inline-flex items-center gap-1.5 active:scale-[0.97]"
             aria-label="Volver a la carta anterior"
           >
-            <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.4} />
+            <ChevronLeft className="w-4 h-4" strokeWidth={1.4} />
             <span>Anterior</span>
           </button>
         )}
@@ -2574,7 +2577,7 @@ function CelticRevealStage({ slots, revealedCount, onReveal, onUnreveal, onCarta
         {!isComplete && (
           <button
             onClick={onReveal}
-            className="text-[0.62rem] tracking-[0.28em] uppercase text-dorado/85 hover:text-dorado font-medium border-b border-dorado/40 hover:border-dorado/85 pb-1 transition-colors"
+            className="min-h-[44px] px-4 py-2 text-[0.64rem] tracking-[0.24em] sm:tracking-[0.28em] uppercase text-dorado/90 hover:text-dorado font-medium border-b border-dorado/45 hover:border-dorado/85 transition-colors active:scale-[0.97]"
           >
             {revealedCount === 0
               ? 'Revelar primera carta'
@@ -2685,7 +2688,7 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
         </p>
       </div>
 
-      <div className="space-y-10 max-w-[34rem] mx-auto">
+      <div className="space-y-8 md:space-y-10 max-w-[34rem] mx-auto">
         {slots.map((s, idx) => {
           const c   = s.content
           const num = String(idx + 1).padStart(2, '0')
@@ -2694,26 +2697,27 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
             <article key={`celtic-card-${idx}`} className="relative">
               {/* Encabezado de posición */}
               <header className="mb-3">
-                <p className="text-[0.58rem] tracking-[0.30em] uppercase text-dorado/70 font-medium">
+                <p className="fluid-micro text-dorado/70 font-medium">
                   {num} · {s.pos.role || s.pos.classical}
                 </p>
                 {s.pos.label && (
-                  <p className="font-serif italic text-pergamino/55 text-[0.85rem] mt-1 leading-[1.6]">
+                  <p className="font-serif italic text-pergamino/55 text-[0.82rem] sm:text-[0.85rem] mt-1 leading-[1.6]">
                     {s.pos.label}
                   </p>
                 )}
               </header>
 
-              {/* Nombre de la carta + marca de invertida */}
+              {/* Nombre de la carta + marca de invertida.
+                  min-h ≥44px porque también es touch target hacia la ficha. */}
               <button
                 onClick={() => onCarta(s.slot.card, s.slot.reversed)}
-                className="block text-left mb-3 active:scale-[0.995]"
+                className="block text-left mb-3 min-h-[44px] py-1 active:scale-[0.995] w-full"
                 aria-label={`Abrir ficha de ${s.slot.card.nombre}`}
               >
-                <p className="font-serif text-pergamino text-[1.08rem] hover:text-dorado/95 transition-colors">
+                <p className="font-serif text-pergamino text-[1.02rem] sm:text-[1.08rem] hover:text-dorado/95 transition-colors leading-[1.4]">
                   {s.slot.card.nombre}
                   {s.slot.reversed && (
-                    <span className="ml-2 text-[0.62rem] tracking-[0.22em] uppercase text-vino/85 font-medium align-middle">
+                    <span className="ml-2 text-[0.6rem] sm:text-[0.62rem] tracking-[0.22em] uppercase text-vino/85 font-medium align-middle">
                       invertida
                     </span>
                   )}
@@ -2722,13 +2726,13 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
 
               {/* Essence — la línea poética */}
               {c?.essence && (
-                <p className="font-serif italic text-dorado/85 text-[0.95rem] leading-[1.6] mb-3">
+                <p className="font-serif italic text-dorado/85 text-[0.92rem] sm:text-[0.95rem] leading-[1.65] mb-3">
                   {c.essence}
                 </p>
               )}
 
               {/* Cuerpo de la lectura — lo que realmente dice la carta acá */}
-              <p className="font-light text-pergamino/85 text-[0.92rem] leading-[1.9]">
+              <p className="font-light text-pergamino/85 fluid-body">
                 {c?.reading || fallback}
                 {(() => {
                   const sit = composeSituations(c?.manifestations)
@@ -2738,7 +2742,7 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
 
               {/* Prompt — la pregunta que la carta abre */}
               {c?.prompt && (
-                <p className="font-serif italic text-pergamino/65 text-[0.88rem] leading-[1.7] mt-4 pt-3 border-t border-dorado/12">
+                <p className="font-serif italic text-pergamino/65 text-[0.86rem] sm:text-[0.88rem] leading-[1.7] mt-4 pt-3 border-t border-dorado/12">
                   <span className="text-dorado not-italic font-sans mr-2">→</span>
                   {c.prompt}
                 </p>
@@ -2749,25 +2753,25 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
       </div>
 
       {/* === 4 · LECTURA GENERAL — la síntesis sobre las 10 cartas === */}
-      <StarDivider className="my-12" />
+      <StarDivider className="my-10 md:my-12" />
 
       <div className="text-center mb-8">
-        <p className="text-[0.58rem] tracking-[0.32em] uppercase text-dorado/75 font-light mb-3">
+        <p className="fluid-micro text-dorado/75 font-light mb-3">
           Lectura general
         </p>
-        <p className="font-serif italic text-pergamino/55 text-[0.92rem] leading-[1.7] max-w-[28rem] mx-auto">
+        <p className="font-serif italic text-pergamino/55 text-[0.9rem] sm:text-[0.92rem] leading-[1.7] max-w-[28rem] mx-auto">
           Lo que dicen las cartas juntas, no por separado.
         </p>
       </div>
 
-      <div className="max-w-[34rem] mx-auto space-y-9">
+      <div className="max-w-[34rem] mx-auto space-y-8 md:space-y-9">
         {/* NÚCLEO — relación entre carta 1 (presente) y carta 2 (cruce) */}
         {r?.core && (
           <section>
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+            <p className="fluid-micro text-dorado/65 font-medium mb-3">
               Núcleo
             </p>
-            <p className="font-light text-pergamino/85 text-[0.95rem] leading-[1.95]">
+            <p className="font-light text-pergamino/85 fluid-body">
               {r.core}
             </p>
           </section>
@@ -2776,10 +2780,10 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
         {/* FUERZAS QUE EMPUJAN — pasado + corona + futuro próximo */}
         {r?.pushing && (
           <section>
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+            <p className="fluid-micro text-dorado/65 font-medium mb-3">
               Fuerzas que empujan
             </p>
-            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+            <p className="font-light text-pergamino/85 fluid-body">
               {r.pushing}
             </p>
           </section>
@@ -2788,10 +2792,10 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
         {/* FUERZAS QUE RETIENEN — base + entorno + interno */}
         {r?.holding && (
           <section>
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/65 font-medium mb-3">
+            <p className="fluid-micro text-dorado/65 font-medium mb-3">
               Fuerzas que retienen
             </p>
-            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+            <p className="font-light text-pergamino/85 fluid-body">
               {r.holding}
             </p>
           </section>
@@ -2800,10 +2804,10 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
         {/* CARTAS DOMINANTES — qué reconfigura la lectura */}
         {r?.dominants && (
           <section className="pl-3 border-l border-dorado/40">
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/85 font-medium mb-3">
+            <p className="fluid-micro text-dorado/85 font-medium mb-3">
               Lo que reconfigura la lectura
             </p>
-            <p className="font-light text-pergamino/85 text-[0.94rem] leading-[1.95]">
+            <p className="font-light text-pergamino/85 fluid-body">
               {r.dominants}
             </p>
           </section>
@@ -2812,10 +2816,10 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
         {/* SISTEMA DE INVERTIDAS — modifica la hipótesis principal */}
         {r?.inversions && (
           <section className="pl-3 border-l border-vino/45">
-            <p className="text-[0.58rem] tracking-[0.28em] uppercase text-vino/75 font-medium mb-3">
+            <p className="fluid-micro text-vino/75 font-medium mb-3">
               Cómo cambia con las invertidas
             </p>
-            <p className="font-light text-pergamino/80 text-[0.93rem] leading-[1.9]">
+            <p className="font-light text-pergamino/80 fluid-body">
               {r.inversions}
             </p>
           </section>
@@ -2915,7 +2919,7 @@ function CelticLayout({ slots, onCarta }) {
       <div className="aspect-[2/3] w-full rounded-[4px] overflow-hidden ring-1 ring-dorado/30 group-hover:ring-dorado/65 shadow-ritual transition-shadow">
         <CartaMarco card={s.slot.card} reversed={s.slot.reversed} showLabel={false} />
       </div>
-      <p className="mt-1.5 text-[0.48rem] tracking-[0.22em] uppercase text-dorado/55 text-center leading-tight font-light">
+      <p className="mt-1.5 text-[0.54rem] sm:text-[0.58rem] tracking-[0.18em] sm:tracking-[0.22em] uppercase text-dorado/65 text-center leading-tight font-light">
         {s.pos.label}
       </p>
     </motion.button>
@@ -3732,22 +3736,22 @@ function DiarioEntryCard({ entry, onOpen }) {
   return (
     <button
       onClick={onOpen}
-      className="block w-full text-left p-4 rounded-[3px] border border-dorado/15 hover:border-dorado/35 transition-colors duration-500 active:scale-[0.995]"
+      className="block w-full text-left p-4 sm:p-5 min-h-[44px] rounded-[3px] border border-dorado/15 hover:border-dorado/35 transition-colors duration-500 active:scale-[0.995]"
       style={{
         background: 'linear-gradient(180deg, rgba(255,255,255,0.015) 0%, rgba(0,0,0,0.10) 100%)'
       }}
     >
-      <div className="flex items-baseline justify-between mb-2">
-        <span className="text-[0.58rem] tracking-[0.28em] uppercase text-dorado/70 font-light">
+      <div className="flex items-baseline justify-between gap-2 mb-2">
+        <span className="fluid-micro text-dorado/70 font-light leading-none flex-1 min-w-0 truncate">
           {TYPE_LABEL[entry.type] || entry.type}
         </span>
-        <span className="text-[0.7rem] text-pergamino/45 font-light tabular-nums">
+        <span className="text-[0.68rem] sm:text-[0.7rem] text-pergamino/45 font-light tabular-nums shrink-0">
           {humanTime(entry.timestamp)}
         </span>
       </div>
 
       {entry.intention && entry.intention.length > 0 && (
-        <p className="font-serif italic text-pergamino/75 text-[0.9rem] leading-[1.6] mb-3">
+        <p className="font-serif italic text-pergamino/75 text-[0.88rem] sm:text-[0.9rem] leading-[1.6] mb-3 break-words">
           «{entry.intention}»
         </p>
       )}
@@ -3756,21 +3760,21 @@ function DiarioEntryCard({ entry, onOpen }) {
         {cards.slice(0, 6).map((c, i) => (
           <span
             key={`${entry.id}-c-${i}`}
-            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm text-[0.68rem] text-pergamino/75 border border-dorado/15 bg-noche/40"
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[0.66rem] sm:text-[0.68rem] text-pergamino/75 border border-dorado/15 bg-noche/40 max-w-full"
           >
-            {c.info.nombre}
-            {c.reversed && <span className="text-vino/80 text-[0.55rem]" aria-label="invertida">↻</span>}
+            <span className="truncate">{c.info.nombre}</span>
+            {c.reversed && <span className="text-vino/80 text-[0.55rem] shrink-0" aria-label="invertida">↻</span>}
           </span>
         ))}
         {cards.length > 6 && (
-          <span className="text-[0.68rem] text-pergamino/45 italic px-1 py-0.5">
+          <span className="text-[0.66rem] sm:text-[0.68rem] text-pergamino/45 italic px-1 py-1 self-center">
             +{cards.length - 6}
           </span>
         )}
       </div>
 
       {entry.note && entry.note.length > 0 && (
-        <p className="mt-3 pt-3 border-t border-dorado/10 text-[0.78rem] text-pergamino/60 font-light leading-[1.6] line-clamp-2">
+        <p className="mt-3 pt-3 border-t border-dorado/10 text-[0.76rem] sm:text-[0.78rem] text-pergamino/60 font-light leading-[1.6] line-clamp-2 break-words">
           {entry.note}
         </p>
       )}
@@ -3911,7 +3915,7 @@ function DiarioDetalle({ entryId, onBack, onCarta, onDeleted }) {
 
         {/* Nota libre */}
         <div className="mb-10">
-          <label className="block text-[0.58rem] tracking-[0.30em] uppercase text-dorado/75 font-light mb-3">
+          <label className="block fluid-micro text-dorado/75 font-light mb-3">
             Nota
           </label>
           <textarea
@@ -3919,13 +3923,14 @@ function DiarioDetalle({ entryId, onBack, onCarta, onDeleted }) {
             onChange={(e) => setNoteDraft(e.target.value)}
             placeholder="Lo que se aclaró después, lo que volvió a aparecer, lo que quieras recordar…"
             rows={5}
-            className="w-full bg-noche/40 border border-dorado/20 focus:border-dorado/50 rounded-[3px] px-4 py-3 text-pergamino/85 font-light text-[0.92rem] leading-[1.7] placeholder:text-pergamino/30 placeholder:italic focus:outline-none transition-colors resize-y"
+            className="w-full min-h-[140px] bg-noche/40 border border-dorado/20 focus:border-dorado/50 rounded-[3px] px-4 py-3 text-pergamino/85 font-light text-[16px] sm:text-[0.92rem] leading-[1.7] placeholder:text-pergamino/30 placeholder:italic focus:outline-none transition-colors resize-y"
+            style={{ fontSize: 'max(16px, 0.92rem)' }}
           />
           {noteChanged && (
             <button
               onClick={handleSaveNote}
               disabled={savingNote}
-              className="mt-3 inline-flex items-center gap-2 text-[0.62rem] tracking-[0.28em] uppercase text-dorado hover:text-dorado/85 active:scale-[0.97] transition font-light"
+              className="mt-3 min-h-[44px] px-3 py-2 inline-flex items-center gap-2 text-[0.62rem] tracking-[0.26em] sm:tracking-[0.28em] uppercase text-dorado hover:text-dorado/85 active:scale-[0.97] transition font-light"
             >
               {savingNote ? <Check className="w-3.5 h-3.5" strokeWidth={1.5} /> : null}
               <span>{savingNote ? 'Guardado' : 'Guardar nota'}</span>
@@ -3939,7 +3944,7 @@ function DiarioDetalle({ entryId, onBack, onCarta, onDeleted }) {
         <div className="text-center">
           <button
             onClick={handleDelete}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-[3px] text-[0.62rem] tracking-[0.28em] uppercase font-light transition-colors active:scale-[0.97] ${
+            className={`min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-[3px] text-[0.62rem] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-light transition-colors active:scale-[0.97] ${
               confirmDelete
                 ? 'text-vino border border-vino/60'
                 : 'text-pergamino/45 hover:text-vino/85 border border-transparent'

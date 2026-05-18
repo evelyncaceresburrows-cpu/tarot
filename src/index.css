@@ -437,6 +437,68 @@ body {
   bottom: calc(14px + env(safe-area-inset-bottom, 0px));
 }
 
+/* =====================================================================
+ * HELPERS RESPONSIVE — adaptación de pantalla mobile-first.
+ *
+ * El proyecto tiene una identidad editorial densa: tipografía chica,
+ * tracking amplio, padding ajustado. Eso funciona en escritorio, pero
+ * en iPhone SE (375px) los touch targets caen debajo del estándar 44px
+ * iOS y la tipografía no escala. Estos helpers normalizan:
+ *
+ *   .touch-target  — área de hit ≥44px sin alterar el aspecto visual
+ *   .fluid-display — título de portada (clamp entre mobile y desktop)
+ *   .fluid-h2      — heading de sección
+ *   .fluid-body    — texto de lectura
+ *   .fluid-micro   — microheading dorado de sección
+ *   .safe-x        — padding lateral que respeta notches laterales
+ * ===================================================================*/
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fluid-display {
+  font-size: clamp(1.45rem, 4.2vw, 1.95rem);
+  line-height: 1.2;
+}
+
+.fluid-h2 {
+  font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+  line-height: 1.45;
+}
+
+.fluid-body {
+  font-size: clamp(0.9rem, 1.6vw, 0.95rem);
+  line-height: 1.85;
+}
+
+.fluid-micro {
+  font-size: clamp(0.58rem, 1.2vw, 0.62rem);
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+}
+
+.safe-x {
+  padding-left:  max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* Mobile-very-small (≤360px, iPhone SE 1ra gen, Galaxy Fold cerrado) */
+@media (max-width: 360px) {
+  .ritual-compact-360 {
+    /* Reducir gaps de grids muy estrechos */
+    gap: 0.5rem !important;
+  }
+  /* Tracking más estrecho en headings — el tracking-[0.32em] se come ancho */
+  .ritual-loose-tracking {
+    letter-spacing: 0.22em !important;
+  }
+}
+
 /* Estrella mínima — punto dorado tenue que aparece y desaparece */
 @keyframes star-blink {
   0%, 80%, 100% { opacity: 0.18; }
