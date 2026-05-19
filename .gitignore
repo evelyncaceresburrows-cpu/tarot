@@ -11,8 +11,11 @@ dist-preview
 test_engine.mjs
 test_integration.mjs
 
-# Secrets locales — Supabase keys, etc.
+# Secrets locales — Supabase keys, Resend API key, etc.
 .env
 .env.local
 .env.production
 .env.development
+.resend-key
+.supabase-pat
+.flow-keys

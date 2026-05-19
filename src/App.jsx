@@ -37,6 +37,12 @@ import {
   checkCelticAccess,
   consumeCelticUse
 } from './engine/celticAccess.js'
+import {
+  startCruzCeltaPayment,
+  isPaymentReturn,
+  clearPaymentReturnParams,
+  CRUZ_CELTA_PRICE_CLP
+} from './engine/payment.js'
 
 const ARCANOS_MAYORES = [
   { num: 0,  romano: '0',     nombre: 'El Loco',                 file: '00-el-loco.png',
@@ -4155,6 +4161,25 @@ function MagicLinkSent({ email, onBack, onResend }) {
 }
 
 function Paywall({ onBack }) {
+  const [buying, setBuying] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleBuy = async () => {
+    setError('')
+    setBuying(true)
+    try {
+      await startCruzCeltaPayment()
+      // startCruzCeltaPayment hace window.location.href — no debería retornar
+      // a esta línea. Si lo hace, dejamos buying en true para evitar doble click.
+    } catch (e) {
+      setError(e?.message || 'No pude iniciar la compra.')
+      setBuying(false)
+    }
+  }
+
+  // Formato chileno: $2.000 con punto como separador de miles.
+  const priceLabel = `$${CRUZ_CELTA_PRICE_CLP.toLocaleString('es-CL')} CLP`
+
   return (
     <motion.section
       key="paywall"
@@ -4193,20 +4218,34 @@ function Paywall({ onBack }) {
         <p className="font-serif italic text-pergamino/75 text-[0.98rem] sm:text-[1rem] leading-[1.75] max-w-[26rem] mb-4 px-2">
           Ya usaste tu primera Cruz Celta. La siguiente sigue disponible, con la misma calidad de lectura — diez cartas, ocho capas, una pregunta que se queda.
         </p>
-        <p className="font-serif italic text-pergamino/55 text-[0.92rem] leading-[1.7] max-w-[24rem] mb-12 px-2">
-          La compra estará disponible muy pronto.
+        <p className="font-serif italic text-pergamino/60 text-[0.95rem] leading-[1.7] max-w-[24rem] mb-2 px-2">
+          Tirada única
+        </p>
+        <p className="font-serif text-dorado text-[1.45rem] sm:text-[1.55rem] leading-tight mb-10">
+          {priceLabel}
+        </p>
+
+        {error && (
+          <p className="text-[0.85rem] text-vino/85 font-serif italic mb-6 max-w-[24rem]">
+            {error}
+          </p>
+        )}
+
+        <button
+          onClick={handleBuy}
+          disabled={buying}
+          className="min-h-[48px] px-10 py-3.5 btn-threshold-primary text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985] disabled:opacity-60 disabled:cursor-wait"
+        >
+          <span>{buying ? 'Conectando con la pasarela…' : 'Comprar tirada'}</span>
+        </button>
+
+        <p className="mt-4 text-[0.6rem] tracking-[0.22em] uppercase text-pergamino/35 font-light">
+          Pago seguro · Webpay · tarjeta de crédito/débito
         </p>
 
         <button
-          disabled
-          className="min-h-[48px] px-10 py-3.5 btn-threshold text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] opacity-60 cursor-not-allowed"
-        >
-          <span>Comprar tirada · próximamente</span>
-        </button>
-
-        <button
           onClick={onBack}
-          className="mt-8 min-h-[44px] px-4 py-2 text-[0.62rem] tracking-[0.26em] sm:tracking-[0.30em] uppercase text-pergamino/55 hover:text-dorado/85 font-light transition-colors active:scale-[0.97]"
+          className="mt-6 min-h-[44px] px-4 py-2 text-[0.62rem] tracking-[0.26em] sm:tracking-[0.30em] uppercase text-pergamino/55 hover:text-dorado/85 font-light transition-colors active:scale-[0.97]"
         >
           Volver al inicio
         </button>
@@ -4298,6 +4337,20 @@ export default function App() {
       }
     })
     return () => { mounted = false; unsub() }
+  }, [])
+
+  /* RETORNO DE PASARELA DE PAGO (Flow).
+     Cuando la persona vuelve de Flow.cl después del checkout, la URL trae
+     ?payment=return. Limpiamos los params y mandamos al gate de Cruz Celta.
+     El gate va a revisar payments — si el webhook ya marcó el payment como
+     completed, dejará pasar a la lectura. Si el webhook todavía no llegó
+     (puede tardar segundos), el gate mostrará paywall otra vez; la persona
+     puede refrescar en 10s. */
+  useEffect(() => {
+    if (!isPaymentReturn()) return
+    clearPaymentReturnParams()
+    // Pequeño delay para darle al webhook un margen de propagación.
+    setTimeout(() => { setView('celticGate') }, 800)
   }, [])
 
   /* ONBOARDING — se muestra solo en la primera visita.
