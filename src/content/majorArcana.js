@@ -21,7 +21,7 @@ export const majorArcana = [
     essence: 'Movimiento sin certezas.',
     reading: 'Hay algo en ti que quiere avanzar, aunque no tenga todas las respuestas. No es imprudencia, es apertura. A veces el primer paso no busca seguridad, sino experiencia.',
     prompt: '¿Qué pasaría si confías un poco más en lo que te mueve, aunque no lo entiendas del todo?',
-    extension: 'El Loco no es ingenuo, aunque a veces lo parezca. Sabe algo que el resto olvidó: que toda transformación empieza por un acto que no puede explicarse del todo. Lo que aparece como impulso suele ser, en realidad, una forma vieja de saber. Dar el paso no es perder el equilibrio; es confiar en una lógica más antigua que la del miedo. La pregunta no es si vas a caer, sino si querés seguir parada en el mismo borde.',
+    extension: 'El Loco no es ingenuo, aunque a veces lo parezca. Sabe algo que el resto olvidó: que toda transformación empieza por un acto que no puede explicarse del todo. Lo que aparece como impulso suele ser, en realidad, una forma vieja de saber. Dar el paso no es perder el equilibrio; es confiar en una lógica más antigua que la del miedo. La pregunta no es si vas a caer, sino si quieres seguir parada en el mismo borde.',
     positions: {
       whatIs:      'Hay una energía de inicio, búsqueda o movimiento. Algo quiere salir de lo conocido.',
       whatCrosses: 'La falta de claridad puede confundirse con libertad. Conviene mirar si estás avanzando o escapando.',
@@ -33,7 +33,7 @@ export const majorArcana = [
     essence: 'Tienes con qué empezar.',
     reading: 'Lo que necesitas no está afuera. Ya tienes herramientas, incluso si no las reconoces del todo. Esta carta no habla de perfección, habla de intención y acción consciente.',
     prompt: '¿Qué parte de ti ya sabe cómo avanzar, aunque aún no la estés usando?',
-    extension: 'El Mago no fabrica nada nuevo. Reordena lo que ya estaba. Las cuatro herramientas sobre su mesa —copa, espada, oro, basto— son tu vida cotidiana mirada de cerca. Lo que parece falta a veces es solo dispersión, atención que se fue a otra parte. La magia, en esta carta, es la coherencia entre lo que pensás, decís, sentís y hacés. Cuando esos cuatro vuelven a alinearse, lo que parecía imposible empieza a moverse solo.',
+    extension: 'El Mago no fabrica nada nuevo. Reordena lo que ya estaba. Las cuatro herramientas sobre su mesa —copa, espada, oro, basto— son tu vida cotidiana mirada de cerca. Lo que parece falta a veces es solo dispersión, atención que se fue a otra parte. La magia, en esta carta, es la coherencia entre lo que piensas, dices, sientes y haces. Cuando esos cuatro vuelven a alinearse, lo que parecía imposible empieza a moverse solo.',
     positions: {
       whatIs:      'Hay recursos disponibles, habilidades concretas y una intención que puede tomar forma.',
       whatCrosses: 'Puede haber exceso de control o una tendencia a esperar condiciones perfectas antes de actuar.',
@@ -45,7 +45,7 @@ export const majorArcana = [
     essence: 'No todo se muestra de inmediato.',
     reading: 'Hay algo que necesita silencio antes de revelarse. No es bloqueo, es proceso. Esta carta no empuja, sostiene. Invita a mirar hacia adentro antes de actuar.',
     prompt: '¿Qué estás sintiendo que aún no has querido escuchar del todo?',
-    extension: 'Hay un saber que no necesita ser nombrado para existir. La Sacerdotisa custodia ese umbral. Si te alcanza, probablemente ya percibís algo que todavía no podés articular. Esta carta no pide explicaciones, pide presencia. A veces la respuesta no llega como pensamiento sino como sensación corporal, sueño, demora. Lo que se sostiene en silencio puede madurar más que lo que se obliga a hablar antes de tiempo.',
+    extension: 'Hay un saber que no necesita ser nombrado para existir. La Sacerdotisa custodia ese umbral. Si te alcanza, probablemente ya percibes algo que todavía no puedes articular. Esta carta no pide explicaciones, pide presencia. A veces la respuesta no llega como pensamiento sino como sensación corporal, sueño, demora. Lo que se sostiene en silencio puede madurar más que lo que se obliga a hablar antes de tiempo.',
     positions: {
       whatIs:      'Hay información sutil, intuición o una verdad que todavía no aparece de forma directa.',
       whatCrosses: 'El silencio puede volverse confusión si se usa para evitar una decisión necesaria.',
@@ -69,7 +69,7 @@ export const majorArcana = [
     essence: 'Dar forma también es cuidar.',
     reading: 'Aquí aparece la estructura: límites, orden, decisión. No como rigidez vacía, sino como sostén. A veces avanzar requiere dejar claro qué se permite y qué ya no.',
     prompt: '¿Dónde necesitas poner un límite para recuperar dirección?',
-    extension: 'El Emperador no es el poder que se impone, es el que sostiene. La estructura, en esta carta, no es jaula sino columna. Hay momentos donde lo más amoroso es decir basta, no más, hasta acá. Poner un límite no cierra al otro: te abre a ti. La firmeza de esta carta no excluye la ternura; la hace posible.',
+    extension: 'El Emperador no es el poder que se impone, es el que sostiene. La estructura, en esta carta, no es jaula sino columna. Hay momentos donde lo más amoroso es decir basta, no más, hasta aquí. Poner un límite no cierra al otro: te abre a ti. La firmeza de esta carta no excluye la ternura; la hace posible.',
     positions: {
       whatIs:      'Hay necesidad de orden, límites y una estructura que sostenga mejor lo que estás viviendo.',
       whatCrosses: 'La rigidez puede estar cerrando posibilidades o convirtiendo el control en defensa.',
@@ -105,7 +105,7 @@ export const majorArcana = [
     essence: 'Avanzar requiere dirección.',
     reading: 'Hay movimiento, pero también tensión. Esta carta aparece cuando distintas fuerzas tiran en sentidos opuestos y aun así necesitas conducir. No se trata de controlar todo, sino de no soltar el eje.',
     prompt: '¿Qué necesitas ordenar dentro de ti para avanzar sin dispersarte?',
-    extension: 'El Carro no avanza porque las dos esfinges estén de acuerdo. Avanza porque el conductor las sostiene a las dos. La fuerza de esta carta no es eliminar la tensión, es habitarla con foco. Hay días donde una parte tuya quiere quedarse y otra quiere irse, y ambas tienen razón. La cuestión no es cuál gana sino qué dirección elegís darle al desacuerdo.',
+    extension: 'El Carro no avanza porque las dos esfinges estén de acuerdo. Avanza porque el conductor las sostiene a las dos. La fuerza de esta carta no es eliminar la tensión, es habitarla con foco. Hay días donde una parte tuya quiere quedarse y otra quiere irse, y ambas tienen razón. La cuestión no es cuál gana sino qué dirección eliges darle al desacuerdo.',
     positions: {
       whatIs:      'Hay impulso, movimiento y necesidad de tomar el control de una dirección.',
       whatCrosses: 'Puede haber prisa, exceso de control o avance sin integración interna.',
@@ -117,7 +117,7 @@ export const majorArcana = [
     essence: 'La suavidad también puede dominar.',
     reading: 'Esta carta habla de una potencia que no necesita imponerse. Invita a mirar el impulso, la rabia o el deseo sin negarlos, pero tampoco dejar que conduzcan por ti.',
     prompt: '¿Qué emoción necesita ser sostenida con firmeza, no reprimida?',
-    extension: 'La Fuerza no doma al león; lo escucha. Si esta carta aparece, probablemente haya algo en vos que está rugiendo —rabia, deseo, agotamiento— y que pide ser reconocido antes que reprimido. La verdadera potencia es la capacidad de no tener miedo de lo que sentís, sin dejar que conduzca por vos. Suavidad no es debilidad: es el nivel más alto de fuerza posible.',
+    extension: 'La Fuerza no doma al león; lo escucha. Si esta carta aparece, probablemente haya algo en tú que está rugiendo —rabia, deseo, agotamiento— y que pide ser reconocido antes que reprimido. La verdadera potencia es la capacidad de no tener miedo de lo que sientes, sin dejar que conduzca por tú. Suavidad no es debilidad: es el nivel más alto de fuerza posible.',
     positions: {
       whatIs:      'Hay una energía intensa que necesita ser reconocida y contenida con delicadeza.',
       whatCrosses: 'Puede haber lucha interna, represión o intento de controlar desde la dureza.',
@@ -141,7 +141,7 @@ export const majorArcana = [
     essence: 'El cambio ya está en marcha.',
     reading: 'Hay movimientos que no dependen de ti, pero sí cómo te posicionas frente a ellos. Esta carta habla de ciclos que giran y de la necesidad de adaptarse sin perder el eje.',
     prompt: '¿Qué estás intentando controlar que en realidad te pide acompañar?',
-    extension: 'La Rueda no premia ni castiga. Solo gira. Lo que estaba arriba baja, lo que estaba abajo sube, y eso no significa nada salvo que el tiempo sigue pasando. Esta carta libera de la ilusión de control absoluto: no podés evitar el ciclo, pero podés elegir cómo lo habitás. La sabiduría no es predecir el giro, es ablandarte mientras gira.',
+    extension: 'La Rueda no premia ni castiga. Solo gira. Lo que estaba arriba baja, lo que estaba abajo sube, y eso no significa nada salvo que el tiempo sigue pasando. Esta carta libera de la ilusión de control absoluto: no puedes evitar el ciclo, pero puedes elegir cómo lo habitás. La sabiduría no es predecir el giro, es ablandarte mientras gira.',
     positions: {
       whatIs:      'Hay un cambio en curso, un giro que modifica el escenario actual.',
       whatCrosses: 'Resistir el movimiento puede generar más tensión que el cambio mismo.',
@@ -153,7 +153,7 @@ export const majorArcana = [
     essence: 'Ver claro antes de decidir.',
     reading: 'Esta carta invita a ordenar, a observar sin distorsión. No desde el castigo, sino desde la coherencia. Lo que elijas ahora tiene peso porque nace de mayor conciencia.',
     prompt: '¿Qué decisión sería más honesta si dejas de evitar lo evidente?',
-    extension: 'La Justicia no es la balanza del castigo, es la balanza de la coherencia interna. Esta carta aparece cuando algo en tu vida pide ser nombrado con honestidad —incluso si es incómodo, incluso si te implica. La verdad de la que habla no es absoluta ni externa: es la coherencia entre lo que sabés y lo que hacés. Cuando se rompe ese eje, todo lo demás se desordena, aunque no se note al principio.',
+    extension: 'La Justicia no es la balanza del castigo, es la balanza de la coherencia interna. Esta carta aparece cuando algo en tu vida pide ser nombrado con honestidad —incluso si es incómodo, incluso si te implica. La verdad de la que habla no es absoluta ni externa: es la coherencia entre lo que sabes y lo que haces. Cuando se rompe ese eje, todo lo demás se desordena, aunque no se note al principio.',
     positions: {
       whatIs:      'Hay una necesidad de claridad, equilibrio y toma de decisiones conscientes.',
       whatCrosses: 'Puede haber rigidez, juicio excesivo o dificultad para ver todos los matices.',
@@ -177,7 +177,7 @@ export const majorArcana = [
     essence: 'Cerrar también es avanzar.',
     reading: 'Algo ya cumplió su ciclo. Esta carta no habla de pérdida, sino de transformación profunda. Soltar abre espacio a lo nuevo.',
     prompt: '¿Qué estás lista para dejar atrás, aunque aún te cueste?',
-    extension: 'La Muerte rara vez es la que se teme. Casi nunca habla de un final externo; habla de un cierre interno. Algo en vos —una identidad, una expectativa, una manera de funcionar— ya cumplió. Quedarte ahí más tiempo no la mantiene viva, solo prolonga la despedida. Esta carta no pide valentía, pide honestidad para reconocer lo que ya pasó.',
+    extension: 'La Muerte rara vez es la que se teme. Casi nunca habla de un final externo; habla de un cierre interno. Algo en tú —una identidad, una expectativa, una manera de funcionar— ya cumplió. Quedarte ahí más tiempo no la mantiene viva, solo prolonga la despedida. Esta carta no pide valentía, pide honestidad para reconocer lo que ya pasó.',
     positions: {
       whatIs:      'Hay un cierre importante o transformación en curso.',
       whatCrosses: 'Algo se está transformando profundamente.',
@@ -237,7 +237,7 @@ export const majorArcana = [
     essence: 'No todo es claro, y está bien.',
     reading: 'Hay momentos en que la claridad no llega de inmediato. Esta carta habla de intuición, de atravesar lo incierto sin forzar respuestas.',
     prompt: '¿Qué estás sintiendo que aún no puedes explicar, pero sabes que es importante?',
-    extension: 'La Luna no engaña, deforma. Lo que ves bajo su luz tiene contornos imprecisos, pero no por eso es falso. Esta carta enseña que la intuición y el miedo a veces hablan el mismo idioma, y diferenciarlos pide tiempo. No todo lo que sentís en la noche es verdad, pero tampoco es ruido. Caminar despacio en la niebla es más sabio que correr para salir de ella.',
+    extension: 'La Luna no engaña, deforma. Lo que ves bajo su luz tiene contornos imprecisos, pero no por eso es falso. Esta carta enseña que la intuición y el miedo a veces hablan el mismo idioma, y diferenciarlos pide tiempo. No todo lo que sientes en la noche es verdad, pero tampoco es ruido. Caminar despacio en la niebla es más sabio que correr para salir de ella.',
     positions: {
       whatIs:      'Hay confusión, sensibilidad o información no visible del todo.',
       whatCrosses: 'El miedo o la inseguridad pueden distorsionar la percepción.',
@@ -249,7 +249,7 @@ export const majorArcana = [
     essence: 'La claridad simplifica.',
     reading: 'Después de la confusión, aparece una certeza tranquila. Esta carta trae presencia, alivio y una sensación de verdad simple.',
     prompt: '¿Qué se vuelve evidente cuando dejas de complicarlo?',
-    extension: 'El Sol no esconde nada porque no necesita esconder nada. Esta carta llega cuando algo en vos se simplifica, cuando dejás de complicar lo que era claro desde el principio. La alegría de la que habla no es euforia: es el alivio de no tener que actuar. La verdad simple, dicha sin adornos, es lo que esta carta celebra.',
+    extension: 'El Sol no esconde nada porque no necesita esconder nada. Esta carta llega cuando algo en tú se simplifica, cuando dejas de complicar lo que era claro desde el principio. La alegría de la que habla no es euforia: es el alivio de no tener que actuar. La verdad simple, dicha sin adornos, es lo que esta carta celebra.',
     positions: {
       whatIs:      'Hay claridad, energía vital o comprensión directa.',
       whatCrosses: 'El exceso de confianza o exposición puede desbalancear.',
@@ -273,7 +273,7 @@ export const majorArcana = [
     essence: 'Todo se integra.',
     reading: 'Hay una sensación de cierre y expansión al mismo tiempo. Esta carta habla de haber recorrido un proceso y poder habitarlo con mayor totalidad.',
     prompt: '¿Qué reconoces hoy en ti que antes no podías ver?',
-    extension: 'El Mundo no es la meta, es el reconocimiento de que ya recorriste algo importante. La figura central baila adentro de una corona de laurel: no afuera, no por encima, dentro. Lo que esta carta señala no es un final, es una integración. Algo en vos cabe ahora donde antes no cabía. Y desde ahí, nuevamente, empieza algo.',
+    extension: 'El Mundo no es la meta, es el reconocimiento de que ya recorriste algo importante. La figura central baila adentro de una corona de laurel: no afuera, no por encima, dentro. Lo que esta carta señala no es un final, es una integración. Algo en tú cabe ahora donde antes no cabía. Y desde ahí, nuevamente, empieza algo.',
     positions: {
       whatIs:      'Hay integración, cierre de etapa o logro significativo.',
       whatCrosses: 'La dificultad puede estar en reconocer lo alcanzado.',

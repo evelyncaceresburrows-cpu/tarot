@@ -118,7 +118,7 @@ export const majorArcanaSymbolic = [
     archetypes: [
       'El que sabe que tiene los elementos y elige cuál usar',
       'La voluntad que se enfoca',
-      'El cruce entre lo que pensás y lo que haces'
+      'El cruce entre lo que piensas y lo que haces'
     ],
     emotionalThemes: [
       'Foco',

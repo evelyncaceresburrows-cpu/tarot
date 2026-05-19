@@ -108,6 +108,14 @@ REPLACEMENTS = {
     'entrás': 'entras',
     'apretás': 'aprietas',
     'fingís': 'finges',
+    'pensás': 'piensas',
+    'percibís': 'percibes',
+    'ponés': 'pones',
+    'necesitás': 'necesitas',
+    'animás': 'animas',
+    'volves': 'vuelves',
+    'sostenes': 'sostienes',
+    'dejás': 'dejas',
 
     # Imperativos vos → tú
     'mirá': 'mira',
@@ -131,7 +139,10 @@ REPLACEMENTS = {
     # Imperativos enclíticos vos → tú
     'recordate': 'acuérdate',
     'fijate': 'fíjate',
-    'animate': 'anímate',
+    # 'animate' está EXCLUIDO a propósito: colisiona con el prop `animate`
+    # de Framer Motion en JSX. Si hay un imperativo enclítico "animate"
+    # como voseo, va con tilde "animáte" — eso sí lo reemplazamos.
+    'animáte': 'anímate',
     'cuidate': 'cuídate',
     'permitite': 'permítete',
     'metete': 'métete',
@@ -305,12 +316,17 @@ NEW_VERB_MAP_JS = """  const verbMap = {
 
 
 FILES = [
+    'src/content/majorArcana.js',
     'src/content/majorArcanaSymbolic.js',
     'src/content/minorArcanaCards.js',
     'src/content/minorArcanaSuitSystem.js',
     'src/content/contentBridge.js',
     'src/engine/relationalEngine.js',
+    'src/engine/relationalDetectors.js',
     'src/engine/celticReading.js',
+    'src/engine/celticNarrative.js',
+    'src/engine/narrativeComposer.js',
+    'src/engine/narrativeMacros.js',
     'src/engine/emotionalMemory.js',
     'src/engine/composeReading.js',
     'src/App.jsx',

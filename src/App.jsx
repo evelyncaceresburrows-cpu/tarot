@@ -2694,7 +2694,7 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
       {/* === 3 · CARTA POR CARTA — explicación detallada de cada
               posición. Esta sección no existía antes: la lectura saltaba
               directo a la síntesis y la persona perdía el sentido
-              individual de cada carta. Acá cada una pesa por separado. === */}
+              individual de cada carta. Aquí cada una pesa por separado. === */}
       <StarDivider className="my-12" />
 
       <div className="text-center mb-8">
@@ -2749,7 +2749,7 @@ function CelticFullReading({ slots, cards, onCarta, onReset }) {
                 </p>
               )}
 
-              {/* Cuerpo de la lectura — lo que realmente dice la carta acá */}
+              {/* Cuerpo de la lectura — lo que realmente dice la carta aquí */}
               <p className="font-light text-pergamino/85 fluid-body">
                 {c?.reading || fallback}
                 {(() => {
@@ -3707,7 +3707,7 @@ function Diario({ onHome, onNav, onOpen }) {
             Diario
           </h2>
           <p className="font-serif italic text-pergamino/55 text-[0.92rem] mt-4 max-w-[28rem] mx-auto leading-[1.7]">
-            Las lecturas quedan acá. Puedes volver a leerlas cuando lo necesites.
+            Las lecturas quedan aquí. Puedes volver a leerlas cuando lo necesites.
           </p>
         </header>
 
@@ -3717,7 +3717,7 @@ function Diario({ onHome, onNav, onOpen }) {
           <div className="text-center py-10">
             <BookOpen className="w-7 h-7 text-dorado/40 mx-auto mb-5" strokeWidth={1.1} />
             <p className="font-serif italic text-pergamino/55 text-[0.95rem] leading-[1.8] max-w-[24rem] mx-auto">
-              Todavía no hay lecturas guardadas. Después de tu primera tirada, aparecerán acá.
+              Todavía no hay lecturas guardadas. Después de tu primera tirada, aparecerán aquí.
             </p>
           </div>
         ) : (
@@ -4042,7 +4042,7 @@ function Inscripcion({ onBack, onSent }) {
           Antes de la Cruz
         </p>
         <h2 className="font-serif font-light text-dorado uppercase mb-6 ritual-loose-tracking" style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.7rem)', letterSpacing: 'clamp(0.20em, 1vw, 0.32em)' }}>
-          Tu nombre acá
+          Tu nombre aquí
         </h2>
         <p className="font-serif italic text-pergamino/70 text-[0.98rem] sm:text-[1rem] leading-[1.75] max-w-[26rem] mb-10 px-2">
           La Cruz Celta es una lectura larga. Para abrirla, deja tu correo. Te enviamos un enlace para entrar — sin contraseñas, sin envíos extra.
@@ -4216,7 +4216,7 @@ function Paywall({ onBack }) {
 }
 
 /* Resolver intermedio: cuando el listener de auth detecta sesión nueva
-   (magic link entró), pasamos por acá brevemente. Chequea acceso y
+   (magic link entró), pasamos por aquí brevemente. Chequea acceso y
    rebota al destino correcto. La pantalla es solo un punto de
    transición visual. */
 function CelticGateResolver({ onResolved }) {
@@ -4229,7 +4229,7 @@ function CelticGateResolver({ onResolved }) {
       } else if (access.state === 'needs_payment') {
         onResolved('paywall', access)
       } else {
-        // needs_signup raro acá pero por completeness
+        // needs_signup raro aquí pero por completeness
         onResolved('inscripcion', access)
       }
     })
@@ -4440,7 +4440,7 @@ export default function App() {
             onBack={() => setView('shuffle')}
           />
         )}
-        {/* Estado intermedio: el listener de auth lo deja acá si la
+        {/* Estado intermedio: el listener de auth lo deja aquí si la
             persona acaba de loguearse por magic link. Lo resolvemos
             en cuanto entramos: chequeamos acceso y rutamos. */}
         {view === 'celticGate' && (

@@ -129,7 +129,7 @@ export const minorArcanaCards = {
       ],
       reversed: {
         essence:   "Las tres figuras alzan la copa, pero ninguna se mira. La fiesta se volvió ruido.",
-        reading:   "La alegría compartida se desfiguró en performance. O celebras hacia afuera mientras por dentro hay algo que no estás contando, o el grupo te diluye y volves a casa más sola que cuando saliste. El gozo común pide presencia real, no foto.",
+        reading:   "La alegría compartida se desfiguró en performance. O celebras hacia afuera mientras por dentro hay algo que no estás contando, o el grupo te diluye y vuelves a casa más sola que cuando saliste. El gozo común pide presencia real, no foto.",
         synthesis: "Festejar sin estar también es una forma de aislamiento.",
         prompt:    "¿Estás celebrando algo, o estás haciendo de cuenta que celebras para no quedarte sola con lo que no encaja?",
         manifestations: [
@@ -494,7 +494,7 @@ export const minorArcanaCards = {
       essence: 'Sostener también es una forma de saber.',
       reading: 'Hay una sabiduría tuya que viene del sentir, no del análisis: la que cuida sin ahogar, la que escucha lo que no se dice. Esta carta te recuerda que esa forma de saber también es válida.',
       synthesis: 'Lo emocional bien cuidado se vuelve inteligencia.',
-      prompt: '¿Qué cosa estás sabiendo desde el cuerpo y todavía no te animás a llamar saber?',
+      prompt: '¿Qué cosa estás sabiendo desde el cuerpo y todavía no te animas a llamar saber?',
       themes: ['Sabiduría emocional', 'Sostén', 'Empatía madura', 'Escucha profunda'],
       manifestations: [
         'Acompañar a alguien sin querer arreglarlo',
@@ -2012,7 +2012,7 @@ export const minorArcanaCards = {
       ],
       reversed: {
         essence:   "La familia sigue bajo el arco, pero el viejo del fondo ya no sabe quién es quién. Los perros guardan algo que nadie nombra.",
-        reading:   "El legado se volvió peso o se volvió postal. O sostenes una pertenencia familiar o de tradición que ya no te representa, por culpa o por costumbre, o renegaste de todo lo heredado y descubres, después, que estás repitiendo los mismos patrones con otro decorado. Las raíces piden revisión consciente, no sumisión ni ruptura ciega.",
+        reading:   "El legado se volvió peso o se volvió postal. O sostienes una pertenencia familiar o de tradición que ya no te representa, por culpa o por costumbre, o renegaste de todo lo heredado y descubres, después, que estás repitiendo los mismos patrones con otro decorado. Las raíces piden revisión consciente, no sumisión ni ruptura ciega.",
         synthesis: "Heredar sin elegir y romper sin entender son la misma trampa con dirección opuesta.",
         prompt:    "¿Qué tradición, regla o lealtad familiar estás sosteniendo que ya no es tuya — o cuál estás repitiendo creyendo que la rompiste?",
         manifestations: [

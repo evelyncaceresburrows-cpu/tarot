@@ -358,7 +358,7 @@ function buildSynthesis(macros, stats, hasCrossing) {
     case 'evasion-activa':
       return 'La tirada pide girar la cara hacia lo que estás esquivando. No para resolverlo: para mirarlo.'
     case 'exceso-control':
-      return 'La tirada pide aflojar la mano. Lo que estás cuidando no se rompe si lo dejás respirar.'
+      return 'La tirada pide aflojar la mano. Lo que estás cuidando no se rompe si lo dejas respirar.'
     case 'deseo-bloqueado':
       return 'La tirada pide escuchar al deseo sin censurarlo. No tiene que ejecutarse — tiene que ser oído.'
     case 'patron-vuelve':

@@ -362,7 +362,7 @@ export function buildDominantCards({ enriched, stats, slots }) {
     }
   }
   if (manifest) {
-    const posName = ['en el centro', 'cruzando todo', 'en lo que cargás internamente', 'en la dirección final'][criticalPositions.indexOf(manifest.position)]
+    const posName = ['en el centro', 'cruzando todo', 'en lo que cargas internamente', 'en la dirección final'][criticalPositions.indexOf(manifest.position)]
     return `${cardName(manifest.card)} ${posName}: ${MAJOR_WEIGHTS[manifest.card.name]}.`
   }
 
@@ -609,7 +609,7 @@ const CLOSING_BY_THESIS_PATTERN = {
   'algo-ya-paso':
     'Hay una versión que ya pasó. La lectura sugiere quedarte con la nueva, aunque sea más fea — la vieja ya no es real, solo es cara de mantener.',
   'ruptura-en-proceso':
-    'Lo que está cayendo se cae solo si dejás de empujarlo a quedarse. La energía que ponés en sostenerlo es la misma que necesitás para lo que viene después.',
+    'Lo que está cayendo se cae solo si dejas de empujarlo a quedarse. La energía que pones en sostenerlo es la misma que necesitas para lo que viene después.',
   'distorsion-por-invertidas':
     'No es momento de decidir nada importante hoy. Lo que la lectura dice está pasando filtros, y forzar una conclusión sería elegir desde algo que aún no terminó de mostrarse.',
   'capitulo-largo':

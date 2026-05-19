@@ -291,7 +291,7 @@ const MAJOR_PRESENCE_LINES = {
   0: [
     'Sin Mayores. Esto se vive a escala humana: una conversación, un mail, una decisión chica. No menos profundo — más íntimo.',
     'Ningún Arcano Mayor. La lectura es de gestos del día, no de capítulos de vida. Eso ya es información.',
-    'Esto pasa en lo cotidiano: lo que dices hoy, lo que firmas, lo que te animás a no contestar. No hay drama estructural — hay vida.'
+    'Esto pasa en lo cotidiano: lo que dices hoy, lo que firmas, lo que te animas a no contestar. No hay drama estructural — hay vida.'
   ]
 }
 
