@@ -4234,15 +4234,14 @@ function Paywall({ onBack }) {
         )}
 
         <button
-          onClick={handleBuy}
-          disabled={buying}
-          className="min-h-[48px] px-10 py-3.5 btn-threshold-primary text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] active:scale-[0.985] disabled:opacity-60 disabled:cursor-wait"
+          disabled
+          className="min-h-[48px] px-10 py-3.5 btn-threshold text-[0.62rem] tracking-[0.28em] sm:tracking-[0.36em] uppercase font-light rounded-[2px] opacity-60 cursor-not-allowed"
         >
-          <span>{buying ? 'Conectando con la pasarela…' : 'Comprar tirada'}</span>
+          <span>Comprar tirada · disponible muy pronto</span>
         </button>
 
         <p className="mt-4 text-[0.6rem] tracking-[0.22em] uppercase text-pergamino/35 font-light">
-          Pago seguro · Webpay · tarjeta de crédito/débito
+          La compra abre en los próximos días
         </p>
 
         <button
