@@ -1106,11 +1106,11 @@ function Onboarding({ onComplete }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7 }}
-      className="fixed inset-0 z-[60] ritual-bg text-pergamino page-frame"
+      className="fixed inset-0 z-[60] ritual-bg text-pergamino page-frame overflow-hidden"
     >
       <AtmosphereLayer scene="home" />
       <div
-        className="relative z-10 max-w-[440px] mx-auto px-7 flex flex-col items-center min-h-[100svh] justify-center text-center"
+        className="relative z-10 max-w-[440px] mx-auto px-7 h-full flex flex-col items-center justify-center text-center"
         style={{
           paddingTop: 'calc(2.5rem + env(safe-area-inset-top, 0px))',
           paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom, 0px))'
