@@ -40,7 +40,9 @@ import {
 import {
   startCruzCeltaPayment,
   isPaymentReturn,
+  getPaymentReturnToken,
   clearPaymentReturnParams,
+  pollPaymentStatus,
   CRUZ_CELTA_PRICE_CLP
 } from './engine/payment.js'
 
@@ -4254,6 +4256,42 @@ function Paywall({ onBack }) {
   )
 }
 
+/* VerifyingPayment — pantalla que se muestra cuando volviste de Flow
+   y estamos consultando el estado del pago directamente con la pasarela.
+   Sin esto, la persona pagaba y la app le volvía a mostrar el Paywall
+   porque el webhook tarda en propagar (race condition). */
+function VerifyingPayment() {
+  return (
+    <motion.section
+      key="verifying"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative min-h-[100svh] ritual-bg text-pergamino flex items-center justify-center page-frame"
+    >
+      <AtmosphereLayer scene="intention" />
+      <div className="relative z-10 text-center px-7 max-w-[28rem]">
+        <div className="text-dorado/65 mb-8 flex justify-center"><CompassStar size={42} /></div>
+        <p className="fluid-micro text-dorado/75 font-light mb-4">
+          Confirmando tu pago
+        </p>
+        <p className="font-serif italic text-pergamino/75 text-[1rem] leading-[1.75] mb-2">
+          Esperando confirmación de la pasarela…
+        </p>
+        <p className="font-serif italic text-pergamino/45 text-[0.88rem] leading-[1.7]">
+          No cierres esta pantalla. Si tu tarjeta fue cobrada, la lectura se abrirá en segundos.
+        </p>
+        <div className="mt-10 flex justify-center gap-1.5">
+          <span className="w-1 h-1 rounded-full bg-dorado/65 animate-pulse" style={{ animationDelay: '0ms' }} />
+          <span className="w-1 h-1 rounded-full bg-dorado/65 animate-pulse" style={{ animationDelay: '180ms' }} />
+          <span className="w-1 h-1 rounded-full bg-dorado/65 animate-pulse" style={{ animationDelay: '360ms' }} />
+        </div>
+      </div>
+    </motion.section>
+  )
+}
+
 /* Resolver intermedio: cuando el listener de auth detecta sesión nueva
    (magic link entró), pasamos por aquí brevemente. Chequea acceso y
    rebota al destino correcto. La pantalla es solo un punto de
@@ -4340,17 +4378,36 @@ export default function App() {
   }, [])
 
   /* RETORNO DE PASARELA DE PAGO (Flow).
-     Cuando la persona vuelve de Flow.cl después del checkout, la URL trae
-     ?payment=return. Limpiamos los params y mandamos al gate de Cruz Celta.
-     El gate va a revisar payments — si el webhook ya marcó el payment como
-     completed, dejará pasar a la lectura. Si el webhook todavía no llegó
-     (puede tardar segundos), el gate mostrará paywall otra vez; la persona
-     puede refrescar en 10s. */
+     Cuando la persona vuelve de Flow.cl, la URL trae ?payment=return&token=...
+     En lugar de esperar pasivamente al webhook (que puede tardar 1-2 minutos),
+     CONSULTAMOS Flow directamente con el token via edge function. La función
+     marca el payment como completed apenas Flow confirma, y devuelve el
+     resultado al frontend. Mientras tanto, mostramos la pantalla 'verifying'
+     con la persona viendo "Confirmando tu pago…" en lugar de quedar varada
+     en el Paywall después de haber pagado. */
   useEffect(() => {
     if (!isPaymentReturn()) return
+    const token = getPaymentReturnToken()
     clearPaymentReturnParams()
-    // Pequeño delay para darle al webhook un margen de propagación.
-    setTimeout(() => { setView('celticGate') }, 800)
+    if (!token) {
+      // Sin token, no podemos verificar. Mandamos al gate normal.
+      setView('celticGate')
+      return
+    }
+    setView('verifying')
+    // Polling cada 2s hasta 30s. Si confirma, vamos a celticGate.
+    pollPaymentStatus(token).then(result => {
+      if (result.status === 'completed') {
+        setView('celticGate')
+      } else if (result.status === 'failed') {
+        // Pago rechazado o cancelado por la persona
+        setView('paywall')
+      } else {
+        // Pending después de 30s — raro pero posible. Mandamos al gate
+        // que va a chequear el estado actual de la tabla.
+        setView('celticGate')
+      }
+    }).catch(() => setView('celticGate'))
   }, [])
 
   /* ONBOARDING — se muestra solo en la primera visita.
@@ -4525,6 +4582,9 @@ export default function App() {
             key="paywall"
             onBack={() => setView('home')}
           />
+        )}
+        {view === 'verifying' && (
+          <VerifyingPayment key="verifying" />
         )}
         {view === 'explorar' && (
           <Explorar
